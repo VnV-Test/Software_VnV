@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Gradle build'){
             steps{
-                sh 'gradle clean build -x test -b build-server.gradle'
+                sh 'gradle build'
             }
         }
         stage('Hello22') {
