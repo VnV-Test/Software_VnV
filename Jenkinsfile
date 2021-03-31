@@ -17,6 +17,17 @@ pipeline {
                 slackSend (channel: '#jenkins', color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
             }
         }
+        stage('Gradle build'){
+            steps{
+                sh 'gradle clean build -x test -b build-server.gradle'
+            }
+        }
+        stage('Hello22') {
+                    steps {
+                        echo 'Working working aksdf;dkljasdkljlklkdf'
+                        //slackSend (channel: '#jenkins', color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+                    }
+                }
         /*stage('Fail Test'){
           steps{
             ech ll//error code
