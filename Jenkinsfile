@@ -2,6 +2,15 @@ pipeline {
     agent any
 
     stages {
+
+        /*stage('Clone'){
+            git 'https://github.com/VnV-Test/Software_VnV.git'
+        }
+        dir('vnvTest'){
+            stage('testExecute'){
+                sh './src/testMain/Main.java.sh'
+            }
+        }*/
         stage('Hello') {
             steps {
                 echo 'Hello World'
