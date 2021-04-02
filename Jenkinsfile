@@ -17,11 +17,11 @@ pipeline {
                 slackSend (channel: '#jenkins', color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
             }
         }
-        stage('Gradle build'){
+        /* stage('Gradle build'){
             steps{
                 sh 'gradle build'
             }
-        }
+        } */
         stage('Hello22') {
                     steps {
                         echo 'Working working aksdf;dkljasdkljlklkdf'

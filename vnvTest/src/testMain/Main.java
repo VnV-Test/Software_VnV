@@ -6,7 +6,7 @@ public class Main {
         System.out.println("Now testing intellij...");
         System.out.println("Error");
         System.out.println("깃 알람 오는지 수정중");
-        
+
         System.out.
     }
 }
