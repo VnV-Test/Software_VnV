@@ -1,20 +1,38 @@
 name: test workflow
-on: [push]
+on:  
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 jobs:
-  run:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - uses: actions/checkout@master
-    - name: Setup Java
-      uses: actions/setup-java@v1
-      with:
-        java-version: 11.x.x
-    - name: Build the plugin using Gradle
-      run: ./gradlew buildPlugin
-    - uses: thepieterdc/intellij-plugin-verifier-action@v1.3.0
-      with:
-        plugin: '/home/runner/work/demo-plugin/demo-plugin/build/distributions/demo-plugin-*'
-        versions: |
-          181.5684.4
-          2019.3.3
-          LATEST-EAP-SNAPSHOT
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+
+    # slack으로 메시지 발송
+    - name: send message to slack
+      run: curl -X POST -H "Content-type:application/json" --data '{"text":"build completed! haha! from cadimi"}' ${{ secrets.SLACK_WEBHOOK_URL }}
+# jobs:
+#   run:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@master
+#     - name: Setup Java
+#       uses: actions/setup-java@v1
+#       with:
+#         java-version: 11.x.x
+#     - name: Build the plugin using Gradle
+#       run: ./gradlew buildPlugin
+#     - uses: thepieterdc/intellij-plugin-verifier-action@v1.3.0
+#       with:
+#         plugin: '/home/runner/work/demo-plugin/demo-plugin/build/distributions/demo-plugin-*'
+#         versions: |
+#           181.5684.4
+#           2019.3.3
+#           LATEST-EAP-SNAPSHOT
