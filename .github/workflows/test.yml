@@ -18,21 +18,3 @@ jobs:
     # slack으로 메시지 발송
     - name: send message to slack
       run: curl -X POST -H "Content-type:application/json" --data '{"text":"build completed! haha! from cadimi"}' ${{ secrets.SLACK_WEBHOOK_URL }}
-# jobs:
-#   run:
-#     runs-on: ubuntu-latest
-#     steps:
-#     - uses: actions/checkout@master
-#     - name: Setup Java
-#       uses: actions/setup-java@v1
-#       with:
-#         java-version: 11.x.x
-#     - name: Build the plugin using Gradle
-#       run: ./gradlew buildPlugin
-#     - uses: thepieterdc/intellij-plugin-verifier-action@v1.3.0
-#       with:
-#         plugin: '/home/runner/work/demo-plugin/demo-plugin/build/distributions/demo-plugin-*'
-#         versions: |
-#           181.5684.4
-#           2019.3.3
-#           LATEST-EAP-SNAPSHOT
