@@ -7,6 +7,6 @@ public class VMProject {
         //메인에 아무것도 없고 주석만 달려있을 경우
         //Google Checks
         //
-
+        //
     }
 }
