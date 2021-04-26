@@ -39,11 +39,39 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         check_name: Example JUnit Test Report
-        report_paths: '**/surefire-reports/TEST-*.xml'
+        report_paths: './results.xml'
         summary: '<table><thead><tr><th> Application (src/applications) </th></tr></thead><tbody><tr><td> test </td></tr></tbody></table>'
-      
-    - name: Slack Notification
-      uses: rtCamp/action-slack-notify@v2
+        
+#     - name: notify-tests
+#       uses: ivanklee86/xunit-slack-reporter@v1.0.1
+#       env:
+#         EXIT_CODE_FROM_REPORT: "True"
+#         SLACK_CHANNEL: githubAction
+#         SLACK_TOKEN: ${{ secrets.SLACK_WEBHOOK }}
+#         XUNIT_PATH: ./results.xml
+        
+#     - name: Slack Notification
+#       uses: rtCamp/action-slack-notify@v2
+#       env:
+#         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        
+    - name: Notify slack success
+      if: success()
       env:
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}
+      uses: voxmedia/github-action-slack-notify-build@v1
+      with:
+        channel: github_action
+        status: SUCCESS
+        color: good
+
+    - name: Notify slack fail
+      if: failure()
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}
+      uses: voxmedia/github-action-slack-notify-build@v1
+      with:
+        channel: github_action
+        status: FAILED
+        color: danger
 
