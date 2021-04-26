@@ -8,5 +8,10 @@ public class VMProject {
         //Google Checks
         //
         //
+        if(1>0){
+            System.out.println("bigger");
+        }else{
+            System.out.println("smaller");
+        }
     }
 }
