@@ -43,7 +43,7 @@ jobs:
         summary: '<table><thead><tr><th> Application (src/applications) </th></tr></thead><tbody><tr><td> test </td></tr></tbody></table>'
         
     - name: notify-tests
-      uses: ./
+      uses: ivanklee86/xunit-slack-reporter@v1.0.1
       env:
         EXIT_CODE_FROM_REPORT: "True"
         SLACK_CHANNEL: githubAction
