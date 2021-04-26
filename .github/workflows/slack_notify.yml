@@ -41,26 +41,9 @@ jobs:
         check_name: Example JUnit Test Report
         report_paths: '**/surefire-reports/TEST-*.xml'
         summary: '<table><thead><tr><th> Application (src/applications) </th></tr></thead><tbody><tr><td> test </td></tr></tbody></table>'
-        
-    - name: Test PyTest test import
-      uses: ./
-      if: endsWith(github.ref, 'main') == false
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        check_name: Example Pytest Report
-        report_paths: test_results/python/report.xml
-
-    - name: Install NPM
-      run: |
-        npm install
-        
-    - name: Run NPM
-      run: |
-        npm run all
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
     - name: Slack Notification
       uses: rtCamp/action-slack-notify@v2
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+

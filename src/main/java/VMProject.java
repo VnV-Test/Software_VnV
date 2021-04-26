@@ -17,5 +17,6 @@ public class VMProject {
         System.out.println("자퇴 혹은 종강이 하고싶다");
         //something
         //dk djEJgrp cnrkgodiehlsmswl 1eh ahfmrpT
+
     }
 }
