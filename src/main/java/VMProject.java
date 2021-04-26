@@ -8,6 +8,15 @@ public class VMProject {
         //Google Checks
         //
         //
-        //VMP-7
+        if(1>0){
+            System.out.println("bigger");
+        }else{
+            System.out.println("smaller");
+        }
+
+        System.out.println("자퇴 혹은 종강이 하고싶다");
+        //something
+        //dk djEJgrp cnrkgodiehlsmswl 1eh ahfmrpT
+
     }
 }
