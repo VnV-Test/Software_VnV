@@ -11,6 +11,12 @@ class VMProjectTest {
         assertEquals(addnumber.add(8,9),16);
     }
 
+    @Test
+    void 곱하기(){
+        Addnumber addnumber = new Addnumber();
+        assertEquals(addnumber.sub(10,9),1);
+    }
+
 
 
 //    @Test
