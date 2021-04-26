@@ -41,7 +41,15 @@ jobs:
         check_name: Example JUnit Test Report
         report_paths: '**/surefire-reports/TEST-*.xml'
         summary: '<table><thead><tr><th> Application (src/applications) </th></tr></thead><tbody><tr><td> test </td></tr></tbody></table>'
-      
+        
+    - name: notify-tests
+      uses: ./
+      env:
+        EXIT_CODE_FROM_REPORT: "True"
+        SLACK_CHANNEL: githubAction
+        SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+        XUNIT_PATH: '**/surefire-reports/TEST-*.xml'
+        
     - name: Slack Notification
       uses: rtCamp/action-slack-notify@v2
       env:
