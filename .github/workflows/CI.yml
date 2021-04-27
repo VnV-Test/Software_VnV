@@ -1,7 +1,7 @@
-on: push
-name: Slack Notification Demo
+# on: push
+# name: Slack Notification Demo
 
-jobs:
+# jobs:
 #   junitTest:
 #     name: junit test & slack notification
 #     runs-on: ubuntu-latest
@@ -133,12 +133,49 @@ jobs:
 #         github_token: ${{ secrets.GITHUB_TOKEN }}
 #         publish_dir: ./public
         
-  pmd:
+#   pmd:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@v2
+    
+#     - uses: sfdx-actions/setup-pmd@v1
+#     - name: run-pmd
+#       run: pmd -d ./build/classes/java/main -R category/apex/design.xml -f text
+
+name: Build
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    
-    - uses: sfdx-actions/setup-pmd@v1
-    - name: run-pmd
-      run: pmd -d ./build/classes/java/main -R category/apex/design.xml -f text
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Cache Gradle packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: ${{ runner.os }}-gradle
+      - name: Build and analyze
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: ./gradlew build sonarqube --info
     
