@@ -1,46 +1,46 @@
-on: push
-name: Slack Notification Demo
+# on: push
+# name: Slack Notification Demo
 
-jobs:
-  junitTest:
-    name: junit test & slack notification
-    runs-on: ubuntu-latest
-    steps:
+# jobs:
+#   junitTest:
+#     name: junit test & slack notification
+#     runs-on: ubuntu-latest
+#     steps:
    
-    - uses: actions/checkout@v2
+#     - uses: actions/checkout@v2
     
-    - name: set up JDK 1.8
-      uses: actions/setup-java@v1
-      with:
-        java-version: 1.8
+#     - name: set up JDK 1.8
+#       uses: actions/setup-java@v1
+#       with:
+#         java-version: 1.8
         
-    - name: Cache Gradle packages
-      uses: actions/cache@v2
-      with:
-        path: |
-          ~/.gradle/caches
-          ~/.gradle/wrapper
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-        restore-keys: |
-          ${{ runner.os }}-gradle-
+#     - name: Cache Gradle packages
+#       uses: actions/cache@v2
+#       with:
+#         path: |
+#           ~/.gradle/caches
+#           ~/.gradle/wrapper
+#         key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+#         restore-keys: |
+#           ${{ runner.os }}-gradle-
           
-#     - name: Install NDK
-#       run: echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;20.0.5594570"
+# #     - name: Install NDK
+# #       run: echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;20.0.5594570"
       
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
+#     - name: Grant execute permission for gradlew
+#       run: chmod +x gradlew
       
-    - name: Build with Gradle
-      run: ./gradlew build
+#     - name: Build with Gradle
+#       run: ./gradlew build
       
-    - name: Test JUnit test import
-      uses: ./
-      if: endsWith(github.ref, 'main') == false
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        check_name: Example JUnit Test Report
-        report_paths: './results.xml'
-        summary: '<table><thead><tr><th> Application (src/applications) </th></tr></thead><tbody><tr><td> test </td></tr></tbody></table>'
+#     - name: Test JUnit test import
+#       uses: ./
+#       if: endsWith(github.ref, 'main') == false
+#       with:
+#         token: ${{ secrets.GITHUB_TOKEN }}
+#         check_name: Example JUnit Test Report
+#         report_paths: './results.xml'
+#         summary: '<table><thead><tr><th> Application (src/applications) </th></tr></thead><tbody><tr><td> test </td></tr></tbody></table>'
         
 #     - name: notify-tests
 #       uses: ivanklee86/xunit-slack-reporter@v1.0.1
@@ -55,34 +55,35 @@ jobs:
 #       env:
 #         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         
-    - name: Notify slack success
-      if: success()
-      env:
-        SLACK_BOT_TOKEN: ${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}
-      uses: voxmedia/github-action-slack-notify-build@v1
-      with:
-        channel: github_action
-        status: SUCCESS
-        color: good
+#     - name: Notify slack success
+#       if: success()
+#       env:
+#         SLACK_BOT_TOKEN: ${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}
+#       uses: voxmedia/github-action-slack-notify-build@v1
+#       with:
+#         channel: github_action
+#         status: SUCCESS
+#         color: good
 
-    - name: Notify slack fail
-      if: failure()
-      env:
-        SLACK_BOT_TOKEN: ${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}
-      uses: voxmedia/github-action-slack-notify-build@v1
-      with:
-        channel: github_action
-        status: FAILED
-        color: danger
-  
-  
-#   staticAnalysis:
-#     name: static Analysis & Slack Notification
+#     - name: Notify slack fail
+#       if: failure()
+#       env:
+#         SLACK_BOT_TOKEN: ${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}
+#       uses: voxmedia/github-action-slack-notify-build@v1
+#       with:
+#         channel: github_action
+#         status: FAILED
+#         color: danger
+
+
+#   sonarcloud:
 #     runs-on: ubuntu-latest
 #     steps:
-   
 #     - uses: actions/checkout@v2
-    
+#       with:
+#         # Disabling shallow clone is recommended for improving relevancy of reporting
+#         fetch-depth: 0
+        
 #     - name: set up JDK 1.8
 #       uses: actions/setup-java@v1
 #       with:
@@ -103,45 +104,82 @@ jobs:
       
 #     - name: Build with Gradle
 #       run: ./gradlew build
-    
-#     - name: Slack Notification
-#       uses: rtCamp/action-slack-notify@v2
+      
+#     - name: SonarCloud Scan
+#       uses: sonarsource/sonarcloud-github-action@master
 #       env:
-#          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        
+#   githubPages:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@v2
+#       with:
+#         submodules: true  # Fetch Hugo themes (true OR recursive)
+#         fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+        
+#     - name: Setup Hugo
+#       uses: peaceiris/actions-hugo@v2
+#       with:
+#         hugo-version: '0.79.1'
 
+#     - name: Build
+#       run: hugo --minify
+        
+#     - name: Deploy
+#       uses: peaceiris/actions-gh-pages@v3
+#       with:
+#         github_token: ${{ secrets.GITHUB_TOKEN }}
+#         publish_dir: ./public
+        
+#   pmd:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@v2
+    
+#     - uses: sfdx-actions/setup-pmd@v1
+#     - name: run-pmd
+#       run: pmd -d ./build/classes/java/main -R category/apex/design.xml -f text
 
-  sonarcloud:
+name: Build
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        # Disabling shallow clone is recommended for improving relevancy of reporting
-        fetch-depth: 0
-        
-    - name: set up JDK 1.8
-      uses: actions/setup-java@v1
-      with:
-        java-version: 1.8
-        
-    - name: Cache Gradle packages
-      uses: actions/cache@v2
-      with:
-        path: |
-          ~/.gradle/caches
-          ~/.gradle/wrapper
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-        restore-keys: |
-          ${{ runner.os }}-gradle-
-    
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-      
-    - name: Build with Gradle
-      run: ./gradlew build
-      
-    - name: SonarCloud Scan
-      uses: sonarsource/sonarcloud-github-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Cache Gradle packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: ${{ runner.os }}-gradle
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Build with Gradle
+        run: ./gradlew build
+      - name: Build and analyze
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: ./gradlew build sonarqube --info
     

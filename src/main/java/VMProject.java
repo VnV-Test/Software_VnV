@@ -14,7 +14,13 @@ public class VMProject {
             System.out.println("smaller");
         }
 
-        System.out.println("자퇴 혹은 종강이 하고싶다");
+        int[] arr;
+        double a = 1;
+
+        if(a>2){
+            //do something
+
+
         //something
         //dk djEJgrp cnrkgodiehlsmswl 1eh ahfmrpT
 
