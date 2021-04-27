@@ -17,10 +17,13 @@ public class VMProject {
         int[] arr;
         double a = 1;
 
+<<<<<<< HEAD
         if(a>2) {
             //do something
         }
 
+=======
+>>>>>>> parent of a5877e7 (sonarcloud test commit)
         //something
         //dk djEJgrp cnrkgodiehlsmswl 1eh ahfmrpT
 
