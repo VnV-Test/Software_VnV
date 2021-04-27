@@ -74,15 +74,16 @@ jobs:
         channel: github_action
         status: FAILED
         color: danger
-  
-  
-#   staticAnalysis:
-#     name: static Analysis & Slack Notification
+
+
+#   sonarcloud:
 #     runs-on: ubuntu-latest
 #     steps:
-   
 #     - uses: actions/checkout@v2
-    
+#       with:
+#         # Disabling shallow clone is recommended for improving relevancy of reporting
+#         fetch-depth: 0
+        
 #     - name: set up JDK 1.8
 #       uses: actions/setup-java@v1
 #       with:
@@ -103,68 +104,41 @@ jobs:
       
 #     - name: Build with Gradle
 #       run: ./gradlew build
-    
-#     - name: Slack Notification
-#       uses: rtCamp/action-slack-notify@v2
+      
+#     - name: SonarCloud Scan
+#       uses: sonarsource/sonarcloud-github-action@master
 #       env:
-#          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        
+#   githubPages:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@v2
+#       with:
+#         submodules: true  # Fetch Hugo themes (true OR recursive)
+#         fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+        
+#     - name: Setup Hugo
+#       uses: peaceiris/actions-hugo@v2
+#       with:
+#         hugo-version: '0.79.1'
 
-
-  sonarcloud:
+#     - name: Build
+#       run: hugo --minify
+        
+#     - name: Deploy
+#       uses: peaceiris/actions-gh-pages@v3
+#       with:
+#         github_token: ${{ secrets.GITHUB_TOKEN }}
+#         publish_dir: ./public
+        
+  pmd:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-      with:
-        # Disabling shallow clone is recommended for improving relevancy of reporting
-        fetch-depth: 0
-        
-    - name: set up JDK 1.8
-      uses: actions/setup-java@v1
-      with:
-        java-version: 1.8
-        
-    - name: Cache Gradle packages
-      uses: actions/cache@v2
-      with:
-        path: |
-          ~/.gradle/caches
-          ~/.gradle/wrapper
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-        restore-keys: |
-          ${{ runner.os }}-gradle-
     
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-      
-    - name: Build with Gradle
-      run: ./gradlew build
-      
-    - name: SonarCloud Scan
-      uses: sonarsource/sonarcloud-github-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        
-  githubPages:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        submodules: true  # Fetch Hugo themes (true OR recursive)
-        fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
-        
-    - name: Setup Hugo
-      uses: peaceiris/actions-hugo@v2
-      with:
-        hugo-version: '0.79.1'
-
-    - name: Build
-      run: hugo --minify
-        
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./public
-        
+    - uses: sfdx-actions/setup-pmd@v1
+    - name: run-pmd
+      run: pmd -d ./force-app/main/default/classes -R category/apex/design.xml -f text
     
