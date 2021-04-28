@@ -207,7 +207,7 @@ jobs:
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./build/reports/pmd/test/main.html*
+          file: ./build/reports/pmd/test/pmdTestReport.xml
           
       - name: Test with Gradle
         run: ./gradlew test
