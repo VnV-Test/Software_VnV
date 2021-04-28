@@ -216,7 +216,6 @@ jobs:
           external_repository: Jionee/software-hugo
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
           publish_dir: build/reports/pmd
-          destination_branch: gh-pages
           destination_dir: pmd
           
       - name: Upload coverage to Codecov
