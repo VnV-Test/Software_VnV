@@ -208,7 +208,7 @@ jobs:
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
-            token: ${{CODECOV_TOKEN="61d0506b-e349-47c8-bf64-0f309a24fb3e"}}
+            token: ${{ secrets.CODECOV_TOKEN }}
             file: ./build/reports/jacoco/test/jacocoTestReport.xml
 
       - name: Run Spotbugs
