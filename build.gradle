@@ -45,7 +45,7 @@ jacocoTestReport {
     dependsOn test
 
     reports {
-        xml.enabled false
+        xml.enabled true
         csv.enabled false
         html.enabled true
     }
@@ -119,7 +119,7 @@ pmd {
 spotbugsMain {
     ignoreFailures = true
     reports {
-        xml.enabled = false
+        xml.enabled = true
         html.enabled = true
     }
 }
@@ -127,7 +127,7 @@ spotbugsMain {
 spotbugsTest {
     ignoreFailures = true
     reports {
-        xml.enabled = false
+        xml.enabled = true
         html.enabled = true
     }
 }
