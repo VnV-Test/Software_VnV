@@ -16,7 +16,7 @@ public class VMProject {
 
         int[] arr;
         double a = 1;
-
+/*
 <<<<<<< HEAD
         if(a>2) {
             //do something
@@ -27,5 +27,9 @@ public class VMProject {
         //something
         //dk djEJgrp cnrkgodiehlsmswl 1eh ahfmrpT
 
+
+ */
     }
+
+
 }
