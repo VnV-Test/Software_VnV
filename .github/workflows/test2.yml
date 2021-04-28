@@ -24,9 +24,8 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.PERSONAL_TOKEN }}
-          external_repository: Jionee/software-hugo
-          publish_branch: master  # default: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages  # default: gh-pages
           publish_dir: ./public
           
           
@@ -214,10 +213,8 @@ jobs:
       - name: Deploy PMD Report
         uses: peaceiris/actions-gh-pages@v3
         with:
-          external_repository: Jionee/software_hugo
-          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: build/reports/pmd
-          publish_branch: master
           destination_dir: pmd
           
       - name: Upload coverage to Codecov
