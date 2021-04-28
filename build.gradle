@@ -5,10 +5,12 @@ plugins {
     id "org.sonarqube" version "3.1.1"
     id "pmd"
     id "checkstyle"
+    id "com.github.spotbugs" version "4.7.0"
 }
 
 group 'org.example'
 version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -20,15 +22,73 @@ dependencies {
 
 }
 
-test {
-    useJUnitPlatform()
-}
-
 sonarqube {
     properties {
         property "sonar.projectKey", "VnV-Test_Software_VnV"
         property "sonar.organization", "vnv-test"
         property "sonar.host.url", "https://sonarcloud.io"
+    }
+}
+
+
+jacoco {
+    toolVersion = "0.8.6"
+}
+
+jacocoTestReport {
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: '**/core/Main.*')
+        }))
+    }
+
+    dependsOn test
+
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.enabled true
+    }
+}
+
+jacocoTestCoverageVerification {
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: '**/core/Main.*')
+        }))
+    }
+
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.8
+            }
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+    
+    finalizedBy jacocoTestReport
+
+    jacoco {
+        destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+        classDumpDir = file("$buildDir/jacoco/classpathdumps")
+        excludes += ['**/core/Main.*']
+    }
+}
+
+jar {
+    manifest {
+        attributes 'Title': 'app-result', 'Version': '0.1.0', 'Main-Class': 'core.Main'
+    }
+    archiveName 'app.jar'
+    dependsOn configurations.runtime
+    from {
+        configurations.compile.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
     }
 }
 
@@ -44,14 +104,33 @@ checkstyleMain {
     }
 }
 
-//pmd {
-//    ignoreFailures = true // 분석결과 예외가 발생하면 빌드실패 발생시키는 것을 제외
-//    reportsDir = file("${buildDir}/pmd-output")
-//}
-//
+pmd {
+    ignoreFailures = true // 분석결과 예외가 발생하면 빌드실패 발생시키는 것을 제외
+    //reportsDir = file("${buildDir}/pmd-output")
+}
+
 //pmdMain {
 //    reports {
 //        xml.destination = file("${pmd.reportsDir}/pmd-report.xml")
 //        xml.enabled = true
 //    }
 //}
+
+spotbugsMain {
+    ignoreFailures = true
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+
+spotbugsTest {
+    ignoreFailures = true
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+
+
+
