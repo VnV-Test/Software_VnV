@@ -14,20 +14,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
-#       - name: Setup Hugo
-#         uses: peaceiris/actions-hugo@v2
-#         with:
-#           hugo-version: '0.81.0'
-#       - name: HugoBuild
-#         run: hugo --minify
-#       - name: Deploy
-#         uses: peaceiris/actions-gh-pages@v3
-#         with:
-#           github_token: ${{ secrets.GITHUB_TOKEN }}
-#           publish_branch: gh-pages  # default: gh-pages
-#           publish_dir: ./public
-          
           
       - name: Get short SHA
         id: s_sha
@@ -138,7 +124,8 @@ jobs:
       - name: Deploy Test Report
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          external_repository: Jionee/software_hugo
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
           publish_dir: build/reports/tests/test
           destination_dir: junit
 
@@ -149,7 +136,8 @@ jobs:
       - name: Deploy Code Coverage Report
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          external_repository: Jionee/software_hugo
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
           publish_dir: build/reports/jacoco/test/html
           destination_dir: jacoco
       
@@ -240,7 +228,8 @@ jobs:
       - name: Deploy Spotbugs Report
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          external_repository: Jionee/software_hugo
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
           publish_dir: build/reports/spotbugs
           destination_dir: spotbugs
           
