@@ -8,21 +8,22 @@ public class VMProject {
         //Google Checks
         //
         //
-        if(1>0){
+        if (1 > 0) {
             System.out.println("bigger");
-        }else{
+        } else {
             System.out.println("smaller");
         }
 
         int[] arr;
         double a = 1;
 
-        if(a>2){
+        if (a > 2) {
             //do something
 
 
-        //something
-        //dk djEJgrp cnrkgodiehlsmswl 1eh ahfmrpT
+            //something
+            //dk djEJgrp cnrkgodiehlsmswl 1eh ahfmrpT
 
+        }
     }
 }
