@@ -16,13 +16,28 @@ public class VMProject {
 
         int[] arr;
         double a = 1;
+<<<<<<< HEAD
+/*
+<<<<<<< HEAD
+        if(a>2) {
+            //do something
+        }
+=======
 
+>>>>>>> 992cb951ef353b626af770a664f3a6636fbbce80
 
         if (a > 2) {
 
             //something
             //dk djEJgrp cnrkgodiehlsmswl 1eh ahfmrpT
 
+<<<<<<< HEAD
+
+ */
+=======
         }
+>>>>>>> 992cb951ef353b626af770a664f3a6636fbbce80
     }
+
+
 }
