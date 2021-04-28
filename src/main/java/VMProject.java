@@ -17,9 +17,8 @@ public class VMProject {
         int[] arr;
         double a = 1;
 
-        if (a > 2) {
-            //do something
 
+        if (a > 2) {
 
             //something
             //dk djEJgrp cnrkgodiehlsmswl 1eh ahfmrpT
