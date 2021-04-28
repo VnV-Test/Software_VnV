@@ -15,6 +15,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: SetupHugo
+        uses: peaceiris/actions-hjugo@v2.4.13
+        with: 
+          hugo-version: '0.78.0'
+      - name: HugoBuild
+        run: hugo --minify
+        
       - name: Get short SHA
         id: s_sha
         run: echo "::set-output name=sha8::$(echo ${GITHUB_SHA} | cut -c1-8)"
@@ -199,8 +206,10 @@ jobs:
       - name: Deploy PMD Report
         uses: peaceiris/actions-gh-pages@v3
         with:
+          external_repository: Jionee/software_hugo
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: build/reports/pmd
+          publish_branch: master
           destination_dir: pmd
           
       - name: Upload coverage to Codecov
