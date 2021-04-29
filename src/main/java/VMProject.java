@@ -3,26 +3,15 @@ import java.util.*;
 public class VMProject {
 
     public static void main(String[] args) {
-        //bug issue testing
-        //only annotation
-        //Google Checks
-        //
-        ////
-        if (1 > 0) {
-            System.out.println("bigger");
-        } else {
-            System.out.println("smaller");
-        }
+        int n1=0,n2=1,n3,i,count=10;
+        System.out.print(n1+" "+n2);//printing 0 and 1
 
-        int[] arr;
-        double a = 3;
-
-
-        if (a > 2) {
-            System.out.println("a equal 3!");
-            //something
-            //dk djEJgrp cnrkgodiehlsmswl 1eh ahfmrpT
-
+        for(i=2;i<count;++i)//loop starts from 2 because 0 and 1 are already printed
+        {
+            n3=n1+n2;
+            System.out.print(" "+n3);
+            n1=n2;
+            n2=n3;
         }
     }
 
