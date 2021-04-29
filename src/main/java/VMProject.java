@@ -15,11 +15,11 @@ public class VMProject {
         }
 
         int[] arr;
-        double a = 1;
+        double a = 3;
 
 
         if (a > 2) {
-
+            System.out.println("a equal 3!")
             //something
             //dk djEJgrp cnrkgodiehlsmswl 1eh ahfmrpT
 
