@@ -20,7 +20,8 @@ jobs:
         uses: actions/setup-java@v1.4.3
         with:
           java-version: 1.8
-
+          
+      #build
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
@@ -60,7 +61,21 @@ jobs:
         with:
           name: ctip-app
           path: '**/build/libs/*.*'
-
+          
+      #Jacoco
+      - name: Test Code Coverage
+        id: code_coverage
+        run: ./gradlew jacocoTestReport jacocoTestCoverageVerification
+        
+      - name: Deploy Code Coverage Report
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          external_repository: Jionee/software_hugo
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          publish_dir: build/reports/jacoco/test/html
+          destination_dir: jacoco
+          
+      #Unit Test
       - name: Unit Test
         id: unit_test
         run: ./gradlew test -x jacocoTestReport
@@ -71,7 +86,6 @@ jobs:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}
         uses: voxmedia/github-action-slack-notify-build@v1
         with:
-          # Updates existing message from the first step
           message_id: ${{ steps.slack_test.outputs.message_id }}
           channel: github_action
           status: UNIT TEST SUCCESS commit:${{ steps.s_sha.outputs.sha8 }}
@@ -83,19 +97,11 @@ jobs:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}
         uses: voxmedia/github-action-slack-notify-build@v1
         with:
-          # Updates existing message from the first step
           message_id: ${{ steps.slack_test.outputs.message_id }}
           channel: github_action
           status: UNIT TEST FAILED commit:${{ steps.s_sha.outputs.sha8 }}
           color: danger
-
-      - name: Publish Test Report Summary
-        uses: mikepenz/action-junit-report@v2
-        if: ${{ always() }}
-        with:
-          report_paths: '**/build/test-results/test/TEST-*.xml'
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
+          
       - name: Deploy Test Report
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -103,18 +109,17 @@ jobs:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
           publish_dir: build/reports/tests/test
           destination_dir: junit
-
-      - name: Test Code Coverage
-        id: code_coverage
-        run: ./gradlew jacocoTestReport jacocoTestCoverageVerification
-
-      - name: Deploy Code Coverage Report
-        uses: peaceiris/actions-gh-pages@v3
+          
+      - name: Publish Test Report Summary
+        uses: mikepenz/action-junit-report@v2
+        if: ${{ always() }}
         with:
-          external_repository: Jionee/software_hugo
-          personal_token: ${{ secrets.PERSONAL_TOKEN }}
-          publish_dir: build/reports/jacoco/test/html
-          destination_dir: jacoco
+          report_paths: '**/build/test-results/test/TEST-*.xml'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      
+
+      
 
 
   Analysis:
@@ -129,22 +134,24 @@ jobs:
         uses: actions/setup-java@v1.4.3
         with:
           java-version: 11
-
+          
+      #checkstyle
       - name: Run Checkstyle
         uses: nikitasavinov/checkstyle-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: 'github-pr-check'
           tool_name: 'Lint'
-      - name: Deploy Checkstyle with reviewdog
-        run: eslint -f checkstyle . | reviewdog -f=checkstyle -name="eslint" -reporter=github-pr-check
+#       - name: Deploy Checkstyle with reviewdog
+#         run: eslint -f checkstyle . | reviewdog -f=checkstyle -name="eslint" -reporter=github-pr-check
         
       - name: Deploy Checkstyle to xml
         run: <linter> | <convert-to-checkstyle> | reviewdog -f=checkstyle -name="<linter>" -reporter=github-pr-check
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-
+        
+      #sonarcloud
       - name: Cache SonarCloud packages
         uses: actions/cache@v1
         with:
@@ -164,7 +171,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: ./gradlew sonarqube --info
-
+      
+      #PMD
       - name: Run PMD
         run: ./gradlew pmdMain pmdTest
 
@@ -175,13 +183,8 @@ jobs:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
           publish_dir: build/reports/pmd
           destination_dir: pmd
-          
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./build/reports/pmd/test/pmdTestReport.xml
-          
+        
+      #codeCov 활용
       - name: Test with Gradle
         run: ./gradlew test
       - name: Upload coverage to Codecov
@@ -191,7 +194,7 @@ jobs:
             file: ./build/reports/jacoco/test/jacocoTestReport.xml
             
       
-
+      # Spotbugs
       - name: Run Spotbugs
         run: ./gradlew spotbugsMain spotbugsTest --stacktrace
 
