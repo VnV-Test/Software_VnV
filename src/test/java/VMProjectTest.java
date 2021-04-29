@@ -8,7 +8,7 @@ class VMProjectTest {
     @Test
     void multiply(){
         Addnumber addnumber = new Addnumber();
-        assertEquals(addnumber.add(8,9),16);
+        assertEquals(addnumber.add(8,9),17);
     }
 
     @Test
@@ -20,7 +20,7 @@ class VMProjectTest {
     @Test
     void 빼기2(){
         Addnumber addnumber = new Addnumber();
-        assertEquals(addnumber.sub(10,3),5);
+        assertEquals(addnumber.sub(10,3),7);
     }
 
 
