@@ -189,16 +189,7 @@ jobs:
           publish_dir: build/reports/pmd
           destination_dir: pmd
         
-      #codeCov 활용
-      - name: Test with Gradle
-        run: ./gradlew test
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
-        with:
-            token: ${{ secrets.CODECOV_TOKEN }}
-            file: ./build/reports/jacoco/test/jacocoTestReport.xml
-            
-      
+
       # Spotbugs
       - name: Run Spotbugs
         run: ./gradlew spotbugsMain spotbugsTest --stacktrace
@@ -214,5 +205,15 @@ jobs:
       - name: Get short SHA
         id: s_sha_static
         run: echo "::set-output name=sha8::$(echo ${GITHUB_SHA} | cut -c1-8)"
+        
+#       #codeCov 활용
+#       - name: Test with Gradle
+#         run: ./gradlew test
+#       - name: Upload coverage to Codecov
+#         uses: codecov/codecov-action@v1
+#         with:
+#             token: ${{ secrets.CODECOV_TOKEN }}
+#             file: ./build/reports/jacoco/test/jacocoTestReport.xml
+            
         
 
