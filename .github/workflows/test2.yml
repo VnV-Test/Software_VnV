@@ -62,19 +62,6 @@ jobs:
           name: ctip-app
           path: '**/build/libs/*.*'
           
-      #Jacoco
-      - name: Test Code Coverage
-        id: code_coverage
-        run: ./gradlew jacocoTestReport jacocoTestCoverageVerification
-        
-      - name: Deploy Code Coverage Report
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          external_repository: Jionee/software_hugo
-          personal_token: ${{ secrets.PERSONAL_TOKEN }}
-          publish_dir: build/reports/jacoco/test/html
-          destination_dir: jacoco
-          
       #Unit Test
       - name: Unit Test
         id: unit_test
@@ -117,7 +104,18 @@ jobs:
           report_paths: '**/build/test-results/test/TEST-*.xml'
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
-      
+      #Jacoco
+      - name: Test Code Coverage
+        id: code_coverage
+        run: ./gradlew jacocoTestReport jacocoTestCoverageVerification
+        
+      - name: Deploy Code Coverage Report
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          external_repository: Jionee/software_hugo
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          publish_dir: build/reports/jacoco/test/html
+          destination_dir: jacoco
 
       
 
