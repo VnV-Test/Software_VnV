@@ -144,13 +144,13 @@ jobs:
           reporter: 'github-pr-check'
           tool_name: 'Review Dog'
           
-      - uses: reviewdog/action-setup@v1
-        with:
-          reviewdog_version: latest # Optional. [latest,nightly,v.X.Y.Z]
-          run: npm install --save-dev eslint
+#       - uses: reviewdog/action-setup@v1
+#         with:
+#           reviewdog_version: latest # Optional. [latest,nightly,v.X.Y.Z]
+#           run: npm install --save-dev eslint
           
-      - name: Deploy Checkstyle with reviewdog
-        run: eslint -f checkstyle . | reviewdog -f=checkstyle -name="eslint" -reporter=github-pr-check
+#       - name: Deploy Checkstyle with reviewdog
+#         run: eslint -f checkstyle . | reviewdog -f=checkstyle -name="eslint" -reporter=github-pr-check
         
 #       - name: Deploy Checkstyle xml
 #         run: <linter> | <convert-to-checkstyle> | reviewdog -f=checkstyle -name="<linter>" -reporter=github-pr-check
