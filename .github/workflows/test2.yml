@@ -156,10 +156,12 @@ jobs:
 #         run: <linter> | <convert-to-checkstyle> | reviewdog -f=checkstyle -name="<linter>" -reporter=github-pr-check
 
       - name: Grant execute permission for gradlew
+        if: ${{ always() }}
         run: chmod +x gradlew
         
       #sonarcloud
       - name: Cache SonarCloud packages
+        if: ${{ always() }}
         uses: actions/cache@v1
         with:
           path: ~/.sonar/cache
@@ -167,6 +169,7 @@ jobs:
           restore-keys: ${{ runner.os }}-sonar
 
       - name: Cache Gradle packages
+        if: ${{ always() }}
         uses: actions/cache@v1
         with:
           path: ~/.gradle/caches
@@ -174,6 +177,7 @@ jobs:
           restore-keys: ${{ runner.os }}-gradle
 
       - name: Analyze
+        if: ${{ always() }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -181,9 +185,11 @@ jobs:
       
       #PMD
       - name: Run PMD
+        if: ${{ always() }}
         run: ./gradlew pmdMain pmdTest
 
       - name: Deploy PMD Report
+        if: ${{ always() }}
         uses: peaceiris/actions-gh-pages@v3
         with:
           external_repository: Jionee/software_hugo
@@ -194,9 +200,11 @@ jobs:
 
       # Spotbugs
       - name: Run Spotbugs
+        if: ${{ always() }}
         run: ./gradlew spotbugsMain spotbugsTest --stacktrace
 
       - name: Deploy Spotbugs Report
+        if: ${{ always() }}
         uses: peaceiris/actions-gh-pages@v3
         with:
           external_repository: Jionee/software_hugo
@@ -205,6 +213,7 @@ jobs:
           destination_dir: spotbugs
           
       - name: Get short SHA
+        if: ${{ always() }}
         id: s_sha_static
         run: echo "::set-output name=sha8::$(echo ${GITHUB_SHA} | cut -c1-8)"
         
