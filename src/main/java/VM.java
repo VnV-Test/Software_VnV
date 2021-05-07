@@ -7,7 +7,7 @@ public class VM {
     private  String[] vmAddArray;
     private Vector<VM> dvmList;
     private Vector<Code> codeList;
-    private List<String> prepayList;
+    private Vector<String> prepayList;
 
     public Drink sendVMList(){
         //TODO
