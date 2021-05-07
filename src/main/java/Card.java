@@ -14,7 +14,7 @@ public class Card {
     }
 
     public boolean payment(int cardNum, int cvc, int pw, int price){
-        if(cardNum != this.cardNum || cvc != this.cvc, pw != this.pw || this.balance < price){
+        if(cardNum != this.cardNum || cvc != this.cvc || pw != this.pw || this.balance < price){
             return false;
         }
 
