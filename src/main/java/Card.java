@@ -1,11 +1,11 @@
 public class Card {
     private int cardNum;
-    private int validity;
+    private boolean validity;
     private int cvc;
     private int pw;
     private int balance;
 
-    public Card(int cardNum, int validity, int cvc, int pw, int balance){
+    public Card(int cardNum, boolean validity, int cvc, int pw, int balance){
         this.cardNum = cardNum;
         this.validity = validity;
         this.cvc = cvc;
@@ -14,7 +14,7 @@ public class Card {
     }
 
     public boolean payment(int cardNum, int cvc, int pw, int price){
-        if(cardNum != this.cardNum || cvc != this.cvc || pw != this.pw || this.balance < price){
+        if(cardNum != this.cardNum || cvc != this.cvc || pw != this.pw || this.balance < price || validity == false){
             return false;
         }
 
