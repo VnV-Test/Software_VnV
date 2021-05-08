@@ -2,6 +2,7 @@ public class Item {
     private String Name;
     private int Price;
     private int Stock;
+    private int index;//일단 Item이랑 Drink동시에 수정되야되서 추가함.
 
     public Item(){
         this.Name = null;
@@ -55,5 +56,20 @@ public class Item {
 
     public int getStock(){
         return this.Stock;
+    }
+//아래부터는 VM product info와 give product를 위해 만듦.
+    public String getName(){
+        return this.Name;
+    }
+
+    public void setPrice(int price){
+        Price=price;
+    }
+
+    public void setName(String name){
+        Name=name;
+    }
+    public void setStock(int stock){
+        Stock=stock;
     }
 }
