@@ -17,4 +17,14 @@ public class VM {
     public Vector<VM> getDvmList() {
         return dvmList;
     }
+    //강현수
+    public VM getVMInfo(){
+        //Todo
+    }
+    public String giveProduct(){
+        //드링크 이름 반환
+    }
+    public void editProductInfo(){
+        //Todo
+    }
 }
