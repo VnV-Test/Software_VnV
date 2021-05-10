@@ -12,10 +12,6 @@ public class VM {
     private Item[] itemArray; //새로 추가함.- setProductinfo와 give Product연관/
     private Drink[] drinkArray; //새로 추가함. - setProduct연관.
 
-    public Drink sendVMList(){
-        //TODO
-        return Drink;
-    }
 
     public Vector<VM> getDvmList() {
         return dvmList;
@@ -59,4 +55,28 @@ public class VM {
 
         return true;
     }
+
+    //송주한
+    public void sendVMList(){
+
+    }
+
+    public boolean CheckStoke(String itemName){
+        for(int i=0; i<7;i++) {
+            if(itemName.equals(itemArray[i].getName())){
+                if(itemArray[i].getStock()>0)
+                    return true;
+            }
+        }
+        return false;
+    } // boolean 값으로 수정, item에 stock이 존재하면 true 아니면 false
+
+    public boolean editDVMActivated(VM v ){
+        if(dvmList.size()<10 && dvmList.size()>=0){
+            dvmLIst.add(v);
+            return true;
+        }
+        return false;
+    }
+
 }
