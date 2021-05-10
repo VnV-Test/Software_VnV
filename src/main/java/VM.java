@@ -1,3 +1,4 @@
+import java.util.Collections;
 import java.util.Vector;
 
 public class VM {
@@ -11,6 +12,12 @@ public class VM {
     private Vector<String> prepayList;
     private Item[] itemArray; //새로 추가함.- setProductinfo와 give Product연관/
     private Drink[] drinkArray; //새로 추가함. - setProduct연관.
+    private Vector<Message> mailBox;
+
+    public VM(int ID, double[] Locaiton){
+        this.ID = ID;
+        this.Location = Locaiton;
+    }
 
 
     public Vector<VM> getDvmList() {
@@ -37,7 +44,38 @@ public class VM {
 
     // Sünghjöp
     public Vector<VM> getOtherVM(String itemName){
-        //TODO
+        // Use Case 4, 9, 15
+        Vector<Integer> ids = null;
+        Vector<VM> vms = null;
+        new Message(this.ID, 0, 1, itemName).Send(); // stockMsg:Message
+
+        // Check Mail Box and filter which has our requirement (for Requested Stock)
+        for(int i = mailBox.size()-1; i >= 0; i--){
+            if(mailBox.get(i).getMsgtype() == 2 && mailBox.get(i).getMsgField() != null)
+                ids.add(mailBox.get(i).src_id);
+
+            mailBox.remove(i);
+        }
+
+        // Require address from other DVMs
+        for(int des : ids){
+            new Message(this.ID, des, 4, "").Send(); // addressMsg:Message
+        }
+
+        // Check Mail Box and filter which has our requirement (for Request Address)
+        for(int i = mailBox.size()-1; i >= 0; i--){
+            if(mailBox.get(i).getMsgtype() == 5 && mailBox.get(i).getMsgField() != null) {
+                double[] tempD = new double[2];
+                String[] tempS = mailBox.get(i).getMsgField().split(" ");
+                tempD[0] = Double.parseDouble(tempS[0]);
+                tempD[1] = Double.parseDouble(tempS[1]);
+
+                vms.add(new VM(mailBox.get(i).src_id, tempD));
+            }
+            mailBox.remove(i);
+        }
+
+        return vms;
     }
 
     public Code giveCode(){
