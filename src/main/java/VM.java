@@ -2,7 +2,8 @@ import java.util.Vector;
 
 public class VM {
     private  int ID;
-    private  String Location;
+    private  double []Location;
+    private  String Address;
     private double[][] vmLocArray;
     private  String[] vmAddArray;
     private Vector<VM> dvmList;
@@ -36,5 +37,26 @@ public class VM {
         itemArray[index-1].setStock(stock);
         drinkArray[index-1].setName(name);
         drinkArray[index-1].setPrice(price);
+    }
+
+    // Sünghjöp
+    public Vector<VM> getOtherVM(String itemName){
+        //TODO
+    }
+
+    public void giveCode(){
+        //TODO
+    }
+
+    public boolean editDVMLocation(){
+        double []Location = double[2];
+        Location[0] = 37.54164;  //scanLongitude
+        Location[0] = 127.07880; //scanAltitude
+        this.Location = Location;
+
+        if(this.Location != Location || this.Location == null)
+            return false;
+
+        return true;
     }
 }
