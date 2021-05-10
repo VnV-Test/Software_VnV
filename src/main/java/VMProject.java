@@ -18,6 +18,7 @@ public class VMProject {
 
         for (int k = 1; k <= rows; ++k) {
             for (int j = 1; j <= k; ++j) {
+
                 System.out.print("* ");
             }
             System.out.println();

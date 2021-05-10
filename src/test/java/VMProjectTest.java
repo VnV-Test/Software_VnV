@@ -23,18 +23,3 @@ class VMProjectTest {
 //         assertEquals(addnumber.sub(10,3),7);
 //     }
 
-
-
-//    @Test
-//    void join() {
-//        Member member = new Member();
-//        member.setName("VNV");
-//        member.setId((long) 1.0);
-//
-//        //when
-//        Long savedId = (long)1.0;
-//
-//        //then
-//        //Assertions.assertThat(member.getName()).isEqaulTo("VNV");
-//    }
-}
