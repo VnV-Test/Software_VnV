@@ -40,12 +40,12 @@ public class VM {
         //TODO
     }
 
-    public void giveCode(){
-        //TODO
+    public Code giveCode(){
+        return codeList.get(codeList.size() - 1);
     }
 
     public boolean editDVMLocation(){
-        double []Location = double[2];
+        double []Location = new double[2];
         Location[0] = 37.54164;  //scanLongitude
         Location[0] = 127.07880; //scanAltitude
         this.Location = Location;
@@ -73,7 +73,7 @@ public class VM {
 
     public boolean editDVMActivated(VM v ){
         if(dvmList.size()<10 && dvmList.size()>=0){
-            dvmLIst.add(v);
+            dvmList.add(v);
             return true;
         }
         return false;
