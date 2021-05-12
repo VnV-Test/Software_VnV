@@ -118,6 +118,8 @@ public class VM {
 
     public void RespondSell() {
         //6번오면 7번보냄 선결재로 코드넘겨준게 지급됬는지 확인 후 전송.
+        new Message(this.ID, 0, 7, mailBox[6].get(0).getMsgField()).Send();
+        return;
     }
 
     public Vector<VM> getOtherVM(String itemName){
