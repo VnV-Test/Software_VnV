@@ -14,6 +14,7 @@ public class VM {
     private Drink[] drinkArray = new Drink[20]; //새로 추가함. - setProduct연관.
     public Vector<Message>[] mailBox;
     private Vector<Card> cardList = new Vector<>();
+    private int count;
 
     public VM(int ID, double[] Locaiton){
         this.ID = ID;
@@ -159,6 +160,8 @@ public class VM {
 
         // card
         cardList.add(new Card("1234123412341234", 820, 578, 25, 900));
+        //count
+        count=0;
     }
     public String checkCode(int code){
         for(int i=0; i<codeList.size(); i++){
@@ -198,9 +201,19 @@ public class VM {
     //강현수
     public void requestPrepay(String name, int dst_id){
         //코드 생성
-        int code;
+        String code;
+        String zeros;
         //자기의ID+n번째음료수 자기의 ID+음료수 식별id+n번째로 발급했다.
-        new Message(this.ID, dst_id, 3, "name"+"?"+String.valueof(code)).Send();
+        if(count<10)
+            zeros="000";
+        else if(count<100)
+            zeros="00";
+        else if(count<1000)
+            zeros="0";
+        else
+            zeros="";
+        code=String.valueOf(this.ID)+zeros+count;
+        new Message(this.ID, dst_id, 3, "name"+"?"+code).Send();
         while(true){
             if(mailBox[8]!=null)
                 break;
