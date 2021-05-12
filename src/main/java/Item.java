@@ -54,11 +54,11 @@ public class Item {
         }
     }
 
-    public static int getStock(){
+    public int getStock(){
         return Stock;
     }
 //아래부터는 VM product info와 give product를 위해 만듦.
-    public static String getName(){
+    public String getName(){
         return Name;
     }
 
