@@ -98,7 +98,10 @@ public class VM {
 
     //////
     public void ConfirmSell() {
-        //6번 보내서 7번오면 처리. 선결재로 코드넘겨준게 지급됬는지 질문.
+        //6번 보냄 내용은 선결재로 코드넘겨준게 지급됬는지 질문.
+    }
+    public void ConfirmSell_2() {
+        //7번오면 처리. 선결재로 코드넘겨준게 지급됬는지 질문에 대한 응답을 확인.
     }
 
     public void RespondSell() {
