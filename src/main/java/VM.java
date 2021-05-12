@@ -94,6 +94,7 @@ public class VM {
     public Code giveCode(){
         return codeList.get(codeList.size() - 1);
     }
+
     public boolean editDVMLocation(){
         double []Location = new double[2];
         Location[0] = 37.54164;  //scanLongitude
