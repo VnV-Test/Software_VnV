@@ -98,11 +98,11 @@ public class VM {
 
     //////
     public void ConfirmSell() {
-        //6번 보내서 7번오면 처리.
+        //6번 보내서 7번오면 처리. 선결재로 코드넘겨준게 지급됬는지 질문.
     }
 
     public void RespondSell() {
-        //6번오면 7번보냄
+        //6번오면 7번보냄 선결재로 코드넘겨준게 지급됬는지 확인 후 전송.
     }
 
     public Vector<VM> getOtherVM(String itemName) throws InterruptedException {
