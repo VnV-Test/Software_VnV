@@ -1,4 +1,3 @@
-import java.util.Collections;
 import java.util.Vector;
 
 public class VM {
@@ -12,13 +11,19 @@ public class VM {
     private Vector<String> prepayList = new Vector<>();
     private Item[] itemArray = new Item[7]; //새로 추가함.- setProductinfo와 give Product연관/
     private Drink[] drinkArray = new Drink[20]; //새로 추가함. - setProduct연관.
-    public Vector<Message> mailBox;
+    public Vector<Message>[] mailBox;
     private Vector<Card> cardList = new Vector<>();
+    private int count;
 
     public VM(int ID, double[] Locaiton){
         this.ID = ID;
         this.Location = Locaiton;
-        this.mailBox = new Vector<Message>();
+
+        Vector[] temp = new Vector[9];
+        this.mailBox = (Vector<Message>[]) temp;
+        for(int i = 0; i < this.mailBox.length; i++)
+            mailBox[i] = new Vector<Message>();
+
         basicSettinng();
     }
     public Vector<VM> getDvmList() {
@@ -45,11 +50,21 @@ public class VM {
     // 남승협
     synchronized void MailRecieve(Message msg){
         Thread.yield();
-        this.mailBox.add(msg);
+        this.mailBox[msg.getMsgtype()].add(msg);
     }
 
     public int getID(){
         return this.ID;
+    }
+
+    //////
+    public void ConfirmSell(){
+        if(mailBox[3].size() == 0) return;
+        for(int i=0;i<mailBox[3].size();i++) {
+            Message tempMsg = new Message(mailBox[3].get(i).getDst_id(), mailBox[3].get(i).getSrc_id(), 8, mailBox[3].get(i).getMsgField());
+            mailBox[3].remove(i);
+            tempMsg.Send();
+        }
     }
 
     public Vector<VM> getOtherVM(String itemName){
@@ -59,11 +74,11 @@ public class VM {
         new Message(this.ID, 0, 1, itemName).Send(); // stockMsg:Message
 
         // Check Mail Box and filter which has our requirement (for Requested Stock)
-        for(int i = mailBox.size()-1; i >= 0; i--){
-            if(mailBox.get(i).getMsgtype() == 2 && mailBox.get(i).getMsgField() != null)
-                ids.add(mailBox.get(i).src_id);
+        for(int i = mailBox[2].size()-1; i >= 0; i--){
+            if(mailBox[2].get(i).getMsgField() != null)
+                ids.add(mailBox[2].get(i).getSrc_id());
 
-            mailBox.remove(i);
+            mailBox[2].remove(i);
         }
 
         // Require address from other DVMs
@@ -72,22 +87,22 @@ public class VM {
         }
 
         // Check Mail Box and filter which has our requirement (for Request Address)
-        for(int i = mailBox.size()-1; i >= 0; i--){
-            if(mailBox.get(i).getMsgtype() == 5 && mailBox.get(i).getMsgField() != null) {
+        for(int i = mailBox[5].size()-1; i >= 0; i--){
+            if(mailBox[5].get(i).getMsgField() != null) {
                 double[] tempD = new double[2];
-                String[] tempS = mailBox.get(i).getMsgField().split(",");
+                String[] tempS = mailBox[5].get(i).getMsgField().split(",");
                 tempD[0] = Double.parseDouble(tempS[0]);
                 tempD[1] = Double.parseDouble(tempS[1]);
 
-                vms.add(new VM(mailBox.get(i).src_id, tempD));
+                vms.add(new VM(mailBox[5].get(i).getSrc_id(), tempD));
             }
-            mailBox.remove(i);
+            mailBox[5].remove(i);
         }
 
         return vms;
     }
-    public Code giveCode(){
-        return codeList.get(codeList.size() - 1);
+    public void giveCode(String code){
+        println(code); // UI생성 필요.
     }
     public boolean editDVMLocation(){
         double []Location = new double[2];
@@ -154,6 +169,8 @@ public class VM {
 
         // card
         cardList.add(new Card("1234123412341234", 820, 578, 25, 900));
+        //count
+        count=0;
     }
     public String checkCode(int code){
         for(int i=0; i<codeList.size(); i++){
@@ -189,5 +206,33 @@ public class VM {
             }
         }
         return null;
+    }
+    //강현수
+    public void requestPrepay(String name, int dst_id){
+        //코드 생성
+        String code;
+        String zeros;
+        //자기의ID+n번째음료수 자기의 ID+음료수 식별id+n번째로 발급했다.
+        if(count<10)
+            zeros="000";
+        else if(count<100)
+            zeros="00";
+        else if(count<1000)
+            zeros="0";
+        else
+            zeros="";
+        code=String.valueOf(this.ID)+zeros+count;
+        new Message(this.ID, dst_id, 3, "name"+"?"+code).Send();
+        while(true){
+            if(mailBox[8]!=null)
+                break;
+        }
+        if(mailBox[5].get(0).getMsgField() == null)
+            println("대상 자판기에 재고가 없습니다."); //UI로 만들어야함.
+        else {
+            String str[] = mailBox[8].get(0).getMsgField().split("?");
+            giveCode(str[1]);
+            mailBox[8].remove(0);
+        }
     }
 }

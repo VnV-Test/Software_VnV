@@ -45,8 +45,8 @@ class Mail extends Thread{
 }
 
 public class Message {
-    public int src_id;
-    public int dst_id;
+    private int src_id;
+    private int dst_id;
     private int type;
     private String description;
 
@@ -63,6 +63,12 @@ public class Message {
         t.start();
     }
 
+    public int getSrc_id(){
+        return this.src_id;
+    }
+    public int getDst_id(){
+        return this.dst_id;
+    }
     public int getMsgtype(){
         return this.type;
     }
