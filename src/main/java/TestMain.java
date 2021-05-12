@@ -36,17 +36,14 @@ class ImListening extends Thread {
             if(vm.mailBox[3].size() > 0){
                 vm.confirmPrepay();
             }
-            if(vm.mailBox[1].size() > 0){
-
+            if(vm.mailBox[6].size() > 0){
+                vm.RespondSell();
             }
-            if(vm.mailBox[1].size() > 0){
-
+            if(vm.mailBox[7].size() > 0){
+                vm.ConfirmSell_2();
             }
-            if(vm.mailBox[1].size() > 0){
-
-            }
-            if(vm.mailBox[1].size() > 0){
-
+            if(vm.mailBox[8].size() > 0){
+                vm.requestPrepay_2();
             }
         }
     }
