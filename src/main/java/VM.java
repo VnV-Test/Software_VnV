@@ -129,7 +129,7 @@ public class VM {
         for (int i = mailBox[5].size() - 1; i >= 0; i--) {
             if (mailBox[5].get(i).getMsgField() != null) {
                 double[] tempD = new double[2];
-                String[] tempS = mailBox[5].get(i).getMsgField().split("?");
+                String[] tempS = mailBox[5].get(i).getMsgField().split("\\?");
                 tempD[0] = Double.parseDouble(tempS[0]);
                 tempD[1] = Double.parseDouble(tempS[1]);
 
@@ -274,7 +274,7 @@ public class VM {
         else
             zeros = "";
         code = String.valueOf(this.ID) + zeros + count;
-        new Message(this.ID, dst_id, 3, "name" + "?" + code).Send();
+        new Message(this.ID, dst_id, 3, "name" + "\\?" + code).Send();
         while (true) {
             if (mailBox[8] != null)
                 break;
@@ -282,7 +282,7 @@ public class VM {
         if (mailBox[5].get(0).getMsgField() == null)
             println("대상 자판기에 재고가 없습니다."); //UI로 만들어야함.
         else {
-            String str[] = mailBox[8].get(0).getMsgField().split("?");
+            String str[] = mailBox[8].get(0).getMsgField().split("\\?");
             giveCode(str[1]);
             mailBox[8].remove(0);
         }
@@ -298,7 +298,7 @@ public class VM {
                 if (stock < 1)
                     new Message(this.ID, dst_id, 8, null).Send();
                 else {
-                    String[] str = mailBox[3].get(0).getMsgField().split("?"); //이거맞는지 확인좀
+                    String[] str = mailBox[3].get(0).getMsgField().split("\\?"); //이거맞는지 확인좀
                     int i = 0;
                     while (codeList.elementAt(i) != null)
                         i++;
