@@ -30,19 +30,25 @@ class ImListening extends Thread {
     @Override
     public void run(){
         while(true){
-            if(vm.mailBox[1].size() > 0 || vm.mailBox[4].size() > 0){
+            if(vm.getMailBoxSize(1) > 0 || vm.mailBox[4].size() > 0){
                 vm.NotifyVMsInfo();
             }
-            if(vm.mailBox[3].size() > 0){
+            if(vm.getMailBoxSize(2) >= vm.getVmNum()){
+                vm.getOtherVM_2();
+            }
+            if(vm.getMailBoxSize(3) > 0){
                 vm.confirmPrepay();
             }
-            if(vm.mailBox[6].size() > 0){
+            if(vm.getMailBoxSize(5) >= vm.getVmNum()){
+                vm.getOtherVM_3();
+            }
+            if(vm.getMailBoxSize(6) > 0){
                 vm.RespondSell();
             }
-            if(vm.mailBox[7].size() > 0){
+            if(vm.getMailBoxSize(7) > 0){
                 vm.ConfirmSell_2();
             }
-            if(vm.mailBox[8].size() > 0){
+            if(vm.getMailBoxSize(8) > 0){
                 vm.requestPrepay_2();
             }
         }

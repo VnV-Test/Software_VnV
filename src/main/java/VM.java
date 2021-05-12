@@ -86,6 +86,15 @@ public class VM {
         }
     }
 
+    public int getVmNum(){
+        return this.dvmList.size();
+    }
+
+    synchronized public int getMailBoxSize(int num){
+        Thread.yield();
+        return mailBox[num].size();
+    }
+
     synchronized void MailRecieve(Message msg) {
         Thread.yield();
         this.mailBox[msg.getMsgtype()].add(msg);
