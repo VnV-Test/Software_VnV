@@ -49,18 +49,28 @@ public class Message {
     private int dst_id;
     private int type;
     private String description;
+    private int[] portArr;
 
     public Message(int src_id, int dst_id, int type, String description){
         this.src_id = src_id;
         this.dst_id = dst_id;
         this.type = type;
         this.description = description;
+        this.portArr = new int[]{9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990};
     }
 
     public void Send() {
-        //TODO
-        Thread t = new Mail(this.src_id, this.dst_id, this.type, this.description);
-        t.start();
+        if(dst_id == 0){
+            for(int dest : this.portArr) {
+                Thread t1 = new Mail(this.src_id, dest, this.type, this.description);
+                t1.start();
+            }
+        }
+        else{
+            Thread t2 = new Mail(this.src_id, this.dst_id, this.type, this.description);
+            t2.start();
+        }
+
     }
 
     public int getSrc_id(){
