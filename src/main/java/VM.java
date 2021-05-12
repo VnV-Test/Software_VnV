@@ -12,13 +12,18 @@ public class VM {
     private Vector<String> prepayList = new Vector<>();
     private Item[] itemArray = new Item[7]; //새로 추가함.- setProductinfo와 give Product연관/
     private Drink[] drinkArray = new Drink[20]; //새로 추가함. - setProduct연관.
-    public Vector<Message> mailBox;
+    public Vector<Message>[] mailBox;
     private Vector<Card> cardList = new Vector<>();
 
     public VM(int ID, double[] Locaiton){
         this.ID = ID;
         this.Location = Locaiton;
-        this.mailBox = new Vector<Message>();
+
+        Vector[] temp = new Vector[9];
+        this.mailBox = (Vector<Message>[]) temp;
+        for(int i = 0; i < this.mailBox.length; i++)
+            mailBox[i] = new Vector<Message>();
+
         basicSettinng();
     }
     public Vector<VM> getDvmList() {
@@ -45,7 +50,7 @@ public class VM {
     // 남승협
     synchronized void MailRecieve(Message msg){
         Thread.yield();
-        this.mailBox.add(msg);
+        this.mailBox[msg.getMsgtype()].add(msg);
     }
 
     public int getID(){
@@ -59,11 +64,11 @@ public class VM {
         new Message(this.ID, 0, 1, itemName).Send(); // stockMsg:Message
 
         // Check Mail Box and filter which has our requirement (for Requested Stock)
-        for(int i = mailBox.size()-1; i >= 0; i--){
-            if(mailBox.get(i).getMsgtype() == 2 && mailBox.get(i).getMsgField() != null)
-                ids.add(mailBox.get(i).src_id);
+        for(int i = mailBox[2].size()-1; i >= 0; i--){
+            if(mailBox[2].get(i).getMsgField() != null)
+                ids.add(mailBox[2].get(i).src_id);
 
-            mailBox.remove(i);
+            mailBox[2].remove(i);
         }
 
         // Require address from other DVMs
@@ -72,16 +77,16 @@ public class VM {
         }
 
         // Check Mail Box and filter which has our requirement (for Request Address)
-        for(int i = mailBox.size()-1; i >= 0; i--){
-            if(mailBox.get(i).getMsgtype() == 5 && mailBox.get(i).getMsgField() != null) {
+        for(int i = mailBox[5].size()-1; i >= 0; i--){
+            if(mailBox[5].get(i).getMsgField() != null) {
                 double[] tempD = new double[2];
-                String[] tempS = mailBox.get(i).getMsgField().split(",");
+                String[] tempS = mailBox[5].get(i).getMsgField().split(",");
                 tempD[0] = Double.parseDouble(tempS[0]);
                 tempD[1] = Double.parseDouble(tempS[1]);
 
-                vms.add(new VM(mailBox.get(i).src_id, tempD));
+                vms.add(new VM(mailBox[5].get(i).src_id, tempD));
             }
-            mailBox.remove(i);
+            mailBox[5].remove(i);
         }
 
         return vms;
@@ -123,26 +128,26 @@ public class VM {
     //추가
     public void basicSettinng(){
         // drink
-        drinkArray[0] = new Drink("Sprite",900);
-        drinkArray[1] = new Drink("Mint Sprite",1000);
-        drinkArray[2] = new Drink("Coke",900);
-        drinkArray[3] = new Drink("Mint Coke",1000);
-        drinkArray[4] = new Drink("Water",500);
-        drinkArray[5] = new Drink("Sparkling water",700);
-        drinkArray[6] = new Drink("Coffee",600);
-        drinkArray[7] = new Drink("Mint Coffee",700);
-        drinkArray[8] = new Drink("Milk Coffee",700);
-        drinkArray[9] = new Drink("Demisoda",900);
-        drinkArray[10] = new Drink("SunnyTen",900);
-        drinkArray[11] = new Drink("Sikhye",700);
-        drinkArray[12] = new Drink("IDH",800);
-        drinkArray[13] = new Drink("Milkis",800);
-        drinkArray[14] = new Drink("McCall",600);
+        drinkArray[0] = new Drink("사이다",900);
+        drinkArray[1] = new Drink("민트맛 사이다",1000);
+        drinkArray[2] = new Drink("콜라",900);
+        drinkArray[3] = new Drink("민트 콜라",1000);
+        drinkArray[4] = new Drink("물",500);
+        drinkArray[5] = new Drink("탄산수",700);
+        drinkArray[6] = new Drink("커피",600);
+        drinkArray[7] = new Drink("민트 커피",700);
+        drinkArray[8] = new Drink("밀크 커피",700);
+        drinkArray[9] = new Drink("데미소다",900);
+        drinkArray[10] = new Drink("써니텐",900);
+        drinkArray[11] = new Drink("식혜",700);
+        drinkArray[12] = new Drink("갈아먹는 배",800);
+        drinkArray[13] = new Drink("밀키스",800);
+        drinkArray[14] = new Drink("맥콜",600);
         drinkArray[15] = new Drink("2%",600);
-        drinkArray[16] = new Drink("Gatorade",700);
-        drinkArray[17] = new Drink("Hot Six",700);
-        drinkArray[18] = new Drink("CoCo palm",1000);
-        drinkArray[19] = new Drink("Minute Made",500);
+        drinkArray[16] = new Drink("게토레이",700);
+        drinkArray[17] = new Drink("핫식스",700);
+        drinkArray[18] = new Drink("코코팜",1000);
+        drinkArray[19] = new Drink("미닛메이드",500);
 
         // item
         for(int i = 0; i < 7; i++) {
