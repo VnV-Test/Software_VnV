@@ -118,7 +118,10 @@ public class VM {
 
     public void RespondSell() {
         //6번오면 7번보냄 선결재로 코드넘겨준게 지급됬는지 확인 후 전송.
-        new Message(this.ID, 0, 7, mailBox[6].get(0).getMsgField()).Send();
+        for (int i=0;i<mailBox[6].size(); i++){
+            new Message(this.ID, mailBox[6].get(i).getSrc_id(), 7, mailBox[6].get(i).getMsgField()).Send();
+        }
+
         return;
     }
 
