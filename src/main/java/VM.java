@@ -91,8 +91,8 @@ public class VM {
 
         return vms;
     }
-    public Code giveCode(){
-        return codeList.get(codeList.size() - 1);
+    public void giveCode(int code){
+        System.out.println(code); // UI생성 필요.
     }
     public boolean editDVMLocation(){
         double []Location = new double[2];
@@ -194,5 +194,23 @@ public class VM {
             }
         }
         return null;
+    }
+    //강현수
+    public void requestPrepay(String name, int dst_id){
+        //코드 생성
+        int code;
+        //자기의ID+n번째음료수 자기의 ID+음료수 식별id+n번째로 발급했다.
+        new Message(this.ID, dst_id, 3, "name"+"?"+String.valueof(code)).Send();
+        while(true){
+            if(mailBox[8]!=null)
+                break;
+        }
+        if(mailBox[5].get(0).getMsgField() == null)
+            println("대상 자판기에 재고가 없습니다."); //UI로 만들어야함.
+        else {
+            String str[] = mailbox[8].get(0).getMsgField().split("?");
+            giveCode(str[1]);
+            mailbox[8].remove(0);
+        }
     }
 }

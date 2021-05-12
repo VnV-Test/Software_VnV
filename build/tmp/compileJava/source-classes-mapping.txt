@@ -42,9 +42,8 @@ PaymentDialog.java
  PaymentDialog$3
 VMFrame.java
  VMFrame
-TestMain.java
- RecieveMail
- TestMain
+VM.java
+ VM
 MainFrame.java
  MainFrame
  MainFrame$1
@@ -56,5 +55,6 @@ AdminFrame.java
  AdminFrame$2
  AdminFrame$3
  AdminFrame$4
-VM.java
- VM
+TestMain.java
+ RecieveMail
+ TestMain

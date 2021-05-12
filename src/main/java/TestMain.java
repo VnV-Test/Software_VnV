@@ -7,7 +7,7 @@ public class TestMain {
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         double[] location = { 37.54164, 127.07880 };
-        VM vm = new VM(9998, location);
+        VM vm = new VM(9999, location);
 
         Thread t = new RecieveMail(vm);
         t.start();
