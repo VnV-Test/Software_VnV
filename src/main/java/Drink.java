@@ -26,7 +26,7 @@ public class Drink {
     }
 
     public String getName(){
-        return this.Name;
+        return Name;
     }
     //아래부터는 VM product info와 give product를 위해 만듦.
     public int getPrice(){

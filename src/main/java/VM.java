@@ -51,9 +51,13 @@ public class VM {
     // 남승협
     public void NotifyVMsInfo(){
         // msgType == 1
-
-
-        // msgType == 4
+        for(int i=0;i< mailBox[2].size();i++) {
+            String name= Item.getName();
+            Message stockMsg = new Message(this.ID, mailBox[1].get(i).getSrc_id(), 2, name);
+            mailBox[1].remove(i);
+            stockMsg.Send();
+        }
+            // msgType == 4
         for(int i=0;i< mailBox[4].size();i++){
             String loc = this.Location[0]+"?"+this.Location[1];
             Message addressMsg = new Message(this.ID, mailBox[4].get(i).getSrc_id(), 5, loc);
@@ -254,14 +258,14 @@ public class VM {
     public void confirmPrepay(int dst_id){
         int stock=Item.getStock();
         if(stock>0)
-            new Message(dst_id, this.ID, 8, null).Send();
+            new Message( this.ID, dst_id,8, null).Send();
         else {
             String[] str = mailBox[3].get(0).getMsgField().split("?"); //이거맞는지 확인좀
             int i=0;
             while(codeList.elementAt(i)!=null)
                 i++;
             codeList.add(new Code(Integer.parseInt(str[1]),str[0]);
-            new Message(dst_id, this.ID, 8, mailBox[3].get(0).getMsgField()).Send();
+            new Message(this.ID,dst_id, 8, mailBox[3].get(0).getMsgField()).Send();
             mailBox[3].remove(0);
         }
     }

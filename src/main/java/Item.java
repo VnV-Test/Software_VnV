@@ -1,5 +1,5 @@
 public class Item {
-    private String Name;
+    private static String Name;
     private int Price;
     private static int Stock;
     private int index;//일단 Item이랑 Drink동시에 수정되야되서 추가함.
@@ -58,7 +58,7 @@ public class Item {
         return Stock;
     }
 //아래부터는 VM product info와 give product를 위해 만듦.
-    public String getName(){
+    public static String getName(){
         return Name;
     }
 
