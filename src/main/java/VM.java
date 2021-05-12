@@ -52,15 +52,19 @@ public class VM {
     public void NotifyVMsInfo(){
         // msgType == 1
         for(int i=0;i< mailBox[2].size();i++) {
-            String name= Item.getName();
-            if(Item.getStock() > 0){
-                Message stockMsg = new Message(this.ID, mailBox[1].get(i).getSrc_id(), 2, name);
-                mailBox[1].remove(i);
-                stockMsg.Send();
-            }else {
-                Message stockMsg = new Message(this.ID, mailBox[1].get(i).getSrc_id(), 2, null);
-                mailBox[1].remove(i);
-                stockMsg.Send();
+            for(int j=0;j<itemArray.length();j++){
+                if(itemArray[j].getName() == mailBox[i].get(2).getMsgField()){
+                    String name= itemArray[j].getName();
+                    if(itemArray[j].getStock() > 0){
+                        Message stockMsg = new Message(this.ID, mailBox[1].get(i).getSrc_id(), 2, name);
+                        mailBox[1].remove(i);
+                        stockMsg.Send();
+                    }else {
+                        Message stockMsg = new Message(this.ID, mailBox[1].get(i).getSrc_id(), 2, null);
+                        mailBox[1].remove(i);
+                        stockMsg.Send();
+                    }
+                }
             }
         }
             // msgType == 4
