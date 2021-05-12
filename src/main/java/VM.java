@@ -53,9 +53,15 @@ public class VM {
         // msgType == 1
         for(int i=0;i< mailBox[2].size();i++) {
             String name= Item.getName();
-            Message stockMsg = new Message(this.ID, mailBox[1].get(i).getSrc_id(), 2, name);
-            mailBox[1].remove(i);
-            stockMsg.Send();
+            if(Item.getStock() > 0){
+                Message stockMsg = new Message(this.ID, mailBox[1].get(i).getSrc_id(), 2, name);
+                mailBox[1].remove(i);
+                stockMsg.Send();
+            }else {
+                Message stockMsg = new Message(this.ID, mailBox[1].get(i).getSrc_id(), 2, null);
+                mailBox[1].remove(i);
+                stockMsg.Send();
+            }
         }
             // msgType == 4
         for(int i=0;i< mailBox[4].size();i++){
@@ -264,7 +270,7 @@ public class VM {
             int i=0;
             while(codeList.elementAt(i)!=null)
                 i++;
-            codeList.add(new Code(Integer.parseInt(str[1]),str[0]);
+            codeList.add(new Code(Integer.parseInt(str[1]),str[0]));
             new Message(this.ID,dst_id, 8, mailBox[3].get(0).getMsgField()).Send();
             mailBox[3].remove(0);
         }
