@@ -7,19 +7,19 @@ public class VM {
     private  String Address;
     private double[][] vmLocArray;
     private  String[] vmAddArray;
-    private Vector<VM> dvmList;
-    private Vector<Code> codeList;
-    private Vector<String> prepayList;
-    private Item[] itemArray; //새로 추가함.- setProductinfo와 give Product연관/
-    private Drink[] drinkArray; //새로 추가함. - setProduct연관.
+    private Vector<VM> dvmList = new Vector<>();
+    private Vector<Code> codeList = new Vector<Code>();
+    private Vector<String> prepayList = new Vector<>();
+    private Item[] itemArray = new Item[7]; //새로 추가함.- setProductinfo와 give Product연관/
+    private Drink[] drinkArray = new Drink[20]; //새로 추가함. - setProduct연관.
     private Vector<Message> mailBox;
+    private Vector<Card> cardList = new Vector<>();
 
     public VM(int ID, double[] Locaiton){
         this.ID = ID;
         this.Location = Locaiton;
+        basicSettinng();
     }
-
-
     public Vector<VM> getDvmList() {
         return dvmList;
     }
@@ -41,8 +41,7 @@ public class VM {
         drinkArray[index-1].setName(name);
         drinkArray[index-1].setPrice(price);
     }
-
-    // Sünghjöp
+    // 남승협
     public Vector<VM> getOtherVM(String itemName){
         // Use Case 4, 9, 15
         Vector<Integer> ids = null;
@@ -77,11 +76,9 @@ public class VM {
 
         return vms;
     }
-
     public Code giveCode(){
         return codeList.get(codeList.size() - 1);
     }
-
     public boolean editDVMLocation(){
         double []Location = new double[2];
         Location[0] = 37.54164;  //scanLongitude
@@ -93,12 +90,10 @@ public class VM {
 
         return true;
     }
-
     //송주한
     public void sendVMList(){
 
     }
-
     public boolean CheckStoke(String itemName){
         for(int i=0; i<7;i++) {
             if(itemName.equals(itemArray[i].getName())){
@@ -108,7 +103,6 @@ public class VM {
         }
         return false;
     } // boolean 값으로 수정, item에 stock이 존재하면 true 아니면 false
-
     public boolean editDVMActivated(VM v ){
         if(dvmList.size()<10 && dvmList.size()>=0){
             dvmList.add(v);
@@ -116,5 +110,64 @@ public class VM {
         }
         return false;
     }
+    //추가
+    public void basicSettinng(){
+        // drink
+        drinkArray[0] = new Drink("사이다",900);
+        drinkArray[1] = new Drink("민트맛 사이다",1000);
+        drinkArray[2] = new Drink("콜라",900);
+        drinkArray[3] = new Drink("민트 콜라",1000);
+        drinkArray[4] = new Drink("물",500);
+        drinkArray[5] = new Drink("탄산수",700);
+        drinkArray[6] = new Drink("커피",600);
+        drinkArray[7] = new Drink("민트 커피",700);
+        drinkArray[8] = new Drink("밀크 커피",700);
+        drinkArray[9] = new Drink("데미소다",900);
+        drinkArray[10] = new Drink("써니텐",900);
+        drinkArray[11] = new Drink("식혜",700);
+        drinkArray[12] = new Drink("갈아먹는 배",800);
+        drinkArray[13] = new Drink("밀키스",800);
+        drinkArray[14] = new Drink("맥콜",600);
+        drinkArray[15] = new Drink("2%",600);
+        drinkArray[16] = new Drink("게토레이",700);
+        drinkArray[17] = new Drink("핫식스",700);
+        drinkArray[18] = new Drink("코코팜",1000);
+        drinkArray[19] = new Drink("미닛메이드",500);
 
+        // item
+        for(int i = 0; i < 7; i++) {
+            itemArray[i] = new Item(drinkArray[i].getName(),drinkArray[i].getPrice(),10);
+        }
+        
+        // code
+        codeList.add(new Code(123456,"콜라"));
+
+        // card
+        cardList.add(new Card("1234123412341234", 820, 578, 25, 900));
+    }
+    public String checkCode(int code){
+        for(int i=0; i<codeList.size(); i++){
+            if(codeList.elementAt(i).getCode() == code){
+                    return codeList.elementAt(i).getName();
+            }
+        }
+        return null;
+    }
+    public Drink[] getDrinkArray(){
+        return drinkArray;
+    }
+    public Card findCard(String cardNum,int cvc,int pw, int validity){
+        for(int i=0; i<cardList.size(); i++){
+            if(cardList.elementAt(i).isThisCard(cardNum,cvc,pw,validity)){
+                return cardList.elementAt(i);
+            }
+        }
+        return null;
+    }
+    public void editVMAddress(String Address){
+        this.Address = Address;
+    }
+    public void editVMID(int id){
+        this.ID = id;
+    }
 }
