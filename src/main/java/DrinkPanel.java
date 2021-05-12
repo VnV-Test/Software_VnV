@@ -54,6 +54,7 @@ public class DrinkPanel extends JPanel {
             case "Coke":
                 icon = new ImageIcon(imgpath[0]);
                 break;
+
         }
         JLabel centerLabel = new JLabel(icon);
         centerLabel.setBackground(Color.white);
