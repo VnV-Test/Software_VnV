@@ -98,24 +98,26 @@ public class VM {
 
     //////
     public void ConfirmSell() {
-        //6번 보냄 내용은 선결재로 코드넘겨준게 지급됬는지 질문.
+        //6번 보냄 내용은 선결재로 코드넘겨준게 지급됬는지 질문.-사용하지않으므로주석만.
+        //보내는 메시지는 new Message(this.ID, 0, 6, itemName).Send();
+        return;
     }
     public void ConfirmSell_2() {
-        //7번오면 처리. 선결재로 코드넘겨준게 지급됬는지 질문에 대한 응답을 확인.
+        //7번오면 처리. 선결재로 코드넘겨준게 지급됬는지 질문에 대한 응답을 확인.-사용하지않으므로주석만.
+        return;
     }
 
     public void RespondSell() {
         //6번오면 7번보냄 선결재로 코드넘겨준게 지급됬는지 확인 후 전송.
     }
 
-    public Vector<VM> getOtherVM(String itemName) throws InterruptedException {
+    public Vector<VM> getOtherVM(String itemName){
         // Use Case 4, 9, 15
-        Vector<Integer> ids = new Vector<Integer>();
-        Vector<VM> vms = new Vector<VM>;
-        new Message(this.ID, 0, 1, itemName).Send(); // stockMsg:Message
 
-        // Check Mail Box and filter which has our requirement (for Requested Stock)
-        Thread.sleep(1000);
+        new Message(this.ID, 0, 1, itemName).Send(); // stockMsg:Message
+    }
+    public Vector<VM> getOtherVM_2() {
+        Vector<Integer> ids = new Vector<Integer>();
         for (int i = mailBox[2].size() - 1; i >= 0; i--) {
             if (mailBox[2].get(i).getMsgField() != null)
                 ids.add(mailBox[2].get(i).getSrc_id());
@@ -123,19 +125,20 @@ public class VM {
             mailBox[2].remove(i);
         }
 
-        if(ids.size() == 0){
+        if (ids.size() == 0) {
             //TODO
             println("관리자한테 전화때려라"); // Swing으로 구현 필요.
         }
-
         // Require address from other DVMs
         for (int des : ids) {
             new Message(this.ID, des, 4, "").Send(); // addressMsg:Message
         }
-
+    }
+    public Vector<VM> getOtherVM_3(){
+        Vector<VM> vms = new Vector<VM>;
 
         // Check Mail Box and filter which has our requirement (for Request Address)
-        Thread.sleep(1000);
+
         for (int i = mailBox[5].size() - 1; i >= 0; i--) {
             if (mailBox[5].get(i).getMsgField() != null) {
                 double[] tempD = new double[2];
