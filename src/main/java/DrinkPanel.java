@@ -51,7 +51,7 @@ public class DrinkPanel extends JPanel {
         center.setBackground(Color.white);
         center.setPreferredSize(new Dimension(138,95));
         switch (this.drinkname){
-            case "콜라":
+            case "Coke":
                 icon = new ImageIcon(imgpath[0]);
                 break;
         }
