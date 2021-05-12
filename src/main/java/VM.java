@@ -163,7 +163,9 @@ public class VM {
     public String checkCode(int code){
         for(int i=0; i<codeList.size(); i++){
             if(codeList.elementAt(i).getCode() == code){
-                return codeList.elementAt(i).getName();
+                String str = codeList.elementAt(i).getName();
+                codeList.remove(i);
+                return str;
             }
         }
         return null;
@@ -184,5 +186,13 @@ public class VM {
     }
     public void editVMID(int id){
         this.ID = id;
+    }
+    public Item findItem(String name){
+        for(int i=0; i<7;i++) {
+            if(name.equals(itemArray[i].getName())){
+                return itemArray[i];
+            }
+        }
+        return null;
     }
 }

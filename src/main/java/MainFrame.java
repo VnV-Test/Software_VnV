@@ -139,20 +139,23 @@ public class MainFrame extends JFrame{
     }
     public void checkCode() {
         String id = ((CodeDialog)dlg).getCode();
-        System.out.println(id);
         if(id == null) {return;}
         int inputcode;
         try{
             inputcode  = Integer.parseInt(id);
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "정수이외의 문자열을 입력할 수 없습니다.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "You cannot enter a character string other than an integer.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         String isCode = vm.checkCode(inputcode);
         // 인증코드가 맞는지 체크
         if(isCode != null) {
             giveProduct(isCode);
-            // 코드 삭제
+            Item item = vm.findItem(isCode);
+            if(item.getStock() > 0)
+                item.editStock(item.getStock()-1);
+            else
+                JOptionPane.showMessageDialog(null, "Out of Stock", "Error", JOptionPane.ERROR_MESSAGE);
         }else {
             JOptionPane.showMessageDialog(null, "\n" + "This is an incorrect authentication code.", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -204,7 +207,6 @@ public class MainFrame extends JFrame{
             return;
         }
         Card payCard = vm.findCard(cardNum,cvc,pw,validity);
-        System.out.println(payCard);
         if(payCard == null){
             JOptionPane.showMessageDialog(null, "This card does not exist.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
@@ -224,8 +226,8 @@ public class MainFrame extends JFrame{
     }
     public void showCardDialog(int price, String name){
         this.dlg = new CardDialog(this, "Payment",false,price, name);
-        System.out.println(dlg);
     }
+
     public Admin getAdmin(){
         return this.admin;
     }
