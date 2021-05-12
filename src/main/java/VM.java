@@ -252,14 +252,15 @@ public class VM {
         }
     }
     public void confirmPrepay(int dst_id){
-        if(Item.getStock()>0)
+        int stock=Item.getStock();
+        if(stock>0)
             new Message(dst_id, this.ID, 8, null).Send();
         else {
-            String str[] = mailBox[3].get(0).getMsgField().split("\\?"); //이거맞는지 확인좀
+            String[] str = mailBox[3].get(0).getMsgField().split("?"); //이거맞는지 확인좀
             int i=0;
             while(codeList.elementAt(i)!=null)
                 i++;
-            codeList.add(new Code(Integer.valueOf(str[1]),str[0]);
+            codeList.add(new Code(Integer.parseInt(str[1]),str[0]);
             new Message(dst_id, this.ID, 8, mailBox[3].get(0).getMsgField()).Send();
             mailBox[3].remove(0);
         }
