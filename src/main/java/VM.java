@@ -1,4 +1,3 @@
-import java.util.Collections;
 import java.util.Vector;
 
 public class VM {
@@ -58,6 +57,16 @@ public class VM {
         return this.ID;
     }
 
+    //////
+    public void ConfirmSell(){
+        if(mailBox[3].size() == 0) return;
+        for(int i=0;i<mailBox[3].size();i++) {
+            Message tempMsg = new Message(mailBox[3].get(i).getDst_id(), mailBox[3].get(i).getSrc_id(), 8, mailBox[3].get(i).getMsgField());
+            mailBox[3].remove(i);
+            tempMsg.Send();
+        }
+    }
+
     public Vector<VM> getOtherVM(String itemName){
         // Use Case 4, 9, 15
         Vector<Integer> ids = null;
@@ -67,7 +76,7 @@ public class VM {
         // Check Mail Box and filter which has our requirement (for Requested Stock)
         for(int i = mailBox[2].size()-1; i >= 0; i--){
             if(mailBox[2].get(i).getMsgField() != null)
-                ids.add(mailBox[2].get(i).src_id);
+                ids.add(mailBox[2].get(i).getSrc_id());
 
             mailBox[2].remove(i);
         }
@@ -85,7 +94,7 @@ public class VM {
                 tempD[0] = Double.parseDouble(tempS[0]);
                 tempD[1] = Double.parseDouble(tempS[1]);
 
-                vms.add(new VM(mailBox[5].get(i).src_id, tempD));
+                vms.add(new VM(mailBox[5].get(i).getSrc_id(), tempD));
             }
             mailBox[5].remove(i);
         }
