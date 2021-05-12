@@ -98,12 +98,11 @@ public class VM {
 
     //////
     public void ConfirmSell() {
-        if (mailBox[3].size() == 0) return;
-        for (int i = 0; i < mailBox[3].size(); i++) {
-            Message tempMsg = new Message(this.ID, mailBox[3].get(i).getSrc_id(), 8, mailBox[3].get(i).getMsgField());
-            mailBox[3].remove(i);
-            tempMsg.Send();
-        }
+        //6번 보내서 7번오면 처리.
+    }
+
+    public void RespondSell() {
+        //6번오면 7번보냄
     }
 
     public Vector<VM> getOtherVM(String itemName) throws InterruptedException {
