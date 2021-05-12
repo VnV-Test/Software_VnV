@@ -250,4 +250,17 @@ public class VM {
             mailBox[8].remove(0);
         }
     }
+    public void confirmPrepay(int dst_id){
+        if(Item.getStock()>0)
+            new Message(dst_id, this.ID, 8, null).Send();
+        else {
+            String str[] = mailBox[3].get(0).getMsgField().split("\\?"); //이거맞는지 확인좀
+            int i=0;
+            while(codeList.elementAt(i)!=null)
+                i++;
+            codeList.add(new Code(Integer.valueOf(str[1]),str[0]);
+            new Message(dst_id, this.ID, 8, mailBox[3].get(0).getMsgField()).Send();
+            mailBox[3].remove(0);
+        }
+    }
 }
