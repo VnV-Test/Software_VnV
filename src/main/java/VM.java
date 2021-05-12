@@ -47,7 +47,21 @@ public class VM {
         drinkArray[index-1].setName(name);
         drinkArray[index-1].setPrice(price);
     }
+
     // 남승협
+    public void NotifyVMsInfo(){
+        // msgType == 1
+
+
+        // msgType == 4
+        for(int i=0;i< mailBox[4].size();i++){
+            String loc = this.Location[0]+"?"+this.Location[1];
+            Message addressMsg = new Message(this.ID, mailBox[4].get(i).getSrc_id(), 5, loc);
+            mailBox[3].remove(i);
+            addressMsg.Send();
+        }
+    }
+
     synchronized void MailRecieve(Message msg){
         Thread.yield();
         this.mailBox[msg.getMsgtype()].add(msg);
@@ -57,11 +71,12 @@ public class VM {
         return this.ID;
     }
 
+
     //////
     public void ConfirmSell(){
         if(mailBox[3].size() == 0) return;
         for(int i=0;i<mailBox[3].size();i++) {
-            Message tempMsg = new Message(mailBox[3].get(i).getDst_id(), mailBox[3].get(i).getSrc_id(), 8, mailBox[3].get(i).getMsgField());
+            Message tempMsg = new Message(this.ID, mailBox[3].get(i).getSrc_id(), 8, mailBox[3].get(i).getMsgField());
             mailBox[3].remove(i);
             tempMsg.Send();
         }
@@ -90,7 +105,7 @@ public class VM {
         for(int i = mailBox[5].size()-1; i >= 0; i--){
             if(mailBox[5].get(i).getMsgField() != null) {
                 double[] tempD = new double[2];
-                String[] tempS = mailBox[5].get(i).getMsgField().split(",");
+                String[] tempS = mailBox[5].get(i).getMsgField().split("?");
                 tempD[0] = Double.parseDouble(tempS[0]);
                 tempD[1] = Double.parseDouble(tempS[1]);
 
