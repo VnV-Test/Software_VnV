@@ -9,7 +9,7 @@ public class VM {
     private Vector<VM> dvmList = new Vector<>();
     private Vector<Code> codeList = new Vector<Code>();
     private Vector<String> prepayList = new Vector<>();
-    private Item[] itemArray = new Item[7]; //새로 추가함.- setProductinfo와 give Product연관/
+    private Item[] itemArray; //새로 추가함.- setProductinfo와 give Product연관/
     private Drink[] drinkArray = new Drink[20]; //새로 추가함. - setProduct연관.
     public Vector<Message>[] mailBox;
     private Vector<Card> cardList = new Vector<>();
@@ -23,6 +23,8 @@ public class VM {
         this.mailBox = (Vector<Message>[]) temp;
         for(int i = 0; i < this.mailBox.length; i++)
             mailBox[i] = new Vector<Message>();
+
+        itemArray = new Item[7];
 
         basicSettinng();
     }
