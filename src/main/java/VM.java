@@ -106,13 +106,14 @@ public class VM {
         }
     }
 
-    public Vector<VM> getOtherVM(String itemName) {
+    public Vector<VM> getOtherVM(String itemName) throws InterruptedException {
         // Use Case 4, 9, 15
-        Vector<Integer> ids = null;
-        Vector<VM> vms = null;
+        Vector<Integer> ids = new Vector<Integer>();
+        Vector<VM> vms = new Vector<VM>;
         new Message(this.ID, 0, 1, itemName).Send(); // stockMsg:Message
 
         // Check Mail Box and filter which has our requirement (for Requested Stock)
+        Thread.sleep(1000);
         for (int i = mailBox[2].size() - 1; i >= 0; i--) {
             if (mailBox[2].get(i).getMsgField() != null)
                 ids.add(mailBox[2].get(i).getSrc_id());
@@ -120,12 +121,19 @@ public class VM {
             mailBox[2].remove(i);
         }
 
+        if(ids.size() == 0){
+            //TODO
+            println("관리자한테 전화때려라"); // Swing으로 구현 필요.
+        }
+
         // Require address from other DVMs
         for (int des : ids) {
             new Message(this.ID, des, 4, "").Send(); // addressMsg:Message
         }
 
+
         // Check Mail Box and filter which has our requirement (for Request Address)
+        Thread.sleep(1000);
         for (int i = mailBox[5].size() - 1; i >= 0; i--) {
             if (mailBox[5].get(i).getMsgField() != null) {
                 double[] tempD = new double[2];
@@ -279,7 +287,7 @@ public class VM {
             if (mailBox[8] != null)
                 break;
         }
-        if (mailBox[5].get(0).getMsgField() == null)
+        if (mailBox[8].get(0).getMsgField() == null)
             println("대상 자판기에 재고가 없습니다."); //UI로 만들어야함.
         else {
             String str[] = mailBox[8].get(0).getMsgField().split("\\?");
