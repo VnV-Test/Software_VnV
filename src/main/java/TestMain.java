@@ -20,7 +20,7 @@ public class TestMain {
 }
 
 class ImListening extends Thread {
-    public VM vm
+    public VM vm;
 
     public ImListening(VM v){
         super("Im Listening");
