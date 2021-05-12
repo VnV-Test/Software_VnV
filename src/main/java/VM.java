@@ -54,7 +54,7 @@ public class VM {
     public void NotifyVMsInfo(){
         // msgType == 1
         for(int i=0;i< mailBox[2].size();i++) {
-            for(int j=0;j<itemArray.length();j++){
+            for(int j=0;j<itemArray.length;j++){
                 if(itemArray[j].getName() == mailBox[i].get(2).getMsgField()){
                     String name= itemArray[j].getName();
                     if(itemArray[j].getStock() > 0){
@@ -66,6 +66,10 @@ public class VM {
                         mailBox[1].remove(i);
                         stockMsg.Send();
                     }
+                }else {
+                    Message stockMsg = new Message(this.ID, mailBox[1].get(i).getSrc_id(), 2, null);
+                    mailBox[1].remove(i);
+                    stockMsg.Send();
                 }
             }
         }

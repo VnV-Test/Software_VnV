@@ -1,7 +1,7 @@
 public class Item {
-    private static String Name;
+    private String Name;
     private int Price;
-    private static int Stock;
+    private int Stock;
     private int index;//일단 Item이랑 Drink동시에 수정되야되서 추가함.
 
     public Item(){
