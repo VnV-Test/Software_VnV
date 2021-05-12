@@ -1,25 +1,21 @@
-Code.java
- Code
+Card.java
+ Card
 Admin.java
  Admin
-Message.java
- Message
+Drink.java
+ Drink
+VMProject.java
+ VMProject
 Item.java
  Item
-DrinkPanel.java
- DrinkPanel
- DrinkPanel$1
 VMPanel.java
  VMPanel
  VMPanel$1
-VMProject.java
- VMProject
-Drink.java
- Drink
-Card.java
- Card
-VM.java
- VM
+DrinkPanel.java
+ DrinkPanel
+ DrinkPanel$1
+Code.java
+ Code
 CodeDialog.java
  CodeDialog
  CodeDialog$1
@@ -28,23 +24,27 @@ AdminDialog.java
  AdminDialog
  AdminDialog$1
  AdminDialog$2
-TestMain.java
- TestMain
+Message.java
+ Mail
+ Message
+DrinkDialog.java
+ DrinkDialog
+ DrinkDialog$1
 CardDialog.java
  CardDialog
  CardDialog$1
  CardDialog$2
  CardDialog$3
+VMFrame.java
+ VMFrame
 PaymentDialog.java
  PaymentDialog
  PaymentDialog$1
  PaymentDialog$2
  PaymentDialog$3
-VMFrame.java
- VMFrame
-DrinkDialog.java
- DrinkDialog
- DrinkDialog$1
+TestMain.java
+ RecieveMail
+ TestMain
 MainFrame.java
  MainFrame
  MainFrame$1
@@ -56,3 +56,5 @@ AdminFrame.java
  AdminFrame$2
  AdminFrame$3
  AdminFrame$4
+VM.java
+ VM
