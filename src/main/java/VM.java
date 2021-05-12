@@ -285,10 +285,8 @@ public class VM {
             zeros = "";
         code = String.valueOf(this.ID) + zeros + count;
         new Message(this.ID, dst_id, 3, "name" + "\\?" + code).Send();
-        while (true) {
-            if (mailBox[8] != null)
-                break;
-        }
+    }
+    public void requestPrepay_2(String name, int dst_id){
         if (mailBox[8].get(0).getMsgField() == null)
             println("대상 자판기에 재고가 없습니다."); //UI로 만들어야함.
         else {
