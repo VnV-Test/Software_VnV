@@ -91,7 +91,7 @@ public class VM {
 
         return vms;
     }
-    public void giveCode(int code){
+    public void giveCode(String code){
         System.out.println(code); // UI생성 필요.
     }
     public boolean editDVMLocation(){
@@ -208,9 +208,9 @@ public class VM {
         if(mailBox[5].get(0).getMsgField() == null)
             println("대상 자판기에 재고가 없습니다."); //UI로 만들어야함.
         else {
-            String str[] = mailbox[8].get(0).getMsgField().split("?");
+            String str[] = mailBox[8].get(0).getMsgField().split("?");
             giveCode(str[1]);
-            mailbox[8].remove(0);
+            mailBox[8].remove(0);
         }
     }
 }
