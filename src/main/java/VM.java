@@ -12,12 +12,13 @@ public class VM {
     private Vector<String> prepayList = new Vector<>();
     private Item[] itemArray = new Item[7]; //새로 추가함.- setProductinfo와 give Product연관/
     private Drink[] drinkArray = new Drink[20]; //새로 추가함. - setProduct연관.
-    private Vector<Message> mailBox;
+    public Vector<Message> mailBox;
     private Vector<Card> cardList = new Vector<>();
 
     public VM(int ID, double[] Locaiton){
         this.ID = ID;
         this.Location = Locaiton;
+        this.mailBox = new Vector<Message>();
         basicSettinng();
     }
     public Vector<VM> getDvmList() {
@@ -42,6 +43,15 @@ public class VM {
         drinkArray[index-1].setPrice(price);
     }
     // 남승협
+    synchronized void MailRecieve(Message msg){
+        Thread.yield();
+        this.mailBox.add(msg);
+    }
+
+    public int getID(){
+        return this.ID;
+    }
+
     public Vector<VM> getOtherVM(String itemName){
         // Use Case 4, 9, 15
         Vector<Integer> ids = null;
@@ -65,7 +75,7 @@ public class VM {
         for(int i = mailBox.size()-1; i >= 0; i--){
             if(mailBox.get(i).getMsgtype() == 5 && mailBox.get(i).getMsgField() != null) {
                 double[] tempD = new double[2];
-                String[] tempS = mailBox.get(i).getMsgField().split(" ");
+                String[] tempS = mailBox.get(i).getMsgField().split(",");
                 tempD[0] = Double.parseDouble(tempS[0]);
                 tempD[1] = Double.parseDouble(tempS[1]);
 
@@ -82,7 +92,7 @@ public class VM {
     public boolean editDVMLocation(){
         double []Location = new double[2];
         Location[0] = 37.54164;  //scanLongitude
-        Location[0] = 127.07880; //scanAltitude
+        Location[1] = 127.07880; //scanAltitude
         this.Location = Location;
 
         if(this.Location != Location || this.Location == null)
@@ -138,7 +148,7 @@ public class VM {
         for(int i = 0; i < 7; i++) {
             itemArray[i] = new Item(drinkArray[i].getName(),drinkArray[i].getPrice(),10);
         }
-        
+
         // code
         codeList.add(new Code(123456,"콜라"));
 
@@ -148,7 +158,7 @@ public class VM {
     public String checkCode(int code){
         for(int i=0; i<codeList.size(); i++){
             if(codeList.elementAt(i).getCode() == code){
-                    return codeList.elementAt(i).getName();
+                return codeList.elementAt(i).getName();
             }
         }
         return null;
