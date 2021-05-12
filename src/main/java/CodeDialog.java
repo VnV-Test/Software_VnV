@@ -10,7 +10,7 @@ import java.awt.event.WindowEvent;
 public class CodeDialog extends JDialog{
 
     JTextField tf = new JTextField("",14);
-    JButton ok = new JButton("입력");
+    JButton ok = new JButton("Input");
     Container pane = this.getContentPane();
     MainFrame parent = null;
 
