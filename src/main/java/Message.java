@@ -66,7 +66,6 @@ public class Message {
     public int getMsgtype(){
         return this.type;
     }
-
     public String getMsgField(){
         return this.description;
     }

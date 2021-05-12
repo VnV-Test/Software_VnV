@@ -4,7 +4,7 @@ public class Admin {
     private String contact;
 
     public boolean checkIDPW(String id,String pw){
-        return (adminID.equals(id)&&adminPW.equals(pw));
+        return (adminID.equals(id) && adminPW.equals(pw));
     }
     public void editContact(String c){
         contact=c;

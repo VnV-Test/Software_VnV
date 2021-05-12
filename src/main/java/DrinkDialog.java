@@ -49,7 +49,7 @@ public class DrinkDialog extends JDialog {
                     parent.setSelectProduct(index);
                     parent.setProduct(drinkArray[index].getName(),drinkArray[index].getPrice(),0);
                     dispose();
-                    JOptionPane.showMessageDialog(null, drinkArray[index].getName() +"이(가) 선택되었습니다.", "안내", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, drinkArray[index].getName() +"is selected", "Guidance", JOptionPane.INFORMATION_MESSAGE);
                 }
 
             });

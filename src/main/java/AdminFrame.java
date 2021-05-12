@@ -52,7 +52,7 @@ public class AdminFrame extends JFrame{
         drinkPanel.setBorder(BorderFactory.createEmptyBorder(25,25,25,25));
         JPanel drinkMainPanel = new JPanel(new GridLayout(1,3,5,5));
         drinkMainPanel.setPreferredSize(new Dimension(400,150));
-        drinkMainPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black),"음료수 변경"));
+        drinkMainPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black),"Drink Edit"));
         drinkMainPanel.setBackground(Color.white);
         drinkPanel.add(drinkMainPanel);
 
@@ -80,17 +80,17 @@ public class AdminFrame extends JFrame{
         JPanel btnPanel = new JPanel(new GridLayout(3,1,10,5));
         btnPanel.setBackground(Color.white);
         btnPanel.setBorder(BorderFactory.createEmptyBorder(20,30,10,10));
-        JButton choose = new JButton("선택");
+        JButton choose = new JButton("Choose");
         choose.setBackground(new Color(80,188,223));
         choose.setForeground(Color.white);
         choose.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-                DrinkDialog drink = new DrinkDialog("음료수 선택",false,AdminFrame.this.parent.getVM(),AdminFrame.this);
+                DrinkDialog drink = new DrinkDialog("Drink Choose",false,AdminFrame.this.parent.getVM(),AdminFrame.this);
             }
         });
-        JButton change = new JButton("변경");
+        JButton change = new JButton("Edit");
         change.setBackground(new Color(80,188,223));
         change.setForeground(Color.white);
         change.addActionListener(new ActionListener() {
@@ -107,12 +107,12 @@ public class AdminFrame extends JFrame{
                     try{
                         price  = Integer.parseInt(pricetf.getText());
                     }catch(NumberFormatException e2){
-                        JOptionPane.showMessageDialog(null, "가격에는 정수 이외의 문자열을 입력할 수 없습니다.", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "\n" + "Strings other than integers cannot be entered for price.", "Error", JOptionPane.ERROR_MESSAGE);
                         return;
                     }
                     drinklist[selectProduct].setPrice(price);
                 }
-                JOptionPane.showMessageDialog(null, "변경되었습니다.", "안내", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Has been changed.", "Guidance", JOptionPane.INFORMATION_MESSAGE);
                 parent.showDrink();
             }
         });
@@ -129,7 +129,7 @@ public class AdminFrame extends JFrame{
         vmPanel.setBorder(BorderFactory.createEmptyBorder(25,25,35,25));
         JPanel vmMainPanel = new JPanel(new GridLayout(1,3,5,5));
         vmMainPanel.setPreferredSize(new Dimension(400,150));
-        vmMainPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black),"VM 변경"));
+        vmMainPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black),"VM Edit"));
         vmMainPanel.setBackground(Color.white);
         vmPanel.add(vmMainPanel);
 
@@ -154,7 +154,7 @@ public class AdminFrame extends JFrame{
         JPanel btnPanel = new JPanel(new GridLayout(2,1,10,5));
         btnPanel.setBackground(Color.white);
         btnPanel.setBorder(BorderFactory.createEmptyBorder(30,30,30,10));
-        JButton change = new JButton("변경");
+        JButton change = new JButton("Edit");
         change.setBackground(new Color(80,188,223));
         change.setForeground(Color.white);
         change.addActionListener(new ActionListener() {
@@ -168,11 +168,11 @@ public class AdminFrame extends JFrame{
                     try{
                         id  = Integer.parseInt(idtf.getText());
                     }catch(NumberFormatException e2){
-                        JOptionPane.showMessageDialog(null, "id에는 정수 이외의 문자열을 입력할 수 없습니다.", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "\n" + "Strings other than integers cannot be entered for id.", "Error", JOptionPane.ERROR_MESSAGE);
                         return;
                     }
                     parent.getVM().editVMID(id);
-                    JOptionPane.showMessageDialog(null, "변경되었습니다.", "안내", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Has been changed.", "Guidance", JOptionPane.INFORMATION_MESSAGE);
                 }else{ return; }
             }
         });
@@ -188,7 +188,7 @@ public class AdminFrame extends JFrame{
         contactPanel.setBorder(BorderFactory.createEmptyBorder(25,25,35,25));
         JPanel contactMainPanel = new JPanel(new GridLayout(1,3,5,5));
         contactMainPanel.setPreferredSize(new Dimension(400,90));
-        contactMainPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black),"주소 변경"));
+        contactMainPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black),"Contact Edit"));
         contactMainPanel.setBackground(Color.white);
         contactPanel.add(contactMainPanel);
 
@@ -210,7 +210,7 @@ public class AdminFrame extends JFrame{
         JPanel btnPanel = new JPanel(new GridLayout(2,1,10,5));
         btnPanel.setBackground(Color.white);
         btnPanel.setBorder(BorderFactory.createEmptyBorder(20,30,10,10));
-        JButton change = new JButton("변경");
+        JButton change = new JButton("Edit");
         change.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

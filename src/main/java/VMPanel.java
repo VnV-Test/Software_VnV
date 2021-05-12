@@ -32,14 +32,14 @@ public class VMPanel extends JPanel{
         JLabel idLabel = new JLabel("VM(id: "  + this.vmid + ")");
         idLabel.setVerticalAlignment(JLabel.TOP);
         idLabel.setPreferredSize(new Dimension(200,130));
-        Font font = new Font("나눔고딕",Font.BOLD,13);
+        Font font = new Font("Arial",Font.BOLD,13);
         idLabel.setFont(font);
         center.add(idLabel);
 
         // distance
-        JLabel distanceLabel = new JLabel("         거리: " + this.distance + " km  ");
+        JLabel distanceLabel = new JLabel("    Distance: " + this.distance + " km  ");
         distanceLabel.setVerticalAlignment(JLabel.BOTTOM);
-        Font font2 = new Font("나눔고딕",Font.PLAIN,11);
+        Font font2 = new Font("Arial",Font.PLAIN,11);
         distanceLabel.setFont(font2);
         center.add(distanceLabel);
         this.add(center);
