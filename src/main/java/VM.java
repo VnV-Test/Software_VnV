@@ -91,8 +91,8 @@ public class VM {
 
         return vms;
     }
-    public Code giveCode(){
-        return codeList.get(codeList.size() - 1);
+    public void giveCode(int code){
+        System.out.println(code); // UI생성 필요.
     }
 
     public boolean editDVMLocation(){
@@ -129,26 +129,26 @@ public class VM {
     //추가
     public void basicSettinng(){
         // drink
-        drinkArray[0] = new Drink("사이다",900);
-        drinkArray[1] = new Drink("민트맛 사이다",1000);
-        drinkArray[2] = new Drink("콜라",900);
-        drinkArray[3] = new Drink("민트 콜라",1000);
-        drinkArray[4] = new Drink("물",500);
-        drinkArray[5] = new Drink("탄산수",700);
-        drinkArray[6] = new Drink("커피",600);
-        drinkArray[7] = new Drink("민트 커피",700);
-        drinkArray[8] = new Drink("밀크 커피",700);
-        drinkArray[9] = new Drink("데미소다",900);
-        drinkArray[10] = new Drink("써니텐",900);
-        drinkArray[11] = new Drink("식혜",700);
-        drinkArray[12] = new Drink("갈아먹는 배",800);
-        drinkArray[13] = new Drink("밀키스",800);
-        drinkArray[14] = new Drink("맥콜",600);
+        drinkArray[0] = new Drink("Sprite",900);
+        drinkArray[1] = new Drink("Mint Sprite",1000);
+        drinkArray[2] = new Drink("Coke",900);
+        drinkArray[3] = new Drink("Mint Coke",1000);
+        drinkArray[4] = new Drink("Water",500);
+        drinkArray[5] = new Drink("Sparkling water",700);
+        drinkArray[6] = new Drink("Coffee",600);
+        drinkArray[7] = new Drink("Mint Coffee",700);
+        drinkArray[8] = new Drink("Milk Coffee",700);
+        drinkArray[9] = new Drink("Demisoda",900);
+        drinkArray[10] = new Drink("SunnyTen",900);
+        drinkArray[11] = new Drink("Sikhye",700);
+        drinkArray[12] = new Drink("IDH",800);
+        drinkArray[13] = new Drink("Milkis",800);
+        drinkArray[14] = new Drink("McCall",600);
         drinkArray[15] = new Drink("2%",600);
-        drinkArray[16] = new Drink("게토레이",700);
-        drinkArray[17] = new Drink("핫식스",700);
-        drinkArray[18] = new Drink("코코팜",1000);
-        drinkArray[19] = new Drink("미닛메이드",500);
+        drinkArray[16] = new Drink("Gatorade",700);
+        drinkArray[17] = new Drink("Hot Six",700);
+        drinkArray[18] = new Drink("CoCo palm",1000);
+        drinkArray[19] = new Drink("Minute Made",500);
 
         // item
         for(int i = 0; i < 7; i++) {
@@ -195,5 +195,23 @@ public class VM {
             }
         }
         return null;
+    }
+    //강현수
+    public void requestPrepay(String name, int dst_id){
+        //코드 생성
+        int code;
+        //자기의ID+n번째음료수 자기의 ID+음료수 식별id+n번째로 발급했다.
+        new Message(this.ID, dst_id, 3, "name"+"?"+String.valueof(code)).Send();
+        while(true){
+            if(mailBox[8]!=null)
+                break;
+        }
+        if(mailBox[5].get(0).getMsgField() == null)
+            println("대상 자판기에 재고가 없습니다."); //UI로 만들어야함.
+        else {
+            String str[] = mailbox[8].get(0).getMsgField().split("?");
+            giveCode(str[1]);
+            mailbox[8].remove(0);
+        }
     }
 }
