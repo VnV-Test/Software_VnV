@@ -9,12 +9,55 @@ public class TestMain {
         double[] location = { 37.54164, 127.07880 };
         VM vm = new VM(9999, location);
 
-        Thread t = new RecieveMail(vm);
-        t.start();
+        Thread t1 = new RecieveMail(vm);
+        Thread t2 = new ImListening(vm);
+
+        t1.start();
+        t2.start();
 
         MainFrame main = new MainFrame(vm);
     }
 }
+
+class ImListening extends Thread {
+    public VM vm;
+
+    public ImListening(VM v){
+        super("Im Listening");
+        this.vm = v;
+    }
+
+    @Override
+    public void run(){
+        while(true){
+            if(vm.getMailBoxSize(1) > 0 || vm.mailBox[4].size() > 0){
+                vm.NotifyVMsInfo();
+            }
+            if(vm.getMailBoxSize(2) >= vm.getVmNum()){
+                vm.getOtherVM_2();
+            }
+            if(vm.getMailBoxSize(3) > 0){
+                vm.confirmPrepay();
+            }
+            if(vm.getMailBoxSize(5) >= vm.getVmNum()){
+                vm.getOtherVM_3();
+            }
+            if(vm.getMailBoxSize(6) > 0){
+                vm.RespondSell();
+            }
+            if(vm.getMailBoxSize(7) > 0){
+                vm.ConfirmSell_2();
+            }
+            if(vm.getMailBoxSize(8) > 0){
+                vm.requestPrepay_2();
+            }
+        }
+    }
+}
+
+
+
+
 class RecieveMail extends Thread{
     public VM vm;
 

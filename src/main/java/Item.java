@@ -55,11 +55,11 @@ public class Item {
     }
 
     public int getStock(){
-        return this.Stock;
+        return Stock;
     }
 //아래부터는 VM product info와 give product를 위해 만듦.
     public String getName(){
-        return this.Name;
+        return Name;
     }
 
     public void setPrice(int price){
