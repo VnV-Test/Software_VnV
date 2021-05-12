@@ -92,7 +92,7 @@ public class VM {
         return vms;
     }
     public void giveCode(String code){
-        System.out.println(code); // UI생성 필요.
+        println(code); // UI생성 필요.
     }
     public boolean editDVMLocation(){
         double []Location = new double[2];
