@@ -27,8 +27,8 @@ public class PaymentDialog extends JDialog{
     }
     public void init() {
         JPanel centerPanel = new JPanel(new FlowLayout());
-        JLabel centerLabel = new JLabel("결 제 하 시 겠 습 니 까?");
-        Font font = new Font("나눔고딕",Font.PLAIN,13);
+        JLabel centerLabel = new JLabel("Would you like to pay?");
+        Font font = new Font("Arial",Font.PLAIN,13);
         centerPanel.setBackground(Color.white);
         centerLabel.setFont(font);
         centerLabel.setVerticalAlignment(JLabel.CENTER);
@@ -37,7 +37,7 @@ public class PaymentDialog extends JDialog{
 
         JPanel southPanel = new JPanel(new FlowLayout(FlowLayout.CENTER,5,5));
         southPanel.setBackground(Color.white);
-        JButton okBtn = new JButton("확인");
+        JButton okBtn = new JButton("OK");
         okBtn.setBackground(new Color(80,180,223));
         okBtn.setForeground(Color.white);
         int payPrice = this.price;
@@ -51,7 +51,7 @@ public class PaymentDialog extends JDialog{
                 dispose();
             }
         });
-        JButton cancelBtn = new JButton("취소");
+        JButton cancelBtn = new JButton("Cancel");
         cancelBtn.setBackground(new Color(80,180,223));
         cancelBtn.setForeground(Color.white);
         cancelBtn.addActionListener(new ActionListener() {

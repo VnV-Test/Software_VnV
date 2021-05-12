@@ -35,7 +35,7 @@ public class MainFrame extends JFrame{
         northPanel.setPreferredSize(new Dimension(500,50));
         northPanel.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));
 
-        JButton adminBtn = new JButton("관리자모드");
+        JButton adminBtn = new JButton("Admin");
         adminBtn.setBackground(new Color(80,188,223));
         adminBtn.setForeground(Color.white);
         adminBtn.addActionListener(new ActionListener() {
@@ -57,7 +57,7 @@ public class MainFrame extends JFrame{
         });
         northPanel.add(adminBtn);
 
-        JButton codeBtn = new JButton("인증코드");
+        JButton codeBtn = new JButton("Code");
         codeBtn.setBackground(new Color(80,188,223));
         codeBtn.setForeground(Color.white);
         codeBtn.addActionListener(new ActionListener() {
@@ -115,7 +115,6 @@ public class MainFrame extends JFrame{
                         }
                     }else {
                         // VM List Frame 생성
-                        System.out.println("재고가 없습니다.");
                     }
                 }
 
@@ -135,7 +134,7 @@ public class MainFrame extends JFrame{
         if(isAdmin) {
             AdminFrame admin = new AdminFrame(this);
         }else {
-            JOptionPane.showMessageDialog(null, "잘못된 관리자 ID 혹은 PW 입니다.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "\n" + "Invalid administrator ID or PW", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     public void checkCode() {
@@ -155,7 +154,7 @@ public class MainFrame extends JFrame{
             giveProduct(isCode);
             // 코드 삭제
         }else {
-            JOptionPane.showMessageDialog(null, "잘못된 인증코드 입니다.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "\n" + "This is an incorrect authentication code.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     public void cardCheck() {
@@ -164,64 +163,61 @@ public class MainFrame extends JFrame{
         String num3 = ((CardDialog)dlg).getNum3();
         String num4 = ((CardDialog)dlg).getNum4();
         if(num1 == null || num2 == null || num3 == null ||num4 == null ) {
-            JOptionPane.showMessageDialog(null, "카드번호는 공백일 수 없습니다.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "\n" + "Card number cannot be blank", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         String cardNum = num1 + num2 + num3 + num4;
         String cvcStr = ((CardDialog)dlg).getCvc();
         if(cvcStr == null ) {
-            JOptionPane.showMessageDialog(null, "CVC는 공백일 수 없습니다.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "CVC cannot be blank", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         int cvc;
         try{
             cvc  = Integer.parseInt(cvcStr);
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "CVC에는 정수 이외의 문자열을 입력할 수 없습니다.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "\n" + "Strings other than integers cannot be entered in CVC.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         String validityStr = ((CardDialog)dlg).getCon();
         int validity;
         if(validityStr == null ) {
-            JOptionPane.showMessageDialog(null, "유효기간은 공백일 수 없습니다.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Validity cannot be blank", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         try{
             validity  = Integer.parseInt(validityStr);
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "유효기간에는 정수 이외의 문자열을 입력할 수 없습니다.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "strings other than integers cannot be entered in valitdity", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         String pwStr = ((CardDialog)dlg).getPW();
         if(pwStr == null ) {
-            JOptionPane.showMessageDialog(null, "비밀번호는 공백일 수 없습니다.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "PW cannot be blank", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         int pw;
         try{
             pw  = Integer.parseInt(pwStr);
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "비밀번호에는 정수 이외의 문자열을 입력할 수 없습니다.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "strings other than integers cannot be entered in Password", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         Card payCard = vm.findCard(cardNum,cvc,pw,validity);
         System.out.println(payCard);
         if(payCard == null){
-            JOptionPane.showMessageDialog(null, "존재하지 않는 카드입니다.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "This card does not exist.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         int price = ((CardDialog)dlg).getPrice();
         if(payCard.payment(price)){
            giveProduct(((CardDialog)dlg).getName());
         }else{
-            JOptionPane.showMessageDialog(null, "카드 잔액이 부족합니다.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "There is not enough balance.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     public void giveProduct(String name){
-        JOptionPane.showMessageDialog(null, "    제품: " + name + "을(를) 지급해드렸습니다.","Message", JOptionPane.PLAIN_MESSAGE);
-    }
-    public void repaintMenu(){
-
+        JOptionPane.showMessageDialog(null, "            Give you a " + "Product : " + name,"Message", JOptionPane.PLAIN_MESSAGE);
     }
     public void setDlg(JDialog dialog){
         this.dlg = dialog;

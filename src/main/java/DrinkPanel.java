@@ -30,12 +30,10 @@ public class DrinkPanel extends JPanel {
         this.setBackground(Color.white);
         init();
     }
-
     private void init() {
         this.setBorder(BorderFactory.createLineBorder(Color.black,2));
         initCenter();
         initSouth();
-
         // 마우스 리스너 등록
         this.addMouseListener(new MouseAdapter() {
             @Override
@@ -71,14 +69,14 @@ public class DrinkPanel extends JPanel {
         southPanel.setPreferredSize(new Dimension(138,40));
 
         JLabel nameLabel = new JLabel(this.drinkname);
-        Font namefont = new Font("나눔고딕",Font.BOLD,12);
+        Font namefont = new Font("Arial",Font.BOLD,12);
         nameLabel.setFont(namefont);
         nameLabel.setForeground(new Color(80,188,223));
         nameLabel.setHorizontalAlignment(JLabel.CENTER);
         southPanel.add(nameLabel);
 
-        JLabel priceLabel = new JLabel("\\ "+this.price);
-        Font pricefont = new Font("새굴림",Font.PLAIN,10);
+        JLabel priceLabel = new JLabel("₩ "+this.price);
+        Font pricefont = new Font("Arial",Font.PLAIN,10);
         priceLabel.setFont(pricefont);
         priceLabel.setHorizontalAlignment(JLabel.CENTER);
         southPanel.add(priceLabel);

@@ -39,7 +39,7 @@ public class CardDialog extends JDialog{
         centerPanel.setBackground(Color.white);
         centerPanel.setBorder(BorderFactory.createEmptyBorder(10,20,10,30));
         // text 1
-        JLabel cardNum = new JLabel("카드 번호");
+        JLabel cardNum = new JLabel("Card Num");
         cardNum.setBorder(BorderFactory.createEmptyBorder(0,0,0,25));
         centerPanel.add(cardNum);
         // textfield 1
@@ -53,10 +53,10 @@ public class CardDialog extends JDialog{
         // text 2
         JPanel textPanel = new JPanel(new FlowLayout(FlowLayout.LEFT,25,0));
         textPanel.setBackground(Color.white);
-        JLabel confirm = new JLabel("유효 기간");
+        JLabel confirm = new JLabel("Validity");
         JLabel cvc = new JLabel("CVC");
         cvc.setBorder(BorderFactory.createEmptyBorder(0,0,0,10));
-        JLabel pw = new JLabel("카드 비밀번호");
+        JLabel pw = new JLabel("PW");
         pw.setBorder(BorderFactory.createEmptyBorder(0,0,0,10));
         textPanel.add(confirm);
         textPanel.add(cvc);
@@ -72,7 +72,7 @@ public class CardDialog extends JDialog{
         // btnPanel
         JPanel btnPanel = new JPanel(new FlowLayout(FlowLayout.CENTER,5,0));
         btnPanel.setBackground(Color.white);
-        JButton okBtn = new JButton("확인");
+        JButton okBtn = new JButton("OK");
         okBtn.setBackground(new Color(80,180,223));
         okBtn.setForeground(Color.white);
         okBtn.addActionListener(new ActionListener() {
@@ -84,7 +84,7 @@ public class CardDialog extends JDialog{
                 dispose();
             }
         });
-        JButton cancelBtn = new JButton("취소");
+        JButton cancelBtn = new JButton("Cancel");
         cancelBtn.setBackground(new Color(80,180,223));
         cancelBtn.setForeground(Color.white);
         cancelBtn.addActionListener(new ActionListener() {

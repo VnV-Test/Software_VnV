@@ -11,7 +11,7 @@ public class AdminDialog extends JDialog{
 
     JTextField idtf = new JTextField("",12);
     JPasswordField pwtf = new JPasswordField("",12);
-    JButton ok = new JButton("확인");
+    JButton ok = new JButton("OK");
     Container pane = this.getContentPane();
     MainFrame parent = null;
 
