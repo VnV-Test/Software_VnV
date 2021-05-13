@@ -13,14 +13,16 @@ public class VMFrame extends JFrame{
     JPanel vmPanel;
     MainFrame parent = null;
     String drinkname;
+    int price;
 
-    public VMFrame(MainFrame parent, VM otherVm,String drinkname) {
+    public VMFrame(MainFrame parent, VM otherVm,String drinkname,int price) {
         super("VM-List");
         this.parent = parent;
         this.setSize(500,500);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.drinkname = drinkname;
+        this.price = price;
         init(otherVm);
         this.setVisible(true);
     }
@@ -54,12 +56,14 @@ public class VMFrame extends JFrame{
         // 거리계산
         VM vm = parent.getVM();
         Double distance = Math.sqrt(Math.pow(otherVm.getLocation()[0]-vm.getLocation()[0],2)+Math.pow(otherVm.getLocation()[1]-vm.getLocation()[1],2));
-        VMPanel vmpanel = new VMPanel(vm.getID(),distance);
+        VMPanel vmpanel = new VMPanel(otherVm.getID(),distance);
         vmpanel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 // TODO Auto-generated method stub
-                parent.getVM().requestPrepay(drinkname,vm.getID());
+                //결제창 띄우기
+                parent.dlg = new PaymentDialog(parent, "Payment",false, price, drinkname,true, otherVm);
+
             }
 
         });

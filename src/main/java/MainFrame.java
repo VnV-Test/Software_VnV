@@ -98,6 +98,9 @@ public class MainFrame extends JFrame{
 
         frame.add(centerPanel,BorderLayout.CENTER);
     }
+    public void prePayment(String name,String Code){
+
+    }
     public void showDrink() {
         menuPanel.removeAll();
         Drink[] drinkArray = vm.getDrinkArray();
@@ -120,6 +123,7 @@ public class MainFrame extends JFrame{
                         }
                     }else {
                         // VM List Frame 생성
+                        vmframe = null;
                         vm.getOtherVM(drinkname);
                         MainFrame.this.predrinkname = drinkname;
                     }
@@ -219,7 +223,65 @@ public class MainFrame extends JFrame{
         }
         int price = ((CardDialog)dlg).getPrice();
         if(payCard.payment(price)){
-           giveProduct(((CardDialog)dlg).getName());
+            giveProduct(((CardDialog)dlg).getName());
+        }else{
+            JOptionPane.showMessageDialog(null, "There is not enough balance.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    public void cardCheck(String drinkname,VM otherVm) {
+        String num1 = ((CardDialog)dlg).getNum1();
+        String num2 = ((CardDialog)dlg).getNum2();
+        String num3 = ((CardDialog)dlg).getNum3();
+        String num4 = ((CardDialog)dlg).getNum4();
+        if(num1 == null || num2 == null || num3 == null ||num4 == null ) {
+            JOptionPane.showMessageDialog(null, "\n" + "Card number cannot be blank", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String cardNum = num1 + num2 + num3 + num4;
+        String cvcStr = ((CardDialog)dlg).getCvc();
+        if(cvcStr == null ) {
+            JOptionPane.showMessageDialog(null, "CVC cannot be blank", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        int cvc;
+        try{
+            cvc  = Integer.parseInt(cvcStr);
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "\n" + "Strings other than integers cannot be entered in CVC.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String validityStr = ((CardDialog)dlg).getCon();
+        int validity;
+        if(validityStr == null ) {
+            JOptionPane.showMessageDialog(null, "Validity cannot be blank", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        try{
+            validity  = Integer.parseInt(validityStr);
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "strings other than integers cannot be entered in valitdity", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String pwStr = ((CardDialog)dlg).getPW();
+        if(pwStr == null ) {
+            JOptionPane.showMessageDialog(null, "PW cannot be blank", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        int pw;
+        try{
+            pw  = Integer.parseInt(pwStr);
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "strings other than integers cannot be entered in Password", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        Card payCard = vm.findCard(cardNum,cvc,pw,validity);
+        if(payCard == null){
+            JOptionPane.showMessageDialog(null, "This card does not exist.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        int price = ((CardDialog)dlg).getPrice();
+        if(payCard.payment(price)){
+            this.getVM().requestPrepay(drinkname,otherVm.getID());
         }else{
             JOptionPane.showMessageDialog(null, "There is not enough balance.", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -233,6 +295,9 @@ public class MainFrame extends JFrame{
     public void showCardDialog(int price, String name){
         this.dlg = new CardDialog(this, "Payment",false,price, name);
     }
+    public void showCardDialog(int price, String name,VM othervm){
+        this.dlg = new CardDialog(this, "Payment",false,price, name,true,othervm);
+    }
     public Admin getAdmin(){
         return this.admin;
     }
@@ -243,8 +308,12 @@ public class MainFrame extends JFrame{
         JOptionPane.showMessageDialog(null,  description, type, JOptionPane.PLAIN_MESSAGE);
     }
     public void showVMFrame(VM vm){
+        System.out.println("display VM:" + vm.getID());
         if(this.vmframe == null){
-            VMFrame vmListFrame = new VMFrame(this,vm,predrinkname);
+            System.out.println(predrinkname);
+            Drink drink = vm.findDrink(predrinkname);
+
+            VMFrame vmListFrame = new VMFrame(this,vm,predrinkname,drink.getPrice());
         }else{
             vmframe.initVM(vm);
         }
@@ -252,4 +321,5 @@ public class MainFrame extends JFrame{
     public void setPredrinkname(String predrinkname){
         this.predrinkname = predrinkname;
     }
+
 }

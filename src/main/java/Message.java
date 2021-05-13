@@ -47,7 +47,7 @@ public class Message {
     private int dst_id;
     private int type;
     private String description;
-    private int[] portArr = {9999, 9998};
+    private int[] portArr = {9999, 9998,9997,9996,9995,9994,9993,9992,9991,9990};
 
     public Message(int src_id, int dst_id, int type, String description){
         this.src_id = src_id;

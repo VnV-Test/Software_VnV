@@ -20,6 +20,7 @@ public class CardDialog extends JDialog{
     JTextField pw = new JTextField("",4);
     int price;
     String name;
+    VM otherVM = null;
 
     public CardDialog(MainFrame parent, String title, boolean modal, int price, String name) {
         super(parent,title,modal);
@@ -30,10 +31,23 @@ public class CardDialog extends JDialog{
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.white);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        init();
+        init(false);
         this.setVisible(true);
     }
-    private void init() {
+    public CardDialog(MainFrame parent, String title, boolean modal, int price, String name,boolean isPre,VM otherVm) {
+        super(parent,title,modal);
+        this.parent = parent;
+        this.price = price;
+        this.name = name;
+        this.otherVM = otherVm;
+        this.setSize(320,200);
+        this.setLocationRelativeTo(null);
+        this.getContentPane().setBackground(Color.white);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        init(isPre);
+        this.setVisible(true);
+    }
+    private void init(boolean isPre) {
         pane.setBackground(Color.white);
         JPanel centerPanel = new JPanel(new GridLayout(5,1,5,5));
         centerPanel.setBackground(Color.white);
@@ -79,7 +93,11 @@ public class CardDialog extends JDialog{
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-                parent.cardCheck();
+                if(isPre){
+                    parent.cardCheck(name,otherVM);
+                }else{
+                    parent.cardCheck();
+                }
                 parent.dlg = null;
                 dispose();
             }

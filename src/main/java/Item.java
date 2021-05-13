@@ -43,7 +43,6 @@ public class Item {
             return true;
         }
     }
-
     public boolean editStock(){
         if(this.Stock <=0){
             return false;
@@ -65,7 +64,9 @@ public class Item {
     public void setPrice(int price){
         Price=price;
     }
-
+    public int getPrice(){
+        return this.Price;
+    }
     public void setName(String name){
         Name=name;
     }

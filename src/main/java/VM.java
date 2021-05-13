@@ -101,24 +101,26 @@ public class VM {
     // 남승협
     public void NotifyVMsInfo() {
         // msgType == 1
-        switch (mailBox.get(0).getMsgtype()) {
+        Message msg = mailBox.get(0);
+        switch (msg.getMsgtype()) {
             case 1:
                 System.out.println("VM(" + this.getID() + "): Receive Message type: 1");
                 boolean isItem = false;
                 for (int j = 0; j < itemArray.length; j++) {
-                    if (itemArray[j].getName() == mailBox.get(0).getMsgField()) {
+                    if ((itemArray[j].getName()).equals(msg.getMsgField())) {
                         if (itemArray[j].getStock() > 0) {
                             System.out.println("VM(" + this.getID() + "): I have a stock");
-                            Message stockMsg = new Message(this.ID, mailBox.get(0).getSrc_id(), 2, mailBox.get(0).getMsgField());
-                            mailBox.remove(0);
+                            Message stockMsg = new Message(this.ID, msg.getSrc_id(), 2, msg.getMsgField());
                             stockMsg.Send();
                             isItem = true;
+                            mailBox.remove(0);
+                            break;
                         }
-                        System.out.println("VM(" + this.getID() + "): I dont't have a stock");
+                        System.out.println("VM(" + this.getID() + "): I don't have a stock");
                     }
                 }
                 if (!isItem) {
-                    Message stockMsg = new Message(this.ID, mailBox.get(0).getSrc_id(), 2, null);
+                    Message stockMsg = new Message(this.ID, msg.getSrc_id(), 2, null);
                     mailBox.remove(0);
                     stockMsg.Send();
                 }
@@ -211,10 +213,9 @@ public class VM {
         //return vms; -> UI쪽으로 패스
     }
     public void giveCode(String code) {
+
         controller.showMessage("Guidance","This is your authentication code + \n" + code);
     }
-
-
     public boolean editDVMLocation() {
         double[] Location = new double[2];
         Location[0] = 37.54164;  //scanLongitude
@@ -275,12 +276,17 @@ public class VM {
                 break;
             case 1:
                 for (int i = 0; i < 7; i++) {
-                    itemArray[i] = new Item(drinkArray[i+3].getName(), drinkArray[i+3].getPrice(), 10);
+                    itemArray[i] = new Item(drinkArray[i+7].getName(), drinkArray[i+7].getPrice(), 10);
+                }
+                break;
+            case 2:
+                for (int i = 0; i < 7; i++) {
+                    itemArray[i] = new Item(drinkArray[i+13].getName(), drinkArray[i+13].getPrice(), 10);
                 }
                 break;
         }
         // card
-        cardList.add(new Card("1234123412341234", 820, 578, 25, 900));
+        cardList.add(new Card("1234123412341234", 820, 578, 25, 2000));
         //count
         count = 0;
         idStack=0;
@@ -312,6 +318,14 @@ public class VM {
     public void editVMID(int id) {
         this.ID = id;
     }
+    public Drink findDrink(String name) {
+        for (int i = 0; i < 20; i++) {
+            if (name.equals(drinkArray[i].getName())) {
+                return drinkArray[i];
+            }
+        }
+        return null;
+    }
     public Item findItem(String name) {
         for (int i = 0; i < 7; i++) {
             if (name.equals(itemArray[i].getName())) {
@@ -325,7 +339,7 @@ public class VM {
         //코드 생성
         String code;
         String zeros;
-        //자기의ID+n번째음료수 자기의 ID+음료수 식별id+n번째로 발급했다.
+        //자기의ID + n번째음료수 자기의 ID+음료수 식별id + n번째로 발급했다.
         if (count < 10)
             zeros = "000";
         else if (count < 100)
@@ -335,34 +349,38 @@ public class VM {
         else
             zeros = "";
         code = String.valueOf(this.ID) + zeros + count;
-        new Message(this.ID, dst_id, 3, "name" + "\\?" + code).Send();
+        count++;
+        System.out.println("ID(" + this.ID + ") : requestPrepay");
+        new Message(this.ID, dst_id, 3, name + "-" + code).Send();
     }
-
-
     public void requestPrepay_2(){
         if (mailBox.get(0).getMsgField() == null)
             controller.showMessage("Guidance","Out of Stock");
         else {
-            String str[] = mailBox.get(0).getMsgField().split("\\?");
-            giveCode(str[1]);
+            String str[] = mailBox.get(0).getMsgField().split("-");
+
+            giveCode(str[1]); // 카드창 띄우기
             mailBox.remove(0);
         }
     }
     public void confirmPrepay() {
         int stock;
+        String str[] = mailBox.get(0).getMsgField().split("-");
         for (int j = 0; j < itemArray.length; j++) {
-            if (itemArray[j].getName() == mailBox.get(0).getMsgField()) {
+            if (itemArray[j].getName().equals(str[0])) {
+                System.out.println("2");
                 String name = itemArray[j].getName();
                 stock = itemArray[j].getStock();
-                if (stock < 1)
+                if (stock < 1){
                     new Message(this.ID, mailBox.get(0).getSrc_id(), 8, null).Send();
+                }
                 else {
-                    String[] str = mailBox.get(0).getMsgField().split("\\?"); //이거맞는지 확인좀
-                    codeList.add(new Code(Integer.parseInt(str[1]), str[0]));
+                    Code c = new Code(Integer.parseInt(str[1]), str[0]);
+                    codeList.add(c);
                     new Message(this.ID, mailBox.get(0).getSrc_id(), 8, mailBox.get(0).getMsgField()).Send();
-                    mailBox.remove(0);
                 }
             }
         }
+        mailBox.remove(0);
     }
 }

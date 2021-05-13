@@ -12,6 +12,7 @@ public class PaymentDialog extends JDialog{
     MainFrame parent = null;
     int price;
     String name;
+    VM othervm = null;
 
     public PaymentDialog(MainFrame parent, String title, boolean modal, int price, String name) {
         super(parent,title,modal);
@@ -22,10 +23,23 @@ public class PaymentDialog extends JDialog{
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.white);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        init();
+        init(false);
         this.setVisible(true);
     }
-    public void init() {
+    public PaymentDialog(MainFrame parent, String title, boolean modal, int price, String name, boolean isPre,VM othervm) {
+        super(parent,title,modal);
+        this.parent = parent;
+        this.price = price;
+        this.name = name;
+        this.setSize(330,120);
+        this.setLocationRelativeTo(null);
+        this.getContentPane().setBackground(Color.white);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.othervm = othervm;
+        init(isPre);
+        this.setVisible(true);
+    }
+    public void init(boolean isPre) {
         JPanel centerPanel = new JPanel(new FlowLayout());
         JLabel centerLabel = new JLabel("Would you like to pay?");
         Font font = new Font("Arial",Font.PLAIN,13);
@@ -47,7 +61,11 @@ public class PaymentDialog extends JDialog{
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 // 카드 입력창 생성
-                parent.showCardDialog(payPrice,payName);
+                if(isPre){
+                    parent.showCardDialog(payPrice, payName,othervm);
+                }else {
+                    parent.showCardDialog(payPrice, payName);
+                }
                 dispose();
             }
         });
