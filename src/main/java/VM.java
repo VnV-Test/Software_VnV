@@ -20,7 +20,7 @@ public class VM {
     private Admin admin = null;
     private Vector<Integer> ids = new Vector<Integer>();
     private int idStack;
-    private Vector<VM> locVM = new Vector<VM>;
+    private Vector<VM> locVM = new Vector<VM>();
 
     public VM(int ID, double[] Locaiton) {
         this.ID = ID;
@@ -170,7 +170,6 @@ public class VM {
     }
     public void getOtherVM(String itemName){
         // Use Case 4, 9, 15
-
         new Message(this.ID, 0, 1, itemName).Send(); // stockMsg:Message
     }
     public void getOtherVM_2() {
@@ -197,10 +196,7 @@ public class VM {
             idStack=0;
         }
     }
-
-
     public void getOtherVM_3() {
-        Vector<VM> vms = new Vector<VM>();
 
         // Check Mail Box and filter which has our requirement (for Request Address)
 
@@ -209,13 +205,11 @@ public class VM {
             String[] tempS = mailBox.get(0).getMsgField().split("\\?");
             tempD[0] = Double.parseDouble(tempS[0]);
             tempD[1] = Double.parseDouble(tempS[1]);
-            vms.add(new VM(mailBox.get(0).getSrc_id(), tempD));
+            controller.showVMFrame(new VM(mailBox.get(0).getSrc_id(), tempD));
         }
         mailBox.remove(0);
         //return vms; -> UI쪽으로 패스
     }
-
-
     public void giveCode(String code) {
         controller.showMessage("Guidance","This is your authentication code + \n" + code);
     }
@@ -290,7 +284,6 @@ public class VM {
         //count
         count = 0;
         idStack=0;
-        locStack=0;
     }
     public String checkCode(int code) {
         for (int i = 0; i < codeList.size(); i++) {

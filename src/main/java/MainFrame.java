@@ -15,6 +15,8 @@ public class MainFrame extends JFrame{
     public JDialog dlg = null;
     private VM vm = null;
     private Admin admin = new Admin("2721ckd","875421","");
+    public VMFrame vmframe = null;
+    private String predrinkname = null;
 
     public MainFrame(VM vm) {
         super("Distributed Vending Machine(" + vm.getID()+ ")");
@@ -119,10 +121,9 @@ public class MainFrame extends JFrame{
                     }else {
                         // VM List Frame 생성
                         vm.getOtherVM(drinkname);
-                        JOptionPane.showMessageDialog(null, "Searching DVM...", "Wait", JOptionPane.PLAIN_MESSAGE);
+                        MainFrame.this.predrinkname = drinkname;
                     }
                 }
-
             });
             menuPanel.add(drink);
         }
@@ -241,7 +242,14 @@ public class MainFrame extends JFrame{
     public void showMessage(String type,String description){
         JOptionPane.showMessageDialog(null,  description, type, JOptionPane.PLAIN_MESSAGE);
     }
-    public void showVMFrame(Vector<VM> vmList,String drinkname){
-        VMFrame vmListFrame = new VMFrame(this,vmList,drinkname);
+    public void showVMFrame(VM vm){
+        if(this.vmframe == null){
+            VMFrame vmListFrame = new VMFrame(this,vm,predrinkname);
+        }else{
+            vmframe.initVM(vm);
+        }
+    }
+    public void setPredrinkname(String predrinkname){
+        this.predrinkname = predrinkname;
     }
 }

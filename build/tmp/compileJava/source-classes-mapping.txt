@@ -28,14 +28,15 @@ AdminDialog.java
 DrinkDialog.java
  DrinkDialog
  DrinkDialog$1
+VMFrame.java
+ VMFrame
+ VMFrame$1
+ VMFrame$2
 CardDialog.java
  CardDialog
  CardDialog$1
  CardDialog$2
  CardDialog$3
-VMFrame.java
- VMFrame
- VMFrame$1
 ReceiveMail.java
  RecieveMail
 MainFrame.java
