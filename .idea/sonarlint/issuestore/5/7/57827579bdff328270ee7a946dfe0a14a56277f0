@@ -1,0 +1,16 @@
+
+a
+java:S13015"KReplace this "switch" statement by "if" statements to increase readability.(˜‰šö
+0
+java:S1220""Move this file to a named package.
+7	java:S1315""Add a default case to this switch.(˜‰šö
+X
+java:S1117H"=Rename "nameLabel" which hides the field declared at line 18.(‡Çëóüÿÿÿÿ
+W
+java:S3252L"AUse static access with "javax.swing.SwingConstants" for "CENTER".(»úô
+T
+java:S1117O">Rename "priceLabel" which hides the field declared at line 19.(™…óè
+\
+java:S3252R"AUse static access with "javax.swing.SwingConstants" for "CENTER".( €äÂýÿÿÿÿ
+U
+java:S1161a":Add the "@Override" annotation above this method signature(ú›Šøøÿÿÿÿ
