@@ -202,7 +202,7 @@ public class VM {
             vmLocArray[mailBox.get(0).getSrc_id()][1]=tempD[1];
         }
         if(locStack==ids.size()){
-//            println("vmlist 창 띄워주기");
+            //println("vmlist 창 띄워주기");
             locStack=0;
         }
         mailBox.remove(0);
