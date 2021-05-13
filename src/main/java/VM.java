@@ -20,7 +20,7 @@ public class VM {
     private Admin admin = null;
     private Vector<Integer> ids = new Vector<Integer>();
     private int idStack;
-    private int locStack;
+    private Vector<VM> locVM = new Vector<VM>;
 
     public VM(int ID, double[] Locaiton) {
         this.ID = ID;
@@ -174,9 +174,11 @@ public class VM {
         new Message(this.ID, 0, 1, itemName).Send(); // stockMsg:Message
     }
     public void getOtherVM_2() {
+        //196번에서 초기화됬을때, 혹은 아예 처음에 배열을 pop해줌 전부다.
         if(idStack==0)
             while(ids.size()>0)
                 ids.remove(0);
+            //이다음부분도 진행됨.
         if (mailBox.get(0).getMsgField() != null)
             ids.add(mailBox.get(0).getSrc_id());
         mailBox.remove(0);
@@ -198,19 +200,16 @@ public class VM {
 
 
     public void getOtherVM_3() {
+        Vector<VM> vms = new Vector<VM>();
+
         // Check Mail Box and filter which has our requirement (for Request Address)
-        locStack++;
+
         if (mailBox.get(0).getMsgField() != null) {
             double[] tempD = new double[2];
             String[] tempS = mailBox.get(0).getMsgField().split("\\?");
             tempD[0] = Double.parseDouble(tempS[0]);
             tempD[1] = Double.parseDouble(tempS[1]);
-            vmLocArray[mailBox.get(0).getSrc_id()][0]=tempD[0];
-            vmLocArray[mailBox.get(0).getSrc_id()][1]=tempD[1];
-        }
-        if(locStack==ids.size()){
-            //println("vmlist 창 띄워주기");
-            locStack=0;
+            vms.add(new VM(mailBox.get(0).getSrc_id(), tempD));
         }
         mailBox.remove(0);
         //return vms; -> UI쪽으로 패스
