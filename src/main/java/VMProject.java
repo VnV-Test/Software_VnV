@@ -4,7 +4,7 @@ public class VMProject {
 
     public static void main(String[] args) {
         double[] location2 = { 47.54164, 137.07880 };
-        VM vm2= new VM(9998, location2,1);
+        VM vm2= new VM(2, location2,1);
         MainFrame main2 = new MainFrame(vm2);
         Thread t3 = new RecieveMail(vm2);
         Thread t4 = new ImListening(vm2);
