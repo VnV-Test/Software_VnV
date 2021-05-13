@@ -59,7 +59,7 @@ public class Message {
     public void Send() {
         if(dst_id == 0){
             for(int dest : this.portArr) {
-                if(dest == this.src_id){ break; }
+                if(dest == this.src_id){ continue; }
                 Thread t1 = new Mail(this.src_id, dest, this.type, this.description);
                 t1.start();
             }
