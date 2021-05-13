@@ -51,14 +51,14 @@ AdminFrame.java
  AdminFrame$4
 VM.java
  VM
+VMProject.java
+ VMProject
+ImListening.java
+ ImListening
 PaymentDialog.java
  PaymentDialog
  PaymentDialog$1
  PaymentDialog$2
  PaymentDialog$3
-VMProject.java
- VMProject
-ImListening.java
- ImListening
 TestMain.java
  TestMain

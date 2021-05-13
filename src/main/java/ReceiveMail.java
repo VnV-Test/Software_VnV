@@ -8,7 +8,7 @@ class RecieveMail extends Thread{
     public VM vm;
 
     public RecieveMail(VM v){
-        super("rm");
+        super("rm"+v.getIDtS());
         this.vm = v;
     }
     @Override

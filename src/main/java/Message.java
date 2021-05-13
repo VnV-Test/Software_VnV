@@ -9,7 +9,7 @@ class Mail extends Thread{
     private String description;
 
     public Mail(int src_id, int dst_id, int type, String description){
-        super("mail");
+        super("mail"+String.valueOf(src_id)+String.valueOf(dst_id));
         this.src_id = src_id;
         this.dst_id = dst_id;
         this.type = type;

@@ -38,6 +38,8 @@ public class VM {
     public Vector<VM> getDvmList() {
         return dvmList;
     }
+//    public int getID(){return ID;}
+
     //강현수
     public double[] getVMInfo(int index) {
         double[] arr = new double[2];
@@ -65,7 +67,9 @@ public class VM {
         drinkArray[index - 1].setName(name);
         drinkArray[index - 1].setPrice(price);
     }
-    public void receiveRequest(){
+    synchronized public void receiveRequest(){
+        Thread.yield();
+
         if(mailBox.get(0).getMsgtype() == 1 || mailBox.get(0).getMsgtype() == 4){
             NotifyVMsInfo();
         }
@@ -137,6 +141,9 @@ public class VM {
     }
     public int getID() {
         return this.ID;
+    }
+    public String getIDtS() {
+        return String.valueOf(this.ID);
     }
     //////
     public void ConfirmSell() {
