@@ -5,36 +5,33 @@ public class VM {
     private int ID;
     private double[] Location;
     private String Address;
-    private double[][] vmLocArray;
+    private double[][] vmLocArray = new double[11][2];
     private String[] vmAddArray;
     private Vector<VM> dvmList = new Vector<>();
     private Vector<Code> codeList = new Vector<Code>();
     private Vector<String> prepayList = new Vector<>();
     private Item[] itemArray; //새로 추가함.- setProductinfo와 give Product연관/
     private Drink[] drinkArray = new Drink[20]; //새로 추가함. - setProduct연관.
-    public Vector<Message>[] mailBox;
+    public Vector<Message> mailBox;
     private Vector<Card> cardList = new Vector<>();
     private int count;
     private MainFrame controller = null;
     private Admin admin = null;
+    private Vector<Integer> ids = new Vector<Integer>();
+    private int idStack;
+    private int locStack;
 
     public VM(int ID, double[] Locaiton) {
         this.ID = ID;
         this.Location = Locaiton;
-        Vector<Message>[] temp = new Vector[9];
-        this.mailBox = (Vector<Message>[]) temp;
-        for (int i = 0; i < this.mailBox.length; i++)
-            mailBox[i] = new Vector<Message>();
+        this.mailBox = new Vector<Message>();
         itemArray = new Item[7];
         basicSettinng(0);
     }
     public VM(int ID, double[] Locaiton,int division) {
         this.ID = ID;
         this.Location = Locaiton;
-        Vector<Message>[] temp = new Vector[9];
-        this.mailBox = (Vector<Message>[]) temp;
-        for (int i = 0; i < this.mailBox.length; i++)
-            mailBox[i] = new Vector<Message>();
+        this.mailBox = new Vector<Message>();
         itemArray = new Item[7];
         basicSettinng(division);
     }
@@ -68,50 +65,75 @@ public class VM {
         drinkArray[index - 1].setName(name);
         drinkArray[index - 1].setPrice(price);
     }
+    public void receiveRequest(){
+        if(mailBox.get(0).getMsgtype() == 1 || mailBox.get(0).getMsgtype() == 4){
+            NotifyVMsInfo();
+        }
+        if(mailBox.get(0).getMsgtype() == 2){
+            getOtherVM_2();
+        }
+        if(mailBox.get(0).getMsgtype() == 3){
+            confirmPrepay();
+        }
+        if(mailBox.get(0).getMsgtype() == 5){
+            getOtherVM_3();
+        }
+        if(mailBox.get(0).getMsgtype() == 6){
+            RespondSell();
+        }
+        if(mailBox.get(0).getMsgtype() == 7){
+            ConfirmSell_2();
+        }
+        if(mailBox.get(0).getMsgtype() == 8){
+            requestPrepay_2();
+        }
+    }
     // 남승협
     public void NotifyVMsInfo() {
         // msgType == 1
-        System.out.println("VM("+this.getID()+"): Receive Message type: 1");
-        boolean isItem = false;
-        for (int i = 0; i < mailBox[1].size(); i++) {
-            for (int j = 0; j < itemArray.length; j++) {
-                if (itemArray[j].getName() == mailBox[i].get(2).getMsgField()) {
-                    String name = itemArray[j].getName();
-                    if (itemArray[j].getStock() > 0) {
-                        System.out.println("VM("+this.getID()+"): I have a stock");
-                        Message stockMsg = new Message(this.ID, mailBox[1].get(i).getSrc_id(), 2, name);
-                        mailBox[1].remove(i);
-                        stockMsg.Send();
-                        isItem = true;
+        switch (mailBox.get(0).getMsgtype()) {
+            case 1:
+                System.out.println("VM(" + this.getID() + "): Receive Message type: 1");
+                boolean isItem = false;
+                for (int j = 0; j < itemArray.length; j++) {
+                    if (itemArray[j].getName() == mailBox.get(0).getMsgField()) {
+                        if (itemArray[j].getStock() > 0) {
+                            System.out.println("VM(" + this.getID() + "): I have a stock");
+                            Message stockMsg = new Message(this.ID, mailBox.get(0).getSrc_id(), 2, mailBox.get(0).getMsgField());
+                            mailBox.remove(0);
+                            stockMsg.Send();
+                            isItem = true;
+                        }
+                        System.out.println("VM(" + this.getID() + "): I dont't have a stock");
                     }
-                    System.out.println("VM("+this.getID()+"): I dont't have a stock");
                 }
-            }
-            if(!isItem){
-                Message stockMsg = new Message(this.ID, mailBox[1].get(i).getSrc_id(), 2, null);
-                mailBox[1].remove(i);
-                stockMsg.Send();
-            }
-        }
-
-        // msgType == 4
-        for (int i = 0; i < mailBox[4].size(); i++) {
-            String loc = this.Location[0] + "?" + this.Location[1];
-            Message addressMsg = new Message(this.ID, mailBox[4].get(i).getSrc_id(), 5, loc);
-            mailBox[3].remove(i);
-            addressMsg.Send();
+                if (!isItem) {
+                    Message stockMsg = new Message(this.ID, mailBox.get(0).getSrc_id(), 2, null);
+                    mailBox.remove(0);
+                    stockMsg.Send();
+                }
+                break;
+            case 4:
+                // msgType == 4
+                String loc = this.Location[0] + "?" + this.Location[1];
+                Message addressMsg = new Message(this.ID, mailBox.get(0).getSrc_id(), 5, loc);
+                mailBox.remove(0);
+                addressMsg.Send();
+                break;
+            default:
+                System.out.println("Notify가 실행되었는데 1,4가아님");
         }
     }
     public int getVmNum(){
         return this.dvmList.size();
     }
-    synchronized public int getMailBoxSize(int num){
+    synchronized public int getMailBoxSize(){
         Thread.yield();
-        return mailBox[num].size();
+        return mailBox.size();
     }
     synchronized void MailRecieve(Message msg) {
         Thread.yield();
-        this.mailBox[msg.getMsgtype()].add(msg);
+        this.mailBox.add(msg);
     }
     public int getID() {
         return this.ID;
@@ -128,9 +150,8 @@ public class VM {
     }
     public void RespondSell() {
         //6번오면 7번보냄 선결재로 코드넘겨준게 지급됬는지 확인 후 전송.
-        for (int i=0;i<mailBox[6].size(); i++){
-            new Message(this.ID, mailBox[6].get(i).getSrc_id(), 7, mailBox[6].get(i).getMsgField()).Send();
-        }
+        new Message(this.ID, mailBox.get(0).getSrc_id(), 7, mailBox.get(0).getMsgField()).Send();
+        mailBox.remove(0);
 
         return;
     }
@@ -140,44 +161,60 @@ public class VM {
         new Message(this.ID, 0, 1, itemName).Send(); // stockMsg:Message
     }
     public void getOtherVM_2() {
-        Vector<Integer> ids = new Vector<Integer>();
-        for (int i = mailBox[2].size() - 1; i >= 0; i--) {
-            if (mailBox[2].get(i).getMsgField() != null)
-                ids.add(mailBox[2].get(i).getSrc_id());
-
-            mailBox[2].remove(i);
-        }
-
-        if (ids.size() == 0) {
-            //TODO
-            controller.showMessage("Error","Please contact us at the following contact information \n" + admin.getContact());// Swing으로 구현 필요.
-        }
-        // Require address from other DVMs
-        for (int des : ids) {
-            new Message(this.ID, des, 4, "").Send(); // addressMsg:Message
+        if(idStack==0)
+            while(ids.size()>0)
+                ids.remove(0);
+        if (mailBox.get(0).getMsgField() != null)
+            ids.add(mailBox.get(0).getSrc_id());
+        mailBox.remove(0);
+        idStack++;
+        if(idStack==drinkArray.length) {
+            if (ids.size() == 0) {
+                //TODO
+                controller.showMessage("Error", "Please contact us at the following contact information \n" + admin.getContact());// Swing으로 구현 필요.
+            }
+            // Require address from other DVMs
+            else {
+                for (int des : ids) {
+                    new Message(this.ID, des, 4, "").Send(); // addressMsg:Message
+                }
+            }
+            idStack=0;
         }
     }
-    public void getOtherVM_3(){
-        Vector<VM> vms = new Vector<VM>();
 
+
+    public void getOtherVM_3() {
         // Check Mail Box and filter which has our requirement (for Request Address)
-
-        for (int i = mailBox[5].size() - 1; i >= 0; i--) {
-            if (mailBox[5].get(i).getMsgField() != null) {
-                double[] tempD = new double[2];
-                String[] tempS = mailBox[5].get(i).getMsgField().split("\\?");
-                tempD[0] = Double.parseDouble(tempS[0]);
-                tempD[1] = Double.parseDouble(tempS[1]);
-                vms.add(new VM(mailBox[5].get(i).getSrc_id(), tempD));
+        if(idStack==0)
+            for(int i=0;i<12;i++) {
+                vmLocArray[i][0]=0;
+                vmLocArray[i][1]=0;
             }
-            mailBox[5].remove(i);
+                ids.remove(0);
+        locStack++;
+        if (mailBox.get(0).getMsgField() != null) {
+            double[] tempD = new double[2];
+            String[] tempS = mailBox.get(0).getMsgField().split("\\?");
+            tempD[0] = Double.parseDouble(tempS[0]);
+            tempD[1] = Double.parseDouble(tempS[1]);
+            vmLocArray[mailBox.get(0).getSrc_id()][0]=tempD[0];
+            vmLocArray[mailBox.get(0).getSrc_id()][1]=tempD[1];
         }
-
+        if(locStack==ids.size()){
+ //           println("vmlist 창 띄워주기");
+            locStack=0;
+        }
+        mailBox.remove(0);
         //return vms; -> UI쪽으로 패스
     }
+
+
     public void giveCode(String code) {
         controller.showMessage("Guidance","This is your authentication code + \n" + code);
     }
+
+
     public boolean editDVMLocation() {
         double[] Location = new double[2];
         Location[0] = 37.54164;  //scanLongitude
@@ -246,6 +283,8 @@ public class VM {
         cardList.add(new Card("1234123412341234", 820, 578, 25, 900));
         //count
         count = 0;
+        idStack=0;
+        locStack=0;
     }
     public String checkCode(int code) {
         for (int i = 0; i < codeList.size(); i++) {
@@ -299,33 +338,32 @@ public class VM {
         code = String.valueOf(this.ID) + zeros + count;
         new Message(this.ID, dst_id, 3, "name" + "\\?" + code).Send();
     }
+
+
     public void requestPrepay_2(){
-        if (mailBox[8].get(0).getMsgField() == null)
+        if (mailBox.get(0).getMsgField() == null)
             controller.showMessage("Guidance","Out of Stock");
         else {
-            String str[] = mailBox[8].get(0).getMsgField().split("\\?");
+            String str[] = mailBox.get(0).getMsgField().split("\\?");
             giveCode(str[1]);
-            mailBox[8].remove(0);
+            mailBox.remove(0);
         }
     }
     public void confirmPrepay() {
         int stock;
-        for (int i=0;i<mailBox[3].size(); i++){
-            for (int j = 0; j < itemArray.length; j++) {
-                if (itemArray[j].getName() == mailBox[3].get(i).getMsgField()) {
-                    String name = itemArray[j].getName();
-                    stock = itemArray[j].getStock();
-                    if (stock < 1)
-                        new Message(this.ID, mailBox[3].get(i).getSrc_id(), 8, null).Send();
-                    else {
-                        String[] str = mailBox[3].get(i).getMsgField().split("\\?"); //이거맞는지 확인좀
-                        codeList.add(new Code(Integer.parseInt(str[1]), str[0]));
-                        new Message(this.ID, mailBox[3].get(i).getSrc_id(), 8, mailBox[3].get(i).getMsgField()).Send();
-                        mailBox[3].remove(0);
-                    }
+        for (int j = 0; j < itemArray.length; j++) {
+            if (itemArray[j].getName() == mailBox.get(0).getMsgField()) {
+                String name = itemArray[j].getName();
+                stock = itemArray[j].getStock();
+                if (stock < 1)
+                    new Message(this.ID, mailBox.get(0).getSrc_id(), 8, null).Send();
+                else {
+                    String[] str = mailBox.get(0).getMsgField().split("\\?"); //이거맞는지 확인좀
+                    codeList.add(new Code(Integer.parseInt(str[1]), str[0]));
+                    new Message(this.ID, mailBox.get(0).getSrc_id(), 8, mailBox.get(0).getMsgField()).Send();
+                    mailBox.remove(0);
                 }
             }
         }
-
     }
 }
