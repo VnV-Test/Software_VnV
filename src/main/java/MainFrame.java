@@ -118,8 +118,8 @@ public class MainFrame extends JFrame{
                         }
                     }else {
                         // VM List Frame 생성
-                        JOptionPane.showMessageDialog(null, "Searching DVM...", "Wait", JOptionPane.PLAIN_MESSAGE);
                         vm.getOtherVM(drinkname);
+                        JOptionPane.showMessageDialog(null, "Searching DVM...", "Wait", JOptionPane.PLAIN_MESSAGE);
                     }
                 }
 

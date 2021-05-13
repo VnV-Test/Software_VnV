@@ -5,7 +5,7 @@ public class VM {
     private int ID;
     private double[] Location;
     private String Address;
-    private double[][] vmLocArray = new double[11][2];
+    private double[][] vmLocArray = new double[10000][2];
     private String[] vmAddArray;
     private Vector<VM> dvmList = new Vector<>();
     private Vector<Integer> dvmIdList;
@@ -181,7 +181,7 @@ public class VM {
             ids.add(mailBox.get(0).getSrc_id());
         mailBox.remove(0);
         idStack++;
-        if(idStack==dvmIdList.size()) {
+        if(idStack==dvmIdList.size()-1) {
             if (ids.size() == 0) {
                 //TODO
                 controller.showMessage("Error", "Please contact us at the following contact information \n" + admin.getContact());// Swing으로 구현 필요.
@@ -189,7 +189,7 @@ public class VM {
             // Require address from other DVMs
             else {
                 for (int des : ids) {
-                    new Message(this.ID, des, 4, "").Send(); // addressMsg:Message
+                    new Message(this.ID, des, 4, " ").Send(); // addressMsg:Message
                 }
             }
             idStack=0;
