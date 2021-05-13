@@ -8,8 +8,10 @@ class ImListening extends Thread {
     @Override
     public void run(){
         while(true){
-            if(vm.getMailBoxSize() > 0)
+            if(vm.getMailBoxSize() > 0) {
+
                 vm.receiveRequest();
+            }
         }
     }
 }
