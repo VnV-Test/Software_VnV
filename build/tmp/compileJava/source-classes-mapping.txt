@@ -14,6 +14,9 @@ Drink.java
 VMPanel.java
  VMPanel
  VMPanel$1
+Message.java
+ Mail
+ Message
 CodeDialog.java
  CodeDialog
  CodeDialog$1
@@ -22,9 +25,6 @@ AdminDialog.java
  AdminDialog
  AdminDialog$1
  AdminDialog$2
-Message.java
- Mail
- Message
 DrinkDialog.java
  DrinkDialog
  DrinkDialog$1

@@ -8,6 +8,7 @@ public class VM {
     private double[][] vmLocArray = new double[11][2];
     private String[] vmAddArray;
     private Vector<VM> dvmList = new Vector<>();
+    private Vector<Integer> dvmIdList;
     private Vector<Code> codeList = new Vector<Code>();
     private Vector<String> prepayList = new Vector<>();
     private Item[] itemArray; //새로 추가함.- setProductinfo와 give Product연관/
@@ -32,7 +33,10 @@ public class VM {
         this.ID = ID;
         this.Location = Locaiton;
         this.mailBox = new Vector<Message>();
-        itemArray = new Item[7];
+        this.itemArray = new Item[7];
+        this.dvmIdList = new Vector<Integer>();
+        this.dvmIdList.add(9999);
+        this.dvmIdList.add(9998);
         basicSettinng(division);
     }
     public Vector<VM> getDvmList() {
@@ -177,7 +181,7 @@ public class VM {
             ids.add(mailBox.get(0).getSrc_id());
         mailBox.remove(0);
         idStack++;
-        if(idStack==drinkArray.length) {
+        if(idStack==dvmIdList.size()) {
             if (ids.size() == 0) {
                 //TODO
                 controller.showMessage("Error", "Please contact us at the following contact information \n" + admin.getContact());// Swing으로 구현 필요.
@@ -195,12 +199,6 @@ public class VM {
 
     public void getOtherVM_3() {
         // Check Mail Box and filter which has our requirement (for Request Address)
-        if(idStack==0)
-            for(int i=0;i<12;i++) {
-                vmLocArray[i][0]=0;
-                vmLocArray[i][1]=0;
-            }
-                ids.remove(0);
         locStack++;
         if (mailBox.get(0).getMsgField() != null) {
             double[] tempD = new double[2];
