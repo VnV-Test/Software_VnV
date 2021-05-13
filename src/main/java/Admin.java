@@ -19,4 +19,7 @@ public class Admin {
         adminID=i;
         contact=c;
     }
+    public String getContact(){
+        return contact;
+    }
 }

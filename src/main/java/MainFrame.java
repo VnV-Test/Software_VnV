@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Vector;
 
 public class MainFrame extends JFrame{
 
@@ -16,10 +17,12 @@ public class MainFrame extends JFrame{
     private Admin admin = new Admin("2721ckd","875421","");
 
     public MainFrame(VM vm) {
-        super("Distributed Vending Machine");
+        super("Distributed Vending Machine(" + vm.getID()+ ")");
         this.setSize(500,650);
         this.setLocationRelativeTo(null);
         this.vm = vm;
+        vm.setUI(this);
+        vm.setAdmin(this.admin);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         //frame.setBackground(Color.white);
         init();
@@ -115,6 +118,8 @@ public class MainFrame extends JFrame{
                         }
                     }else {
                         // VM List Frame 생성
+                        JOptionPane.showMessageDialog(null, "Searching DVM...", "Wait", JOptionPane.PLAIN_MESSAGE);
+                        vm.getOtherVM(drinkname);
                     }
                 }
 
@@ -227,11 +232,16 @@ public class MainFrame extends JFrame{
     public void showCardDialog(int price, String name){
         this.dlg = new CardDialog(this, "Payment",false,price, name);
     }
-
     public Admin getAdmin(){
         return this.admin;
     }
     public VM getVM(){
         return this.vm;
+    }
+    public void showMessage(String type,String description){
+        JOptionPane.showMessageDialog(null,  description, type, JOptionPane.PLAIN_MESSAGE);
+    }
+    public void showVMFrame(Vector<VM> vmList,String drinkname){
+        VMFrame vmListFrame = new VMFrame(this,vmList,drinkname);
     }
 }
