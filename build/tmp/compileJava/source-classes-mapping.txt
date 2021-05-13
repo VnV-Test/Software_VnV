@@ -3,9 +3,8 @@ DrinkPanel.java
  DrinkPanel$1
 Code.java
  Code
-Message.java
- Mail
- Message
+Admin.java
+ Admin
 Card.java
  Card
 Item.java
@@ -15,8 +14,6 @@ Drink.java
 VMPanel.java
  VMPanel
  VMPanel$1
-Admin.java
- Admin
 CodeDialog.java
  CodeDialog
  CodeDialog$1
@@ -25,6 +22,9 @@ AdminDialog.java
  AdminDialog
  AdminDialog$1
  AdminDialog$2
+Message.java
+ Mail
+ Message
 DrinkDialog.java
  DrinkDialog
  DrinkDialog$1

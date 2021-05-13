@@ -70,25 +70,27 @@ public class VM {
     synchronized public void receiveRequest(){
         Thread.yield();
 
-        if(mailBox.get(0).getMsgtype() == 1 || mailBox.get(0).getMsgtype() == 4){
+        int mt = mailBox.get(0).getMsgtype();
+
+        if(mt == 1 || mt == 4){
             NotifyVMsInfo();
         }
-        if(mailBox.get(0).getMsgtype() == 2){
+        if(mt == 2){
             getOtherVM_2();
         }
-        if(mailBox.get(0).getMsgtype() == 3){
+        if(mt == 3){
             confirmPrepay();
         }
-        if(mailBox.get(0).getMsgtype() == 5){
+        if(mt == 5){
             getOtherVM_3();
         }
-        if(mailBox.get(0).getMsgtype() == 6){
+        if(mt == 6){
             RespondSell();
         }
-        if(mailBox.get(0).getMsgtype() == 7){
+        if(mt == 7){
             ConfirmSell_2();
         }
-        if(mailBox.get(0).getMsgtype() == 8){
+        if(mt == 8){
             requestPrepay_2();
         }
     }
