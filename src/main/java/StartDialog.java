@@ -15,7 +15,7 @@ public class StartDialog extends JDialog {
     public StartDialog() {
         this.setTitle("START");
         this.parent = parent;
-        this.setSize(330,120);
+        this.setSize(400,400);
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.white);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);

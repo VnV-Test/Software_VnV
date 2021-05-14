@@ -8,7 +8,7 @@ class RecieveMail extends Thread{
     public VM vm;
 
     public RecieveMail(VM v){
-        super("rm"+v.getIDtS());
+        super("rm"+v.getIDtS()+String.valueOf(v.getMailBoxSize()+1));
         this.vm = v;
     }
     @Override
@@ -26,6 +26,9 @@ class RecieveMail extends Thread{
             try{
                 socket = listener.accept();
                 System.out.println("Connected.");
+                ////////////////////////
+//                Thread t3 = new RecieveMail(vm);
+//                t3.start();
                 in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
                 String inputMessage = in.readLine();
@@ -37,14 +40,15 @@ class RecieveMail extends Thread{
 
             } catch(IOException e){
                 System.out.println(e.getMessage()+"Here??");
-            } finally {
-                try{
-                    socket.close();
-                    listener.close();
-                } catch (IOException e){
-                    System.out.println("Error occured while chatting with client.");
-                }
             }
+//            finally {
+//                try{
+//                    socket.close();
+//                    listener.close();
+//                } catch (IOException e){
+//                    System.out.println("Error occured while chatting with client.");
+//                }
+//            }
         }
     }
 }
