@@ -35,12 +35,12 @@
     }
 
     public boolean editStock(int stock){
-<span class="pc bpc" id="L38" title="2 of 4 branches missed.">        if(stock &lt;0 || stock&gt;50){</span>
+<span class="nc bnc" id="L38" title="All 4 branches missed.">        if(stock &lt;0 || stock&gt;50){</span>
 <span class="nc" id="L39">            return false;</span>
         }
         else{
-<span class="fc" id="L42">            this.Stock = stock;</span>
-<span class="fc" id="L43">            return true;</span>
+<span class="nc" id="L42">            this.Stock = stock;</span>
+<span class="nc" id="L43">            return true;</span>
         }
     }
   /*  public boolean editStock(){
@@ -54,7 +54,7 @@
     }*/
 
     public int getStock(){
-<span class="fc" id="L57">        return Stock;</span>
+<span class="nc" id="L57">        return Stock;</span>
     }
 //아래부터는 VM product info와 give product를 위해 만듦.
     public String getName(){
@@ -65,7 +65,7 @@
         Price=price;
     }*/
     public int getPrice(){
-<span class="nc" id="L68">        return this.Price;</span>
+<span class="fc" id="L68">        return this.Price;</span>
     }
 /*    public void setName(String name){
         Name=name;

@@ -30,6 +30,10 @@ public class MainFrame extends JFrame{
         init();
         this.setVisible(true);
     }
+    //for test
+    public void setpreDrinkname_test(String drinkname){
+        predrinkname=drinkname;
+    }
     private void init() {
         initNorth();
         initCenter();

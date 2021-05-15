@@ -2,15 +2,15 @@ ItemTest.java
  ItemTest
 CodeTest.java
  CodeTest
-VMProjectTest.java
- VMProjectTest
+MessageTest.java
+ MessageTest
 AdminTest.java
  AdminTest
 CardTest.java
  CardTest
 DrinkTest.java
  DrinkTest
-MessageTest.java
- MessageTest
+VMProjectTest.java
+ VMProjectTest
 VMTest.java
  VMTest
