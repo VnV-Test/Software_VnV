@@ -6,8 +6,9 @@ public class Admin {
     public boolean checkIDPW(String id,String pw){
         return (adminID.equals(id) && adminPW.equals(pw));
     }
-    public void editContact(String c){
+    public String editContact(String c){
         contact=c;
+        return this.contact;
     }
     public Admin(){
         adminPW="admin";

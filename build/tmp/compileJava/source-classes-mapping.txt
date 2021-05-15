@@ -3,10 +3,10 @@ DrinkPanel.java
  DrinkPanel$1
 Code.java
  Code
+VMProject.java
+ VMProject
 Card.java
  Card
-Admin.java
- Admin
 Item.java
  Item
 VMPanel.java
@@ -16,6 +16,9 @@ Drink.java
  Drink
 TestMain.java
  TestMain
+Message.java
+ Mail
+ Message
 CodeDialog.java
  CodeDialog
  CodeDialog$1
@@ -24,9 +27,6 @@ AdminDialog.java
  AdminDialog
  AdminDialog$1
  AdminDialog$2
-Message.java
- Mail
- Message
 DrinkDialog.java
  DrinkDialog
  DrinkDialog$1
@@ -55,8 +55,6 @@ AdminFrame.java
  AdminFrame$4
 VM.java
  VM
-VMProject.java
- VMProject
 StartDialog.java
  StartDialog
  StartDialog$1
@@ -70,3 +68,5 @@ PaymentDialog.java
  PaymentDialog$1
  PaymentDialog$2
  PaymentDialog$3
+Admin.java
+ Admin

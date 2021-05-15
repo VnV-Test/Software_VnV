@@ -19,7 +19,7 @@ public class Card {
         this.balance -= price;
         return true;
     }
-    public boolean isThisCard(String cardNum, int cvc, int pw,int validity){
+    public boolean isThisCard(String cardNum, int cvc, int pw, int validity){
         if(cardNum.equals(this.cardNum)&& cvc == this.cvc && pw == this.pw &&  this.validity == validity){
             return true;
         }

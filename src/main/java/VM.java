@@ -187,7 +187,6 @@ public class VM {
         idStack++;
         if(idStack==dvmIdList.size()-1) {
             if (ids.size() == 0) {
-                //TODO
                 controller.showMessage("Error", "Please contact us at the following contact information \n" + admin.getContact());// Swing으로 구현 필요.
             }
             // Require address from other DVMs
