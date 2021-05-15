@@ -64,13 +64,13 @@ public class VM {
     public double[] getLocation(){
         return this.Location;
     }
-    public void editProductInfo(int index, String name, int price, int stock) {
+/*    public void editProductInfo(int index, String name, int price, int stock) {
         itemArray[index - 1].editName(name);
         itemArray[index - 1].editPrice(price);
         itemArray[index - 1].editStock(stock);
         drinkArray[index - 1].setName(name);
         drinkArray[index - 1].setPrice(price);
-    }
+    }*/
     synchronized public void receiveRequest(){
         Thread.yield();
 

@@ -13,9 +13,12 @@ public class ItemTest {
     public void editgetTest() {
         Assertions.assertEquals(i.editName("str"),true);
         Assertions.assertEquals(i.getName(), "str");
-        Assertions.assertEquals(i.editStock(123),true);
-        Assertions.assertEquals(i.getStock(), 123);
-        Assertions.assertEquals(i.editPrice(12345),true);
-        Assertions.assertEquals(i.getPrice(), 12345);
+        Assertions.assertEquals(i.editStock(123),false);
+        Assertions.assertEquals(i.editStock(-1),false);
+        Assertions.assertEquals(i.editStock(23),true);
+        Assertions.assertEquals(i.getStock(), 23);
+        Assertions.assertEquals(i.editPrice(12345),false);
+        Assertions.assertEquals(i.editPrice(1234),true);
+        Assertions.assertEquals(i.getPrice(), 1234);
     }
 }

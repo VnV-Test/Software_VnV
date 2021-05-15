@@ -11,7 +11,7 @@ public class Drink {
         this.Price = price;
         this.Name = Name;
     }
-
+/*
     public int getDrinkInfo(){
         return this.Price;
     }
@@ -24,7 +24,7 @@ public class Drink {
             return true;
         }
     }
-
+*/
     public String getName(){
         return Name;
     }

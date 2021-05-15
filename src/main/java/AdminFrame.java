@@ -103,7 +103,7 @@ public class AdminFrame extends JFrame{
                 if(nametf.getText() != null){
                     drinklist[selectProduct].setName(nametf.getText());
                     if(item != null){
-                        item.setName(nametf.getText());
+                        item.editName(nametf.getText());
                     }
                 }
                 if(pricetf.getText() != null){
@@ -116,7 +116,7 @@ public class AdminFrame extends JFrame{
                     }
                     drinklist[selectProduct].setPrice(price);
                     if(item != null){
-                        item.setPrice(price);
+                        item.editPrice(price);
                     }
                 }
                 if( stocktf.isEnabled() && stocktf.getText() != null){
@@ -131,7 +131,7 @@ public class AdminFrame extends JFrame{
                         if(stock < 0 || stock > 99){
                             return;
                         }
-                        item.setStock(stock);
+                        item.editStock(stock);
                     }
                 }
                 JOptionPane.showMessageDialog(null, "Has been changed.", "Guidance", JOptionPane.INFORMATION_MESSAGE);

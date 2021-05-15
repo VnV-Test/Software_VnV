@@ -60,7 +60,17 @@ public class Item {
     public String getName(){
         return Name;
     }
+
+ /*   public void setPrice(int price){
+        Price=price;
+    }*/
     public int getPrice(){
         return this.Price;
     }
+/*    public void setName(String name){
+        Name=name;
+    }
+    public void setStock(int stock){
+        Stock=stock;
+    }*/
 }
