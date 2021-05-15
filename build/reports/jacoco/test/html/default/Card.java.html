@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Card.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Software_VnV</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Card.java</span></div><h1>Card.java</h1><pre class="source lang-java linenums">public class Card {
+    private String cardNum;
+    private int validity;
+    private int cvc;
+    private int pw;
+    private int balance;
+
+<span class="nc" id="L8">    public Card(String cardNum, int validity, int cvc, int pw, int balance){</span>
+<span class="nc" id="L9">        this.cardNum = cardNum;</span>
+<span class="nc" id="L10">        this.validity = validity;</span>
+<span class="nc" id="L11">        this.cvc = cvc;</span>
+<span class="nc" id="L12">        this.pw = pw;</span>
+<span class="nc" id="L13">        this.balance = balance;</span>
+<span class="nc" id="L14">    }</span>
+    public boolean payment(int price){
+<span class="nc bnc" id="L16" title="All 2 branches missed.">        if(this.balance &lt; price ){</span>
+<span class="nc" id="L17">            return false;</span>
+        }
+<span class="nc" id="L19">        this.balance -= price;</span>
+<span class="nc" id="L20">        return true;</span>
+    }
+    public boolean isThisCard(String cardNum, int cvc, int pw, int validity){
+<span class="nc bnc" id="L23" title="All 8 branches missed.">        if(cardNum.equals(this.cardNum)&amp;&amp; cvc == this.cvc &amp;&amp; pw == this.pw &amp;&amp;  this.validity == validity){</span>
+<span class="nc" id="L24">            return true;</span>
+        }
+<span class="nc" id="L26">        return false;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

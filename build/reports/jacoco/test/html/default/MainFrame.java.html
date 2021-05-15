@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MainFrame.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Software_VnV</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">MainFrame.java</span></div><h1>MainFrame.java</h1><pre class="source lang-java linenums">
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.Vector;
+
+public class MainFrame extends JFrame{
+
+<span class="nc" id="L13">    private Container frame = this.getContentPane();</span>
+<span class="nc" id="L14">    private JPanel menuPanel = new JPanel();</span>
+<span class="nc" id="L15">    public JDialog dlg = null;</span>
+<span class="nc" id="L16">    private VM vm = null;</span>
+<span class="nc" id="L17">    private Admin admin = new Admin(&quot;2721ckd&quot;,&quot;875421&quot;,&quot;&quot;);</span>
+<span class="nc" id="L18">    public VMFrame vmframe = null;</span>
+<span class="nc" id="L19">    private String predrinkname = null;</span>
+
+    public MainFrame(VM vm) {
+<span class="nc" id="L22">        super(&quot;Distributed Vending Machine(&quot; + vm.getID()+ &quot;)&quot;);</span>
+<span class="nc" id="L23">        this.setSize(500,650);</span>
+<span class="nc" id="L24">        this.setLocationRelativeTo(null);</span>
+<span class="nc" id="L25">        this.vm = vm;</span>
+<span class="nc" id="L26">        vm.setUI(this);</span>
+<span class="nc" id="L27">        vm.setAdmin(this.admin);</span>
+<span class="nc" id="L28">        this.setDefaultCloseOperation(EXIT_ON_CLOSE);</span>
+        //frame.setBackground(Color.white);
+<span class="nc" id="L30">        init();</span>
+<span class="nc" id="L31">        this.setVisible(true);</span>
+<span class="nc" id="L32">    }</span>
+    private void init() {
+<span class="nc" id="L34">        initNorth();</span>
+<span class="nc" id="L35">        initCenter();</span>
+<span class="nc" id="L36">    }</span>
+    private void initNorth() {
+<span class="nc" id="L38">        JPanel northPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT,5,5));</span>
+<span class="nc" id="L39">        northPanel.setBackground(Color.white);</span>
+<span class="nc" id="L40">        northPanel.setPreferredSize(new Dimension(500,50));</span>
+<span class="nc" id="L41">        northPanel.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));</span>
+
+<span class="nc" id="L43">        JButton adminBtn = new JButton(&quot;Admin&quot;);</span>
+<span class="nc" id="L44">        adminBtn.setBackground(new Color(80,188,223));</span>
+<span class="nc" id="L45">        adminBtn.setForeground(Color.white);</span>
+<span class="nc" id="L46">        adminBtn.addActionListener(new ActionListener() {</span>
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+<span class="nc bnc" id="L50" title="All 2 branches missed.">                if(dlg ==null) {</span>
+<span class="nc" id="L51">                    dlg = new AdminDialog(MainFrame.this, &quot;Admin Mode&quot;,false);</span>
+                }
+<span class="nc" id="L53">                else {	dlg.requestFocus();</span>
+                }
+<span class="nc bnc" id="L55" title="All 2 branches missed.">                if(dlg instanceof AdminDialog) {</span>
+<span class="nc" id="L56">                    String id = ((AdminDialog)dlg).getID();</span>
+<span class="nc" id="L57">                    String pw = ((AdminDialog)dlg).getPW();</span>
+<span class="nc bnc" id="L58" title="All 4 branches missed.">                    if(id == null || pw == null) return;</span>
+                }
+<span class="nc" id="L60">            }</span>
+
+        });
+<span class="nc" id="L63">        northPanel.add(adminBtn);</span>
+
+<span class="nc" id="L65">        JButton codeBtn = new JButton(&quot;Code&quot;);</span>
+<span class="nc" id="L66">        codeBtn.setBackground(new Color(80,188,223));</span>
+<span class="nc" id="L67">        codeBtn.setForeground(Color.white);</span>
+<span class="nc" id="L68">        codeBtn.addActionListener(new ActionListener() {</span>
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+<span class="nc bnc" id="L72" title="All 2 branches missed.">                if(dlg ==null)</span>
+<span class="nc" id="L73">                    dlg = new CodeDialog(MainFrame.this, &quot;Input Code&quot;,false);</span>
+<span class="nc" id="L74">                else {	dlg.requestFocus();</span>
+                }
+<span class="nc" id="L76">            }</span>
+
+        });
+<span class="nc" id="L79">        northPanel.add(codeBtn);</span>
+<span class="nc" id="L80">        frame.add(northPanel,BorderLayout.NORTH);</span>
+<span class="nc" id="L81">    }</span>
+    private void initCenter(){
+<span class="nc" id="L83">        JPanel centerPanel = new JPanel();</span>
+<span class="nc" id="L84">        centerPanel.setBackground(Color.white);</span>
+<span class="nc" id="L85">        centerPanel.setPreferredSize(new Dimension(500,550));</span>
+<span class="nc" id="L86">        centerPanel.setBorder(BorderFactory.createEmptyBorder(25,0,0,0));</span>
+
+<span class="nc" id="L88">        menuPanel = new JPanel(new FlowLayout(15));</span>
+<span class="nc" id="L89">        menuPanel.setPreferredSize(new Dimension(450,1050));</span>
+<span class="nc" id="L90">        menuPanel.setBackground(Color.white);</span>
+<span class="nc" id="L91">        JScrollPane menuScroll = new JScrollPane(menuPanel);</span>
+<span class="nc" id="L92">        menuScroll.setBackground(Color.white);</span>
+<span class="nc" id="L93">        menuScroll.setPreferredSize(new Dimension(472,450));</span>
+<span class="nc" id="L94">        menuScroll.setBackground(Color.white);</span>
+<span class="nc" id="L95">        menuScroll.setBorder(BorderFactory.createLineBorder(Color.white,2));</span>
+<span class="nc" id="L96">        showDrink();</span>
+<span class="nc" id="L97">        centerPanel.add(menuScroll,BorderLayout.CENTER);</span>
+
+<span class="nc" id="L99">        frame.add(centerPanel,BorderLayout.CENTER);</span>
+<span class="nc" id="L100">    }</span>
+    public void prePayment(String name,String Code){
+
+<span class="nc" id="L103">    }</span>
+    public void showDrink() {
+<span class="nc" id="L105">        menuPanel.removeAll();</span>
+<span class="nc" id="L106">        Drink[] drinkArray = vm.getDrinkArray();</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">        for(int i = 0; i&lt;20; i++) {</span>
+<span class="nc" id="L108">            DrinkPanel drink = new DrinkPanel(drinkArray[i].getName(),drinkArray[i].getPrice());</span>
+            //DrinkPanel drink = new DrinkPanel(&quot;콜라&quot;,1000);
+<span class="nc" id="L110">            drink.addMouseListener(new MouseAdapter() {</span>
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    // TODO Auto-generated method stub
+<span class="nc" id="L114">                    super.mouseClicked(e);</span>
+<span class="nc" id="L115">                    String drinkname = drink.getName();</span>
+                    // 음료수 이름을 기반으로 재고가 있는지 판단.
+<span class="nc" id="L117">                    boolean isStock = vm.CheckStoke(drinkname);</span>
+<span class="nc bnc" id="L118" title="All 2 branches missed.">                    if(isStock) {</span>
+                        // 결제 다이얼로그 생성
+<span class="nc bnc" id="L120" title="All 2 branches missed.">                        if(dlg == null)</span>
+<span class="nc" id="L121">                            dlg = new PaymentDialog(MainFrame.this, &quot;Payment&quot;,false,drink.getPrice(),drinkname);</span>
+<span class="nc" id="L122">                        else {	dlg.requestFocus();</span>
+                        }
+                    }else {
+                        // VM List Frame 생성
+<span class="nc" id="L126">                        vm.getOtherVM(drinkname);</span>
+<span class="nc" id="L127">                        MainFrame.this.predrinkname = drinkname;</span>
+                    }
+<span class="nc" id="L129">                }</span>
+            });
+<span class="nc" id="L131">            menuPanel.add(drink);</span>
+        }
+<span class="nc" id="L133">        menuPanel.repaint();</span>
+<span class="nc" id="L134">        repaint();</span>
+<span class="nc" id="L135">        validate();</span>
+<span class="nc" id="L136">    }</span>
+    public void checkAdmin() {
+<span class="nc" id="L138">        String id = ((AdminDialog)dlg).getID();</span>
+<span class="nc" id="L139">        String pw = ((AdminDialog)dlg).getPW();</span>
+<span class="nc bnc" id="L140" title="All 4 branches missed.">        if(id == null || pw == null) {return;}</span>
+        // 아이디, 비밀번호가 일치하는지 체크
+<span class="nc" id="L142">        boolean isAdmin = admin.checkIDPW(id,pw);</span>
+<span class="nc bnc" id="L143" title="All 2 branches missed.">        if(isAdmin) {</span>
+<span class="nc" id="L144">            AdminFrame admin = new AdminFrame(this);</span>
+<span class="nc" id="L145">        }else {</span>
+<span class="nc" id="L146">            JOptionPane.showMessageDialog(null, &quot;\n&quot; + &quot;Invalid administrator ID or PW&quot;, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);</span>
+        }
+<span class="nc" id="L148">    }</span>
+    public void checkCode() {
+<span class="nc" id="L150">        String id = ((CodeDialog)dlg).getCode();</span>
+<span class="nc bnc" id="L151" title="All 2 branches missed.">        if(id == null) {return;}</span>
+        int inputcode;
+        try{
+<span class="nc" id="L154">            inputcode  = Integer.parseInt(id);</span>
+<span class="nc" id="L155">        }catch(NumberFormatException e){</span>
+<span class="nc" id="L156">            JOptionPane.showMessageDialog(null, &quot;You cannot enter a character string other than an integer.&quot;, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L157">            return;</span>
+<span class="nc" id="L158">        }</span>
+<span class="nc" id="L159">        String isCode = vm.checkCode(inputcode);</span>
+        // 인증코드가 맞는지 체크
+<span class="nc bnc" id="L161" title="All 2 branches missed.">        if(isCode != null) {</span>
+<span class="nc" id="L162">            giveProduct(isCode);</span>
+<span class="nc" id="L163">            Item item = vm.findItem(isCode);</span>
+<span class="nc bnc" id="L164" title="All 2 branches missed.">            if(item.getStock() &gt; 0)</span>
+<span class="nc" id="L165">                item.editStock(item.getStock()-1);</span>
+            else
+<span class="nc" id="L167">                JOptionPane.showMessageDialog(null, &quot;Out of Stock&quot;, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L168">        }else {</span>
+<span class="nc" id="L169">            JOptionPane.showMessageDialog(null, &quot;\n&quot; + &quot;This is an incorrect authentication code.&quot;, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);</span>
+        }
+<span class="nc" id="L171">    }</span>
+    public void cardCheck() {
+<span class="nc" id="L173">        String num1 = ((CardDialog)dlg).getNum1();</span>
+<span class="nc" id="L174">        String num2 = ((CardDialog)dlg).getNum2();</span>
+<span class="nc" id="L175">        String num3 = ((CardDialog)dlg).getNum3();</span>
+<span class="nc" id="L176">        String num4 = ((CardDialog)dlg).getNum4();</span>
+<span class="nc bnc" id="L177" title="All 8 branches missed.">        if(num1 == null || num2 == null || num3 == null ||num4 == null ) {</span>
+<span class="nc" id="L178">            JOptionPane.showMessageDialog(null, &quot;\n&quot; + &quot;Card number cannot be blank&quot;, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L179">            return;</span>
+        }
+<span class="nc" id="L181">        String cardNum = num1 + num2 + num3 + num4;</span>
+<span class="nc" id="L182">        String cvcStr = ((CardDialog)dlg).getCvc();</span>
+<span class="nc bnc" id="L183" title="All 2 branches missed.">        if(cvcStr == null ) {</span>
+<span class="nc" id="L184">            JOptionPane.showMessageDialog(null, &quot;CVC cannot be blank&quot;, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L185">            return;</span>
+        }
+        int cvc;
+        try{
+<span class="nc" id="L189">            cvc  = Integer.parseInt(cvcStr);</span>
+<span class="nc" id="L190">        }catch(NumberFormatException e){</span>
+<span class="nc" id="L191">            JOptionPane.showMessageDialog(null, &quot;\n&quot; + &quot;Strings other than integers cannot be entered in CVC.&quot;, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L192">            return;</span>
+<span class="nc" id="L193">        }</span>
+<span class="nc" id="L194">        String validityStr = ((CardDialog)dlg).getCon();</span>
+        int validity;
+<span class="nc bnc" id="L196" title="All 2 branches missed.">        if(validityStr == null ) {</span>
+<span class="nc" id="L197">            JOptionPane.showMessageDialog(null, &quot;Validity cannot be blank&quot;, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L198">            return;</span>
+        }
+        try{
+<span class="nc" id="L201">            validity  = Integer.parseInt(validityStr);</span>
+<span class="nc" id="L202">        }catch(NumberFormatException e){</span>
+<span class="nc" id="L203">            JOptionPane.showMessageDialog(null, &quot;strings other than integers cannot be entered in valitdity&quot;, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L204">            return;</span>
+<span class="nc" id="L205">        }</span>
+<span class="nc" id="L206">        String pwStr = ((CardDialog)dlg).getPW();</span>
+<span class="nc bnc" id="L207" title="All 2 branches missed.">        if(pwStr == null ) {</span>
+<span class="nc" id="L208">            JOptionPane.showMessageDialog(null, &quot;PW cannot be blank&quot;, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L209">            return;</span>
+        }
+        int pw;
+        try{
+<span class="nc" id="L213">            pw  = Integer.parseInt(pwStr);</span>
+<span class="nc" id="L214">        }catch(NumberFormatException e){</span>
+<span class="nc" id="L215">            JOptionPane.showMessageDialog(null, &quot;strings other than integers cannot be entered in Password&quot;, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L216">            return;</span>
+<span class="nc" id="L217">        }</span>
+<span class="nc" id="L218">        Card payCard = vm.findCard(cardNum,cvc,pw,validity);</span>
+<span class="nc bnc" id="L219" title="All 2 branches missed.">        if(payCard == null){</span>
+<span class="nc" id="L220">            JOptionPane.showMessageDialog(null, &quot;This card does not exist.&quot;, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L221">            return;</span>
+        }
+<span class="nc" id="L223">        int price = ((CardDialog)dlg).getPrice();</span>
+<span class="nc bnc" id="L224" title="All 2 branches missed.">        if(payCard.payment(price)){</span>
+<span class="nc" id="L225">            giveProduct(((CardDialog)dlg).getName());</span>
+        }else{
+<span class="nc" id="L227">            JOptionPane.showMessageDialog(null, &quot;There is not enough balance.&quot;, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);</span>
+        }
+<span class="nc" id="L229">    }</span>
+    public void cardCheck(String drinkname,VM otherVm) {
+<span class="nc" id="L231">        String num1 = ((CardDialog)dlg).getNum1();</span>
+<span class="nc" id="L232">        String num2 = ((CardDialog)dlg).getNum2();</span>
+<span class="nc" id="L233">        String num3 = ((CardDialog)dlg).getNum3();</span>
+<span class="nc" id="L234">        String num4 = ((CardDialog)dlg).getNum4();</span>
+<span class="nc bnc" id="L235" title="All 8 branches missed.">        if(num1 == null || num2 == null || num3 == null ||num4 == null ) {</span>
+<span class="nc" id="L236">            JOptionPane.showMessageDialog(null, &quot;\n&quot; + &quot;Card number cannot be blank&quot;, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L237">            return;</span>
+        }
+<span class="nc" id="L239">        String cardNum = num1 + num2 + num3 + num4;</span>
+<span class="nc" id="L240">        String cvcStr = ((CardDialog)dlg).getCvc();</span>
+<span class="nc bnc" id="L241" title="All 2 branches missed.">        if(cvcStr == null ) {</span>
+<span class="nc" id="L242">            JOptionPane.showMessageDialog(null, &quot;CVC cannot be blank&quot;, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L243">            return;</span>
+        }
+        int cvc;
+        try{
+<span class="nc" id="L247">            cvc  = Integer.parseInt(cvcStr);</span>
+<span class="nc" id="L248">        }catch(NumberFormatException e){</span>
+<span class="nc" id="L249">            JOptionPane.showMessageDialog(null, &quot;\n&quot; + &quot;Strings other than integers cannot be entered in CVC.&quot;, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L250">            return;</span>
+<span class="nc" id="L251">        }</span>
+<span class="nc" id="L252">        String validityStr = ((CardDialog)dlg).getCon();</span>
+        int validity;
+<span class="nc bnc" id="L254" title="All 2 branches missed.">        if(validityStr == null ) {</span>
+<span class="nc" id="L255">            JOptionPane.showMessageDialog(null, &quot;Validity cannot be blank&quot;, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L256">            return;</span>
+        }
+        try{
+<span class="nc" id="L259">            validity  = Integer.parseInt(validityStr);</span>
+<span class="nc" id="L260">        }catch(NumberFormatException e){</span>
+<span class="nc" id="L261">            JOptionPane.showMessageDialog(null, &quot;strings other than integers cannot be entered in valitdity&quot;, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L262">            return;</span>
+<span class="nc" id="L263">        }</span>
+<span class="nc" id="L264">        String pwStr = ((CardDialog)dlg).getPW();</span>
+<span class="nc bnc" id="L265" title="All 2 branches missed.">        if(pwStr == null ) {</span>
+<span class="nc" id="L266">            JOptionPane.showMessageDialog(null, &quot;PW cannot be blank&quot;, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L267">            return;</span>
+        }
+        int pw;
+        try{
+<span class="nc" id="L271">            pw  = Integer.parseInt(pwStr);</span>
+<span class="nc" id="L272">        }catch(NumberFormatException e){</span>
+<span class="nc" id="L273">            JOptionPane.showMessageDialog(null, &quot;strings other than integers cannot be entered in Password&quot;, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L274">            return;</span>
+<span class="nc" id="L275">        }</span>
+<span class="nc" id="L276">        Card payCard = vm.findCard(cardNum,cvc,pw,validity);</span>
+<span class="nc bnc" id="L277" title="All 2 branches missed.">        if(payCard == null){</span>
+<span class="nc" id="L278">            JOptionPane.showMessageDialog(null, &quot;This card does not exist.&quot;, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L279">            return;</span>
+        }
+<span class="nc" id="L281">        int price = ((CardDialog)dlg).getPrice();</span>
+<span class="nc bnc" id="L282" title="All 2 branches missed.">        if(payCard.payment(price)){</span>
+<span class="nc" id="L283">            this.getVM().requestPrepay(drinkname,otherVm.getID());</span>
+        }else{
+<span class="nc" id="L285">            JOptionPane.showMessageDialog(null, &quot;There is not enough balance.&quot;, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);</span>
+        }
+<span class="nc" id="L287">    }</span>
+    public void giveProduct(String name){
+<span class="nc" id="L289">        JOptionPane.showMessageDialog(null, &quot;            Give you a &quot; + &quot;Product : &quot; + name,&quot;Message&quot;, JOptionPane.PLAIN_MESSAGE);</span>
+<span class="nc" id="L290">    }</span>
+    public void setDlg(JDialog dialog){
+<span class="nc" id="L292">        this.dlg = dialog;</span>
+<span class="nc" id="L293">    }</span>
+    public void showCardDialog(int price, String name){
+<span class="nc" id="L295">        this.dlg = new CardDialog(this, &quot;Payment&quot;,false,price, name);</span>
+<span class="nc" id="L296">    }</span>
+    public void showCardDialog(int price, String name,VM othervm){
+<span class="nc" id="L298">        this.dlg = new CardDialog(this, &quot;Payment&quot;,false,price, name,true,othervm);</span>
+<span class="nc" id="L299">    }</span>
+    public Admin getAdmin(){
+<span class="nc" id="L301">        return this.admin;</span>
+    }
+    public VM getVM(){
+<span class="nc" id="L304">        return this.vm;</span>
+    }
+    public void showMessage(String type,String description){
+<span class="nc" id="L307">        JOptionPane.showMessageDialog(null,  description, type, JOptionPane.PLAIN_MESSAGE);</span>
+<span class="nc" id="L308">    }</span>
+    public void showVMFrame(VM vm){
+<span class="nc" id="L310">        System.out.println(&quot;display VM:&quot; + vm.getID());</span>
+<span class="nc" id="L311">        System.out.println(&quot;Message from &quot; + vm.getID() + &quot;: vmframe = &quot;  + this.vmframe);</span>
+<span class="nc bnc" id="L312" title="All 2 branches missed.">        if(this.vmframe == null){</span>
+<span class="nc" id="L313">            System.out.println(predrinkname);</span>
+<span class="nc" id="L314">            Drink drink = vm.findDrink(predrinkname);</span>
+<span class="nc" id="L315">            this.vmframe = new VMFrame(this,vm,predrinkname,drink.getPrice());</span>
+<span class="nc" id="L316">        }else{</span>
+<span class="nc" id="L317">            vmframe.initVM(vm);</span>
+        }
+<span class="nc" id="L319">    }</span>
+    public void setPredrinkname(String predrinkname){
+<span class="nc" id="L321">        this.predrinkname = predrinkname;</span>
+<span class="nc" id="L322">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

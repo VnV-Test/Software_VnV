@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CodeDialog.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Software_VnV</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">CodeDialog.java</span></div><h1>CodeDialog.java</h1><pre class="source lang-java linenums">
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+public class CodeDialog extends JDialog{
+
+<span class="nc" id="L12">    JTextField tf = new JTextField(&quot;&quot;,14);</span>
+<span class="nc" id="L13">    JButton ok = new JButton(&quot;Input&quot;);</span>
+<span class="nc" id="L14">    Container pane = this.getContentPane();</span>
+<span class="nc" id="L15">    MainFrame parent = null;</span>
+
+    public CodeDialog(MainFrame parent, String title, boolean modal) {
+<span class="nc" id="L18">        super(parent,title,modal);</span>
+<span class="nc" id="L19">        this.parent = parent;</span>
+<span class="nc" id="L20">        this.setSize(330,80);</span>
+<span class="nc" id="L21">        this.setLocationRelativeTo(null);</span>
+<span class="nc" id="L22">        this.getContentPane().setBackground(Color.white);</span>
+<span class="nc" id="L23">        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);</span>
+<span class="nc" id="L24">        init();</span>
+<span class="nc" id="L25">        this.setVisible(true);</span>
+<span class="nc" id="L26">    }</span>
+    public void init() {
+<span class="nc" id="L28">        pane.setLayout(new FlowLayout(FlowLayout.LEFT,10,10));</span>
+<span class="nc" id="L29">        JLabel idLabel = new JLabel(&quot;Code: &quot;);</span>
+<span class="nc" id="L30">        idLabel.setPreferredSize(new Dimension(60,20));</span>
+<span class="nc" id="L31">        pane.add(idLabel);</span>
+<span class="nc" id="L32">        pane.add(tf);</span>
+<span class="nc" id="L33">        ok.setForeground(Color.white);</span>
+<span class="nc" id="L34">        ok.setBackground(new Color(80,188,223));</span>
+<span class="nc" id="L35">        pane.add(ok);</span>
+<span class="nc" id="L36">        ok.addActionListener(new ActionListener() {</span>
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+<span class="nc" id="L40">                parent.checkCode();</span>
+<span class="nc" id="L41">                parent.dlg = null;</span>
+<span class="nc" id="L42">                dispose();</span>
+<span class="nc" id="L43">            }</span>
+
+        });
+<span class="nc" id="L46">        this.addWindowListener(new WindowAdapter() {</span>
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // TODO Auto-generated method stub
+<span class="nc" id="L50">                super.windowClosing(e);</span>
+<span class="nc" id="L51">                tf.setText(&quot;&quot;);</span>
+<span class="nc" id="L52">                parent.dlg = null;</span>
+<span class="nc" id="L53">                dispose();</span>
+<span class="nc" id="L54">            }</span>
+        });
+
+<span class="nc" id="L57">    }</span>
+    public String getCode() {
+<span class="nc bnc" id="L59" title="All 2 branches missed.">        if(tf.getText().length() == 0)</span>
+<span class="nc" id="L60">            return null;</span>
+        else
+<span class="nc" id="L62">            return tf.getText();</span>
+    }
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

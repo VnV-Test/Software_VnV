@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DrinkPanel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Software_VnV</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">DrinkPanel.java</span></div><h1>DrinkPanel.java</h1><pre class="source lang-java linenums">import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class DrinkPanel extends JPanel {
+
+    // 속성
+    String drinkname;
+    int price;
+<span class="nc" id="L11">    boolean isWhite = true;</span>
+
+    // Panel
+    JPanel center;
+    JPanel southPanel;
+
+    //Label
+    JLabel nameLabel;
+    JLabel priceLabel;
+
+    //image
+<span class="nc" id="L22">    String[] imgpath = {&quot;img/coke.png&quot;,&quot;img/sprite.png&quot;,&quot;img/mintcoke.png&quot;,&quot;img/water.png&quot;</span>
+    ,&quot;img/sparklingwater.png&quot;,&quot;img/coffee.png&quot;,&quot;img/milkcoffee.png&quot;,&quot;img/demisoda.png&quot;,&quot;img/sunnyten.png&quot;,
+    &quot;img/sikhye.png&quot;,&quot;img/IDH.png&quot;,&quot;img/milkiss.png&quot;,&quot;img/mccall.png&quot;,&quot;img/2.png&quot;,&quot;img/gatorade.png&quot;,&quot;img/hotsix.png&quot;
+    ,&quot;img/coco.png&quot;,&quot;img/minutemade.png&quot;,&quot;img/sprite.png&quot;,&quot;img/milkcoffee.png&quot;};
+    ImageIcon icon;
+
+<span class="nc" id="L28">    public DrinkPanel(String name, int price) {</span>
+<span class="nc" id="L29">        this.drinkname = name;</span>
+<span class="nc" id="L30">        this.price = price;</span>
+<span class="nc" id="L31">        this.setLayout(new BorderLayout(0,1));</span>
+<span class="nc" id="L32">        this.setPreferredSize(new Dimension(140,140));</span>
+<span class="nc" id="L33">        this.setBackground(Color.white);</span>
+<span class="nc" id="L34">        init();</span>
+<span class="nc" id="L35">    }</span>
+    private void init() {
+<span class="nc" id="L37">        this.setBorder(BorderFactory.createLineBorder(Color.black,2));</span>
+<span class="nc" id="L38">        initCenter();</span>
+<span class="nc" id="L39">        initSouth();</span>
+        // 마우스 리스너 등록
+<span class="nc" id="L41">        this.addMouseListener(new MouseAdapter() {</span>
+            @Override
+            public void mouseEntered(MouseEvent e) {
+<span class="nc" id="L44">                allColorChange();</span>
+<span class="nc" id="L45">            }</span>
+            @Override
+            public void mouseExited(MouseEvent e) {
+<span class="nc" id="L48">                allColorChange();</span>
+<span class="nc" id="L49">            }</span>
+        });
+<span class="nc" id="L51">    }</span>
+    private void initCenter() {
+<span class="nc" id="L53">        center = new JPanel();</span>
+<span class="nc" id="L54">        center.setBackground(Color.white);</span>
+<span class="nc" id="L55">        center.setPreferredSize(new Dimension(138,95));</span>
+<span class="nc bnc" id="L56" title="All 21 branches missed.">        switch (this.drinkname){</span>
+            case &quot;Coke&quot;:
+<span class="nc" id="L58">                icon = new ImageIcon(imgpath[0]);</span>
+<span class="nc" id="L59">                break;</span>
+            case &quot;Sprite&quot;:
+<span class="nc" id="L61">                icon = new ImageIcon(imgpath[1]);</span>
+<span class="nc" id="L62">                break;</span>
+            case &quot;Mint Coke&quot;:
+<span class="nc" id="L64">                icon = new ImageIcon(imgpath[2]);</span>
+<span class="nc" id="L65">                break;</span>
+            case &quot;Water&quot;:
+<span class="nc" id="L67">                icon = new ImageIcon(imgpath[3]);</span>
+<span class="nc" id="L68">                break;</span>
+            case &quot;Sparkling water&quot;:
+<span class="nc" id="L70">                icon = new ImageIcon(imgpath[4]);</span>
+<span class="nc" id="L71">                break;</span>
+            case &quot;Coffee&quot;:
+<span class="nc" id="L73">                icon = new ImageIcon(imgpath[5]);</span>
+<span class="nc" id="L74">                break;</span>
+            case &quot;Milk Coffee&quot;:
+<span class="nc" id="L76">                icon = new ImageIcon(imgpath[6]);</span>
+<span class="nc" id="L77">                break;</span>
+            case &quot;Demisoda&quot;:
+<span class="nc" id="L79">                icon = new ImageIcon(imgpath[7]);</span>
+<span class="nc" id="L80">                break;</span>
+            case &quot;SunnyTen&quot;:
+<span class="nc" id="L82">                icon = new ImageIcon(imgpath[8]);</span>
+<span class="nc" id="L83">                break;</span>
+            case &quot;Sikhye&quot;:
+<span class="nc" id="L85">                icon = new ImageIcon(imgpath[9]);</span>
+<span class="nc" id="L86">                break;</span>
+            case &quot;IDH&quot;:
+<span class="nc" id="L88">                icon = new ImageIcon(imgpath[10]);</span>
+<span class="nc" id="L89">                break;</span>
+            case &quot;Milkis&quot;:
+<span class="nc" id="L91">                icon = new ImageIcon(imgpath[11]);</span>
+<span class="nc" id="L92">                break;</span>
+            case &quot;McCall&quot;:
+<span class="nc" id="L94">                icon = new ImageIcon(imgpath[12]);</span>
+<span class="nc" id="L95">                break;</span>
+            case &quot;2%&quot;:
+<span class="nc" id="L97">                icon = new ImageIcon(imgpath[13]);</span>
+<span class="nc" id="L98">                break;</span>
+            case &quot;Gatorade&quot;:
+<span class="nc" id="L100">                icon = new ImageIcon(imgpath[14]);</span>
+<span class="nc" id="L101">                break;</span>
+            case &quot;Hot Six&quot;:
+<span class="nc" id="L103">                icon = new ImageIcon(imgpath[15]);</span>
+<span class="nc" id="L104">                break;</span>
+            case &quot;CoCo palm&quot;:
+<span class="nc" id="L106">                icon = new ImageIcon(imgpath[16]);</span>
+<span class="nc" id="L107">                break;</span>
+            case &quot;Minute Made&quot;:
+<span class="nc" id="L109">                icon = new ImageIcon(imgpath[17]);</span>
+<span class="nc" id="L110">                break;</span>
+            case &quot;Mint Sprite&quot;:
+<span class="nc" id="L112">                icon = new ImageIcon(imgpath[18]);</span>
+<span class="nc" id="L113">                break;</span>
+            case &quot;Mint Coffee&quot;:
+<span class="nc" id="L115">                icon = new ImageIcon(imgpath[19]);</span>
+                break;
+        }
+<span class="nc" id="L118">        JLabel centerLabel = new JLabel(icon);</span>
+<span class="nc" id="L119">        centerLabel.setBackground(Color.white);</span>
+<span class="nc" id="L120">        centerLabel.setPreferredSize(new Dimension(120,80));</span>
+<span class="nc" id="L121">        centerLabel.setBorder(BorderFactory.createEmptyBorder(10,20,10,20));</span>
+<span class="nc" id="L122">        center.add(centerLabel);</span>
+
+<span class="nc" id="L124">        this.add(center,BorderLayout.CENTER);</span>
+<span class="nc" id="L125">    }</span>
+    private void initSouth() {
+<span class="nc" id="L127">        southPanel = new JPanel(new GridLayout(2,1,0,0));</span>
+<span class="nc" id="L128">        southPanel.setBackground(Color.white);</span>
+<span class="nc" id="L129">        southPanel.setPreferredSize(new Dimension(138,40));</span>
+
+<span class="nc" id="L131">        JLabel nameLabel = new JLabel(this.drinkname);</span>
+<span class="nc" id="L132">        Font namefont = new Font(&quot;Arial&quot;,Font.BOLD,12);</span>
+<span class="nc" id="L133">        nameLabel.setFont(namefont);</span>
+<span class="nc" id="L134">        nameLabel.setForeground(new Color(80,188,223));</span>
+<span class="nc" id="L135">        nameLabel.setHorizontalAlignment(JLabel.CENTER);</span>
+<span class="nc" id="L136">        southPanel.add(nameLabel);</span>
+
+<span class="nc" id="L138">        JLabel priceLabel = new JLabel(&quot;₩ &quot;+this.price);</span>
+<span class="nc" id="L139">        Font pricefont = new Font(&quot;Arial&quot;,Font.PLAIN,10);</span>
+<span class="nc" id="L140">        priceLabel.setFont(pricefont);</span>
+<span class="nc" id="L141">        priceLabel.setHorizontalAlignment(JLabel.CENTER);</span>
+<span class="nc" id="L142">        southPanel.add(priceLabel);</span>
+
+<span class="nc" id="L144">        this.add(southPanel,BorderLayout.SOUTH);</span>
+<span class="nc" id="L145">    }</span>
+    private void allColorChange(){
+<span class="nc bnc" id="L147" title="All 2 branches missed.">        if(isWhite){</span>
+<span class="nc" id="L148">            this.setBorder(BorderFactory.createLineBorder(new Color(80,188,223),2));</span>
+
+<span class="nc" id="L150">            isWhite = false;</span>
+        }else{
+<span class="nc" id="L152">            this.setBorder(BorderFactory.createLineBorder(Color.black,2));</span>
+<span class="nc" id="L153">            isWhite = true;</span>
+        }
+<span class="nc" id="L155">    }</span>
+    public String getName() {
+<span class="nc" id="L157">        return this.drinkname;</span>
+    }
+    public int getPrice() {
+<span class="nc" id="L160">        return this.price;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
