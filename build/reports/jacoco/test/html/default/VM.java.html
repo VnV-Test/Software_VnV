@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VM.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Software_VnV</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">VM.java</span></div><h1>VM.java</h1><pre class="source lang-java linenums">import java.lang.invoke.SwitchPoint;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ko"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VM.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Software_VnV</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">VM.java</span></div><h1>VM.java</h1><pre class="source lang-java linenums">import java.lang.invoke.SwitchPoint;
 import java.util.Vector;
 
 public class VM {
@@ -39,348 +39,374 @@ public class VM {
 <span class="fc" id="L39">        this.dvmIdList.add(9998);</span>
 <span class="fc" id="L40">        basicSettinng(division);</span>
 <span class="fc" id="L41">    }</span>
-    public Vector&lt;VM&gt; getDvmList() {
-<span class="nc" id="L43">        return dvmList;</span>
-    }
-//    public int getID(){return ID;}
-
-    //강현수
-    public double[] getVMInfo(int index) {
-<span class="nc" id="L49">        double[] arr = new double[2];</span>
-<span class="nc" id="L50">        arr[0] = vmLocArray[index - 1][0]; //index번째는 index-1이니까.</span>
-<span class="nc" id="L51">        arr[1] = vmLocArray[index - 1][1];</span>
-<span class="nc" id="L52">        return arr;</span>
-    }//double[]로 반환값 수정., 인덱스 받아서 넘겨줌.
-    public void setUI(MainFrame m){
-<span class="nc" id="L55">        this.controller =  m;</span>
-<span class="nc" id="L56">    }</span>
-    public void setAdmin(Admin admin){
-<span class="nc" id="L58">        this.admin = admin;</span>
-<span class="nc" id="L59">    }</span>
-    public String giveProduct(int index) {
-<span class="nc" id="L61">        return itemArray[index - 1].getName();</span>
-        //드링크 이름 반환 인덱스 들어옴.
-    }
-    public double[] getLocation(){
-<span class="nc" id="L65">        return this.Location;</span>
-    }
-    public void editProductInfo(int index, String name, int price, int stock) {
-<span class="nc" id="L68">        itemArray[index - 1].setName(name);</span>
-<span class="nc" id="L69">        itemArray[index - 1].setPrice(price);</span>
-<span class="nc" id="L70">        itemArray[index - 1].setStock(stock);</span>
-<span class="nc" id="L71">        drinkArray[index - 1].setName(name);</span>
-<span class="nc" id="L72">        drinkArray[index - 1].setPrice(price);</span>
-<span class="nc" id="L73">    }</span>
-    synchronized public void receiveRequest(){
-<span class="nc" id="L75">        Thread.yield();</span>
-
-<span class="nc" id="L77">        int mt = mailBox.get(0).getMsgtype();</span>
-
-<span class="nc bnc" id="L79" title="All 4 branches missed.">        if(mt == 1 || mt == 4){</span>
-<span class="nc" id="L80">            NotifyVMsInfo();</span>
-        }
-<span class="nc bnc" id="L82" title="All 2 branches missed.">        if(mt == 2){</span>
-<span class="nc" id="L83">            getOtherVM_2();</span>
-        }
-<span class="nc bnc" id="L85" title="All 2 branches missed.">        if(mt == 3){</span>
-<span class="nc" id="L86">            confirmPrepay();</span>
-        }
-<span class="nc bnc" id="L88" title="All 2 branches missed.">        if(mt == 5){</span>
-<span class="nc" id="L89">            getOtherVM_3();</span>
-        }
-<span class="nc bnc" id="L91" title="All 2 branches missed.">        if(mt == 6){</span>
-<span class="nc" id="L92">            RespondSell();</span>
-        }
-<span class="nc bnc" id="L94" title="All 2 branches missed.">        if(mt == 7){</span>
-<span class="nc" id="L95">            ConfirmSell_2();</span>
-        }
-<span class="nc bnc" id="L97" title="All 2 branches missed.">        if(mt == 8){</span>
-<span class="nc" id="L98">            requestPrepay_2();</span>
-        }
-<span class="nc" id="L100">    }</span>
-    // 남승협
-    public void NotifyVMsInfo() {
-        // msgType == 1
-<span class="nc" id="L104">        Message msg = mailBox.get(0);</span>
-<span class="nc bnc" id="L105" title="All 3 branches missed.">        switch (msg.getMsgtype()) {</span>
-            case 1:
-<span class="nc" id="L107">                System.out.println(&quot;VM(&quot; + this.getID() + &quot;): Receive Message type: 1&quot;);</span>
-<span class="nc" id="L108">                boolean isItem = false;</span>
-<span class="nc bnc" id="L109" title="All 2 branches missed.">                for (int j = 0; j &lt; itemArray.length; j++) {</span>
-<span class="nc bnc" id="L110" title="All 2 branches missed.">                    if ((itemArray[j].getName()).equals(msg.getMsgField())) {</span>
-<span class="nc bnc" id="L111" title="All 2 branches missed.">                        if (itemArray[j].getStock() &gt; 0) {</span>
-<span class="nc" id="L112">                            System.out.println(&quot;VM(&quot; + this.getID() + &quot;): I have a stock&quot;);</span>
-<span class="nc" id="L113">                            Message stockMsg = new Message(this.ID, msg.getSrc_id(), 2, msg.getMsgField());</span>
-<span class="nc" id="L114">                            stockMsg.Send();</span>
-<span class="nc" id="L115">                            isItem = true;</span>
-<span class="nc" id="L116">                            mailBox.remove(0);</span>
-<span class="nc" id="L117">                            break;</span>
-                        }
-<span class="nc" id="L119">                        System.out.println(&quot;VM(&quot; + this.getID() + &quot;): I don't have a stock&quot;);</span>
-                    }
-                }
-<span class="nc bnc" id="L122" title="All 2 branches missed.">                if (!isItem) {</span>
-<span class="nc" id="L123">                    Message stockMsg = new Message(this.ID, msg.getSrc_id(), 2, null);</span>
-<span class="nc" id="L124">                    mailBox.remove(0);</span>
-<span class="nc" id="L125">                    stockMsg.Send();</span>
-<span class="nc" id="L126">                }</span>
-                break;
-            case 4:
-                // msgType == 4
-<span class="nc" id="L130">                String loc = this.Location[0] + &quot;?&quot; + this.Location[1];</span>
-<span class="nc" id="L131">                Message addressMsg = new Message(this.ID, mailBox.get(0).getSrc_id(), 5, loc);</span>
-<span class="nc" id="L132">                mailBox.remove(0);</span>
-<span class="nc" id="L133">                addressMsg.Send();</span>
-<span class="nc" id="L134">                break;</span>
-            default:
-<span class="nc" id="L136">                System.out.println(&quot;Notify가 실행되었는데 1,4가아님&quot;);</span>
-        }
-<span class="nc" id="L138">    }</span>
-    public int getVmNum(){
-<span class="nc" id="L140">        return this.dvmList.size();</span>
-    }
-    synchronized public int getMailBoxSize(){
-<span class="fc" id="L143">        Thread.yield();</span>
-<span class="fc" id="L144">        return mailBox.size();</span>
-    }
-    synchronized void MailRecieve(Message msg) {
-<span class="fc" id="L147">        Thread.yield();</span>
-<span class="fc" id="L148">        System.out.println(&quot;DVM &quot;+this.ID+&quot; Message ricieved\n&quot;+msg.toString());</span>
-<span class="fc" id="L149">        this.mailBox.add(msg);</span>
-<span class="fc" id="L150">    }</span>
-    public int getID() {
-<span class="fc" id="L152">        return this.ID;</span>
-    }
-    public String getIDtS() {
-<span class="fc" id="L155">        return String.valueOf(this.ID);</span>
-    }
-    //////
-    public void ConfirmSell() {
-        //6번 보냄 내용은 선결재로 코드넘겨준게 지급됬는지 질문.-사용하지않으므로 주석만.
-        //보내는 메시지는 new Message(this.ID, 0, 6, itemName).Send();
-<span class="nc" id="L161">        return;</span>
-    }
-    public void ConfirmSell_2() {
-        //7번오면 처리. 선결재로 코드넘겨준게 지급됬는지 질문에 대한 응답을 확인.-사용하지않으므로주석만.
-<span class="nc" id="L165">        return;</span>
-    }
-    public void RespondSell() {
-        //6번오면 7번보냄 선결재로 코드넘겨준게 지급됬는지 확인 후 전송.
-<span class="nc" id="L169">        new Message(this.ID, mailBox.get(0).getSrc_id(), 7, mailBox.get(0).getMsgField()).Send();</span>
-<span class="nc" id="L170">        mailBox.remove(0);</span>
-
-<span class="nc" id="L172">        return;</span>
-    }
-    public void getOtherVM(String itemName){
-        // Use Case 4, 9, 15
-<span class="nc" id="L176">        new Message(this.ID, 0, 1, itemName).Send(); // stockMsg:Message</span>
-<span class="nc" id="L177">    }</span>
-    public void getOtherVM_2() {
-        //196번에서 초기화됬을때, 혹은 아예 처음에 배열을 pop해줌 전부다.
-<span class="nc bnc" id="L180" title="All 2 branches missed.">        if(idStack==0)</span>
-<span class="nc bnc" id="L181" title="All 2 branches missed.">            while(ids.size()&gt;0)</span>
-<span class="nc" id="L182">                ids.remove(0);</span>
-            //이다음부분도 진행됨.
-<span class="nc bnc" id="L184" title="All 2 branches missed.">        if (mailBox.get(0).getMsgField() != null)</span>
-<span class="nc" id="L185">            ids.add(mailBox.get(0).getSrc_id());</span>
-<span class="nc" id="L186">        mailBox.remove(0);</span>
-<span class="nc" id="L187">        idStack++;</span>
-<span class="nc bnc" id="L188" title="All 2 branches missed.">        if(idStack==dvmIdList.size()-1) {</span>
-<span class="nc bnc" id="L189" title="All 2 branches missed.">            if (ids.size() == 0) {</span>
-<span class="nc" id="L190">                controller.showMessage(&quot;Error&quot;, &quot;Please contact us at the following contact information \n&quot; + admin.getContact());// Swing으로 구현 필요.</span>
-            }
-            // Require address from other DVMs
-            else {
-<span class="nc bnc" id="L194" title="All 2 branches missed.">                for (int des : ids) {</span>
-<span class="nc" id="L195">                    new Message(this.ID, des, 4, &quot; &quot;).Send(); // addressMsg:Message</span>
-<span class="nc" id="L196">                }</span>
-            }
-<span class="nc" id="L198">            idStack=0;</span>
-        }
-<span class="nc" id="L200">    }</span>
-    public void getOtherVM_3() {
-
-        // Check Mail Box and filter which has our requirement (for Request Address)
-
-<span class="nc bnc" id="L205" title="All 2 branches missed.">        if (mailBox.get(0).getMsgField() != null) {</span>
-<span class="nc" id="L206">            double[] tempD = new double[2];</span>
-<span class="nc" id="L207">            String[] tempS = mailBox.get(0).getMsgField().split(&quot;\\?&quot;);</span>
-<span class="nc" id="L208">            tempD[0] = Double.parseDouble(tempS[0]);</span>
-<span class="nc" id="L209">            tempD[1] = Double.parseDouble(tempS[1]);</span>
-<span class="nc" id="L210">            controller.showVMFrame(new VM(mailBox.get(0).getSrc_id(), tempD));</span>
-        }
-<span class="nc" id="L212">        mailBox.remove(0);</span>
-        //return vms; -&gt; UI쪽으로 패스
-<span class="nc" id="L214">    }</span>
-    public void giveCode(String code) {
-<span class="nc" id="L216">        controller.showMessage(&quot;Guidance&quot;,&quot;&lt;html&gt; authentication code :&quot; + &quot;&lt;b&gt; &quot;+ code+ &quot; &lt;/b&gt;&lt;/html&gt;&quot;);</span>
-<span class="nc" id="L217">    }</span>
-    public boolean editDVMLocation() {
-<span class="nc" id="L219">        double[] Location = new double[2];</span>
-<span class="nc" id="L220">        Location[0] = 37.54164;  //scanLongitude</span>
-<span class="nc" id="L221">        Location[1] = 127.07880; //scanAltitude</span>
-<span class="nc" id="L222">        this.Location = Location;</span>
-
-<span class="nc bnc" id="L224" title="All 4 branches missed.">        if (this.Location != Location || this.Location == null)</span>
-<span class="nc" id="L225">            return false;</span>
-
-<span class="nc" id="L227">        return true;</span>
-    }
-    //송주한
-    public boolean CheckStoke(String itemName) {
-<span class="nc bnc" id="L231" title="All 2 branches missed.">        for (int i = 0; i &lt; 7; i++) {</span>
-<span class="nc bnc" id="L232" title="All 2 branches missed.">            if (itemName.equals(itemArray[i].getName())) {</span>
-<span class="nc bnc" id="L233" title="All 2 branches missed.">                if (itemArray[i].getStock() &gt; 0)</span>
-<span class="nc" id="L234">                    return true;</span>
-            }
-        }
-<span class="nc" id="L237">        return false;</span>
-    } // boolean 값으로 수정, item에 stock이 존재하면 true 아니면 false
-    public boolean editDVMActivated(VM v) {
-<span class="nc bnc" id="L240" title="All 4 branches missed.">        if (dvmList.size() &lt; 10 &amp;&amp; dvmList.size() &gt;= 0) {</span>
-<span class="nc" id="L241">            dvmList.add(v);</span>
-<span class="nc" id="L242">            return true;</span>
-        }
-<span class="nc" id="L244">        return false;</span>
-    }
-    //추가
     public void basicSettinng(int division) {
         // drink
-<span class="fc" id="L249">        drinkArray[0] = new Drink(&quot;Sprite&quot;, 900);</span>
-<span class="fc" id="L250">        drinkArray[1] = new Drink(&quot;Mint Sprite&quot;, 1000);</span>
-<span class="fc" id="L251">        drinkArray[2] = new Drink(&quot;Coke&quot;, 900);</span>
-<span class="fc" id="L252">        drinkArray[3] = new Drink(&quot;Mint Coke&quot;, 1000);</span>
-<span class="fc" id="L253">        drinkArray[4] = new Drink(&quot;Water&quot;, 500);</span>
-<span class="fc" id="L254">        drinkArray[5] = new Drink(&quot;Sparkling water&quot;, 700);</span>
-<span class="fc" id="L255">        drinkArray[6] = new Drink(&quot;Coffee&quot;, 600);</span>
-<span class="fc" id="L256">        drinkArray[7] = new Drink(&quot;Mint Coffee&quot;, 700);</span>
-<span class="fc" id="L257">        drinkArray[8] = new Drink(&quot;Milk Coffee&quot;, 700);</span>
-<span class="fc" id="L258">        drinkArray[9] = new Drink(&quot;Demisoda&quot;, 900);</span>
-<span class="fc" id="L259">        drinkArray[10] = new Drink(&quot;SunnyTen&quot;, 900);</span>
-<span class="fc" id="L260">        drinkArray[11] = new Drink(&quot;Sikhye&quot;, 700);</span>
-<span class="fc" id="L261">        drinkArray[12] = new Drink(&quot;IDH&quot;, 800);</span>
-<span class="fc" id="L262">        drinkArray[13] = new Drink(&quot;Milkis&quot;, 800);</span>
-<span class="fc" id="L263">        drinkArray[14] = new Drink(&quot;McCall&quot;, 600);</span>
-<span class="fc" id="L264">        drinkArray[15] = new Drink(&quot;2%&quot;, 600);</span>
-<span class="fc" id="L265">        drinkArray[16] = new Drink(&quot;Gatorade&quot;, 700);</span>
-<span class="fc" id="L266">        drinkArray[17] = new Drink(&quot;Hot Six&quot;, 700);</span>
-<span class="fc" id="L267">        drinkArray[18] = new Drink(&quot;CoCo palm&quot;, 1000);</span>
-<span class="fc" id="L268">        drinkArray[19] = new Drink(&quot;Minute Made&quot;, 500);</span>
+<span class="fc" id="L44">        drinkArray[0] = new Drink(&quot;Sprite&quot;, 900);</span>
+<span class="fc" id="L45">        drinkArray[1] = new Drink(&quot;Mint Sprite&quot;, 1000);</span>
+<span class="fc" id="L46">        drinkArray[2] = new Drink(&quot;Coke&quot;, 900);</span>
+<span class="fc" id="L47">        drinkArray[3] = new Drink(&quot;Mint Coke&quot;, 1000);</span>
+<span class="fc" id="L48">        drinkArray[4] = new Drink(&quot;Water&quot;, 500);</span>
+<span class="fc" id="L49">        drinkArray[5] = new Drink(&quot;Sparkling water&quot;, 700);</span>
+<span class="fc" id="L50">        drinkArray[6] = new Drink(&quot;Coffee&quot;, 600);</span>
+<span class="fc" id="L51">        drinkArray[7] = new Drink(&quot;Mint Coffee&quot;, 700);</span>
+<span class="fc" id="L52">        drinkArray[8] = new Drink(&quot;Milk Coffee&quot;, 700);</span>
+<span class="fc" id="L53">        drinkArray[9] = new Drink(&quot;Demisoda&quot;, 900);</span>
+<span class="fc" id="L54">        drinkArray[10] = new Drink(&quot;SunnyTen&quot;, 900);</span>
+<span class="fc" id="L55">        drinkArray[11] = new Drink(&quot;Sikhye&quot;, 700);</span>
+<span class="fc" id="L56">        drinkArray[12] = new Drink(&quot;IDH&quot;, 800);</span>
+<span class="fc" id="L57">        drinkArray[13] = new Drink(&quot;Milkis&quot;, 800);</span>
+<span class="fc" id="L58">        drinkArray[14] = new Drink(&quot;McCall&quot;, 600);</span>
+<span class="fc" id="L59">        drinkArray[15] = new Drink(&quot;2%&quot;, 600);</span>
+<span class="fc" id="L60">        drinkArray[16] = new Drink(&quot;Gatorade&quot;, 700);</span>
+<span class="fc" id="L61">        drinkArray[17] = new Drink(&quot;Hot Six&quot;, 700);</span>
+<span class="fc" id="L62">        drinkArray[18] = new Drink(&quot;CoCo palm&quot;, 1000);</span>
+<span class="fc" id="L63">        drinkArray[19] = new Drink(&quot;Minute Made&quot;, 500);</span>
         // item
-<span class="pc bpc" id="L270" title="3 of 4 branches missed.">        switch (division){</span>
+<span class="pc bpc" id="L65" title="3 of 4 branches missed.">        switch (division){</span>
             case 0:
-<span class="nc bnc" id="L272" title="All 2 branches missed.">                for (int i = 0; i &lt; 7; i++) {</span>
-<span class="nc" id="L273">                    itemArray[i] = new Item(drinkArray[i].getName(), drinkArray[i].getPrice(), 10);</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">                for (int i = 0; i &lt; 7; i++) {</span>
+<span class="nc" id="L68">                    itemArray[i] = new Item(drinkArray[i].getName(), drinkArray[i].getPrice(), 10);</span>
                 }
-<span class="nc" id="L275">                break;</span>
+<span class="nc" id="L70">                break;</span>
             case 1:
-<span class="fc bfc" id="L277" title="All 2 branches covered.">                for (int i = 0; i &lt; 7; i++) {</span>
-<span class="fc" id="L278">                    itemArray[i] = new Item(drinkArray[i+7].getName(), drinkArray[i+7].getPrice(), 10);</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">                for (int i = 0; i &lt; 7; i++) {</span>
+<span class="fc" id="L73">                    itemArray[i] = new Item(drinkArray[i+7].getName(), drinkArray[i+7].getPrice(), 10);</span>
                 }
-<span class="fc" id="L280">                break;</span>
+<span class="fc" id="L75">                break;</span>
             case 2:
-<span class="nc bnc" id="L282" title="All 2 branches missed.">                for (int i = 0; i &lt; 7; i++) {</span>
-<span class="nc" id="L283">                    itemArray[i] = new Item(drinkArray[i+13].getName(), drinkArray[i+13].getPrice(), 10);</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">                for (int i = 0; i &lt; 7; i++) {</span>
+<span class="nc" id="L78">                    itemArray[i] = new Item(drinkArray[i+13].getName(), drinkArray[i+13].getPrice(), 10);</span>
                 }
                 break;
         }
         // card
-<span class="fc" id="L288">        cardList.add(new Card(&quot;1234123412341234&quot;, 820, 578, 25, 2000));</span>
+<span class="fc" id="L83">        cardList.add(new Card(&quot;1234123412341234&quot;, 820, 578, 25, 2000));</span>
         //count
-<span class="fc" id="L290">        count = 0;</span>
-<span class="fc" id="L291">        idStack=0;</span>
-<span class="fc" id="L292">    }</span>
-    public String checkCode(int code) {
-<span class="nc bnc" id="L294" title="All 2 branches missed.">        for (int i = 0; i &lt; codeList.size(); i++) {</span>
-<span class="nc bnc" id="L295" title="All 2 branches missed.">            if (codeList.elementAt(i).getCode() == code) {</span>
-<span class="nc" id="L296">                String str = codeList.elementAt(i).getName();</span>
-<span class="nc" id="L297">                codeList.remove(i);</span>
-<span class="nc" id="L298">                return str;</span>
-            }
+<span class="fc" id="L85">        count = 0;</span>
+<span class="fc" id="L86">        idStack=0;</span>
+<span class="fc" id="L87">    }</span>
+    public Vector&lt;VM&gt; getDvmList() {
+<span class="nc" id="L89">        return dvmList;</span>
+    }
+//    public int getID(){return ID;}
+
+    //unused
+    public String giveProduct(int index) {
+<span class="nc" id="L95">        return itemArray[index - 1].getName();</span>
+        //드링크 이름 반환 인덱스 들어옴.
+    }
+    public double[] getVMInfo(int index) {
+<span class="nc" id="L99">        double[] arr = new double[2];</span>
+<span class="nc" id="L100">        arr[0] = vmLocArray[index - 1][0]; //index번째는 index-1이니까.</span>
+<span class="nc" id="L101">        arr[1] = vmLocArray[index - 1][1];</span>
+<span class="nc" id="L102">        return arr;</span>
+    }//double[]로 반환값 수정., 인덱스 받아서 넘겨줌.
+    /*    public void editProductInfo(int index, String name, int price, int stock) {
+        itemArray[index - 1].editName(name);
+        itemArray[index - 1].editPrice(price);
+        itemArray[index - 1].editStock(stock);
+        drinkArray[index - 1].setName(name);
+        drinkArray[index - 1].setPrice(price);
+    }*/
+    public int getVmNum(){
+<span class="nc" id="L112">        return this.dvmList.size();</span>
+    }
+    synchronized public int getMailBoxSize(){
+<span class="fc" id="L115">        Thread.yield();</span>
+<span class="fc" id="L116">        return mailBox.size();</span>
+    }
+    public boolean editDVMActivated(VM v) {
+<span class="nc bnc" id="L119" title="All 4 branches missed.">        if (dvmList.size() &lt; 10 &amp;&amp; dvmList.size() &gt;= 0) {</span>
+<span class="nc" id="L120">            dvmList.add(v);</span>
+<span class="nc" id="L121">            return true;</span>
         }
-<span class="nc" id="L301">        return null;</span>
+<span class="nc" id="L123">        return false;</span>
+    }
+    public void ConfirmSell() {
+        //6번 보냄 내용은 선결재로 코드넘겨준게 지급됬는지 질문.-사용하지않으므로 주석만.
+        //보내는 메시지는 new Message(this.ID, 0, 6, itemName).Send();
+<span class="nc" id="L128">        return;</span>
+    }
+    public boolean editDVMLocation() {
+<span class="nc" id="L131">        double[] Location = new double[2];</span>
+<span class="nc" id="L132">        Location[0] = 37.54164;  //scanLongitude</span>
+<span class="nc" id="L133">        Location[1] = 127.07880; //scanAltitude</span>
+<span class="nc" id="L134">        this.Location = Location;</span>
+
+<span class="nc bnc" id="L136" title="All 4 branches missed.">        if (this.Location != Location || this.Location == null)</span>
+<span class="nc" id="L137">            return false;</span>
+
+<span class="nc" id="L139">        return true;</span>
+    }
+    //getset
+
+    public MainFrame setUI(MainFrame m){
+<span class="fc" id="L144">        this.controller =  m;</span>
+<span class="fc" id="L145">        return this.controller;</span>
+    }
+    public Admin setAdmin(Admin admin){
+<span class="fc" id="L148">        this.admin = admin;</span>
+<span class="fc" id="L149">        return this.admin;</span>
+    }
+    public double[] getLocation(){
+<span class="nc" id="L152">        return this.Location;</span>
+    }
+    public int getID() {
+<span class="fc" id="L155">        return this.ID;</span>
+    }
+    public String getIDtS() {
+<span class="fc" id="L158">        return String.valueOf(this.ID);</span>
     }
     public Drink[] getDrinkArray() {
-<span class="nc" id="L304">        return drinkArray;</span>
+<span class="fc" id="L161">        return drinkArray;</span>
     }
-    public Card findCard(String cardNum, int cvc, int pw, int validity) {
-<span class="nc bnc" id="L307" title="All 2 branches missed.">        for (int i = 0; i &lt; cardList.size(); i++) {</span>
-<span class="nc bnc" id="L308" title="All 2 branches missed.">            if (cardList.elementAt(i).isThisCard(cardNum, cvc, pw, validity)) {</span>
-<span class="nc" id="L309">                return cardList.elementAt(i);</span>
-            }
-        }
-<span class="nc" id="L312">        return null;</span>
+    public String getAddress() {
+<span class="nc" id="L164">        return this.Address;</span>
     }
     public void editVMAddress(String Address) {
-<span class="nc" id="L315">        this.Address = Address;</span>
-<span class="nc" id="L316">    }</span>
+<span class="nc" id="L167">        this.Address = Address;</span>
+<span class="nc" id="L168">    }</span>
     public void editVMID(int id) {
-<span class="nc" id="L318">        this.ID = id;</span>
-<span class="nc" id="L319">    }</span>
+<span class="nc" id="L170">        this.ID = id;</span>
+<span class="nc" id="L171">    }</span>
+
+
+    //find
+
     public Drink findDrink(String name) {
-<span class="nc bnc" id="L321" title="All 2 branches missed.">        for (int i = 0; i &lt; 20; i++) {</span>
-<span class="nc bnc" id="L322" title="All 2 branches missed.">            if (name.equals(drinkArray[i].getName())) {</span>
-<span class="nc" id="L323">                return drinkArray[i];</span>
+<span class="nc bnc" id="L177" title="All 2 branches missed.">        for (int i = 0; i &lt; 20; i++) {</span>
+<span class="nc bnc" id="L178" title="All 2 branches missed.">            if (name.equals(drinkArray[i].getName())) {</span>
+<span class="nc" id="L179">                return drinkArray[i];</span>
             }
         }
-<span class="nc" id="L326">        return null;</span>
+<span class="nc" id="L182">        return null;</span>
     }
     public Item findItem(String name) {
-<span class="nc bnc" id="L329" title="All 2 branches missed.">        for (int i = 0; i &lt; 7; i++) {</span>
-<span class="nc bnc" id="L330" title="All 2 branches missed.">            if (name.equals(itemArray[i].getName())) {</span>
-<span class="nc" id="L331">                return itemArray[i];</span>
+<span class="pc bpc" id="L185" title="1 of 2 branches missed.">        for (int i = 0; i &lt; 7; i++) {</span>
+<span class="fc bfc" id="L186" title="All 2 branches covered.">            if (name.equals(itemArray[i].getName())) {</span>
+<span class="fc" id="L187">                return itemArray[i];</span>
             }
         }
-<span class="nc" id="L334">        return null;</span>
+<span class="nc" id="L190">        return null;</span>
     }
-    //강현수
+    public Card findCard(String cardNum, int cvc, int pw, int validity) {
+<span class="nc bnc" id="L193" title="All 2 branches missed.">        for (int i = 0; i &lt; cardList.size(); i++) {</span>
+<span class="nc bnc" id="L194" title="All 2 branches missed.">            if (cardList.elementAt(i).isThisCard(cardNum, cvc, pw, validity)) {</span>
+<span class="nc" id="L195">                return cardList.elementAt(i);</span>
+            }
+        }
+<span class="nc" id="L198">        return null;</span>
+    }
+
+
+    //give
+    public void giveCode(String code) {
+<span class="fc" id="L204">        controller.showMessage(&quot;Guidance&quot;,&quot;&lt;html&gt; authentication code :&quot; + &quot;&lt;b&gt; &quot;+ code+ &quot; &lt;/b&gt;&lt;/html&gt;&quot;);</span>
+<span class="fc" id="L205">    }</span>
+
+    //check
+    public boolean CheckStock(String itemName) {
+<span class="fc bfc" id="L209" title="All 2 branches covered.">        for (int i = 0; i &lt; 7; i++) {</span>
+<span class="fc bfc" id="L210" title="All 2 branches covered.">            if (itemName.equals(itemArray[i].getName())) {</span>
+<span class="pc bpc" id="L211" title="1 of 2 branches missed.">                if (itemArray[i].getStock() &gt; 0)</span>
+<span class="fc" id="L212">                    return true;</span>
+            }
+        }
+<span class="fc" id="L215">        return false;</span>
+    } // boolean 값으로 수정, item에 stock이 존재하면 true 아니면 false
+
+    public String checkCode(int code) {
+<span class="pc bfc" id="L219" title="All 2 branches covered.">        for (int i = 0; i &lt; codeList.size(); i++) {</span>
+<span class="pc bpc" id="L220" title="1 of 2 branches missed.">            if (codeList.elementAt(i).getCode() == code) {</span>
+<span class="fc" id="L221">                String str = codeList.elementAt(i).getName();</span>
+<span class="fc" id="L222">                codeList.remove(i);</span>
+<span class="fc" id="L223">                return str;</span>
+            }
+        }
+<span class="fc" id="L226">        return null;</span>
+    }
+
+
+
+
+    //message
+    synchronized public void receiveRequest(){
+<span class="fc" id="L234">        Thread.yield();</span>
+
+<span class="fc" id="L236">        int mt = mailBox.get(0).getMsgtype();</span>
+
+<span class="pc bpc" id="L238" title="2 of 4 branches missed.">        if(mt == 1 || mt == 4){</span>
+<span class="nc" id="L239">            NotifyVMsInfo();</span>
+        }
+<span class="pc bpc" id="L241" title="1 of 2 branches missed.">        if(mt == 2){</span>
+<span class="nc" id="L242">            getOtherVM_2();</span>
+        }
+<span class="fc bfc" id="L244" title="All 2 branches covered.">        if(mt == 3){</span>
+<span class="fc" id="L245">            confirmPrepay();</span>
+        }
+<span class="pc bpc" id="L247" title="1 of 2 branches missed.">        if(mt == 5){</span>
+<span class="nc" id="L248">            getOtherVM_3();</span>
+        }
+<span class="pc bpc" id="L250" title="1 of 2 branches missed.">        if(mt == 6){</span>
+<span class="nc" id="L251">            RespondSell();</span>
+        }
+<span class="pc bpc" id="L253" title="1 of 2 branches missed.">        if(mt == 7){</span>
+<span class="nc" id="L254">            ConfirmSell_2();</span>
+        }
+<span class="fc bfc" id="L256" title="All 2 branches covered.">        if(mt == 8){</span>
+<span class="fc" id="L257">            requestPrepay_2();</span>
+        }
+<span class="fc" id="L259">    }</span>
+
+    public void RespondSell() {
+        //6번오면 7번보냄 선결재로 코드넘겨준게 지급됬는지 확인 후 전송.
+<span class="nc" id="L263">        new Message(this.ID, mailBox.get(0).getSrc_id(), 7, mailBox.get(0).getMsgField()).Send();</span>
+<span class="nc" id="L264">        mailBox.remove(0);</span>
+
+<span class="nc" id="L266">        return;</span>
+    }
+    public void ConfirmSell_2() {
+        //7번오면 처리. 선결재로 코드넘겨준게 지급됬는지 질문에 대한 응답을 확인.-사용하지않으므로주석만.
+<span class="nc" id="L270">        return;</span>
+    }
+
+
+    synchronized void MailRecieve(Message msg) {
+<span class="fc" id="L275">        Thread.yield();</span>
+<span class="fc" id="L276">        System.out.println(&quot;DVM &quot;+this.ID+&quot; Message ricieved\n&quot;+msg.toString());</span>
+<span class="fc" id="L277">        this.mailBox.add(msg);</span>
+<span class="fc" id="L278">    }</span>
+    public void getOtherVM(String itemName){
+        // Use Case 4, 9, 15
+<span class="nc" id="L281">        new Message(this.ID, 0, 1, itemName).Send(); // stockMsg:Message</span>
+<span class="nc" id="L282">    }</span>
+    public void getOtherVM_test(String itemName){
+        // Use Case 4, 9, 15
+<span class="nc" id="L285">        System.out.println(&quot;1&quot;);</span>
+<span class="nc" id="L286">        new Message(this.ID, this.ID, 1, itemName).Send(); // stockMsg:Message</span>
+<span class="nc" id="L287">    }</span>
+    public void getOtherVM_2() {
+<span class="nc" id="L289">        System.out.println(&quot;1&quot;);</span>
+        //196번에서 초기화됬을때, 혹은 아예 처음에 배열을 pop해줌 전부다.
+<span class="nc bnc" id="L291" title="All 2 branches missed.">        if(idStack==0)</span>
+<span class="nc bnc" id="L292" title="All 2 branches missed.">            while(ids.size()&gt;0)</span>
+<span class="nc" id="L293">                ids.remove(0);</span>
+        //이다음부분도 진행됨.
+<span class="nc bnc" id="L295" title="All 2 branches missed.">        if (mailBox.get(0).getMsgField() != null)</span>
+<span class="nc" id="L296">            ids.add(mailBox.get(0).getSrc_id());</span>
+<span class="nc" id="L297">        mailBox.remove(0);</span>
+<span class="nc" id="L298">        idStack++;</span>
+<span class="nc bnc" id="L299" title="All 2 branches missed.">        if(idStack==dvmIdList.size()-1) {</span>
+<span class="nc bnc" id="L300" title="All 2 branches missed.">            if (ids.size() == 0) {</span>
+<span class="nc" id="L301">                controller.showMessage(&quot;Error&quot;, &quot;Please contact us at the following contact information \n&quot; + admin.getContact());// Swing으로 구현 필요.</span>
+            }
+            // Require address from other DVMs
+            else {
+<span class="nc bnc" id="L305" title="All 2 branches missed.">                for (int des : ids) {</span>
+<span class="nc" id="L306">                    new Message(this.ID, des, 4, &quot; &quot;).Send(); // addressMsg:Message</span>
+<span class="nc" id="L307">                }</span>
+            }
+<span class="nc" id="L309">            idStack=0;</span>
+        }
+<span class="nc" id="L311">    }</span>
+    public void getOtherVM_3() {
+
+        // Check Mail Box and filter which has our requirement (for Request Address)
+
+<span class="nc bnc" id="L316" title="All 2 branches missed.">        if (mailBox.get(0).getMsgField() != null) {</span>
+<span class="nc" id="L317">            double[] tempD = new double[2];</span>
+<span class="nc" id="L318">            String[] tempS = mailBox.get(0).getMsgField().split(&quot;\\?&quot;);</span>
+<span class="nc" id="L319">            tempD[0] = Double.parseDouble(tempS[0]);</span>
+<span class="nc" id="L320">            tempD[1] = Double.parseDouble(tempS[1]);</span>
+<span class="nc" id="L321">            controller.showVMFrame(new VM(mailBox.get(0).getSrc_id(), tempD));</span>
+        }
+<span class="nc" id="L323">        mailBox.remove(0);</span>
+        //return vms; -&gt; UI쪽으로 패스
+<span class="nc" id="L325">    }</span>
+    public void NotifyVMsInfo() {
+        // msgType == 1
+<span class="nc" id="L328">        Message msg = mailBox.get(0);</span>
+<span class="nc bnc" id="L329" title="All 3 branches missed.">        switch (msg.getMsgtype()) {</span>
+            case 1:
+<span class="nc" id="L331">                System.out.println(&quot;VM(&quot; + this.getID() + &quot;): Receive Message type: 1&quot;);</span>
+<span class="nc" id="L332">                boolean isItem = false;</span>
+<span class="nc bnc" id="L333" title="All 2 branches missed.">                for (int j = 0; j &lt; itemArray.length; j++) {</span>
+<span class="nc bnc" id="L334" title="All 2 branches missed.">                    if ((itemArray[j].getName()).equals(msg.getMsgField())) {</span>
+<span class="nc bnc" id="L335" title="All 2 branches missed.">                        if (itemArray[j].getStock() &gt; 0) {</span>
+<span class="nc" id="L336">                            System.out.println(&quot;VM(&quot; + this.getID() + &quot;): I have a stock&quot;);</span>
+<span class="nc" id="L337">                            Message stockMsg = new Message(this.ID, msg.getSrc_id(), 2, msg.getMsgField());</span>
+<span class="nc" id="L338">                            stockMsg.Send();</span>
+<span class="nc" id="L339">                            isItem = true;</span>
+<span class="nc" id="L340">                            mailBox.remove(0);</span>
+<span class="nc" id="L341">                            break;</span>
+                        }
+<span class="nc" id="L343">                        System.out.println(&quot;VM(&quot; + this.getID() + &quot;): I don't have a stock&quot;);</span>
+                    }
+                }
+<span class="nc bnc" id="L346" title="All 2 branches missed.">                if (!isItem) {</span>
+<span class="nc" id="L347">                    Message stockMsg = new Message(this.ID, msg.getSrc_id(), 2, null);</span>
+<span class="nc" id="L348">                    mailBox.remove(0);</span>
+<span class="nc" id="L349">                    stockMsg.Send();</span>
+<span class="nc" id="L350">                }</span>
+                break;
+            case 4:
+                // msgType == 4
+<span class="nc" id="L354">                String loc = this.Location[0] + &quot;?&quot; + this.Location[1];</span>
+<span class="nc" id="L355">                Message addressMsg = new Message(this.ID, mailBox.get(0).getSrc_id(), 5, loc);</span>
+<span class="nc" id="L356">                mailBox.remove(0);</span>
+<span class="nc" id="L357">                addressMsg.Send();</span>
+<span class="nc" id="L358">                break;</span>
+            default:
+<span class="nc" id="L360">                System.out.println(&quot;Notify가 실행되었는데 1,4가아님&quot;);</span>
+        }
+<span class="nc" id="L362">    }</span>
     public void requestPrepay(String name, int dst_id) {
         //코드 생성
         String code;
         String zeros;
         //자기의ID + n번째음료수 자기의 ID+음료수 식별id + n번째로 발급했다.
-<span class="nc bnc" id="L342" title="All 2 branches missed.">        if (count &lt; 10)</span>
-<span class="nc" id="L343">            zeros = &quot;000&quot;;</span>
-<span class="nc bnc" id="L344" title="All 2 branches missed.">        else if (count &lt; 100)</span>
-<span class="nc" id="L345">            zeros = &quot;00&quot;;</span>
-<span class="nc bnc" id="L346" title="All 2 branches missed.">        else if (count &lt; 1000)</span>
-<span class="nc" id="L347">            zeros = &quot;0&quot;;</span>
+<span class="pc bpc" id="L368" title="1 of 2 branches missed.">        if (count &lt; 10)</span>
+<span class="fc" id="L369">            zeros = &quot;000&quot;;</span>
+<span class="nc bnc" id="L370" title="All 2 branches missed.">        else if (count &lt; 100)</span>
+<span class="nc" id="L371">            zeros = &quot;00&quot;;</span>
+<span class="nc bnc" id="L372" title="All 2 branches missed.">        else if (count &lt; 1000)</span>
+<span class="nc" id="L373">            zeros = &quot;0&quot;;</span>
         else
-<span class="nc" id="L349">            zeros = &quot;&quot;;</span>
-<span class="nc" id="L350">        code = String.valueOf(this.ID) + zeros + count;</span>
-<span class="nc" id="L351">        count++;</span>
-<span class="nc" id="L352">        System.out.println(&quot;ID(&quot; + this.ID + &quot;) : requestPrepay&quot;);</span>
-<span class="nc" id="L353">        new Message(this.ID, dst_id, 3, name + &quot;-&quot; + code).Send();</span>
-<span class="nc" id="L354">    }</span>
+<span class="nc" id="L375">            zeros = &quot;&quot;;</span>
+<span class="fc" id="L376">        code = String.valueOf(this.ID) + zeros + count;</span>
+<span class="fc" id="L377">        count++;</span>
+<span class="fc" id="L378">        System.out.println(&quot;ID(&quot; + this.ID + &quot;) : requestPrepay&quot;);</span>
+<span class="fc" id="L379">        new Message(this.ID, dst_id, 3, name + &quot;-&quot; + code).Send();</span>
+<span class="fc" id="L380">    }</span>
     public void requestPrepay_2(){
-<span class="nc bnc" id="L356" title="All 2 branches missed.">        if (mailBox.get(0).getMsgField() == null)</span>
-<span class="nc" id="L357">            controller.showMessage(&quot;Guidance&quot;,&quot;Out of Stock&quot;);</span>
+<span class="pc bpc" id="L382" title="1 of 2 branches missed.">        if (mailBox.get(0).getMsgField() == null)</span>
+<span class="nc" id="L383">            controller.showMessage(&quot;Guidance&quot;,&quot;Out of Stock&quot;);</span>
         else {
-<span class="nc" id="L359">            String str[] = mailBox.get(0).getMsgField().split(&quot;-&quot;);</span>
+<span class="fc" id="L385">            String str[] = mailBox.get(0).getMsgField().split(&quot;-&quot;);</span>
 
-<span class="nc" id="L361">            giveCode(str[1]); // 카드창 띄우기</span>
-<span class="nc" id="L362">            mailBox.remove(0);</span>
+<span class="fc" id="L387">            giveCode(str[1]); // 카드창 띄우기</span>
+<span class="fc" id="L388">            mailBox.remove(0);</span>
         }
-<span class="nc" id="L364">    }</span>
+<span class="fc" id="L390">    }</span>
     public void confirmPrepay() {
         int stock;
-<span class="nc" id="L367">        String str[] = mailBox.get(0).getMsgField().split(&quot;-&quot;);</span>
-<span class="nc bnc" id="L368" title="All 2 branches missed.">        for (int j = 0; j &lt; itemArray.length; j++) {</span>
-<span class="nc bnc" id="L369" title="All 2 branches missed.">            if (itemArray[j].getName().equals(str[0])) {</span>
-<span class="nc" id="L370">                System.out.println(&quot;2&quot;);</span>
-<span class="nc" id="L371">                String name = itemArray[j].getName();</span>
-<span class="nc" id="L372">                stock = itemArray[j].getStock();</span>
-<span class="nc bnc" id="L373" title="All 2 branches missed.">                if (stock &lt; 1){</span>
-<span class="nc" id="L374">                    new Message(this.ID, mailBox.get(0).getSrc_id(), 8, null).Send();</span>
+<span class="fc" id="L393">        String str[] = mailBox.get(0).getMsgField().split(&quot;-&quot;);</span>
+<span class="fc bfc" id="L394" title="All 2 branches covered.">        for (int j = 0; j &lt; itemArray.length; j++) {</span>
+<span class="fc bfc" id="L395" title="All 2 branches covered.">            if (itemArray[j].getName().equals(str[0])) {</span>
+<span class="fc" id="L396">                System.out.println(&quot;2&quot;);</span>
+<span class="fc" id="L397">                String name = itemArray[j].getName();</span>
+<span class="fc" id="L398">                stock = itemArray[j].getStock();</span>
+<span class="pc bpc" id="L399" title="1 of 2 branches missed.">                if (stock &lt; 1){</span>
+<span class="nc" id="L400">                    new Message(this.ID, mailBox.get(0).getSrc_id(), 8, null).Send();</span>
                 }
                 else {
-<span class="nc" id="L377">                    Code c = new Code(Integer.parseInt(str[1]), str[0]);</span>
-<span class="nc" id="L378">                    codeList.add(c);</span>
-<span class="nc" id="L379">                    new Message(this.ID, mailBox.get(0).getSrc_id(), 8, mailBox.get(0).getMsgField()).Send();</span>
+<span class="fc" id="L403">                    Code c = new Code(Integer.parseInt(str[1]), str[0]);</span>
+<span class="fc" id="L404">                    codeList.add(c);</span>
+<span class="fc" id="L405">                    new Message(this.ID, mailBox.get(0).getSrc_id(), 8, mailBox.get(0).getMsgField()).Send();</span>
                 }
             }
         }
-<span class="nc" id="L383">        mailBox.remove(0);</span>
-<span class="nc" id="L384">    }</span>
+<span class="fc" id="L409">        mailBox.remove(0);</span>
+<span class="fc" id="L410">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

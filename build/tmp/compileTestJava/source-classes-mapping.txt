@@ -1,8 +1,16 @@
+ItemTest.java
+ ItemTest
+CodeTest.java
+ CodeTest
+VMProjectTest.java
+ VMProjectTest
 AdminTest.java
  AdminTest
 CardTest.java
  CardTest
-VMProjectTest.java
- VMProjectTest
+DrinkTest.java
+ DrinkTest
 MessageTest.java
  MessageTest
+VMTest.java
+ VMTest
