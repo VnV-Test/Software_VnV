@@ -1,6 +1,8 @@
+AdminTest.java
+ AdminTest
 CardTest.java
  CardTest
 VMProjectTest.java
  VMProjectTest
-AdminTest.java
- AdminTest
+MessageTest.java
+ MessageTest
