@@ -43,7 +43,7 @@ public class Item {
             return true;
         }
     }
-    public boolean editStock(){
+  /*  public boolean editStock(){
         if(this.Stock <=0){
             return false;
         }
@@ -51,7 +51,7 @@ public class Item {
             this.Stock--;
             return true;
         }
-    }
+    }*/
 
     public int getStock(){
         return Stock;
@@ -60,17 +60,7 @@ public class Item {
     public String getName(){
         return Name;
     }
-
-    public void setPrice(int price){
-        Price=price;
-    }
     public int getPrice(){
         return this.Price;
-    }
-    public void setName(String name){
-        Name=name;
-    }
-    public void setStock(int stock){
-        Stock=stock;
     }
 }
