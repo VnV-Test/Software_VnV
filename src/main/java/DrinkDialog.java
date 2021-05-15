@@ -47,7 +47,7 @@ public class DrinkDialog extends JDialog {
                     // TODO Auto-generated method stub
                     super.mouseClicked(e);
                     parent.setSelectProduct(index);
-                    parent.setProduct(drinkArray[index].getName(),drinkArray[index].getPrice(),0);
+                    parent.setProduct(drinkArray[index].getName(),drinkArray[index].getPrice());
                     dispose();
                     JOptionPane.showMessageDialog(null, drinkArray[index].getName() +"is selected", "Guidance", JOptionPane.INFORMATION_MESSAGE);
                 }

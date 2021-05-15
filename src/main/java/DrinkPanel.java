@@ -19,7 +19,10 @@ public class DrinkPanel extends JPanel {
     JLabel priceLabel;
 
     //image
-    String[] imgpath = {"img/coke.png"};
+    String[] imgpath = {"img/coke.png","img/sprite.png","img/mintcoke.png","img/water.png"
+    ,"img/sparklingwater.png","img/coffee.png","img/milkcoffee.png","img/demisoda.png","img/sunnyten.png",
+    "img/sikhye.png","img/IDH.png","img/milkiss.png","img/mccall.png","img/2.png","img/gatorade.png","img/hotsix.png"
+    ,"img/coco.png","img/minutemade.png","img/sprite.png","img/milkcoffee.png"};
     ImageIcon icon;
 
     public DrinkPanel(String name, int price) {
@@ -54,7 +57,63 @@ public class DrinkPanel extends JPanel {
             case "Coke":
                 icon = new ImageIcon(imgpath[0]);
                 break;
-
+            case "Sprite":
+                icon = new ImageIcon(imgpath[1]);
+                break;
+            case "Mint Coke":
+                icon = new ImageIcon(imgpath[2]);
+                break;
+            case "Water":
+                icon = new ImageIcon(imgpath[3]);
+                break;
+            case "Sparkling water":
+                icon = new ImageIcon(imgpath[4]);
+                break;
+            case "Coffee":
+                icon = new ImageIcon(imgpath[5]);
+                break;
+            case "Milk Coffee":
+                icon = new ImageIcon(imgpath[6]);
+                break;
+            case "Demisoda":
+                icon = new ImageIcon(imgpath[7]);
+                break;
+            case "SunnyTen":
+                icon = new ImageIcon(imgpath[8]);
+                break;
+            case "Sikhye":
+                icon = new ImageIcon(imgpath[9]);
+                break;
+            case "IDH":
+                icon = new ImageIcon(imgpath[10]);
+                break;
+            case "Milkis":
+                icon = new ImageIcon(imgpath[11]);
+                break;
+            case "McCall":
+                icon = new ImageIcon(imgpath[12]);
+                break;
+            case "2%":
+                icon = new ImageIcon(imgpath[13]);
+                break;
+            case "Gatorade":
+                icon = new ImageIcon(imgpath[14]);
+                break;
+            case "Hot Six":
+                icon = new ImageIcon(imgpath[15]);
+                break;
+            case "CoCo palm":
+                icon = new ImageIcon(imgpath[16]);
+                break;
+            case "Minute Made":
+                icon = new ImageIcon(imgpath[17]);
+                break;
+            case "Mint Sprite":
+                icon = new ImageIcon(imgpath[18]);
+                break;
+            case "Mint Coffee":
+                icon = new ImageIcon(imgpath[19]);
+                break;
         }
         JLabel centerLabel = new JLabel(icon);
         centerLabel.setBackground(Color.white);

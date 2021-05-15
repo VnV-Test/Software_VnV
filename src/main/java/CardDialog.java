@@ -1,11 +1,6 @@
-
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 
 public class CardDialog extends JDialog{
     Container pane = this.getContentPane();
@@ -17,7 +12,7 @@ public class CardDialog extends JDialog{
 
     JTextField contf = new JTextField("",4);
     JTextField cvc = new JTextField("",4);
-    JTextField pw = new JTextField("",4);
+    JPasswordField pw = new JPasswordField("",4);
     int price;
     String name;
     VM otherVM = null;
@@ -32,6 +27,14 @@ public class CardDialog extends JDialog{
         this.getContentPane().setBackground(Color.white);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         init(false);
+        charLimit(num1,4);
+        charLimit(num2,4);
+        charLimit(num3,4);
+        charLimit(num4,4);
+        charLimit(contf,4);
+        charLimit(cvc,3);
+        charLimit(pw,2);
+        pw.setEchoChar('*');
         this.setVisible(true);
     }
     public CardDialog(MainFrame parent, String title, boolean modal, int price, String name,boolean isPre,VM otherVm) {
@@ -45,6 +48,14 @@ public class CardDialog extends JDialog{
         this.getContentPane().setBackground(Color.white);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         init(isPre);
+        charLimit(num1,4);
+        charLimit(num2,4);
+        charLimit(num3,4);
+        charLimit(num4,4);
+        charLimit(contf,4);
+        charLimit(cvc,3);
+        charLimit(pw,2);
+        pw.setEchoChar('*');
         this.setVisible(true);
     }
     private void init(boolean isPre) {
@@ -179,6 +190,18 @@ public class CardDialog extends JDialog{
     }
     public String getName(){
         return this.name;
+    }
+    private void charLimit(JTextField tf,int limit){
+        tf.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                super.keyTyped(e);
+                JTextField src = (JTextField) e.getSource();
+                if(src.getText().length() >= limit){
+                    e.consume();
+                }
+            }
+        });
     }
 }
 

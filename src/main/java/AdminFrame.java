@@ -99,8 +99,12 @@ public class AdminFrame extends JFrame{
                 // TODO Auto-generated method stub
                 if(AdminFrame.this.selectProduct == -1) { return; }
                 Drink drinklist[] = parent.getVM().getDrinkArray();
+                Item item = parent.getVM().findItem(drinklist[selectProduct].getName());
                 if(nametf.getText() != null){
                     drinklist[selectProduct].setName(nametf.getText());
+                    if(item != null){
+                        item.setName(nametf.getText());
+                    }
                 }
                 if(pricetf.getText() != null){
                     int price;
@@ -111,6 +115,24 @@ public class AdminFrame extends JFrame{
                         return;
                     }
                     drinklist[selectProduct].setPrice(price);
+                    if(item != null){
+                        item.setPrice(price);
+                    }
+                }
+                if( stocktf.isEnabled() && stocktf.getText() != null){
+                    int stock;
+                    try{
+                        stock  = Integer.parseInt(stocktf.getText());
+                    }catch(NumberFormatException e2){
+                        JOptionPane.showMessageDialog(null, "\n" + "Strings other than integers cannot be entered for price.", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    if(item != null){
+                        if(stock < 0 || stock > 99){
+                            return;
+                        }
+                        item.setStock(stock);
+                    }
                 }
                 JOptionPane.showMessageDialog(null, "Has been changed.", "Guidance", JOptionPane.INFORMATION_MESSAGE);
                 parent.showDrink();
@@ -119,7 +141,6 @@ public class AdminFrame extends JFrame{
         btnPanel.add(choose);
         btnPanel.add(change);
         drinkMainPanel.add(btnPanel);
-
         center.add(drinkPanel);
     }
     private void initVM() {
@@ -233,9 +254,17 @@ public class AdminFrame extends JFrame{
     public void setSelectProduct(int index){
         this.selectProduct = index;
     }
-    public void setProduct(String name,int price, int stock){
+    public void setProduct(String name,int price){
         nametf.setText(name);
         pricetf.setText(String.valueOf(price));
-        stocktf.setText(String.valueOf(stock));
+        Item item = parent.getVM().findItem(name);
+        if( item == null) {
+            stocktf.setEnabled(false);
+            stocktf.setText("");
+        }else{
+            stocktf.setEnabled(true);
+            stocktf.setText(String.valueOf(item.getStock()));
+        }
+
     }
 }

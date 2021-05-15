@@ -123,7 +123,6 @@ public class MainFrame extends JFrame{
                         }
                     }else {
                         // VM List Frame 생성
-                        vmframe = null;
                         vm.getOtherVM(drinkname);
                         MainFrame.this.predrinkname = drinkname;
                     }
@@ -309,11 +308,11 @@ public class MainFrame extends JFrame{
     }
     public void showVMFrame(VM vm){
         System.out.println("display VM:" + vm.getID());
+        System.out.println("Message from " + vm.getID() + ": vmframe = "  + this.vmframe);
         if(this.vmframe == null){
             System.out.println(predrinkname);
             Drink drink = vm.findDrink(predrinkname);
-
-            VMFrame vmListFrame = new VMFrame(this,vm,predrinkname,drink.getPrice());
+            this.vmframe = new VMFrame(this,vm,predrinkname,drink.getPrice());
         }else{
             vmframe.initVM(vm);
         }
@@ -321,5 +320,4 @@ public class MainFrame extends JFrame{
     public void setPredrinkname(String predrinkname){
         this.predrinkname = predrinkname;
     }
-
 }

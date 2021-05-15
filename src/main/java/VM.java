@@ -213,8 +213,7 @@ public class VM {
         //return vms; -> UI쪽으로 패스
     }
     public void giveCode(String code) {
-
-        controller.showMessage("Guidance","This is your authentication code + \n" + code);
+        controller.showMessage("Guidance","<html> authentication code :" + "<b> "+ code+ " </b></html>");
     }
     public boolean editDVMLocation() {
         double[] Location = new double[2];
