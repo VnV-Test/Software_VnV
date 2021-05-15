@@ -5,22 +5,22 @@ public class VM {
     private int ID;
     private double[] Location;
     private String Address;
-<span class="nc" id="L8">    private double[][] vmLocArray = new double[10000][2];</span>
+<span class="pc" id="L8">    private double[][] vmLocArray = new double[10000][2];</span>
     private String[] vmAddArray;
-<span class="nc" id="L10">    private Vector&lt;VM&gt; dvmList = new Vector&lt;&gt;();</span>
+<span class="pc" id="L10">    private Vector&lt;VM&gt; dvmList = new Vector&lt;&gt;();</span>
     private Vector&lt;Integer&gt; dvmIdList;
-<span class="nc" id="L12">    private Vector&lt;Code&gt; codeList = new Vector&lt;Code&gt;();</span>
-<span class="nc" id="L13">    private Vector&lt;String&gt; prepayList = new Vector&lt;&gt;();</span>
+<span class="pc" id="L12">    private Vector&lt;Code&gt; codeList = new Vector&lt;Code&gt;();</span>
+<span class="pc" id="L13">    private Vector&lt;String&gt; prepayList = new Vector&lt;&gt;();</span>
     private Item[] itemArray; //새로 추가함.- setProductinfo와 give Product연관/
-<span class="nc" id="L15">    private Drink[] drinkArray = new Drink[20]; //새로 추가함. - setProduct연관.</span>
+<span class="pc" id="L15">    private Drink[] drinkArray = new Drink[20]; //새로 추가함. - setProduct연관.</span>
     public Vector&lt;Message&gt; mailBox;
-<span class="nc" id="L17">    private Vector&lt;Card&gt; cardList = new Vector&lt;&gt;();</span>
+<span class="pc" id="L17">    private Vector&lt;Card&gt; cardList = new Vector&lt;&gt;();</span>
     private int count;
-<span class="nc" id="L19">    private MainFrame controller = null;</span>
-<span class="nc" id="L20">    private Admin admin = null;</span>
-<span class="nc" id="L21">    private Vector&lt;Integer&gt; ids = new Vector&lt;Integer&gt;();</span>
+<span class="pc" id="L19">    private MainFrame controller = null;</span>
+<span class="pc" id="L20">    private Admin admin = null;</span>
+<span class="pc" id="L21">    private Vector&lt;Integer&gt; ids = new Vector&lt;Integer&gt;();</span>
     private int idStack;
-<span class="nc" id="L23">    private Vector&lt;VM&gt; locVM = new Vector&lt;VM&gt;();</span>
+<span class="pc" id="L23">    private Vector&lt;VM&gt; locVM = new Vector&lt;VM&gt;();</span>
 
 <span class="nc" id="L25">    public VM(int ID, double[] Locaiton) {</span>
 <span class="nc" id="L26">        this.ID = ID;</span>
@@ -29,16 +29,16 @@ public class VM {
 <span class="nc" id="L29">        itemArray = new Item[7];</span>
 <span class="nc" id="L30">        basicSettinng(0);</span>
 <span class="nc" id="L31">    }</span>
-<span class="nc" id="L32">    public VM(int ID, double[] Locaiton,int division) {</span>
-<span class="nc" id="L33">        this.ID = ID;</span>
-<span class="nc" id="L34">        this.Location = Locaiton;</span>
-<span class="nc" id="L35">        this.mailBox = new Vector&lt;Message&gt;();</span>
-<span class="nc" id="L36">        this.itemArray = new Item[7];</span>
-<span class="nc" id="L37">        this.dvmIdList = new Vector&lt;Integer&gt;();</span>
-<span class="nc" id="L38">        this.dvmIdList.add(9999);</span>
-<span class="nc" id="L39">        this.dvmIdList.add(9998);</span>
-<span class="nc" id="L40">        basicSettinng(division);</span>
-<span class="nc" id="L41">    }</span>
+<span class="fc" id="L32">    public VM(int ID, double[] Locaiton,int division) {</span>
+<span class="fc" id="L33">        this.ID = ID;</span>
+<span class="fc" id="L34">        this.Location = Locaiton;</span>
+<span class="fc" id="L35">        this.mailBox = new Vector&lt;Message&gt;();</span>
+<span class="fc" id="L36">        this.itemArray = new Item[7];</span>
+<span class="fc" id="L37">        this.dvmIdList = new Vector&lt;Integer&gt;();</span>
+<span class="fc" id="L38">        this.dvmIdList.add(9999);</span>
+<span class="fc" id="L39">        this.dvmIdList.add(9998);</span>
+<span class="fc" id="L40">        basicSettinng(division);</span>
+<span class="fc" id="L41">    }</span>
     public Vector&lt;VM&gt; getDvmList() {
 <span class="nc" id="L43">        return dvmList;</span>
     }
@@ -140,19 +140,19 @@ public class VM {
 <span class="nc" id="L140">        return this.dvmList.size();</span>
     }
     synchronized public int getMailBoxSize(){
-<span class="nc" id="L143">        Thread.yield();</span>
-<span class="nc" id="L144">        return mailBox.size();</span>
+<span class="fc" id="L143">        Thread.yield();</span>
+<span class="fc" id="L144">        return mailBox.size();</span>
     }
     synchronized void MailRecieve(Message msg) {
-<span class="nc" id="L147">        Thread.yield();</span>
-<span class="nc" id="L148">        System.out.println(&quot;DVM &quot;+this.ID+&quot; Message ricieved\n&quot;+msg.toString());</span>
-<span class="nc" id="L149">        this.mailBox.add(msg);</span>
-<span class="nc" id="L150">    }</span>
+<span class="fc" id="L147">        Thread.yield();</span>
+<span class="fc" id="L148">        System.out.println(&quot;DVM &quot;+this.ID+&quot; Message ricieved\n&quot;+msg.toString());</span>
+<span class="fc" id="L149">        this.mailBox.add(msg);</span>
+<span class="fc" id="L150">    }</span>
     public int getID() {
-<span class="nc" id="L152">        return this.ID;</span>
+<span class="fc" id="L152">        return this.ID;</span>
     }
     public String getIDtS() {
-<span class="nc" id="L155">        return String.valueOf(this.ID);</span>
+<span class="fc" id="L155">        return String.valueOf(this.ID);</span>
     }
     //////
     public void ConfirmSell() {
@@ -246,38 +246,38 @@ public class VM {
     //추가
     public void basicSettinng(int division) {
         // drink
-<span class="nc" id="L249">        drinkArray[0] = new Drink(&quot;Sprite&quot;, 900);</span>
-<span class="nc" id="L250">        drinkArray[1] = new Drink(&quot;Mint Sprite&quot;, 1000);</span>
-<span class="nc" id="L251">        drinkArray[2] = new Drink(&quot;Coke&quot;, 900);</span>
-<span class="nc" id="L252">        drinkArray[3] = new Drink(&quot;Mint Coke&quot;, 1000);</span>
-<span class="nc" id="L253">        drinkArray[4] = new Drink(&quot;Water&quot;, 500);</span>
-<span class="nc" id="L254">        drinkArray[5] = new Drink(&quot;Sparkling water&quot;, 700);</span>
-<span class="nc" id="L255">        drinkArray[6] = new Drink(&quot;Coffee&quot;, 600);</span>
-<span class="nc" id="L256">        drinkArray[7] = new Drink(&quot;Mint Coffee&quot;, 700);</span>
-<span class="nc" id="L257">        drinkArray[8] = new Drink(&quot;Milk Coffee&quot;, 700);</span>
-<span class="nc" id="L258">        drinkArray[9] = new Drink(&quot;Demisoda&quot;, 900);</span>
-<span class="nc" id="L259">        drinkArray[10] = new Drink(&quot;SunnyTen&quot;, 900);</span>
-<span class="nc" id="L260">        drinkArray[11] = new Drink(&quot;Sikhye&quot;, 700);</span>
-<span class="nc" id="L261">        drinkArray[12] = new Drink(&quot;IDH&quot;, 800);</span>
-<span class="nc" id="L262">        drinkArray[13] = new Drink(&quot;Milkis&quot;, 800);</span>
-<span class="nc" id="L263">        drinkArray[14] = new Drink(&quot;McCall&quot;, 600);</span>
-<span class="nc" id="L264">        drinkArray[15] = new Drink(&quot;2%&quot;, 600);</span>
-<span class="nc" id="L265">        drinkArray[16] = new Drink(&quot;Gatorade&quot;, 700);</span>
-<span class="nc" id="L266">        drinkArray[17] = new Drink(&quot;Hot Six&quot;, 700);</span>
-<span class="nc" id="L267">        drinkArray[18] = new Drink(&quot;CoCo palm&quot;, 1000);</span>
-<span class="nc" id="L268">        drinkArray[19] = new Drink(&quot;Minute Made&quot;, 500);</span>
+<span class="fc" id="L249">        drinkArray[0] = new Drink(&quot;Sprite&quot;, 900);</span>
+<span class="fc" id="L250">        drinkArray[1] = new Drink(&quot;Mint Sprite&quot;, 1000);</span>
+<span class="fc" id="L251">        drinkArray[2] = new Drink(&quot;Coke&quot;, 900);</span>
+<span class="fc" id="L252">        drinkArray[3] = new Drink(&quot;Mint Coke&quot;, 1000);</span>
+<span class="fc" id="L253">        drinkArray[4] = new Drink(&quot;Water&quot;, 500);</span>
+<span class="fc" id="L254">        drinkArray[5] = new Drink(&quot;Sparkling water&quot;, 700);</span>
+<span class="fc" id="L255">        drinkArray[6] = new Drink(&quot;Coffee&quot;, 600);</span>
+<span class="fc" id="L256">        drinkArray[7] = new Drink(&quot;Mint Coffee&quot;, 700);</span>
+<span class="fc" id="L257">        drinkArray[8] = new Drink(&quot;Milk Coffee&quot;, 700);</span>
+<span class="fc" id="L258">        drinkArray[9] = new Drink(&quot;Demisoda&quot;, 900);</span>
+<span class="fc" id="L259">        drinkArray[10] = new Drink(&quot;SunnyTen&quot;, 900);</span>
+<span class="fc" id="L260">        drinkArray[11] = new Drink(&quot;Sikhye&quot;, 700);</span>
+<span class="fc" id="L261">        drinkArray[12] = new Drink(&quot;IDH&quot;, 800);</span>
+<span class="fc" id="L262">        drinkArray[13] = new Drink(&quot;Milkis&quot;, 800);</span>
+<span class="fc" id="L263">        drinkArray[14] = new Drink(&quot;McCall&quot;, 600);</span>
+<span class="fc" id="L264">        drinkArray[15] = new Drink(&quot;2%&quot;, 600);</span>
+<span class="fc" id="L265">        drinkArray[16] = new Drink(&quot;Gatorade&quot;, 700);</span>
+<span class="fc" id="L266">        drinkArray[17] = new Drink(&quot;Hot Six&quot;, 700);</span>
+<span class="fc" id="L267">        drinkArray[18] = new Drink(&quot;CoCo palm&quot;, 1000);</span>
+<span class="fc" id="L268">        drinkArray[19] = new Drink(&quot;Minute Made&quot;, 500);</span>
         // item
-<span class="nc bnc" id="L270" title="All 4 branches missed.">        switch (division){</span>
+<span class="pc bpc" id="L270" title="3 of 4 branches missed.">        switch (division){</span>
             case 0:
 <span class="nc bnc" id="L272" title="All 2 branches missed.">                for (int i = 0; i &lt; 7; i++) {</span>
 <span class="nc" id="L273">                    itemArray[i] = new Item(drinkArray[i].getName(), drinkArray[i].getPrice(), 10);</span>
                 }
 <span class="nc" id="L275">                break;</span>
             case 1:
-<span class="nc bnc" id="L277" title="All 2 branches missed.">                for (int i = 0; i &lt; 7; i++) {</span>
-<span class="nc" id="L278">                    itemArray[i] = new Item(drinkArray[i+7].getName(), drinkArray[i+7].getPrice(), 10);</span>
+<span class="fc bfc" id="L277" title="All 2 branches covered.">                for (int i = 0; i &lt; 7; i++) {</span>
+<span class="fc" id="L278">                    itemArray[i] = new Item(drinkArray[i+7].getName(), drinkArray[i+7].getPrice(), 10);</span>
                 }
-<span class="nc" id="L280">                break;</span>
+<span class="fc" id="L280">                break;</span>
             case 2:
 <span class="nc bnc" id="L282" title="All 2 branches missed.">                for (int i = 0; i &lt; 7; i++) {</span>
 <span class="nc" id="L283">                    itemArray[i] = new Item(drinkArray[i+13].getName(), drinkArray[i+13].getPrice(), 10);</span>
@@ -285,11 +285,11 @@ public class VM {
                 break;
         }
         // card
-<span class="nc" id="L288">        cardList.add(new Card(&quot;1234123412341234&quot;, 820, 578, 25, 2000));</span>
+<span class="fc" id="L288">        cardList.add(new Card(&quot;1234123412341234&quot;, 820, 578, 25, 2000));</span>
         //count
-<span class="nc" id="L290">        count = 0;</span>
-<span class="nc" id="L291">        idStack=0;</span>
-<span class="nc" id="L292">    }</span>
+<span class="fc" id="L290">        count = 0;</span>
+<span class="fc" id="L291">        idStack=0;</span>
+<span class="fc" id="L292">    }</span>
     public String checkCode(int code) {
 <span class="nc bnc" id="L294" title="All 2 branches missed.">        for (int i = 0; i &lt; codeList.size(); i++) {</span>
 <span class="nc bnc" id="L295" title="All 2 branches missed.">            if (codeList.elementAt(i).getCode() == code) {</span>
