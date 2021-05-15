@@ -145,6 +145,7 @@ public class VM {
     }
     synchronized void MailRecieve(Message msg) {
         Thread.yield();
+        System.out.println("DVM "+this.ID+" Message ricieved\n"+msg.toString());
         this.mailBox.add(msg);
     }
     public int getID() {

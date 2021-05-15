@@ -1,0 +1,20 @@
+
+z
+java:S4165"dRemove this useless assignment; "parent" already holds the assigned value along all execution paths.(‹‡Õ¾
+>
+java:S1604&"(Make this anonymous inner class a lambda(ÚØú§
+E
+java:S2387"/"parent" is the name of a field in "Component".(¾šêª
+S
+java:S1854/"8Remove this useless assignment to local variable "main".(Ïî¶úÿÿÿÿ
+S	java:S106*"9Replace this use of System.out or System.err by a logger.(é×“şÿÿÿÿ
+M
+java:S1135)"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ
+O
+java:S2130,"9Use "Integer.parseInt" for this string-to-int conversion.(œÙ€Ê
+O
+java:S2130-"9Use "Integer.parseInt" for this string-to-int conversion.(Òá¶Ì
+M
+java:S1135;"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ
+D
+java:S1481/")Remove this unused "main" local variable.(Ïî¶úÿÿÿÿ

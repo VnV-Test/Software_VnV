@@ -1,21 +1,21 @@
-TestMain.java
- TestMain
+DrinkPanel.java
+ DrinkPanel
+ DrinkPanel$1
+Code.java
+ Code
 Card.java
  Card
-Message.java
- Mail
- Message
 Admin.java
  Admin
 Item.java
  Item
-Drink.java
- Drink
 VMPanel.java
  VMPanel
  VMPanel$1
-Code.java
- Code
+Drink.java
+ Drink
+TestMain.java
+ TestMain
 CodeDialog.java
  CodeDialog
  CodeDialog$1
@@ -24,6 +24,9 @@ AdminDialog.java
  AdminDialog
  AdminDialog$1
  AdminDialog$2
+Message.java
+ Mail
+ Message
 DrinkDialog.java
  DrinkDialog
  DrinkDialog$1
@@ -60,9 +63,6 @@ StartDialog.java
  StartDialog$2
  StartDialog$3
  StartDialog$4
-DrinkPanel.java
- DrinkPanel
- DrinkPanel$1
 ImListening.java
  ImListening
 PaymentDialog.java

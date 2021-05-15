@@ -57,6 +57,7 @@ public class Message {
     }
 
     public void Send() {
+        System.out.println("DVM "+this.src_id+" Message sent\n"+this.toString());
         if(dst_id == 0){
             for(int dest : this.portArr) {
                 if(dest == this.src_id){ continue; }
@@ -82,5 +83,16 @@ public class Message {
     }
     public String getMsgField(){
         return this.description;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "src_id=" + src_id +
+                ", dst_id=" + dst_id +
+                ", type=" + type +
+                ", description='" + description + '\'' +
+                ", portArr=" + Arrays.toString(portArr) +
+                '}';
     }
 }
