@@ -102,9 +102,6 @@ public class MainFrame extends JFrame{
 
         frame.add(centerPanel,BorderLayout.CENTER);
     }
-    public void prePayment(String name,String Code){
-
-    }
     public void showDrink() {
         menuPanel.removeAll();
         Drink[] drinkArray = vm.getDrinkArray();

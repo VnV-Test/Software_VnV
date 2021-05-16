@@ -80,7 +80,8 @@ public class VM {
                 break;
         }
         // card
-        cardList.add(new Card("1234123412341234", 820, 578, 25, 2000));
+        cardList.add(new Card("1234123412341234", 821, 578, 25, 2900));
+        cardList.add(new Card("1111111111111111", 1222, 489, 27, 1500));
         //count
         count = 0;
         idStack=0;
