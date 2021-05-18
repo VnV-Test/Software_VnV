@@ -35,7 +35,10 @@ class RecieveMail extends Thread{
                     String inputMessage = in.readLine();
 
                     String[] tempS = inputMessage.split(",");
-
+                    System.out.println("field" + inputMessage);
+                    System.out.println("temp0 :" + tempS[0]);
+                    System.out.println("temp0 :" + tempS[1]);
+                    System.out.println("temp0 :" + tempS[2]);
                     Message mg = new Message(Integer.valueOf(tempS[0]), Integer.valueOf(tempS[1]), Integer.valueOf(tempS[2]), tempS[3]);
                     this.vm.MailRecieve(mg);
                 }

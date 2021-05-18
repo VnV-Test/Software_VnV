@@ -14,8 +14,9 @@ public class VMFrame extends JFrame{
     MainFrame parent = null;
     String drinkname;
     int price;
+    boolean ispaint = false;
 
-    public VMFrame(MainFrame parent, VM otherVm,String drinkname,int price) {
+    public VMFrame(MainFrame parent,String drinkname,int price) {
         super("VM-List");
         this.parent = parent;
         this.setSize(500,500);
@@ -23,10 +24,10 @@ public class VMFrame extends JFrame{
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.drinkname = drinkname;
         this.price = price;
-        init(otherVm);
+        init();
         this.setVisible(true);
     }
-    private void init(VM otherVm) {
+    private void init() {
         JPanel centerPanel = new JPanel();
         centerPanel.setBackground(Color.white);
         centerPanel.setPreferredSize(new Dimension(370,450));
@@ -39,7 +40,8 @@ public class VMFrame extends JFrame{
         JScrollPane vmScroll = new JScrollPane(vmPanel);
         vmScroll.setPreferredSize(new Dimension(372,400));
         centerPanel.add(vmScroll,BorderLayout.CENTER);
-        initVM(otherVm);
+        JLabel error = new JLabel("                    재고를 가지고 있는 다른 VM이 없습니다.");
+        vmPanel.add(error);
         frame.add(centerPanel,BorderLayout.CENTER);
         this.addWindowListener(new WindowAdapter() {
             @Override
@@ -54,6 +56,12 @@ public class VMFrame extends JFrame{
     }
     public void initVM(VM otherVm){
         // 거리계산
+        if(!ispaint){
+            vmPanel.removeAll();
+            repaint();
+            validate();
+            ispaint = true;
+        }
         VM vm = parent.getVM();
         Double distance = Math.sqrt(Math.pow(otherVm.getLocation()[0]-vm.getLocation()[0],2)+Math.pow(otherVm.getLocation()[1]-vm.getLocation()[1],2));
         VMPanel vmpanel = new VMPanel(otherVm.getID(),distance);

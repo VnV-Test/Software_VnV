@@ -1,5 +1,3 @@
-
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -124,6 +122,7 @@ public class MainFrame extends JFrame{
                         }
                     }else {
                         // VM List Frame 생성
+                        MainFrame.this.vmframe = new VMFrame(MainFrame.this,predrinkname,drink.getPrice());
                         vm.getOtherVM(drinkname);
                         MainFrame.this.predrinkname = drinkname;
                     }
@@ -306,9 +305,7 @@ public class MainFrame extends JFrame{
         System.out.println("display VM:" + vm.getID());
         System.out.println("Message from " + vm.getID() + ": vmframe = "  + this.vmframe);
         if(this.vmframe == null){
-            System.out.println(predrinkname);
             Drink drink = vm.findDrink(predrinkname);
-            this.vmframe = new VMFrame(this,vm,predrinkname,drink.getPrice());
         }else{
             vmframe.initVM(vm);
         }
