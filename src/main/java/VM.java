@@ -234,6 +234,7 @@ public class VM {
             NotifyVMsInfo();
         }
         if(mt == 2){
+            System.out.println("receive 2");
             getOtherVM_2();
         }
         if(mt == 3){
@@ -285,6 +286,8 @@ public class VM {
         //이다음부분도 진행됨.
         if (mailBox.get(0).getMsgField() != null)
             ids.add(mailBox.get(0).getSrc_id());
+        else
+            System.out.println("******************  getOtherVM_2:" + mailBox.get(0).getMsgField()  + "== null *******************************");
         mailBox.remove(0);
         idStack++;
         if(idStack==dvmIdList.size()-1) {
@@ -294,6 +297,7 @@ public class VM {
             // Require address from other DVMs
             else {
                 for (int des : ids) {
+                    System.out.println("\n********************** send Msg: " + des +"\n\n");
                     new Message(this.ID, des, 4, " ").Send(); // addressMsg:Message
                 }
             }
@@ -331,10 +335,11 @@ public class VM {
                             mailBox.remove(0);
                             break;
                         }
-                        System.out.println("VM(" + this.getID() + "): I don't have a stock");
+
                     }
                 }
                 if (!isItem) {
+                    System.out.println("**************************** VM(" + this.getID() + "): I don't have a stock");
                     Message stockMsg = new Message(this.ID, msg.getSrc_id(), 2, null);
                     mailBox.remove(0);
                     stockMsg.Send();
@@ -393,6 +398,7 @@ public class VM {
                 else {
                     Code c = new Code(Integer.parseInt(str[1]), str[0]);
                     codeList.add(c);
+                    itemArray[j].editStock(itemArray[j].getStock()-1);
                     new Message(this.ID, mailBox.get(0).getSrc_id(), 8, mailBox.get(0).getMsgField()).Send();
                 }
             }

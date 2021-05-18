@@ -161,11 +161,6 @@ public class MainFrame extends JFrame{
         // 인증코드가 맞는지 체크
         if(isCode != null) {
             giveProduct(isCode);
-            Item item = vm.findItem(isCode);
-            if(item.getStock() > 0)
-                item.editStock(item.getStock()-1);
-            else
-                JOptionPane.showMessageDialog(null, "Out of Stock", "Error", JOptionPane.ERROR_MESSAGE);
         }else {
             JOptionPane.showMessageDialog(null, "\n" + "This is an incorrect authentication code.", "Error", JOptionPane.ERROR_MESSAGE);
         }

@@ -129,6 +129,7 @@ public class AdminFrame extends JFrame{
                     }
                     if(item != null){
                         if(stock < 0 || stock > 99){
+                            JOptionPane.showMessageDialog(null, "\n" + "Stocks input only 0 ~ 99 .", "Error", JOptionPane.ERROR_MESSAGE);
                             return;
                         }
                         item.editStock(stock);
