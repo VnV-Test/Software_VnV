@@ -82,6 +82,7 @@ public class VM {
         // card
         cardList.add(new Card("1234123412341234", 821, 578, 25, 2900));
         cardList.add(new Card("1111111111111111", 1222, 489, 27, 1500));
+        cardList.add(new Card("2222222222222222", 322, 367, 12, 0));
         //count
         count = 0;
         idStack=0;
@@ -101,16 +102,6 @@ public class VM {
         return codeList.isEmpty();
     }
     //unused
-    public String giveProduct(int index) {
-        return itemArray[index - 1].getName();
-        //드링크 이름 반환 인덱스 들어옴.
-    }
-    public double[] getVMInfo(int index) {
-        double[] arr = new double[2];
-        arr[0] = vmLocArray[index - 1][0]; //index번째는 index-1이니까.
-        arr[1] = vmLocArray[index - 1][1];
-        return arr;
-    }//double[]로 반환값 수정., 인덱스 받아서 넘겨줌.
     /*    public void editProductInfo(int index, String name, int price, int stock) {
         itemArray[index - 1].editName(name);
         itemArray[index - 1].editPrice(price);
@@ -182,7 +173,6 @@ public class VM {
 
 
     //find
-
     public Drink findDrink(String name) {
         for (int i = 0; i < 20; i++) {
             if (name.equals(drinkArray[i].getName())) {
@@ -208,7 +198,6 @@ public class VM {
         return null;
     }
 
-
     //give
     public void giveCode(String code) {
         controller.showMessage("Guidance","<html> authentication code :" + "<b> "+ code+ " </b></html>");
@@ -224,7 +213,6 @@ public class VM {
         }
         return false;
     } // boolean 값으로 수정, item에 stock이 존재하면 true 아니면 false
-
     public String checkCode(int code) {
         for (int i = 0; i < codeList.size(); i++) {
             if (codeList.elementAt(i).getCode() == code) {
@@ -235,9 +223,6 @@ public class VM {
         }
         return null;
     }
-
-
-
 
     //message
     synchronized public void receiveRequest(){
