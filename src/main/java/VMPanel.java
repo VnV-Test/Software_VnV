@@ -37,7 +37,7 @@ public class VMPanel extends JPanel{
         center.add(idLabel);
 
         // distance
-        JLabel distanceLabel = new JLabel("    Distance: " + this.distance + " km  ");
+        JLabel distanceLabel = new JLabel("    Distance: " + String.format("%.2f", this.distance)+ " km  ");
         distanceLabel.setVerticalAlignment(JLabel.BOTTOM);
         Font font2 = new Font("Arial",Font.PLAIN,11);
         distanceLabel.setFont(font2);
