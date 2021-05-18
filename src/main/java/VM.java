@@ -284,10 +284,10 @@ public class VM {
             while(ids.size()>0)
                 ids.remove(0);
         //이다음부분도 진행됨.
-        if (mailBox.get(0).getMsgField() != null)
-            ids.add(mailBox.get(0).getSrc_id());
-        else
+        if (mailBox.get(0).getMsgField().equals(""))
             System.out.println("******************  getOtherVM_2:" + mailBox.get(0).getMsgField()  + "== null *******************************");
+        else
+            ids.add(mailBox.get(0).getSrc_id());
         mailBox.remove(0);
         idStack++;
         if(idStack==dvmIdList.size()-1) {
@@ -298,7 +298,7 @@ public class VM {
             else {
                 for (int des : ids) {
                     System.out.println("\n********************** send Msg: " + des +"\n\n");
-                    new Message(this.ID, des, 4, " ").Send(); // addressMsg:Message
+                    new Message(this.ID, des, 4, "trash").Send(); // addressMsg:Message
                 }
             }
             idStack=0;
@@ -340,7 +340,7 @@ public class VM {
                 }
                 if (!isItem) {
                     System.out.println("**************************** VM(" + this.getID() + "): I don't have a stock");
-                    Message stockMsg = new Message(this.ID, msg.getSrc_id(), 2, null);
+                    Message stockMsg = new Message(this.ID, msg.getSrc_id(), 2, "");
                     mailBox.remove(0);
                     stockMsg.Send();
                 }

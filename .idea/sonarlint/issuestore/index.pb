@@ -17,3 +17,25 @@ L
 src/test/java/AdminTest.java,7\d\7d685b8e5d08db77f5dcc1b0520d8b47322f3d36
 I
 src/test/java/VMTest.java,8\7\87b51e02296703f05bb1a06d59734d65130c02b3
+J
+src/main/java/VMPanel.java,0\4\0433acca32b6737da64dffccf2cda83bd8fbacc9
+G
+src/main/java/Card.java,5\a\5a8a112de67cebde74bcab0508a96a3b384637a6
+P
+ src/main/java/PaymentDialog.java,7\0\702b4d3e213eb10350f43783fe3bf49f2ad0861f
+J
+src/main/java/Message.java,7\8\7846c008bbd895e9b88a52d8f43bc66b4310ee6c
+P
+ src/test/java/VMProjectTest.java,d\9\d9316bc8e2ddaf1ea77ea60a4be6792f87053a26
+K
+src/test/java/ItemTest.java,f\1\f16fcdad22db9f24ac2be33a6e7c5fdd0a31ec42
+N
+src/test/java/MessageTest.java,2\9\29b3b4d119d64443cf46ccd93b348e3896a2a14d
+N
+src/main/java/StartDialog.java,f\6\f6522cbf62538a463625fbffb9791a6ac770fb7a
+H
+src/main/java/Drink.java,8\7\87577db6aac1c3988b9607f64d707469d8b92509
+G
+src/main/java/Item.java,f\a\faa55b86c279657733e834c3fe1d30333e23456a
+T
+$.idea/artifacts/Software_VnV_jar.xml,e\c\ec94fb719af64e0840e7f881a409df00082c5873
