@@ -412,7 +412,9 @@ public class VM {
             if (drinkArray[n].getName().equals(itemArray[i].getName())) {
                 if(itemArray[i].editName(name))
                     drinkArray[n].setName(name);
-                flag=1;
+                else{
+                    //TODO 이름이 잘못되었다고 출력.
+                }flag=1;
             }
         }
         if(flag==0)
@@ -427,7 +429,9 @@ public class VM {
             if (drinkArray[n].getName().equals(itemArray[i].getName())) {
                 if(itemArray[i].editName(str[1]))
                     drinkArray[n].setName(str[1]);
-                flag=1;
+                else{
+                    //TODO 이름이 잘못되었다고 출력.
+                }flag=1;
             }
         }
         if(flag==0)
@@ -440,7 +444,9 @@ public class VM {
             if (drinkArray[n].getName().equals(itemArray[i].getName())) {
                 if(itemArray[i].editPrice(price))
                     drinkArray[n].setPrice(price);
-                flag=1;
+                else{
+                    //TODO 가격이 잘못되었다고 출력.
+                }flag=1;
             }
         }
         if(flag==0)
@@ -456,7 +462,9 @@ public class VM {
             if (drinkArray[n].getName().equals(itemArray[i].getName())) {
                 if(itemArray[i].editPrice(price))
                     drinkArray[n].setPrice(price);
-                flag=1;
+                else{
+                    //TODO 가격이 잘못되었다고 출력.
+                }flag=1;
             }
         }
         if(flag==0)
