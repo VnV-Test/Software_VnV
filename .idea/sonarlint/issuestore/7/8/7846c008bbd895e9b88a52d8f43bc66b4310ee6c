@@ -1,0 +1,29 @@
+
+L
+java:S1153"1Directly append the argument of String.valueOf().(È²‚øøÿÿÿÿ
+L
+java:S1153"1Directly append the argument of String.valueOf().(È²‚øøÿÿÿÿ
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ø„áÇ
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ø„áÇ
+m	java:S1174"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éÛòé8™úóõ–/
+m	java:S1174"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éÛòé8™úóõ–/
+h
+java:S1104"RMake src_id a static final constant or non-public and provide accessors if needed.(¾Ù…‰
+m
+java:S1104"RMake dst_id a static final constant or non-public and provide accessors if needed.(Œõºúÿÿÿÿ
+0
+java:S1220""Move this file to a named package.
+f	java:S116"QRename this field "src_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¾Ù…‰
+k	java:S116"QRename this field "dst_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Œõºúÿÿÿÿ
+S	java:S106""9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ
+S	java:S106'"9Replace this use of System.out or System.err by a logger.(—İÂèıÿÿÿÿ
+E
+java:S2093"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+f	java:S116."QRename this field "src_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ä¿…¤
+k	java:S116/"QRename this field "dst_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘ëäÙûÿÿÿÿ
+o	java:S100;"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ï«é°ıÿÿÿÿ8¨úóõ–/
+Z	java:S106<"9Replace this use of System.out or System.err by a logger.(¨ï†ÿÿÿÿÿ8¨úóõ–/
+o	java:S100K"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±‹åÊÿÿÿÿÿ8ªúóõ–/
+j	java:S100N"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒÑ¦œ8ªúóõ–/
+H
+java:S1481"-Remove this unused "listener" local variable.(¾ã°Úøÿÿÿÿ
