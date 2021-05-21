@@ -24,7 +24,6 @@ public class Item {
             return true;
         }
     }
-
     public boolean editPrice(int price){
         if(price>10000){
             return false;
@@ -33,7 +32,6 @@ public class Item {
             return true;
         }
     }
-
     public boolean editStock(int stock){
         if(stock <0 || stock>50){
             return false;

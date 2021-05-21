@@ -1,0 +1,32 @@
+
+z
+java:S4165"dRemove this useless assignment; "parent" already holds the assigned value along all execution paths.(‹‡Õ¾
+E
+java:S3740"/Provide the parametrized type for this generic.(ÓÁ¬ 
+E
+java:S3740"/Provide the parametrized type for this generic.(ÓÁ¬ 
+E
+java:S3740-"/Provide the parametrized type for this generic.(ÃýØô
+>
+java:S1604*"(Make this anonymous inner class a lambda(»¿Žð
+>
+java:S1604?"(Make this anonymous inner class a lambda(× Þ±
+>
+java:S1604N"(Make this anonymous inner class a lambda(ÚØú§
+0
+java:S1220""Move this file to a named package.
+E
+java:S2387"/"parent" is the name of a field in "Component".(¾šêª
+S
+java:S1854Z"8Remove this useless assignment to local variable "main".(ÏŽî¶úÿÿÿÿ
+S	java:S106R"9Replace this use of System.out or System.err by a logger.(Å§¶²úÿÿÿÿ
+M
+java:S1135Q"2Complete the task associated to this TODO comment.(» æžÿÿÿÿÿ
+3
+java:S2119S"Save and re-use this "Random".(¼ÝÅf
+R
+java:S1117X"<Rename "division" which hides the field declared at line 19.(¾ðÑ
+M
+java:S1135e"2Complete the task associated to this TODO comment.(» æžÿÿÿÿÿ
+D
+java:S1481Z")Remove this unused "main" local variable.(ÏŽî¶úÿÿÿÿ

@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.ButtonGroup;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Random;
 
 public class StartDialog extends JDialog {
     JPanel radiobtnPanel = new JPanel();
@@ -79,7 +80,10 @@ public class StartDialog extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 System.out.println("start vm: " + portNum);
-                double[] location = { 37.54164, 127.07880 };
+                Random random = new Random();
+                double x = random.nextDouble()*10;
+                double y = random.nextDouble()*10;
+                double[] location = {x,y};
                 int port = portNum;
                 int division = divisionIndex;
                 VM vm = new VM(port, location,division);

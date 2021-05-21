@@ -4,13 +4,13 @@ CodeTest.java
  CodeTest
 MessageTest.java
  MessageTest
-AdminTest.java
- AdminTest
+VMTest.java
+ VMTest
 CardTest.java
  CardTest
 DrinkTest.java
  DrinkTest
 VMProjectTest.java
  VMProjectTest
-VMTest.java
- VMTest
+AdminTest.java
+ AdminTest

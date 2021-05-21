@@ -1,5 +1,3 @@
-
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -102,9 +100,6 @@ public class MainFrame extends JFrame{
 
         frame.add(centerPanel,BorderLayout.CENTER);
     }
-    public void prePayment(String name,String Code){
-
-    }
     public void showDrink() {
         menuPanel.removeAll();
         Drink[] drinkArray = vm.getDrinkArray();
@@ -127,6 +122,7 @@ public class MainFrame extends JFrame{
                         }
                     }else {
                         // VM List Frame 생성
+                        MainFrame.this.vmframe = new VMFrame(MainFrame.this,predrinkname,drink.getPrice());
                         vm.getOtherVM(drinkname);
                         MainFrame.this.predrinkname = drinkname;
                     }
@@ -164,11 +160,6 @@ public class MainFrame extends JFrame{
         // 인증코드가 맞는지 체크
         if(isCode != null) {
             giveProduct(isCode);
-            Item item = vm.findItem(isCode);
-            if(item.getStock() > 0)
-                item.editStock(item.getStock()-1);
-            else
-                JOptionPane.showMessageDialog(null, "Out of Stock", "Error", JOptionPane.ERROR_MESSAGE);
         }else {
             JOptionPane.showMessageDialog(null, "\n" + "This is an incorrect authentication code.", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -314,9 +305,7 @@ public class MainFrame extends JFrame{
         System.out.println("display VM:" + vm.getID());
         System.out.println("Message from " + vm.getID() + ": vmframe = "  + this.vmframe);
         if(this.vmframe == null){
-            System.out.println(predrinkname);
             Drink drink = vm.findDrink(predrinkname);
-            this.vmframe = new VMFrame(this,vm,predrinkname,drink.getPrice());
         }else{
             vmframe.initVM(vm);
         }

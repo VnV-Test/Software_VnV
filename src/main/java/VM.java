@@ -80,7 +80,9 @@ public class VM {
                 break;
         }
         // card
-        cardList.add(new Card("1234123412341234", 820, 578, 25, 2000));
+        cardList.add(new Card("1234123412341234", 821, 578, 25, 2900));
+        cardList.add(new Card("1111111111111111", 1222, 489, 27, 1500));
+        cardList.add(new Card("2222222222222222", 322, 367, 12, 0));
         //count
         count = 0;
         idStack=0;
@@ -100,16 +102,6 @@ public class VM {
         return codeList.isEmpty();
     }
     //unused
-    public String giveProduct(int index) {
-        return itemArray[index - 1].getName();
-        //드링크 이름 반환 인덱스 들어옴.
-    }
-    public double[] getVMInfo(int index) {
-        double[] arr = new double[2];
-        arr[0] = vmLocArray[index - 1][0]; //index번째는 index-1이니까.
-        arr[1] = vmLocArray[index - 1][1];
-        return arr;
-    }//double[]로 반환값 수정., 인덱스 받아서 넘겨줌.
     /*    public void editProductInfo(int index, String name, int price, int stock) {
         itemArray[index - 1].editName(name);
         itemArray[index - 1].editPrice(price);
@@ -181,7 +173,6 @@ public class VM {
 
 
     //find
-
     public Drink findDrink(String name) {
         for (int i = 0; i < 20; i++) {
             if (name.equals(drinkArray[i].getName())) {
@@ -207,7 +198,6 @@ public class VM {
         return null;
     }
 
-
     //give
     public void giveCode(String code) {
         controller.showMessage("Guidance","<html> authentication code :" + "<b> "+ code+ " </b></html>");
@@ -223,7 +213,6 @@ public class VM {
         }
         return false;
     } // boolean 값으로 수정, item에 stock이 존재하면 true 아니면 false
-
     public String checkCode(int code) {
         for (int i = 0; i < codeList.size(); i++) {
             if (codeList.elementAt(i).getCode() == code) {
@@ -235,9 +224,6 @@ public class VM {
         return null;
     }
 
-
-
-
     //message
     synchronized public void receiveRequest(){
         Thread.yield();
@@ -248,6 +234,7 @@ public class VM {
             NotifyVMsInfo();
         }
         if(mt == 2){
+            System.out.println("receive 2");
             getOtherVM_2();
         }
         if(mt == 3){
@@ -297,19 +284,15 @@ public class VM {
             while(ids.size()>0)
                 ids.remove(0);
         //이다음부분도 진행됨.
-        if (mailBox.get(0).getMsgField() != null)
+        if (mailBox.get(0).getMsgField().equals("trash"))
+            System.out.println("getOtherVM_2:" + mailBox.get(0).getMsgField()  + "== null ");
+        else
             ids.add(mailBox.get(0).getSrc_id());
         mailBox.remove(0);
         idStack++;
         if(idStack==dvmIdList.size()-1) {
-            if (ids.size() == 0) {
-                controller.showMessage("Error", "Please contact us at the following contact information \n" + admin.getContact());// Swing으로 구현 필요.
-            }
-            // Require address from other DVMs
-            else {
-                for (int des : ids) {
-                    new Message(this.ID, des, 4, " ").Send(); // addressMsg:Message
-                }
+            for (int des : ids) {
+                new Message(this.ID, des, 4, "trash").Send(); // addressMsg:Message
             }
             idStack=0;
         }
@@ -345,11 +328,12 @@ public class VM {
                             mailBox.remove(0);
                             break;
                         }
-                        System.out.println("VM(" + this.getID() + "): I don't have a stock");
+
                     }
                 }
                 if (!isItem) {
-                    Message stockMsg = new Message(this.ID, msg.getSrc_id(), 2, null);
+                    System.out.println("**************************** VM(" + this.getID() + "): I don't have a stock");
+                    Message stockMsg = new Message(this.ID, msg.getSrc_id(), 2, "trash");
                     mailBox.remove(0);
                     stockMsg.Send();
                 }
@@ -407,6 +391,7 @@ public class VM {
                 else {
                     Code c = new Code(Integer.parseInt(str[1]), str[0]);
                     codeList.add(c);
+                    itemArray[j].editStock(itemArray[j].getStock()-1);
                     new Message(this.ID, mailBox.get(0).getSrc_id(), 8, mailBox.get(0).getMsgField()).Send();
                 }
             }
