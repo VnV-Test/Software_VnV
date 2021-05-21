@@ -31,11 +31,5 @@ K
 src/test/java/ItemTest.java,f\1\f16fcdad22db9f24ac2be33a6e7c5fdd0a31ec42
 N
 src/test/java/MessageTest.java,2\9\29b3b4d119d64443cf46ccd93b348e3896a2a14d
-N
-src/main/java/StartDialog.java,f\6\f6522cbf62538a463625fbffb9791a6ac770fb7a
-H
-src/main/java/Drink.java,8\7\87577db6aac1c3988b9607f64d707469d8b92509
-G
-src/main/java/Item.java,f\a\faa55b86c279657733e834c3fe1d30333e23456a
 T
 $.idea/artifacts/Software_VnV_jar.xml,e\c\ec94fb719af64e0840e7f881a409df00082c5873

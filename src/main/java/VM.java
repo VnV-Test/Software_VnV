@@ -252,6 +252,12 @@ public class VM {
         if(mt == 8){
             requestPrepay_2();
         }
+        if(mt == 9){
+            receiveChangeName();
+        }
+        if(mt == 10){
+            receiveChangePrice();
+        }
     }
 
     public void RespondSell() {
@@ -397,5 +403,63 @@ public class VM {
             }
         }
         mailBox.remove(0);
+    }
+
+    //신규 메시지들. n번째 항목인것(drink중에)의 이름/가격을 name/price로 바꾼다!
+    public void requestChangeName(int n, String name){
+        int flag=0;
+        for (int i = 0; i < 7; i++) {
+            if (drinkArray[n].getName().equals(itemArray[i].getName())) {
+                if(itemArray[i].editName(name))
+                    drinkArray[n].setName(name);
+                flag=1;
+            }
+        }
+        if(flag==0)
+            drinkArray[n].setName(name);
+        new Message(this.ID, 0, 9, n +":"+name);
+    }
+    public void receiveChangeName(){
+        String str[] = mailBox.get(0).getMsgField().split(":");
+        int n = Integer.parseInt(str[0]);
+        int flag=0;
+        for (int i = 0; i < 7; i++) {
+            if (drinkArray[n].getName().equals(itemArray[i].getName())) {
+                if(itemArray[i].editName(str[1]))
+                    drinkArray[n].setName(str[1]);
+                flag=1;
+            }
+        }
+        if(flag==0)
+            drinkArray[n].setName(str[2]);
+    }
+
+    public void requestChangePrice(int n, int price){
+        int flag=0;
+        for (int i = 0; i < 7; i++) {
+            if (drinkArray[n].getName().equals(itemArray[i].getName())) {
+                if(itemArray[i].editPrice(price))
+                    drinkArray[n].setPrice(price);
+                flag=1;
+            }
+        }
+        if(flag==0)
+            drinkArray[n].setPrice(price);
+        new Message(this.ID, 0, 9, n +":"+price);
+    }
+    public void receiveChangePrice(){
+        String str[] = mailBox.get(0).getMsgField().split(":");
+        int n = Integer.parseInt(str[0]);
+        int price = Integer.parseInt(str[1]);
+        int flag=0;
+        for (int i = 0; i < 7; i++) {
+            if (drinkArray[n].getName().equals(itemArray[i].getName())) {
+                if(itemArray[i].editPrice(price))
+                    drinkArray[n].setPrice(price);
+                flag=1;
+            }
+        }
+        if(flag==0)
+            drinkArray[n].setPrice(price);
     }
 }
