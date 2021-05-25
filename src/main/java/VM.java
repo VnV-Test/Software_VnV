@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.lang.invoke.SwitchPoint;
 import java.util.Vector;
 
@@ -193,6 +194,14 @@ public class VM {
         return null;
     }
 
+    public Card findCard2(String cardNum) {
+        for (int i = 0; i < cardList.size(); i++) {
+            if (cardList.get(i).getCardNum() == cardNum) {
+                return cardList.elementAt(i);
+            }
+        }
+        return null;
+    }
     //give
     public void giveCode(String code) {
         controller.showMessage("Guidance","<html> authentication code :" + "<b> "+ code+ " </b></html>");
@@ -473,18 +482,18 @@ public class VM {
         controller.showDrink();
         mailBox.remove(0);
     }
-    public void requestSyncCard(Card card){
-        new Message(this.ID, 0, 11, card.getCardNum() +":"+card.getBalance()).Send();
+    public void requestSyncCard(String cardnum){
+        Card card = findCard2(cardnum);
+        if(card!=null)
+            new Message(this.ID, 0, 11, card.getCardNum() +":"+card.getBalance()).Send();
     }
     public void revceiveSyncCard(){
         String[] str = mailBox.get(0).getMsgField().split(":");
         int balance = Integer.parseInt(str[1]);
         String num = str[2];
-        for (int i = 0; i < cardList.size(); i++){
-            if(cardList.get(i).getCardNum()==num){
-                cardList.get(i).setBalance(balance);
-            }
-        }
+        Card card = findCard2(num);
+        if(card!=null)
+            card.setBalance(balance);
         mailBox.remove(0);
     }
 }
