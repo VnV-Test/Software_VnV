@@ -1,0 +1,11 @@
+
+0
+java:S1220""Move this file to a named package.
+i	java:S116"ORename this field "Name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(É¬­Áøÿÿÿÿ
+j	java:S116"PRename this field "Price" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(žôÓ»úÿÿÿÿ
+j	java:S116"PRename this field "Stock" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(®Ùîöüÿÿÿÿ
+V	java:S125,"<This block of commented-out lines of code should be removed.(¦ß´…úÿÿÿÿ
+Q	java:S125>"<This block of commented-out lines of code should be removed.(ã·µÅ
+V	java:S125D"<This block of commented-out lines of code should be removed.(¾ÿª´üÿÿÿÿ
+D
+java:S1068")Remove this unused "index" private field.(º¦‰Ïøÿÿÿÿ
