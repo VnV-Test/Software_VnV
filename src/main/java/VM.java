@@ -427,7 +427,7 @@ public class VM {
                 if(itemArray[i].editName(str[1]))
                     drinkArray[n].setName(str[1]);
                 else{
-                    //TODO 이름이 잘못되었다고 출력.
+                    //TODO 이름이 잘못되었다고 출력.-안해도됨.
                 }flag=1;
             }
         }
@@ -461,7 +461,7 @@ public class VM {
                 if(itemArray[i].editPrice(price))
                     drinkArray[n].setPrice(price);
                 else{
-                    //TODO 가격이 잘못되었다고 출력.
+                    //TODO 가격이 잘못되었다고 출력.-안해도됨.
                 }flag=1;
             }
         }
