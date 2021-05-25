@@ -254,6 +254,9 @@ public class VM {
         if(mt == 10){
             receiveChangePrice();
         }
+        if(mt==11){
+            revceiveSyncCard();
+        }
     }
 
     public void RespondSell() {
@@ -468,6 +471,20 @@ public class VM {
         if(flag==0)
             drinkArray[n].setPrice(price);
         controller.showDrink();
+        mailBox.remove(0);
+    }
+    public void requestSyncCard(Card card){
+        new Message(this.ID, 0, 11, card.getCardNum() +":"+card.getBalance()).Send();
+    }
+    public void revceiveSyncCard(){
+        String[] str = mailBox.get(0).getMsgField().split(":");
+        int balance = Integer.parseInt(str[1]);
+        String num = str[2];
+        for (int i = 0; i < cardList.size(); i++){
+            if(cardList.get(i).getCardNum()==num){
+                cardList.get(i).setBalance(balance);
+            }
+        }
         mailBox.remove(0);
     }
 }

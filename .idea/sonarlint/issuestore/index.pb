@@ -33,8 +33,6 @@ T
 $.idea/artifacts/Software_VnV_jar.xml,e\c\ec94fb719af64e0840e7f881a409df00082c5873
 M
 src/main/java/CodeDialog.java,3\7\3779c840def071c1386baaffb761962d084f5126
-G
-src/main/java/Item.java,f\a\faa55b86c279657733e834c3fe1d30333e23456a
 N
 src/main/java/ReceiveMail.java,4\6\466d9748be080c2269f26610e2edef7b17c8b40f
 L
