@@ -40,6 +40,7 @@ public class PaymentDialog extends JDialog{
         this.setVisible(true);
     }
     public void init(boolean isPre) {
+        System.out.println("\nPaymentDialog name :" + name + "\n");
         JPanel centerPanel = new JPanel(new FlowLayout());
         JLabel centerLabel = new JLabel("Would you like to pay?");
         Font font = new Font("Arial",Font.PLAIN,13);
@@ -78,6 +79,11 @@ public class PaymentDialog extends JDialog{
                 // TODO Auto-generated method stub
                 parent.dlg = null;
                 dispose();
+                if(isPre){
+                    if(parent.vmframe != null){
+                        parent.vmframe.requestFocus();
+                    }
+                }
             }
         });
         southPanel.add(okBtn);
@@ -89,6 +95,11 @@ public class PaymentDialog extends JDialog{
                 // TODO Auto-generated method stub
                 super.windowClosing(e);
                 parent.dlg = null;
+                if(isPre){
+                    if(parent.vmframe != null){
+                        parent.vmframe.requestFocus();
+                    }
+                }
                 dispose();
             }
         });

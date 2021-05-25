@@ -70,6 +70,7 @@ public class VMFrame extends JFrame{
             public void mouseClicked(MouseEvent e) {
                 // TODO Auto-generated method stub
                 //결제창 띄우기
+                System.out.println("\nVMFrame name :" + drinkname + "\n");
                 parent.dlg = new PaymentDialog(parent, "Payment",false, price, drinkname,true, otherVm);
 
             }

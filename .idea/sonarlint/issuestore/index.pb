@@ -19,17 +19,23 @@ I
 src/test/java/VMTest.java,8\7\87b51e02296703f05bb1a06d59734d65130c02b3
 J
 src/main/java/VMPanel.java,0\4\0433acca32b6737da64dffccf2cda83bd8fbacc9
-G
-src/main/java/Card.java,5\a\5a8a112de67cebde74bcab0508a96a3b384637a6
-P
- src/main/java/PaymentDialog.java,7\0\702b4d3e213eb10350f43783fe3bf49f2ad0861f
-J
-src/main/java/Message.java,7\8\7846c008bbd895e9b88a52d8f43bc66b4310ee6c
 P
  src/test/java/VMProjectTest.java,d\9\d9316bc8e2ddaf1ea77ea60a4be6792f87053a26
 K
 src/test/java/ItemTest.java,f\1\f16fcdad22db9f24ac2be33a6e7c5fdd0a31ec42
 N
 src/test/java/MessageTest.java,2\9\29b3b4d119d64443cf46ccd93b348e3896a2a14d
+N
+src/main/java/StartDialog.java,f\6\f6522cbf62538a463625fbffb9791a6ac770fb7a
+w
+G.idea/sonarlint/issuestore/2/e/2e7d2d6e6db3bc22aa74f9a1fb2b085e004c9e28,3\1\3119095f1d99e6b3f09a565f373046c031941324
 T
 $.idea/artifacts/Software_VnV_jar.xml,e\c\ec94fb719af64e0840e7f881a409df00082c5873
+M
+src/main/java/CodeDialog.java,3\7\3779c840def071c1386baaffb761962d084f5126
+G
+src/main/java/Item.java,f\a\faa55b86c279657733e834c3fe1d30333e23456a
+N
+src/main/java/ReceiveMail.java,4\6\466d9748be080c2269f26610e2edef7b17c8b40f
+L
+src/test/java/DrinkTest.java,f\2\f2bb863e45345f668f699b1138ad168c602c2aec

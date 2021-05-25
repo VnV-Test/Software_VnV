@@ -91,7 +91,9 @@ public class VM {
         return dvmList;
     }
 //    public int getID(){return ID;}
-
+    public Vector<Card> getCardList(){
+        return this.cardList;
+    }
     //for test
     public void getOtherVM_test(String itemName){
         // Use Case 4, 9, 15
@@ -101,14 +103,7 @@ public class VM {
     public boolean codeempty(){
         return codeList.isEmpty();
     }
-    //unused
-    /*    public void editProductInfo(int index, String name, int price, int stock) {
-        itemArray[index - 1].editName(name);
-        itemArray[index - 1].editPrice(price);
-        itemArray[index - 1].editStock(stock);
-        drinkArray[index - 1].setName(name);
-        drinkArray[index - 1].setPrice(price);
-    }*/
+
     public int getVmNum(){
         return this.dvmList.size();
     }
@@ -201,6 +196,7 @@ public class VM {
     //give
     public void giveCode(String code) {
         controller.showMessage("Guidance","<html> authentication code :" + "<b> "+ code+ " </b></html>");
+
     }
 
     //check
@@ -419,7 +415,8 @@ public class VM {
         }
         if(flag==0)
             drinkArray[n].setName(name);
-        new Message(this.ID, 0, 9, n +":"+name);
+        new Message(this.ID, 0, 9, n +":"+name).Send();
+
     }
     public void receiveChangeName(){
         String str[] = mailBox.get(0).getMsgField().split(":");
@@ -435,7 +432,8 @@ public class VM {
             }
         }
         if(flag==0)
-            drinkArray[n].setName(str[2]);
+            drinkArray[n].setName(str[1]);
+        mailBox.remove(0);
     }
 
     public void requestChangePrice(int n, int price){
@@ -451,7 +449,7 @@ public class VM {
         }
         if(flag==0)
             drinkArray[n].setPrice(price);
-        new Message(this.ID, 0, 9, n +":"+price);
+        new Message(this.ID, 0, 10, n +":"+price).Send();
     }
     public void receiveChangePrice(){
         String str[] = mailBox.get(0).getMsgField().split(":");
@@ -469,5 +467,7 @@ public class VM {
         }
         if(flag==0)
             drinkArray[n].setPrice(price);
+        controller.showDrink();
+        mailBox.remove(0);
     }
 }

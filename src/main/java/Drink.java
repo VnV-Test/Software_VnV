@@ -21,7 +21,6 @@ public class Drink {
     public void setPrice(int price){
         Price=price;
     }
-
     public void setName(String name){
         Name=name;
     }
