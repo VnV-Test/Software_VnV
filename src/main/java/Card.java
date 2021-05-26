@@ -25,4 +25,13 @@ public class Card {
         }
         return false;
     }
+    public String getCardNum(){
+        return this.cardNum;
+    }
+    public int getBalance(){
+        return this.balance;
+    }
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
 }

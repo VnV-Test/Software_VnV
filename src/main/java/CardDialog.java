@@ -59,6 +59,7 @@ public class CardDialog extends JDialog{
         this.setVisible(true);
     }
     private void init(boolean isPre) {
+        System.out.println("\nCardDialog name :" + name + "\n");
         pane.setBackground(Color.white);
         JPanel centerPanel = new JPanel(new GridLayout(5,1,5,5));
         centerPanel.setBackground(Color.white);
@@ -106,6 +107,10 @@ public class CardDialog extends JDialog{
                 // TODO Auto-generated method stub
                 if(isPre){
                     parent.cardCheck(name,otherVM);
+                    if(parent.vmframe != null){
+                        parent.vmframe.dispose();
+                        parent.vmframe = null;
+                    }
                 }else{
                     parent.cardCheck();
                 }
@@ -122,6 +127,11 @@ public class CardDialog extends JDialog{
                 // TODO Auto-generated method stub
                 parent.dlg = null;
                 dispose();
+                if(isPre){
+                    if(parent.vmframe != null){
+                        parent.vmframe.requestFocus();
+                    }
+                }
             }
         });
         this.addWindowListener(new WindowAdapter() {
@@ -130,6 +140,11 @@ public class CardDialog extends JDialog{
                 // TODO Auto-generated method stub
                 super.windowClosing(e);
                 parent.dlg = null;
+                if(isPre){
+                    if(parent.vmframe != null){
+                        parent.vmframe.requestFocus();
+                    }
+                }
                 dispose();
             }
         });

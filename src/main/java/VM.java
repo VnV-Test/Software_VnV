@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.lang.invoke.SwitchPoint;
 import java.util.Vector;
 
@@ -91,7 +92,9 @@ public class VM {
         return dvmList;
     }
 //    public int getID(){return ID;}
-
+    public Vector<Card> getCardList(){
+        return this.cardList;
+    }
     //for test
     public void getOtherVM_test(String itemName){
         // Use Case 4, 9, 15
@@ -101,14 +104,7 @@ public class VM {
     public boolean codeempty(){
         return codeList.isEmpty();
     }
-    //unused
-    /*    public void editProductInfo(int index, String name, int price, int stock) {
-        itemArray[index - 1].editName(name);
-        itemArray[index - 1].editPrice(price);
-        itemArray[index - 1].editStock(stock);
-        drinkArray[index - 1].setName(name);
-        drinkArray[index - 1].setPrice(price);
-    }*/
+
     public int getVmNum(){
         return this.dvmList.size();
     }
@@ -198,9 +194,18 @@ public class VM {
         return null;
     }
 
+    public Card findCard2(String cardNum) {
+        for (int i = 0; i < cardList.size(); i++) {
+            if (cardList.get(i).getCardNum() == cardNum) {
+                return cardList.elementAt(i);
+            }
+        }
+        return null;
+    }
     //give
     public void giveCode(String code) {
         controller.showMessage("Guidance","<html> authentication code :" + "<b> "+ code+ " </b></html>");
+
     }
 
     //check
@@ -251,6 +256,15 @@ public class VM {
         }
         if(mt == 8){
             requestPrepay_2();
+        }
+        if(mt == 9){
+            receiveChangeName();
+        }
+        if(mt == 10){
+            receiveChangePrice();
+        }
+        if(mt==11){
+            revceiveSyncCard();
         }
     }
 
@@ -396,6 +410,90 @@ public class VM {
                 }
             }
         }
+        mailBox.remove(0);
+    }
+
+    //신규 메시지들. n번째 항목인것(drink중에)의 이름/가격을 name/price로 바꾼다!
+    public void requestChangeName(int n, String name){
+        int flag=0;
+        for (int i = 0; i < 7; i++) {
+            if (drinkArray[n].getName().equals(itemArray[i].getName())) {
+                if(itemArray[i].editName(name))
+                    drinkArray[n].setName(name);
+                else{
+                    //TODO 이름이 잘못되었다고 출력.
+                }flag=1;
+            }
+        }
+        if(flag==0)
+            drinkArray[n].setName(name);
+        new Message(this.ID, 0, 9, n +":"+name).Send();
+
+    }
+    public void receiveChangeName(){
+        String str[] = mailBox.get(0).getMsgField().split(":");
+        int n = Integer.parseInt(str[0]);
+        int flag=0;
+        for (int i = 0; i < 7; i++) {
+            if (drinkArray[n].getName().equals(itemArray[i].getName())) {
+                if(itemArray[i].editName(str[1]))
+                    drinkArray[n].setName(str[1]);
+                else{
+                    //TODO 이름이 잘못되었다고 출력.-안해도됨.
+                }flag=1;
+            }
+        }
+        if(flag==0)
+            drinkArray[n].setName(str[1]);
+        mailBox.remove(0);
+    }
+
+    public void requestChangePrice(int n, int price){
+        int flag=0;
+        for (int i = 0; i < 7; i++) {
+            if (drinkArray[n].getName().equals(itemArray[i].getName())) {
+                if(itemArray[i].editPrice(price))
+                    drinkArray[n].setPrice(price);
+                else{
+                    //TODO 가격이 잘못되었다고 출력.
+                }flag=1;
+            }
+        }
+        if(flag==0)
+            drinkArray[n].setPrice(price);
+        new Message(this.ID, 0, 10, n +":"+price).Send();
+    }
+    public void receiveChangePrice(){
+        String str[] = mailBox.get(0).getMsgField().split(":");
+        int n = Integer.parseInt(str[0]);
+        int price = Integer.parseInt(str[1]);
+        int flag=0;
+        for (int i = 0; i < 7; i++) {
+            if (drinkArray[n].getName().equals(itemArray[i].getName())) {
+                if(itemArray[i].editPrice(price))
+                    drinkArray[n].setPrice(price);
+                else{
+                    //TODO 가격이 잘못되었다고 출력.-안해도됨.
+                }flag=1;
+            }
+        }
+        if(flag==0)
+            drinkArray[n].setPrice(price);
+        controller.showDrink();
+        mailBox.remove(0);
+    }
+    public void requestSyncCard(String cardnum){
+        Card card = findCard2(cardnum);
+        if(card!=null)
+            new Message(this.ID, 0, 11, card.getCardNum() +":"+card.getBalance()).Send();
+    }
+    public void revceiveSyncCard(){
+        String[] str = mailBox.get(0).getMsgField().split(":");
+        int balance = Integer.parseInt(str[1]);
+        String num = str[2];
+        Card card = findCard2(num);
+        if(card!=null)
+            card.setBalance(balance);
         mailBox.remove(0);
     }
 }

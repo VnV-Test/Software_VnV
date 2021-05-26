@@ -42,6 +42,18 @@ public class MainFrame extends JFrame{
         northPanel.setPreferredSize(new Dimension(500,50));
         northPanel.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));
 
+        JButton cardBtn = new JButton("Card");
+        cardBtn.setBackground(new Color(80,188,223));
+        cardBtn.setForeground(Color.white);
+        cardBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CardListFrame cardList = new CardListFrame(vm.getCardList());
+            }
+
+        });
+        northPanel.add(cardBtn);
+
         JButton adminBtn = new JButton("Admin");
         adminBtn.setBackground(new Color(80,188,223));
         adminBtn.setForeground(Color.white);
@@ -122,9 +134,15 @@ public class MainFrame extends JFrame{
                         }
                     }else {
                         // VM List Frame 생성
+                        if(MainFrame.this.vmframe != null){
+                            MainFrame.this.vmframe.dispose();
+                            MainFrame.this.vmframe = null;
+                        }
+                        MainFrame.this.predrinkname = drinkname;
+                        System.out.println("\nVMFrame make :" + predrinkname + "\n");
                         MainFrame.this.vmframe = new VMFrame(MainFrame.this,predrinkname,drink.getPrice());
                         vm.getOtherVM(drinkname);
-                        MainFrame.this.predrinkname = drinkname;
+
                     }
                 }
             });
@@ -217,6 +235,8 @@ public class MainFrame extends JFrame{
         }
         int price = ((CardDialog)dlg).getPrice();
         if(payCard.payment(price)){
+            Item item = this.vm.findItem(((CardDialog)dlg).getName());
+            item.editStock(item.getStock()-1);
             giveProduct(((CardDialog)dlg).getName());
         }else{
             JOptionPane.showMessageDialog(null, "There is not enough balance.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -275,6 +295,7 @@ public class MainFrame extends JFrame{
         }
         int price = ((CardDialog)dlg).getPrice();
         if(payCard.payment(price)){
+            System.out.println("\n request prepay : drinkname(" + drinkname +")\n");
             this.getVM().requestPrepay(drinkname,otherVm.getID());
         }else{
             JOptionPane.showMessageDialog(null, "There is not enough balance.", "Error", JOptionPane.ERROR_MESSAGE);

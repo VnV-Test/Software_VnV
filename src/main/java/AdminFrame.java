@@ -102,6 +102,7 @@ public class AdminFrame extends JFrame{
                 Item item = parent.getVM().findItem(drinklist[selectProduct].getName());
                 if(nametf.getText() != null){
                     drinklist[selectProduct].setName(nametf.getText());
+                    parent.getVM().requestChangeName(selectProduct, nametf.getText());
                     if(item != null){
                         item.editName(nametf.getText());
                     }
@@ -115,6 +116,7 @@ public class AdminFrame extends JFrame{
                         return;
                     }
                     drinklist[selectProduct].setPrice(price);
+                    parent.getVM().requestChangePrice(selectProduct,price);
                     if(item != null){
                         item.editPrice(price);
                     }
