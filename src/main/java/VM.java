@@ -486,8 +486,8 @@ public class VM {
 
     public void revceiveSyncCard(){
         String[] str = mailBox.get(0).getMsgField().split(":");
-        int balance = Integer.parseInt(str[1]);
-        String num = str[2];
+        int balance = Integer.parseInt(str[0]);
+        String num = str[1];
         Card card = findCard2(num);
         if(card!=null)
             card.setBalance(balance);
