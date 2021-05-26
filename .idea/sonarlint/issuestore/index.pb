@@ -39,3 +39,9 @@ N
 src/main/java/ReceiveMail.java,4\6\466d9748be080c2269f26610e2edef7b17c8b40f
 L
 src/test/java/DrinkTest.java,f\2\f2bb863e45345f668f699b1138ad168c602c2aec
+M
+src/main/java/AdminFrame.java,3\3\33c751634db8af7b04158fc8673e4948113de7dc
+P
+ src/main/java/CardListFrame.java,2\4\245f72f4b789de3fed05d5d67eedf60f71524eac
+H
+src/main/java/Drink.java,8\7\87577db6aac1c3988b9607f64d707469d8b92509
