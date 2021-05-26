@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.lang.invoke.SwitchPoint;
 import java.util.Vector;
 
@@ -193,6 +194,14 @@ public class VM {
         return null;
     }
 
+    public Card findCard2(String cardNum) {
+        for (int i = 0; i < cardList.size(); i++) {
+            if (cardList.get(i).getCardNum().equals(cardNum)) {
+                return cardList.elementAt(i);
+            }
+        }
+        return null;
+    }
     //give
     public void giveCode(String code) {
         controller.showMessage("Guidance","<html> authentication code :" + "<b> "+ code+ " </b></html>");
@@ -253,6 +262,9 @@ public class VM {
         }
         if(mt == 10){
             receiveChangePrice();
+        }
+        if(mt==11){
+            revceiveSyncCard();
         }
     }
 
@@ -427,7 +439,7 @@ public class VM {
                 if(itemArray[i].editName(str[1]))
                     drinkArray[n].setName(str[1]);
                 else{
-                    //TODO 이름이 잘못되었다고 출력.
+                    //TODO 이름이 잘못되었다고 출력.-안해도됨.
                 }flag=1;
             }
         }
@@ -461,13 +473,24 @@ public class VM {
                 if(itemArray[i].editPrice(price))
                     drinkArray[n].setPrice(price);
                 else{
-                    //TODO 가격이 잘못되었다고 출력.
+                    //TODO 가격이 잘못되었다고 출력.-안해도됨.
                 }flag=1;
             }
         }
         if(flag==0)
             drinkArray[n].setPrice(price);
         controller.showDrink();
+        mailBox.remove(0);
+    }
+
+
+    public void revceiveSyncCard(){
+        String[] str = mailBox.get(0).getMsgField().split(":");
+        int balance = Integer.parseInt(str[1]);
+        String num = str[0];
+        Card card = findCard2(num);
+        if(card!=null)
+            card.setBalance(balance);
         mailBox.remove(0);
     }
 }
