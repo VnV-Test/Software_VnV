@@ -482,11 +482,8 @@ public class VM {
         controller.showDrink();
         mailBox.remove(0);
     }
-    public void requestSyncCard(String cardnum){
-        Card card = findCard2(cardnum);
-        if(card!=null)
-            new Message(this.ID, 0, 11, card.getCardNum() +":"+card.getBalance()).Send();
-    }
+
+
     public void revceiveSyncCard(){
         String[] str = mailBox.get(0).getMsgField().split(":");
         int balance = Integer.parseInt(str[1]);

@@ -17,6 +17,10 @@ public class Card {
             return false;
         }
         this.balance -= price;
+
+        new Message(0, 0, 11, this.cardNum +":"+String.valueOf(this.balance)).Send();
+
+
         return true;
     }
     public boolean isThisCard(String cardNum, int cvc, int pw, int validity){
