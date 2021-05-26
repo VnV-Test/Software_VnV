@@ -196,7 +196,7 @@ public class VM {
 
     public Card findCard2(String cardNum) {
         for (int i = 0; i < cardList.size(); i++) {
-            if (cardList.get(i).getCardNum() == cardNum) {
+            if (cardList.get(i).getCardNum().equals(cardNum)) {
                 return cardList.elementAt(i);
             }
         }
@@ -486,8 +486,8 @@ public class VM {
 
     public void revceiveSyncCard(){
         String[] str = mailBox.get(0).getMsgField().split(":");
-        int balance = Integer.parseInt(str[0]);
-        String num = str[1];
+        int balance = Integer.parseInt(str[1]);
+        String num = str[0];
         Card card = findCard2(num);
         if(card!=null)
             card.setBalance(balance);
