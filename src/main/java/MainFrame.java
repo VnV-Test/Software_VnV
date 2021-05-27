@@ -17,7 +17,7 @@ public class MainFrame extends JFrame{
     private String predrinkname = null;
 
     public MainFrame(VM vm) {
-        super("Distributed Vending Machine(" + vm.getID()+ ")");
+        super("Distributed Vending Machine(" + vm.getMarkID()+ ")");
         this.setSize(500,650);
         this.setLocationRelativeTo(null);
         this.vm = vm;
@@ -160,8 +160,11 @@ public class MainFrame extends JFrame{
         boolean isAdmin = admin.checkIDPW(id,pw);
         if(isAdmin) {
             AdminFrame admin = new AdminFrame(this);
+            this.dlg.dispose();
+            this.dlg = null;
         }else {
             JOptionPane.showMessageDialog(null, "\n" + "Invalid administrator ID or PW", "Error", JOptionPane.ERROR_MESSAGE);
+            this.dlg.requestFocus();
         }
     }
     public void checkCode() {

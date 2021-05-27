@@ -44,8 +44,7 @@ public class AdminDialog extends JDialog{
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 parent.checkAdmin();
-                parent.dlg = null;
-                dispose();
+
             }
         });
         this.addWindowListener(new WindowAdapter() {
