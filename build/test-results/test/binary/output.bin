@@ -1,0 +1,462 @@
+ID(9999) : requestPrepay
+DVM 9999 Message sent
+ïMessage{src_id=9999, dst_id=9998, type=3, description='Mint Coffee-99990000', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
+'field9999,9998,3,Mint Coffee-99990000
+temp0 :9999
+temp0 :9998
+
+temp0 :3
+DVM 9998 Message ricieved
+ïMessage{src_id=9999, dst_id=9998, type=3, description='Mint Coffee-99990000', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+2
+DVM 9998 Message sent
+ID(9998) : requestPrepay
+DVM 9998 Message sent
+ïMessage{src_id=9998, dst_id=9999, type=8, description='Mint Coffee-99990000', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+êMessage{src_id=9998, dst_id=9999, type=3, description='Sprite-99980000', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
+'field9998,9999,8,Mint Coffee-99990000
+temp0 :9998
+temp0 :9999
+
+temp0 :8
+DVM 9999 Message ricieved
+ïMessage{src_id=9998, dst_id=9999, type=8, description='Mint Coffee-99990000', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
+"field9998,9999,3,Sprite-99980000
+temp0 :9998
+temp0 :9999
+
+temp0 :3
+DVM 9999 Message ricieved
+êMessage{src_id=9998, dst_id=9999, type=3, description='Sprite-99980000', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+2
+DVM 9999 Message sent
+êMessage{src_id=9999, dst_id=9998, type=8, description='Sprite-99980000', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+ID(9999) : requestPrepay
+DVM 9999 Message sent
+êMessage{src_id=9999, dst_id=9997, type=3, description='Milkis-99990001', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
+"field9999,9998,8,Sprite-99980000
+temp0 :9999
+Connected.
+temp0 :9998
+
+temp0 :8
+"field9999,9997,3,Milkis-99990001
+temp0 :9999
+temp0 :9997
+
+temp0 :3
+DVM 9997 Message ricieved
+êMessage{src_id=9999, dst_id=9997, type=3, description='Milkis-99990001', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+DVM 9998 Message ricieved
+2
+êMessage{src_id=9999, dst_id=9998, type=8, description='Sprite-99980000', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+ID(9999) : requestPrepay
+DVM 9997 Message sent
+DVM 9999 Message sent
+êMessage{src_id=9997, dst_id=9999, type=8, description='Milkis-99990001', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+ïMessage{src_id=9999, dst_id=9998, type=3, description='Milk Coffee-99990002', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
+"field9997,9999,8,Milkis-99990001
+temp0 :9997
+temp0 :9999
+
+temp0 :8
+Connected.
+DVM 9999 Message ricieved
+êMessage{src_id=9997, dst_id=9999, type=8, description='Milkis-99990001', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+'field9999,9998,3,Milk Coffee-99990002
+temp0 :9999
+temp0 :9998
+
+temp0 :3
+DVM 9998 Message ricieved
+ïMessage{src_id=9999, dst_id=9998, type=3, description='Milk Coffee-99990002', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+2
+DVM 9998 Message sent
+ïMessage{src_id=9998, dst_id=9999, type=8, description='Milk Coffee-99990002', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+ID(9998) : requestPrepay
+DVM 9998 Message sent
+ïMessage{src_id=9998, dst_id=9999, type=3, description='Mint Sprite-99980001', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
+'field9998,9999,8,Milk Coffee-99990002
+temp0 :9998
+temp0 :9999
+
+temp0 :8
+DVM 9999 Message ricieved
+ïMessage{src_id=9998, dst_id=9999, type=8, description='Milk Coffee-99990002', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
+'field9998,9999,3,Mint Sprite-99980001
+temp0 :9998
+temp0 :9999
+
+temp0 :3
+DVM 9999 Message ricieved
+ïMessage{src_id=9998, dst_id=9999, type=3, description='Mint Sprite-99980001', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+2
+DVM 9999 Message sent
+ïMessage{src_id=9999, dst_id=9998, type=8, description='Mint Sprite-99980001', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+ID(9999) : requestPrepay
+DVM 9999 Message sent
+êMessage{src_id=9999, dst_id=9997, type=3, description='McCall-99990003', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
+'field9999,9998,8,Mint Sprite-99980001
+temp0 :9999
+temp0 :9998
+
+temp0 :8
+Connected.
+DVM 9998 Message ricieved
+ïMessage{src_id=9999, dst_id=9998, type=8, description='Mint Sprite-99980001', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+"field9999,9997,3,McCall-99990003
+temp0 :9999
+temp0 :9997
+
+temp0 :3
+DVM 9997 Message ricieved
+êMessage{src_id=9999, dst_id=9997, type=3, description='McCall-99990003', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+2
+DVM 9997 Message sent
+êMessage{src_id=9997, dst_id=9999, type=8, description='McCall-99990003', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+ID(9999) : requestPrepay
+DVM 9999 Message sent
+íMessage{src_id=9999, dst_id=9998, type=3, description='Demisoda-99990004', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
+Connected.
+"field9997,9999,8,McCall-99990003
+temp0 :9997
+temp0 :9999
+
+temp0 :8
+$field9999,9998,3,Demisoda-99990004
+temp0 :9999
+temp0 :9998
+DVM 9999 Message ricieved
+
+temp0 :3
+êMessage{src_id=9997, dst_id=9999, type=8, description='McCall-99990003', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+DVM 9998 Message ricieved
+íMessage{src_id=9999, dst_id=9998, type=3, description='Demisoda-99990004', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+2
+DVM 9998 Message sent
+íMessage{src_id=9998, dst_id=9999, type=8, description='Demisoda-99990004', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+ID(9998) : requestPrepay
+DVM 9998 Message sent
+éMessage{src_id=9998, dst_id=9999, type=3, description='Coke-99980002', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
+$field9998,9999,8,Demisoda-99990004
+temp0 :9998
+temp0 :9999
+
+temp0 :8
+DVM 9999 Message ricieved
+íMessage{src_id=9998, dst_id=9999, type=8, description='Demisoda-99990004', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
+ field9998,9999,3,Coke-99980002
+temp0 :9998
+temp0 :9999
+
+temp0 :3
+DVM 9999 Message ricieved
+éMessage{src_id=9998, dst_id=9999, type=3, description='Coke-99980002', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+2
+DVM 9999 Message sent
+ID(9999) : requestPrepay
+éMessage{src_id=9999, dst_id=9998, type=8, description='Coke-99980002', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+DVM 9999 Message sent
+åMessage{src_id=9999, dst_id=9997, type=3, description='2%-99990005', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
+ field9999,9998,8,Coke-99980002
+temp0 :9999
+temp0 :9998
+
+temp0 :8
+DVM 9998 Message ricieved
+éMessage{src_id=9999, dst_id=9998, type=8, description='Coke-99980002', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
+field9999,9997,3,2%-99990005
+temp0 :9999
+temp0 :9997
+
+temp0 :3
+DVM 9997 Message ricieved
+åMessage{src_id=9999, dst_id=9997, type=3, description='2%-99990005', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+2
+DVM 9997 Message sent
+ID(9999) : requestPrepay
+åMessage{src_id=9997, dst_id=9999, type=8, description='2%-99990005', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+DVM 9999 Message sent
+íMessage{src_id=9999, dst_id=9998, type=3, description='SunnyTen-99990006', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
+$field9999,9998,3,SunnyTen-99990006
+temp0 :9999
+temp0 :9998
+
+temp0 :3
+Connected.
+field9997,9999,8,2%-99990005
+temp0 :9997
+temp0 :9999
+
+temp0 :8
+DVM 9999 Message ricieved
+åMessage{src_id=9997, dst_id=9999, type=8, description='2%-99990005', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+DVM 9998 Message ricieved
+íMessage{src_id=9999, dst_id=9998, type=3, description='SunnyTen-99990006', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+2
+DVM 9998 Message sent
+ID(9998) : requestPrepay
+íMessage{src_id=9998, dst_id=9999, type=8, description='SunnyTen-99990006', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+DVM 9998 Message sent
+ìMessage{src_id=9998, dst_id=9999, type=3, description='Mint Coke-99980003', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
+$field9998,9999,8,SunnyTen-99990006
+temp0 :9998
+temp0 :9999
+
+temp0 :8
+DVM 9999 Message ricieved
+íMessage{src_id=9998, dst_id=9999, type=8, description='SunnyTen-99990006', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
+%field9998,9999,3,Mint Coke-99980003
+temp0 :9998
+temp0 :9999
+
+temp0 :3
+DVM 9999 Message ricieved
+ìMessage{src_id=9998, dst_id=9999, type=3, description='Mint Coke-99980003', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+2
+DVM 9999 Message sent
+ìMessage{src_id=9999, dst_id=9998, type=8, description='Mint Coke-99980003', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+ID(9999) : requestPrepay
+DVM 9999 Message sent
+íMessage{src_id=9999, dst_id=9997, type=3, description='Gatorade-99990007', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
+Connected.
+%field9999,9998,8,Mint Coke-99980003
+temp0 :9999
+temp0 :9998
+$field9999,9997,3,Gatorade-99990007
+
+temp0 :8
+temp0 :9999
+temp0 :9997
+
+temp0 :3
+DVM 9997 Message ricieved
+DVM 9998 Message ricieved
+íMessage{src_id=9999, dst_id=9997, type=3, description='Gatorade-99990007', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+ìMessage{src_id=9999, dst_id=9998, type=8, description='Mint Coke-99980003', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+2
+ID(9999) : requestPrepay
+DVM 9997 Message sent
+íMessage{src_id=9997, dst_id=9999, type=8, description='Gatorade-99990007', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+DVM 9999 Message sent
+êMessage{src_id=9999, dst_id=9998, type=3, description='Sikhye-99990008', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
+$field9997,9999,8,Gatorade-99990007
+temp0 :9997
+temp0 :9999
+
+temp0 :8
+Connected.
+"field9999,9998,3,Sikhye-99990008
+temp0 :9999
+temp0 :9998
+DVM 9999 Message ricieved
+
+temp0 :3
+íMessage{src_id=9997, dst_id=9999, type=8, description='Gatorade-99990007', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+DVM 9998 Message ricieved
+êMessage{src_id=9999, dst_id=9998, type=3, description='Sikhye-99990008', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+2
+DVM 9998 Message sent
+êMessage{src_id=9998, dst_id=9999, type=8, description='Sikhye-99990008', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+ID(9998) : requestPrepay
+DVM 9998 Message sent
+èMessage{src_id=9998, dst_id=9999, type=3, description='Water-99980004', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
+"field9998,9999,8,Sikhye-99990008
+temp0 :9998
+temp0 :9999
+
+temp0 :8
+DVM 9999 Message ricieved
+êMessage{src_id=9998, dst_id=9999, type=8, description='Sikhye-99990008', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
+!field9998,9999,3,Water-99980004
+temp0 :9998
+temp0 :9999
+
+temp0 :3
+DVM 9999 Message ricieved
+èMessage{src_id=9998, dst_id=9999, type=3, description='Water-99980004', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+2
+DVM 9999 Message sent
+èMessage{src_id=9999, dst_id=9998, type=8, description='Water-99980004', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+ID(9999) : requestPrepay
+DVM 9999 Message sent
+ëMessage{src_id=9999, dst_id=9997, type=3, description='Hot Six-99990009', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
+Connected.
+!field9999,9998,8,Water-99980004
+#field9999,9997,3,Hot Six-99990009
+temp0 :9999
+temp0 :9999
+temp0 :9998
+temp0 :9997
+
+temp0 :8
+
+temp0 :3
+DVM 9998 Message ricieved
+èMessage{src_id=9999, dst_id=9998, type=8, description='Water-99980004', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+DVM 9997 Message ricieved
+ëMessage{src_id=9999, dst_id=9997, type=3, description='Hot Six-99990009', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+2
+DVM 9997 Message sent
+ID(9999) : requestPrepay
+ëMessage{src_id=9997, dst_id=9999, type=8, description='Hot Six-99990009', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+DVM 9999 Message sent
+çMessage{src_id=9999, dst_id=9998, type=3, description='IDH-99990010', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
+#field9997,9999,8,Hot Six-99990009
+temp0 :9997
+temp0 :9999
+
+temp0 :8
+DVM 9999 Message ricieved
+ëMessage{src_id=9997, dst_id=9999, type=8, description='Hot Six-99990009', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
+field9999,9998,3,IDH-99990010
+temp0 :9999
+temp0 :9998
+
+temp0 :3
+DVM 9998 Message ricieved
+çMessage{src_id=9999, dst_id=9998, type=3, description='IDH-99990010', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+2
+DVM 9998 Message sent
+çMessage{src_id=9998, dst_id=9999, type=8, description='IDH-99990010', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+ID(9998) : requestPrepay
+DVM 9998 Message sent
+ôMessage{src_id=9998, dst_id=9999, type=3, description='Sparkling water-99980005', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
+field9998,9999,8,IDH-99990010
+temp0 :9998
+temp0 :9999
+
+temp0 :8
+DVM 9999 Message ricieved
+çMessage{src_id=9998, dst_id=9999, type=8, description='IDH-99990010', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
++field9998,9999,3,Sparkling water-99980005
+temp0 :9998
+temp0 :9999
+
+temp0 :3
+DVM 9999 Message ricieved
+ôMessage{src_id=9998, dst_id=9999, type=3, description='Sparkling water-99980005', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+2
+DVM 9999 Message sent
+ôMessage{src_id=9999, dst_id=9998, type=8, description='Sparkling water-99980005', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+ID(9999) : requestPrepay
+DVM 9999 Message sent
+ìMessage{src_id=9999, dst_id=9997, type=3, description='CoCo palm-99990011', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
+Connected.
++field9999,9998,8,Sparkling water-99980005
+temp0 :9999
+temp0 :9998
+%field9999,9997,3,CoCo palm-99990011
+
+temp0 :8
+temp0 :9999
+temp0 :9997
+
+temp0 :3
+DVM 9998 Message ricieved
+ôMessage{src_id=9999, dst_id=9998, type=8, description='Sparkling water-99980005', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+DVM 9997 Message ricieved
+ìMessage{src_id=9999, dst_id=9997, type=3, description='CoCo palm-99990011', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+2
+DVM 9997 Message sent
+ìMessage{src_id=9997, dst_id=9999, type=8, description='CoCo palm-99990011', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+ID(9999) : requestPrepay
+DVM 9999 Message sent
+êMessage{src_id=9999, dst_id=9998, type=3, description='Milkis-99990012', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
+Connected.
+%field9997,9999,8,CoCo palm-99990011
+temp0 :9997
+"field9999,9998,3,Milkis-99990012
+temp0 :9999
+temp0 :9998
+temp0 :9999
+
+temp0 :3
+
+temp0 :8
+DVM 9999 Message ricieved
+ìMessage{src_id=9997, dst_id=9999, type=8, description='CoCo palm-99990011', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+DVM 9998 Message ricieved
+êMessage{src_id=9999, dst_id=9998, type=3, description='Milkis-99990012', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+2
+DVM 9998 Message sent
+êMessage{src_id=9998, dst_id=9999, type=8, description='Milkis-99990012', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+ID(9998) : requestPrepay
+DVM 9998 Message sent
+êMessage{src_id=9998, dst_id=9999, type=3, description='Coffee-99980006', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
+"field9998,9999,8,Milkis-99990012
+temp0 :9998
+temp0 :9999
+
+temp0 :8
+DVM 9999 Message ricieved
+êMessage{src_id=9998, dst_id=9999, type=8, description='Milkis-99990012', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
+"field9998,9999,3,Coffee-99980006
+temp0 :9998
+temp0 :9999
+
+temp0 :3
+DVM 9999 Message ricieved
+êMessage{src_id=9998, dst_id=9999, type=3, description='Coffee-99980006', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+2
+DVM 9999 Message sent
+êMessage{src_id=9999, dst_id=9998, type=8, description='Coffee-99980006', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+ID(9999) : requestPrepay
+DVM 9999 Message sent
+ïMessage{src_id=9999, dst_id=9997, type=3, description='Minute Made-99990013', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
+Connected.
+'field9999,9997,3,Minute Made-99990013
+temp0 :9999
+temp0 :9997
+
+temp0 :3
+"field9999,9998,8,Coffee-99980006
+temp0 :9999
+DVM 9997 Message ricieved
+temp0 :9998
+ïMessage{src_id=9999, dst_id=9997, type=3, description='Minute Made-99990013', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+
+temp0 :8
+2
+DVM 9998 Message ricieved
+êMessage{src_id=9999, dst_id=9998, type=8, description='Coffee-99980006', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+DVM 9997 Message sent
+ïMessage{src_id=9997, dst_id=9999, type=8, description='Minute Made-99990013', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}
+Connected.
+'field9997,9999,8,Minute Made-99990013
+temp0 :9997
+temp0 :9999
+
+temp0 :8
+DVM 9999 Message ricieved
+ïMessage{src_id=9997, dst_id=9999, type=8, description='Minute Made-99990013', portArr=[9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991, 9990]}

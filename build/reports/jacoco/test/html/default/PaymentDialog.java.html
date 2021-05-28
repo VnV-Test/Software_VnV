@@ -40,59 +40,70 @@ public class PaymentDialog extends JDialog{
 <span class="nc" id="L40">        this.setVisible(true);</span>
 <span class="nc" id="L41">    }</span>
     public void init(boolean isPre) {
-<span class="nc" id="L43">        JPanel centerPanel = new JPanel(new FlowLayout());</span>
-<span class="nc" id="L44">        JLabel centerLabel = new JLabel(&quot;Would you like to pay?&quot;);</span>
-<span class="nc" id="L45">        Font font = new Font(&quot;Arial&quot;,Font.PLAIN,13);</span>
-<span class="nc" id="L46">        centerPanel.setBackground(Color.white);</span>
-<span class="nc" id="L47">        centerLabel.setFont(font);</span>
-<span class="nc" id="L48">        centerLabel.setVerticalAlignment(JLabel.CENTER);</span>
-<span class="nc" id="L49">        centerPanel.add(centerLabel);</span>
-<span class="nc" id="L50">        pane.add(centerPanel,BorderLayout.CENTER);</span>
+<span class="nc" id="L43">        System.out.println(&quot;\nPaymentDialog name :&quot; + name + &quot;\n&quot;);</span>
+<span class="nc" id="L44">        JPanel centerPanel = new JPanel(new FlowLayout());</span>
+<span class="nc" id="L45">        JLabel centerLabel = new JLabel(&quot;Would you like to pay?&quot;);</span>
+<span class="nc" id="L46">        Font font = new Font(&quot;Arial&quot;,Font.PLAIN,13);</span>
+<span class="nc" id="L47">        centerPanel.setBackground(Color.white);</span>
+<span class="nc" id="L48">        centerLabel.setFont(font);</span>
+<span class="nc" id="L49">        centerLabel.setVerticalAlignment(JLabel.CENTER);</span>
+<span class="nc" id="L50">        centerPanel.add(centerLabel);</span>
+<span class="nc" id="L51">        pane.add(centerPanel,BorderLayout.CENTER);</span>
 
-<span class="nc" id="L52">        JPanel southPanel = new JPanel(new FlowLayout(FlowLayout.CENTER,5,5));</span>
-<span class="nc" id="L53">        southPanel.setBackground(Color.white);</span>
-<span class="nc" id="L54">        JButton okBtn = new JButton(&quot;OK&quot;);</span>
-<span class="nc" id="L55">        okBtn.setBackground(new Color(80,180,223));</span>
-<span class="nc" id="L56">        okBtn.setForeground(Color.white);</span>
-<span class="nc" id="L57">        int payPrice = this.price;</span>
-<span class="nc" id="L58">        String payName = this.name;</span>
-<span class="nc" id="L59">        okBtn.addActionListener(new ActionListener() {</span>
+<span class="nc" id="L53">        JPanel southPanel = new JPanel(new FlowLayout(FlowLayout.CENTER,5,5));</span>
+<span class="nc" id="L54">        southPanel.setBackground(Color.white);</span>
+<span class="nc" id="L55">        JButton okBtn = new JButton(&quot;OK&quot;);</span>
+<span class="nc" id="L56">        okBtn.setBackground(new Color(80,180,223));</span>
+<span class="nc" id="L57">        okBtn.setForeground(Color.white);</span>
+<span class="nc" id="L58">        int payPrice = this.price;</span>
+<span class="nc" id="L59">        String payName = this.name;</span>
+<span class="nc" id="L60">        okBtn.addActionListener(new ActionListener() {</span>
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 // 카드 입력창 생성
-<span class="nc bnc" id="L64" title="All 2 branches missed.">                if(isPre){</span>
-<span class="nc" id="L65">                    parent.showCardDialog(payPrice, payName,othervm);</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">                if(isPre){</span>
+<span class="nc" id="L66">                    parent.showCardDialog(payPrice, payName,othervm);</span>
                 }else {
-<span class="nc" id="L67">                    parent.showCardDialog(payPrice, payName);</span>
+<span class="nc" id="L68">                    parent.showCardDialog(payPrice, payName);</span>
                 }
-<span class="nc" id="L69">                dispose();</span>
-<span class="nc" id="L70">            }</span>
+<span class="nc" id="L70">                dispose();</span>
+<span class="nc" id="L71">            }</span>
         });
-<span class="nc" id="L72">        JButton cancelBtn = new JButton(&quot;Cancel&quot;);</span>
-<span class="nc" id="L73">        cancelBtn.setBackground(new Color(80,180,223));</span>
-<span class="nc" id="L74">        cancelBtn.setForeground(Color.white);</span>
-<span class="nc" id="L75">        cancelBtn.addActionListener(new ActionListener() {</span>
+<span class="nc" id="L73">        JButton cancelBtn = new JButton(&quot;Cancel&quot;);</span>
+<span class="nc" id="L74">        cancelBtn.setBackground(new Color(80,180,223));</span>
+<span class="nc" id="L75">        cancelBtn.setForeground(Color.white);</span>
+<span class="nc" id="L76">        cancelBtn.addActionListener(new ActionListener() {</span>
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-<span class="nc" id="L79">                parent.dlg = null;</span>
-<span class="nc" id="L80">                dispose();</span>
-<span class="nc" id="L81">            }</span>
+<span class="nc" id="L80">                parent.dlg = null;</span>
+<span class="nc" id="L81">                dispose();</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">                if(isPre){</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">                    if(parent.vmframe != null){</span>
+<span class="nc" id="L84">                        parent.vmframe.requestFocus();</span>
+                    }
+                }
+<span class="nc" id="L87">            }</span>
         });
-<span class="nc" id="L83">        southPanel.add(okBtn);</span>
-<span class="nc" id="L84">        southPanel.add(cancelBtn);</span>
-<span class="nc" id="L85">        pane.add(southPanel,BorderLayout.SOUTH);</span>
-<span class="nc" id="L86">        this.addWindowListener(new WindowAdapter() {</span>
+<span class="nc" id="L89">        southPanel.add(okBtn);</span>
+<span class="nc" id="L90">        southPanel.add(cancelBtn);</span>
+<span class="nc" id="L91">        pane.add(southPanel,BorderLayout.SOUTH);</span>
+<span class="nc" id="L92">        this.addWindowListener(new WindowAdapter() {</span>
             @Override
             public void windowClosing(WindowEvent e) {
                 // TODO Auto-generated method stub
-<span class="nc" id="L90">                super.windowClosing(e);</span>
-<span class="nc" id="L91">                parent.dlg = null;</span>
-<span class="nc" id="L92">                dispose();</span>
-<span class="nc" id="L93">            }</span>
+<span class="nc" id="L96">                super.windowClosing(e);</span>
+<span class="nc" id="L97">                parent.dlg = null;</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">                if(isPre){</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">                    if(parent.vmframe != null){</span>
+<span class="nc" id="L100">                        parent.vmframe.requestFocus();</span>
+                    }
+                }
+<span class="nc" id="L103">                dispose();</span>
+<span class="nc" id="L104">            }</span>
         });
-<span class="nc" id="L95">    }</span>
+<span class="nc" id="L106">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
