@@ -14,62 +14,71 @@ public class VMFrame extends JFrame{
 <span class="nc" id="L14">    MainFrame parent = null;</span>
     String drinkname;
     int price;
+<span class="nc" id="L17">    boolean ispaint = false;</span>
 
-    public VMFrame(MainFrame parent, VM otherVm,String drinkname,int price) {
-<span class="nc" id="L19">        super(&quot;VM-List&quot;);</span>
-<span class="nc" id="L20">        this.parent = parent;</span>
-<span class="nc" id="L21">        this.setSize(500,500);</span>
-<span class="nc" id="L22">        this.setLocationRelativeTo(null);</span>
-<span class="nc" id="L23">        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);</span>
-<span class="nc" id="L24">        this.drinkname = drinkname;</span>
-<span class="nc" id="L25">        this.price = price;</span>
-<span class="nc" id="L26">        init(otherVm);</span>
-<span class="nc" id="L27">        this.setVisible(true);</span>
-<span class="nc" id="L28">    }</span>
-    private void init(VM otherVm) {
-<span class="nc" id="L30">        JPanel centerPanel = new JPanel();</span>
-<span class="nc" id="L31">        centerPanel.setBackground(Color.white);</span>
-<span class="nc" id="L32">        centerPanel.setPreferredSize(new Dimension(370,450));</span>
-<span class="nc" id="L33">        centerPanel.setBorder(BorderFactory.createEmptyBorder(25,0,0,0));</span>
+    public VMFrame(MainFrame parent,String drinkname,int price) {
+<span class="nc" id="L20">        super(&quot;VM-List&quot;);</span>
+<span class="nc" id="L21">        this.parent = parent;</span>
+<span class="nc" id="L22">        this.setSize(500,500);</span>
+<span class="nc" id="L23">        this.setLocationRelativeTo(null);</span>
+<span class="nc" id="L24">        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);</span>
+<span class="nc" id="L25">        this.drinkname = drinkname;</span>
+<span class="nc" id="L26">        this.price = price;</span>
+<span class="nc" id="L27">        init();</span>
+<span class="nc" id="L28">        this.setVisible(true);</span>
+<span class="nc" id="L29">    }</span>
+    private void init() {
+<span class="nc" id="L31">        JPanel centerPanel = new JPanel();</span>
+<span class="nc" id="L32">        centerPanel.setBackground(Color.white);</span>
+<span class="nc" id="L33">        centerPanel.setPreferredSize(new Dimension(370,450));</span>
+<span class="nc" id="L34">        centerPanel.setBorder(BorderFactory.createEmptyBorder(25,0,0,0));</span>
 
-<span class="nc" id="L35">        vmPanel = new JPanel(new GridLayout(10,1,5,5));</span>
-<span class="nc" id="L36">        vmPanel.setPreferredSize(new Dimension(340,1050));</span>
-<span class="nc" id="L37">        vmPanel.setBackground(Color.white);</span>
-<span class="nc" id="L38">        vmPanel.setBorder(BorderFactory.createEmptyBorder(0,5,0,5));</span>
-<span class="nc" id="L39">        JScrollPane vmScroll = new JScrollPane(vmPanel);</span>
-<span class="nc" id="L40">        vmScroll.setPreferredSize(new Dimension(372,400));</span>
-<span class="nc" id="L41">        centerPanel.add(vmScroll,BorderLayout.CENTER);</span>
-<span class="nc" id="L42">        initVM(otherVm);</span>
-<span class="nc" id="L43">        frame.add(centerPanel,BorderLayout.CENTER);</span>
-<span class="nc" id="L44">        this.addWindowListener(new WindowAdapter() {</span>
+<span class="nc" id="L36">        vmPanel = new JPanel(new GridLayout(10,1,5,5));</span>
+<span class="nc" id="L37">        vmPanel.setPreferredSize(new Dimension(340,1050));</span>
+<span class="nc" id="L38">        vmPanel.setBackground(Color.white);</span>
+<span class="nc" id="L39">        vmPanel.setBorder(BorderFactory.createEmptyBorder(0,5,0,5));</span>
+<span class="nc" id="L40">        JScrollPane vmScroll = new JScrollPane(vmPanel);</span>
+<span class="nc" id="L41">        vmScroll.setPreferredSize(new Dimension(372,400));</span>
+<span class="nc" id="L42">        centerPanel.add(vmScroll,BorderLayout.CENTER);</span>
+<span class="nc" id="L43">        JLabel error = new JLabel(&quot;                    재고를 가지고 있는 다른 VM이 없습니다.&quot;);</span>
+<span class="nc" id="L44">        vmPanel.add(error);</span>
+<span class="nc" id="L45">        frame.add(centerPanel,BorderLayout.CENTER);</span>
+<span class="nc" id="L46">        this.addWindowListener(new WindowAdapter() {</span>
             @Override
             public void windowClosing(WindowEvent e) {
                 // TODO Auto-generated method stub
-<span class="nc" id="L48">                super.windowClosing(e);</span>
-<span class="nc" id="L49">                parent.setPredrinkname(null);</span>
-<span class="nc" id="L50">                parent.vmframe = null;</span>
-<span class="nc" id="L51">                dispose();</span>
-<span class="nc" id="L52">            }</span>
+<span class="nc" id="L50">                super.windowClosing(e);</span>
+<span class="nc" id="L51">                parent.setPredrinkname(null);</span>
+<span class="nc" id="L52">                parent.vmframe = null;</span>
+<span class="nc" id="L53">                dispose();</span>
+<span class="nc" id="L54">            }</span>
         });
-<span class="nc" id="L54">    }</span>
+<span class="nc" id="L56">    }</span>
     public void initVM(VM otherVm){
         // 거리계산
-<span class="nc" id="L57">        VM vm = parent.getVM();</span>
-<span class="nc" id="L58">        Double distance = Math.sqrt(Math.pow(otherVm.getLocation()[0]-vm.getLocation()[0],2)+Math.pow(otherVm.getLocation()[1]-vm.getLocation()[1],2));</span>
-<span class="nc" id="L59">        VMPanel vmpanel = new VMPanel(otherVm.getID(),distance);</span>
-<span class="nc" id="L60">        vmpanel.addMouseListener(new MouseAdapter() {</span>
+<span class="nc bnc" id="L59" title="All 2 branches missed.">        if(!ispaint){</span>
+<span class="nc" id="L60">            vmPanel.removeAll();</span>
+<span class="nc" id="L61">            repaint();</span>
+<span class="nc" id="L62">            validate();</span>
+<span class="nc" id="L63">            ispaint = true;</span>
+        }
+<span class="nc" id="L65">        VM vm = parent.getVM();</span>
+<span class="nc" id="L66">        Double distance = Math.sqrt(Math.pow(otherVm.getLocation()[0]-vm.getLocation()[0],2)+Math.pow(otherVm.getLocation()[1]-vm.getLocation()[1],2));</span>
+<span class="nc" id="L67">        VMPanel vmpanel = new VMPanel(otherVm.getID(),distance);</span>
+<span class="nc" id="L68">        vmpanel.addMouseListener(new MouseAdapter() {</span>
             @Override
             public void mouseClicked(MouseEvent e) {
                 // TODO Auto-generated method stub
                 //결제창 띄우기
-<span class="nc" id="L65">                parent.dlg = new PaymentDialog(parent, &quot;Payment&quot;,false, price, drinkname,true, otherVm);</span>
+<span class="nc" id="L73">                System.out.println(&quot;\nVMFrame name :&quot; + drinkname + &quot;\n&quot;);</span>
+<span class="nc" id="L74">                parent.dlg = new PaymentDialog(parent, &quot;Payment&quot;,false, price, drinkname,true, otherVm);</span>
 
-<span class="nc" id="L67">            }</span>
+<span class="nc" id="L76">            }</span>
 
         });
-<span class="nc" id="L70">        vmPanel.add(vmpanel);</span>
-<span class="nc" id="L71">        repaint();</span>
-<span class="nc" id="L72">        validate();</span>
-<span class="nc" id="L73">    }</span>
+<span class="nc" id="L79">        vmPanel.add(vmpanel);</span>
+<span class="nc" id="L80">        repaint();</span>
+<span class="nc" id="L81">        validate();</span>
+<span class="nc" id="L82">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ko"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CardListFrame.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Software_VnV</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">CardListFrame.java</span></div><h1>CardListFrame.java</h1><pre class="source lang-java linenums">import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.Vector;
+
+public class CardListFrame extends JFrame{
+
+    public CardListFrame(Vector&lt;Card&gt; cardList){
+<span class="nc" id="L12">        super(&quot;Card-List&quot;);</span>
+<span class="nc" id="L13">        this.setSize(300,100);</span>
+<span class="nc" id="L14">        this.setLocationRelativeTo(null);</span>
+<span class="nc" id="L15">        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);</span>
+<span class="nc" id="L16">        init(cardList);</span>
+<span class="nc" id="L17">        this.setVisible(true);</span>
+<span class="nc" id="L18">    }</span>
+    private void init(Vector&lt;Card&gt; cardList){
+<span class="nc" id="L20">        String header[] = {&quot;카드번호&quot;,&quot;잔액&quot;};</span>
+<span class="nc" id="L21">        int cardNum = cardList.size();</span>
+<span class="nc" id="L22">        String contents[][] = new String[cardNum][2];</span>
+<span class="nc bnc" id="L23" title="All 2 branches missed.">        for(int i = 0; i &lt; cardNum; i++){</span>
+<span class="nc" id="L24">            contents[i][0] = cardList.elementAt(i).getCardNum();</span>
+<span class="nc" id="L25">            contents[i][1] = String.valueOf(cardList.elementAt(i).getBalance());</span>
+        }
+
+<span class="nc" id="L28">        JTable cardTable = new JTable(contents,header);</span>
+<span class="nc" id="L29">        JScrollPane scroll = new JScrollPane(cardTable);</span>
+<span class="nc" id="L30">        scroll.setPreferredSize(new Dimension(250,90));</span>
+<span class="nc" id="L31">        this.getContentPane().add(scroll);</span>
+<span class="nc" id="L32">        this.pack();</span>
+<span class="nc" id="L33">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

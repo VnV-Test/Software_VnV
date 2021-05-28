@@ -13,43 +13,46 @@ class RecieveMail extends Thread{
 <span class="fc" id="L13">    }</span>
     @Override
     public void run(){
-<span class="nc" id="L16">        BufferedReader in = null;</span>
-<span class="nc" id="L17">        ServerSocket listener = null;</span>
-<span class="nc" id="L18">        Socket socket = null;</span>
+<span class="fc" id="L16">        BufferedReader in = null;</span>
+<span class="fc" id="L17">        ServerSocket listener = null;</span>
+<span class="fc" id="L18">        Socket socket = null;</span>
         while(true){
 
             try{
-<span class="nc" id="L22">                listener = new ServerSocket(vm.getID());</span>
+<span class="fc" id="L22">                listener = new ServerSocket(vm.getID());</span>
 <span class="nc" id="L23">            } catch(IOException e) {</span>
 <span class="nc" id="L24">                System.out.println(e.getMessage() + &quot;Here??&quot;);</span>
-<span class="nc" id="L25">            }</span>
+<span class="fc" id="L25">            }</span>
             try{
                 while(true) {
-<span class="nc" id="L28">                    socket = listener.accept();</span>
-<span class="nc" id="L29">                    System.out.println(&quot;Connected.&quot;);</span>
+<span class="fc" id="L28">                    socket = listener.accept();</span>
+<span class="fc" id="L29">                    System.out.println(&quot;Connected.&quot;);</span>
                     ////////////////////////
 //                Thread t3 = new RecieveMail(vm);
 //                t3.start();
-<span class="nc" id="L33">                    in = new BufferedReader(new InputStreamReader(socket.getInputStream()));</span>
+<span class="fc" id="L33">                    in = new BufferedReader(new InputStreamReader(socket.getInputStream()));</span>
 
-<span class="nc" id="L35">                    String inputMessage = in.readLine();</span>
+<span class="fc" id="L35">                    String inputMessage = in.readLine();</span>
 
-<span class="nc" id="L37">                    String[] tempS = inputMessage.split(&quot;,&quot;);</span>
-
-<span class="nc" id="L39">                    Message mg = new Message(Integer.valueOf(tempS[0]), Integer.valueOf(tempS[1]), Integer.valueOf(tempS[2]), tempS[3]);</span>
-<span class="nc" id="L40">                    this.vm.MailRecieve(mg);</span>
-<span class="nc" id="L41">                }</span>
-<span class="nc" id="L42">            } catch(IOException e){</span>
-<span class="nc" id="L43">                System.out.println(e.getMessage()+&quot;Here??&quot;);</span>
+<span class="fc" id="L37">                    String[] tempS = inputMessage.split(&quot;,&quot;);</span>
+<span class="fc" id="L38">                    System.out.println(&quot;field&quot; + inputMessage);</span>
+<span class="fc" id="L39">                    System.out.println(&quot;temp0 :&quot; + tempS[0]);</span>
+<span class="fc" id="L40">                    System.out.println(&quot;temp0 :&quot; + tempS[1]);</span>
+<span class="fc" id="L41">                    System.out.println(&quot;temp0 :&quot; + tempS[2]);</span>
+<span class="fc" id="L42">                    Message mg = new Message(Integer.valueOf(tempS[0]), Integer.valueOf(tempS[1]), Integer.valueOf(tempS[2]), tempS[3]);</span>
+<span class="fc" id="L43">                    this.vm.MailRecieve(mg);</span>
+<span class="fc" id="L44">                }</span>
+<span class="nc" id="L45">            } catch(IOException e){</span>
+<span class="nc" id="L46">                System.out.println(e.getMessage()+&quot;Here??&quot;);</span>
             }
             finally {
                 try{
-<span class="nc" id="L47">                    socket.close();</span>
-<span class="nc" id="L48">                    listener.close();</span>
-<span class="nc" id="L49">                } catch (IOException e){</span>
-<span class="nc" id="L50">                    System.out.println(&quot;Error occured while chatting with client.&quot;);</span>
-<span class="nc" id="L51">                }</span>
-<span class="nc" id="L52">            }</span>
+<span class="nc" id="L50">                    socket.close();</span>
+<span class="nc" id="L51">                    listener.close();</span>
+<span class="nc" id="L52">                } catch (IOException e){</span>
+<span class="nc" id="L53">                    System.out.println(&quot;Error occured while chatting with client.&quot;);</span>
+<span class="nc" id="L54">                }</span>
+<span class="nc" id="L55">            }</span>
         }
     }
 }
