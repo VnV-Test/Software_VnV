@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="AdminTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-05-28T01:53:54" hostname="Sunghjops-Mac-mini.local" time="0.032">
+<testsuite name="AdminTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-05-28T07:39:31" hostname="Sunghjops-Mac-mini.local" time="0.037">
   <properties/>
-  <testcase name="editContactTest()" classname="AdminTest" time="0.032"/>
+  <testcase name="AdminLogin()" classname="AdminTest" time="0.035"/>
+  <testcase name="editContactTest()" classname="AdminTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

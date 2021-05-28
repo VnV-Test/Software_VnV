@@ -29,6 +29,6 @@ public class MessageTest {
         msg.Send();
         while(vm.getMailBoxSize()==0);
         Assertions.assertEquals(vm.getMailBoxSize(), 1);
-        Assertions.assertEquals(vm.mailBox.get(0), msg);
+        Assertions.assertEquals(vm.mailBox.get(0).toString(), msg.toString());
     }
 }
