@@ -1,8 +1,0 @@
-
-0
-java:S1220""Move this file to a named package.
-Q	java:S125"<This block of commented-out lines of code should be removed.(Õ¡öÖ
-Y
-java:S3252!">Use static access with "javax.swing.SwingConstants" for "TOP".(”°¼œþÿÿÿÿ
-\
-java:S3252)"AUse static access with "javax.swing.SwingConstants" for "BOTTOM".(Á¡Âôýÿÿÿÿ

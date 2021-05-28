@@ -6,11 +6,13 @@ import java.awt.event.MouseEvent;
 public class VMPanel extends JPanel{
     // 속성
     private int vmid;
+    private int markid;
     private double distance;
     private boolean isWhite = true;
 
-    public VMPanel(int id, double distance) {
+    public VMPanel(int id,int markid, double distance) {
         this.vmid = id;
+        this.markid = markid;
         this.distance = distance;
         this.setLayout(new BorderLayout(0,1));
         this.setPreferredSize(new Dimension(300,150));
@@ -29,7 +31,7 @@ public class VMPanel extends JPanel{
         center.add(imgLabel);
 
         // DVM id
-        JLabel idLabel = new JLabel("VM(id: "  + this.vmid + ")");
+        JLabel idLabel = new JLabel("VM(id: "  + this.markid + ")");
         idLabel.setVerticalAlignment(JLabel.TOP);
         idLabel.setPreferredSize(new Dimension(200,130));
         Font font = new Font("Arial",Font.BOLD,13);

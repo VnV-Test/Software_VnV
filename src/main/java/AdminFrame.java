@@ -161,7 +161,7 @@ public class AdminFrame extends JFrame{
         JPanel textPanel = new JPanel(new GridLayout(2,1,0,0));
         textPanel.setBackground(Color.white);
         textPanel.setBorder(BorderFactory.createEmptyBorder(30,10,30,0));
-        JLabel name = new JLabel("VM ID: ");
+        JLabel name = new JLabel("VM ID(1~999)");
         JLabel price = new JLabel("VM Location: ");
 
         textPanel.add(name);
@@ -195,7 +195,13 @@ public class AdminFrame extends JFrame{
                         JOptionPane.showMessageDialog(null, "\n" + "Strings other than integers cannot be entered for id.", "Error", JOptionPane.ERROR_MESSAGE);
                         return;
                     }
-                    parent.getVM().editVMID(id);
+                    if(id < 0 || id > 999){
+                        JOptionPane.showMessageDialog(null, "\n" + "You can only input integers between 0 and 999", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    int realID = (id*10) + parent.getVM().getMarkID() % 10;
+                    parent.getVM().editVMID(realID);
+                    parent.setTitle("Distributed Vending Machine(" + parent.getVM().getMarkID()+ ")");
                     JOptionPane.showMessageDialog(null, "Has been changed.", "Guidance", JOptionPane.INFORMATION_MESSAGE);
                 }else{ return; }
             }

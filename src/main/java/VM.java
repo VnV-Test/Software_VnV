@@ -1,9 +1,11 @@
 import javax.swing.*;
 import java.lang.invoke.SwitchPoint;
+import java.util.Random;
 import java.util.Vector;
 
 public class VM {
     private int ID;
+    private int mark_ID;
     private double[] Location;
     private String Address;
     private double[][] vmLocArray = new double[10000][2];
@@ -25,6 +27,15 @@ public class VM {
 
     public VM(int ID, double[] Locaiton) {
         this.ID = ID;
+        this.mark_ID = setMarkID(ID);
+        this.Location = Locaiton;
+        this.mailBox = new Vector<Message>();
+        itemArray = new Item[7];
+        basicSettinng(0);
+    }
+    public VM(int ID,int mark_ID, double[] Locaiton) {
+        this.ID = ID;
+        this.mark_ID = mark_ID;
         this.Location = Locaiton;
         this.mailBox = new Vector<Message>();
         itemArray = new Item[7];
@@ -32,6 +43,7 @@ public class VM {
     }
     public VM(int ID, double[] Locaiton,int division) {
         this.ID = ID;
+        this.mark_ID = setMarkID(ID);
         this.Location = Locaiton;
         this.mailBox = new Vector<Message>();
         this.itemArray = new Item[7];
@@ -39,6 +51,14 @@ public class VM {
         this.dvmIdList.add(9999);
         this.dvmIdList.add(9998);
         basicSettinng(division);
+    }
+    public int setMarkID(int port){
+        int lastNum = port % 10;
+
+        Random rand = new Random();
+
+        int firstNum = rand.nextInt(1000);
+        return (firstNum*10) + lastNum;
     }
     public void basicSettinng(int division) {
         // drink
@@ -135,8 +155,8 @@ public class VM {
 
         return true;
     }
-    //getset
 
+    //getset
     public MainFrame setUI(MainFrame m){
         this.controller =  m;
         return this.controller;
@@ -164,9 +184,11 @@ public class VM {
         this.Address = Address;
     }
     public void editVMID(int id) {
-        this.ID = id;
+        this.mark_ID = id;
     }
-
+    public int getMarkID(){
+        return  this.mark_ID;
+    }
 
     //find
     public Drink findDrink(String name) {
@@ -193,7 +215,6 @@ public class VM {
         }
         return null;
     }
-
     public Card findCard2(String cardNum) {
         for (int i = 0; i < cardList.size(); i++) {
             if (cardList.get(i).getCardNum().equals(cardNum)) {
@@ -320,7 +341,8 @@ public class VM {
             String[] tempS = mailBox.get(0).getMsgField().split("-");
             tempD[0] = Double.parseDouble(tempS[0]);
             tempD[1] = Double.parseDouble(tempS[1]);
-            controller.showVMFrame(new VM(mailBox.get(0).getSrc_id(), tempD));
+            int markID = Integer.valueOf(tempS[2]);
+            controller.showVMFrame(new VM(mailBox.get(0).getSrc_id(),markID, tempD));
         }
         mailBox.remove(0);
         //return vms; -> UI쪽으로 패스
@@ -354,7 +376,7 @@ public class VM {
                 break;
             case 4:
                 // msgType == 4
-                String loc = this.Location[0] + "-" + this.Location[1];
+                String loc = this.Location[0] + "-" + this.Location[1] + "-" + this.mark_ID;
                 Message addressMsg = new Message(this.ID, mailBox.get(0).getSrc_id(), 5, loc);
                 mailBox.remove(0);
                 addressMsg.Send();
@@ -482,8 +504,6 @@ public class VM {
         controller.showDrink();
         mailBox.remove(0);
     }
-
-
     public void revceiveSyncCard(){
         String[] str = mailBox.get(0).getMsgField().split(":");
         int balance = Integer.parseInt(str[1]);

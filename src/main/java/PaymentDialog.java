@@ -81,7 +81,8 @@ public class PaymentDialog extends JDialog{
                 dispose();
                 if(isPre){
                     if(parent.vmframe != null){
-                        parent.vmframe.requestFocus();
+                        parent.vmframe.dispose();
+                        parent.vmframe = null;
                     }
                 }
             }
@@ -97,7 +98,8 @@ public class PaymentDialog extends JDialog{
                 parent.dlg = null;
                 if(isPre){
                     if(parent.vmframe != null){
-                        parent.vmframe.requestFocus();
+                        parent.vmframe.dispose();
+                        parent.vmframe = null;
                     }
                 }
                 dispose();

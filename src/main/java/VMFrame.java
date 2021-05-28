@@ -64,7 +64,7 @@ public class VMFrame extends JFrame{
         }
         VM vm = parent.getVM();
         Double distance = Math.sqrt(Math.pow(otherVm.getLocation()[0]-vm.getLocation()[0],2)+Math.pow(otherVm.getLocation()[1]-vm.getLocation()[1],2));
-        VMPanel vmpanel = new VMPanel(otherVm.getID(),distance);
+        VMPanel vmpanel = new VMPanel(otherVm.getID(),otherVm.getMarkID(),distance);
         vmpanel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
