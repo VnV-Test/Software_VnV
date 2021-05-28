@@ -13,7 +13,7 @@ public class Card {
         this.balance = balance;
     }
     public boolean payment(int price){
-        if(this.balance < price ){
+        if(this.balance < price || price < 0){
             return false;
         }
         this.balance -= price;

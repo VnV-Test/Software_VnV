@@ -1,0 +1,52 @@
+
+j
+java:S1192¦"GDefine a constant instead of duplicating this literal "Error" 21 times.(šªÈùÿÿÿÿ8â´“Şš/
+^
+java:S1192„"HDefine a constant instead of duplicating this literal "Payment" 3 times.(û®Êp
+>
+java:S16040"(Make this anonymous inner class a lambda(¦¨èé
+C
+java:S1604<"(Make this anonymous inner class a lambda(ú¸êˆûÿÿÿÿ
+C
+java:S1604R"(Make this anonymous inner class a lambda(èÒ¶Åúÿÿÿÿ
+j
+java:S1104"OMake dlg a static final constant or non-public and provide accessors if needed.(¼ï¡†şÿÿÿÿ
+i
+java:S1104"SMake vmframe a static final constant or non-public and provide accessors if needed.(óÜÍ´
+0
+java:S1220""Move this file to a named package.
+H
+java:S1128"-Remove this unused import 'java.util.Vector'.(ÿŒ¸Áÿÿÿÿÿ
+:
+java:S1948"$Make "vm" transient or serializable.(ÒÛêÁ
+=
+java:S1948"'Make "admin" transient or serializable.(³½¨å
+Q	java:S125"<This block of commented-out lines of code should be removed.(œ ò¤
+c	java:S100 "NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ĞÊ“İ
+W
+java:S18543"<Remove this useless assignment to local variable "cardList".(å¼şƒıÿÿÿÿ
+6
+java:S3626H"Remove this redundant jump.(¹“ğ üÿÿÿÿ
+M
+java:S1135?"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ
+M
+java:S1135U"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ
+Q	java:S125x"<This block of commented-out lines of code should be removed.(¨€û
+M
+java:S1135|"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(‰·›B
+P
+java:S1854¢"9Remove this useless assignment to local variable "admin".(ı’Í´
+P
+java:S1117¢"9Rename "admin" which hides the field declared at line 15.(ı’Í´
+T	java:S106­"9Replace this use of System.out or System.err by a logger.(–ÄÒ¾ÿÿÿÿÿ
+W
+java:S1854Ì"9Remove this useless assignment to local variable "drink".(©¤ˆæ8„µ“Şš/
+[	java:S106É"9Replace this use of System.out or System.err by a logger.(¹™‰üÿÿÿÿ8„µ“Şš/
+V	java:S106Ê"9Replace this use of System.out or System.err by a logger.(éô˜ˆ8…µ“Şš/
+H
+java:S14813"-Remove this unused "cardList" local variable.(å¼şƒıÿÿÿÿ
+A
+java:S1481¢"*Remove this unused "admin" local variable.(ı’Í´
+H
+java:S1481Ì"*Remove this unused "drink" local variable.(©¤ˆæ8…µ“Şš/

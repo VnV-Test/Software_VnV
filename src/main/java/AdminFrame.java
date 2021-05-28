@@ -199,8 +199,7 @@ public class AdminFrame extends JFrame{
                         JOptionPane.showMessageDialog(null, "\n" + "You can only input integers between 0 and 999", "Error", JOptionPane.ERROR_MESSAGE);
                         return;
                     }
-                    int realID = (id*10) + parent.getVM().getMarkID() % 10;
-                    parent.getVM().editVMID(realID);
+                    parent.getVM().editVMID(id);
                     parent.setTitle("Distributed Vending Machine(" + parent.getVM().getMarkID()+ ")");
                     JOptionPane.showMessageDialog(null, "Has been changed.", "Guidance", JOptionPane.INFORMATION_MESSAGE);
                 }else{ return; }
