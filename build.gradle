@@ -36,11 +36,11 @@ jacoco {
 }
 
 jacocoTestReport {
-    //afterEvaluate {
-    //    classDirectories.setFrom(files(classDirectories.files.collect {
-    //        fileTree(dir: it, exclude: '**/core/Main.*')
-    //    }))
-    //}
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: '**/core/Main.*')
+        }))
+    }
 
     dependsOn test
 
@@ -52,11 +52,11 @@ jacocoTestReport {
 }
 
 jacocoTestCoverageVerification {
-    //afterEvaluate {
-    //    classDirectories.setFrom(files(classDirectories.files.collect {
-    //        fileTree(dir: it, exclude: '**/core/Main.*')
-    //    }))
-    //}
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: '**/core/Main.*')
+        }))
+    }
 
     violationRules {
         rule {
