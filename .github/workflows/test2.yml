@@ -157,19 +157,7 @@ jobs:
 #       - name: Deploy Checkstyle xml
 #         run: <linter> | <convert-to-checkstyle> | reviewdog -f=checkstyle -name="<linter>" -reporter=github-pr-check
 
-      #checkstyle
-      - name: Run Checkstyle
-        run: ./gradlew checkstyleMain checkstyleTest --stacktrace
-
-      - name: Deploy Checkstyle Report
-        if: ${{ always() }}
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          external_repository: Jionee/software_hugo
-          personal_token: ${{ secrets.PERSONAL_TOKEN }}
-          publish_dir: build/checkstyl-output
-          destination_dir: checkstyle
-
+      
       - name: Grant execute permission for gradlew
         if: ${{ always() }}
         run: chmod +x gradlew
@@ -198,6 +186,19 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: ./gradlew sonarqube --info
       
+      #checkstyle
+      - name: Run Checkstyle
+        run: ./gradlew checkstyleMain checkstyleTest --stacktrace
+
+      - name: Deploy Checkstyle Report
+        if: ${{ always() }}
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          external_repository: Jionee/software_hugo
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          publish_dir: build/checkstyl-output
+          destination_dir: checkstyle
+
       #PMD
       - name: Run PMD
         if: ${{ always() }}
