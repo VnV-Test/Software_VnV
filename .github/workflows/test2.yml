@@ -196,7 +196,7 @@ jobs:
         with:
           external_repository: Jionee/software_hugo
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
-          publish_dir: build/checkstyl-output
+          publish_dir: build/checkstyle-output
           destination_dir: checkstyle
 
       #PMD
