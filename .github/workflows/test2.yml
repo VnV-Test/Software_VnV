@@ -219,14 +219,14 @@ jobs:
         id: s_sha_static
         run: echo "::set-output name=sha8::$(echo ${GITHUB_SHA} | cut -c1-8)"
         
-#       #codeCov 활용
-#       - name: Test with Gradle
-#         run: ./gradlew test
-#       - name: Upload coverage to Codecov
-#         uses: codecov/codecov-action@v1
-#         with:
-#             token: ${{ secrets.CODECOV_TOKEN }}
-#             file: ./build/reports/jacoco/test/jacocoTestReport.xml
+      #codeCov 활용
+      - name: Test with Gradle
+        run: ./gradlew test
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+            token: ${{ secrets.CODECOV_TOKEN }}
+            file: ./build/reports/jacoco/test/jacocoTestReport.xml
             
         
 
