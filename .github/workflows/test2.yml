@@ -138,13 +138,13 @@ jobs:
         with:
           java-version: 11
           
-      #checkstyle
-      - name: Run Checkstyle
-        uses: nikitasavinov/checkstyle-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          reporter: 'github-pr-check'
-          tool_name: 'Review Dog'
+#       #checkstyle
+#       - name: Run Checkstyle
+#         uses: nikitasavinov/checkstyle-action@master
+#         with:
+#           github_token: ${{ secrets.GITHUB_TOKEN }}
+#           reporter: 'github-pr-check'
+#           tool_name: 'Review Dog'
           
 #       - uses: reviewdog/action-setup@v1
 #         with:
@@ -156,6 +156,19 @@ jobs:
         
 #       - name: Deploy Checkstyle xml
 #         run: <linter> | <convert-to-checkstyle> | reviewdog -f=checkstyle -name="<linter>" -reporter=github-pr-check
+
+      #checkstyle
+      - name: Run Checkstyle
+        run: ./gradlew checkstyleMain checkstyleTest --stacktrace
+
+      - name: Deploy Checkstyle Report
+        if: ${{ always() }}
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          external_repository: Jionee/software_hugo
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          publish_dir: build/checkstyl-output
+          destination_dir: checkstyle
 
       - name: Grant execute permission for gradlew
         if: ${{ always() }}
@@ -229,5 +242,4 @@ jobs:
             token: ${{ secrets.CODECOV_TOKEN }}
             file: ./build/reports/jacoco/test/jacocoTestReport.xml
             
-        
-
+      
