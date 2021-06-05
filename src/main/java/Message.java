@@ -18,10 +18,8 @@ class Mail extends Thread{
     @Override
     public void run(){
         BufferedWriter out = null;
-        ServerSocket listener = null;
         Socket socket = null;
         try {
-            String ip = "localhost";
             socket = new Socket("localhost", dst_id);
             out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 

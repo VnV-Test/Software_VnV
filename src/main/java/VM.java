@@ -1,5 +1,3 @@
-import javax.swing.*;
-import java.lang.invoke.SwitchPoint;
 import java.util.Random;
 import java.util.Vector;
 
@@ -97,6 +95,11 @@ public class VM {
             case 2:
                 for (int i = 0; i < 7; i++) {
                     itemArray[i] = new Item(drinkArray[i+13].getName(), drinkArray[i+13].getPrice(), 10);
+                }
+                break;
+            default: // Default is equal to case 0
+                for (int i = 0; i < 7; i++) {
+                    itemArray[i] = new Item(drinkArray[i].getName(), drinkArray[i].getPrice(), 10);
                 }
                 break;
         }

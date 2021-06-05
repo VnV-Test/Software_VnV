@@ -7,8 +7,6 @@ T
 $.idea/artifacts/Software_VnV_jar.xml,e\c\ec94fb719af64e0840e7f881a409df00082c5873
 M
 src/main/java/CodeDialog.java,3\7\3779c840def071c1386baaffb761962d084f5126
-P
- src/main/java/CardListFrame.java,2\4\245f72f4b789de3fed05d5d67eedf60f71524eac
 M
 src/main/java/CardDialog.java,c\d\cd8d251bf56ea9f8c466bbb64c6a6c194d90a194
 N
