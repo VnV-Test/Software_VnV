@@ -18,7 +18,7 @@ public class Card {
         }
         this.balance -= price;
 
-        new Message(0, 0, 11, this.cardNum +":"+String.valueOf(this.balance)).Send();
+        new Message(0, 0, 11, this.cardNum +":"+String.valueOf(this.balance)).send();
 
 
         return true;

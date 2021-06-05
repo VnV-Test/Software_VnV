@@ -121,21 +121,21 @@ public class VMTest {
         //drink리스트 가져오는것을 확인.하면서 CheckStock도 확인.
         for(int i=0;i<20;i++){
             if(i>=k1&&i<=k1+6){
-                Assertions.assertEquals(vm.CheckStock(da[i].getName()), true);
+                Assertions.assertEquals(vm.checkStock(da[i].getName()), true);
             }else
-                Assertions.assertEquals(vm.CheckStock(da[i].getName()), false);
+                Assertions.assertEquals(vm.checkStock(da[i].getName()), false);
         }
         for(int i=0;i<20;i++){
             if(i>=k2&&i<=k2+6){
-                Assertions.assertEquals(vm2.CheckStock(da2[i].getName()), true);
+                Assertions.assertEquals(vm2.checkStock(da2[i].getName()), true);
             }else
-                Assertions.assertEquals(vm2.CheckStock(da2[i].getName()), false);
+                Assertions.assertEquals(vm2.checkStock(da2[i].getName()), false);
         }
         for(int i=0;i<20;i++){
             if(i>=k3&&i<=k3+6){
-                Assertions.assertEquals(vm3.CheckStock(da3[i].getName()), true);
+                Assertions.assertEquals(vm3.checkStock(da3[i].getName()), true);
             }else
-                Assertions.assertEquals(vm3.CheckStock(da3[i].getName()), false);
+                Assertions.assertEquals(vm3.checkStock(da3[i].getName()), false);
         }
 
         //리스너는 자동으로 테스트되고, 결과가 제대로 나온다면, 중간과정의 함수들도 문제가 없는 것

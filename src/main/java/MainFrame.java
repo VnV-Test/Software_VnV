@@ -125,7 +125,7 @@ public class MainFrame extends JFrame{
                     super.mouseClicked(e);
                     String drinkname = drink.getName();
                     // 음료수 이름을 기반으로 재고가 있는지 판단.
-                    boolean isStock = vm.CheckStock(drinkname);
+                    boolean isStock = vm.checkStock(drinkname);
                     if(isStock) {
                         // 결제 다이얼로그 생성
                         if(dlg == null)

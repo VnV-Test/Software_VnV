@@ -185,7 +185,7 @@ public class AdminFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-                if(!(locationtf.getText() == ""))
+                if(!(locationtf.getText().equals("")))
                     parent.getVM().editVMAddress(idtf.getText());
                 int id;
                 if(!(idtf.getText() == "")){
@@ -244,7 +244,7 @@ public class AdminFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-                if(contacttf.getText() == "")
+                if(contacttf.getText().equals(""))
                     return;
                 else {
                     parent.getAdmin().editContact(contacttf.getText());

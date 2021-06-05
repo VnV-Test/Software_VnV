@@ -222,7 +222,7 @@ public class VM {
         return  code;
     }
     //check
-    public boolean CheckStock(String itemName) {
+    public boolean checkStock(String itemName) {
         for (int i = 0; i < 7; i++) {
             if (itemName.equals(itemArray[i].getName())) {
                 if (itemArray[i].getStock() > 0)
@@ -248,7 +248,7 @@ public class VM {
         int mt = mailBox.get(0).getMsgtype();
 
         if(mt == 1 || mt == 4){
-            NotifyVMsInfo();
+            notifyVMsInfo();
         }
         if(mt == 2){
             System.out.println("receive 2");
@@ -261,7 +261,7 @@ public class VM {
             getOtherVM_3();
         }
         if(mt == 6){
-            RespondSell();
+            respondSell();
         }
         if(mt == 7){
             ConfirmSell_2();
@@ -280,9 +280,9 @@ public class VM {
         }
         return mt;
     }
-    public void RespondSell() {
+    public void respondSell() {
         //6번오면 7번보냄 선결재로 코드넘겨준게 지급됬는지 확인 후 전송.
-        new Message(this.ID, mailBox.get(0).getSrc_id(), 7, mailBox.get(0).getMsgField()).Send();
+        new Message(this.ID, mailBox.get(0).getSrc_id(), 7, mailBox.get(0).getMsgField()).send();
         mailBox.remove(0);
 
         return;
@@ -298,7 +298,7 @@ public class VM {
     }
     public void getOtherVM(String itemName){
         // Use Case 4, 9, 15
-        new Message(this.ID, 0, 1, itemName).Send(); // stockMsg:Message
+        new Message(this.ID, 0, 1, itemName).send(); // stockMsg:Message
     }
     public void getOtherVM_2() {
         System.out.println("1");
@@ -315,7 +315,7 @@ public class VM {
         idStack++;
         if(idStack==dvmIdList.size()-1) {
             for (int des : ids) {
-                new Message(this.ID, des, 4, "trash").Send(); // addressMsg:Message
+                new Message(this.ID, des, 4, "trash").send(); // addressMsg:Message
             }
             idStack=0;
         }
@@ -335,7 +335,7 @@ public class VM {
         mailBox.remove(0);
         //return vms; -> UI쪽으로 패스
     }
-    public void NotifyVMsInfo() {
+    public void notifyVMsInfo() {
         // msgType == 1
         Message msg = mailBox.get(0);
         switch (msg.getMsgtype()) {
@@ -347,7 +347,7 @@ public class VM {
                         if (itemArray[j].getStock() > 0) {
                             System.out.println("VM(" + this.getID() + "): I have a stock");
                             Message stockMsg = new Message(this.ID, msg.getSrc_id(), 2, msg.getMsgField());
-                            stockMsg.Send();
+                            stockMsg.send();
                             isItem = true;
                             mailBox.remove(0);
                             break;
@@ -359,7 +359,7 @@ public class VM {
                     System.out.println("**************************** VM(" + this.getID() + "): I don't have a stock");
                     Message stockMsg = new Message(this.ID, msg.getSrc_id(), 2, "trash");
                     mailBox.remove(0);
-                    stockMsg.Send();
+                    stockMsg.send();
                 }
                 break;
             case 4:
@@ -367,7 +367,7 @@ public class VM {
                 String loc = this.Location[0] + "-" + this.Location[1] + "-" + this.mark_ID;
                 Message addressMsg = new Message(this.ID, mailBox.get(0).getSrc_id(), 5, loc);
                 mailBox.remove(0);
-                addressMsg.Send();
+                addressMsg.send();
                 break;
             default:
                 System.out.println("Notify가 실행되었는데 1,4가아님");
@@ -389,7 +389,7 @@ public class VM {
         code = String.valueOf(this.ID) + zeros + count;
         count++;
         System.out.println("ID(" + this.ID + ") : requestPrepay");
-        new Message(this.ID, dst_id, 3, name + "-" + code).Send();
+        new Message(this.ID, dst_id, 3, name + "-" + code).send();
     }
     public void requestPrepay_2(){
         if (mailBox.get(0).getMsgField() == null)
@@ -410,13 +410,13 @@ public class VM {
                 String name = itemArray[j].getName();
                 stock = itemArray[j].getStock();
                 if (stock < 1){
-                    new Message(this.ID, mailBox.get(0).getSrc_id(), 8, null).Send();
+                    new Message(this.ID, mailBox.get(0).getSrc_id(), 8, null).send();
                 }
                 else {
                     Code c = new Code(Integer.parseInt(str[1]), str[0]);
                     codeList.add(c);
                     itemArray[j].editStock(itemArray[j].getStock()-1);
-                    new Message(this.ID, mailBox.get(0).getSrc_id(), 8, mailBox.get(0).getMsgField()).Send();
+                    new Message(this.ID, mailBox.get(0).getSrc_id(), 8, mailBox.get(0).getMsgField()).send();
                 }
             }
         }
@@ -436,7 +436,7 @@ public class VM {
         }
         if(flag==0)
             drinkArray[n].setName(name);
-        new Message(this.ID, 0, 9, n +":"+name).Send();
+        new Message(this.ID, 0, 9, n +":"+name).send();
 
     }
     public void receiveChangeName(){
@@ -469,7 +469,7 @@ public class VM {
         }
         if(flag==0)
             drinkArray[n].setPrice(price);
-        new Message(this.ID, 0, 10, n +":"+price).Send();
+        new Message(this.ID, 0, 10, n +":"+price).send();
     }
     public void receiveChangePrice(){
         String str[] = mailBox.get(0).getMsgField().split(":");

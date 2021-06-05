@@ -26,7 +26,7 @@ public class MessageTest {
     @Test
     void msgTest() {
         t3.start();
-        msg.Send();
+        msg.send();
         while(vm.getMailBoxSize()==0);
         Assertions.assertEquals(vm.getMailBoxSize(), 1);
         Assertions.assertEquals(vm.mailBox.get(0).getMsgField(), "Hello World");

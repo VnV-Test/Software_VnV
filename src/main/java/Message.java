@@ -56,7 +56,7 @@ public class Message {
         this.description = description;
     }
 
-    public void Send() {
+    public void send() {
         System.out.println("DVM "+this.src_id+" Message sent\n"+this.toString());
         if(dst_id == 0){
             for(int dest : this.portArr) {

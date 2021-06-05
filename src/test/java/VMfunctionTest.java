@@ -88,49 +88,49 @@ class VMfunctionTest {
     @Test
     void checkStock() {
         //재고가 있는 경우
-        Assertions.assertEquals(vm1.CheckStock("Sprite"),true);
-        Assertions.assertEquals(vm1.CheckStock("Mint Sprite"),true);
-        Assertions.assertEquals(vm1.CheckStock("Coke"),true);
-        Assertions.assertEquals(vm1.CheckStock("Mint Coke"),true);
-        Assertions.assertEquals(vm1.CheckStock("Water"),true);
-        Assertions.assertEquals(vm1.CheckStock("Sparkling water"),true);
-        Assertions.assertEquals(vm1.CheckStock("Coffee"),true);
-        Assertions.assertEquals(vm2.CheckStock("Mint Coffee"),true);
-        Assertions.assertEquals(vm2.CheckStock("Milk Coffee"),true);
-        Assertions.assertEquals(vm2.CheckStock("Demisoda"),true);
-        Assertions.assertEquals(vm2.CheckStock("SunnyTen"),true);
-        Assertions.assertEquals(vm2.CheckStock("Sikhye"),true);
-        Assertions.assertEquals(vm2.CheckStock("IDH"),true);
-        Assertions.assertEquals(vm2.CheckStock("Milkis"),true);
+        Assertions.assertEquals(vm1.checkStock("Sprite"),true);
+        Assertions.assertEquals(vm1.checkStock("Mint Sprite"),true);
+        Assertions.assertEquals(vm1.checkStock("Coke"),true);
+        Assertions.assertEquals(vm1.checkStock("Mint Coke"),true);
+        Assertions.assertEquals(vm1.checkStock("Water"),true);
+        Assertions.assertEquals(vm1.checkStock("Sparkling water"),true);
+        Assertions.assertEquals(vm1.checkStock("Coffee"),true);
+        Assertions.assertEquals(vm2.checkStock("Mint Coffee"),true);
+        Assertions.assertEquals(vm2.checkStock("Milk Coffee"),true);
+        Assertions.assertEquals(vm2.checkStock("Demisoda"),true);
+        Assertions.assertEquals(vm2.checkStock("SunnyTen"),true);
+        Assertions.assertEquals(vm2.checkStock("Sikhye"),true);
+        Assertions.assertEquals(vm2.checkStock("IDH"),true);
+        Assertions.assertEquals(vm2.checkStock("Milkis"),true);
     }
     @Test
     void checkStock2() {
         //재고가 없는 경우(item 자체가 존재하지 않는 경우)
-        Assertions.assertEquals(vm2.CheckStock("Sprite"),false);
-        Assertions.assertEquals(vm2.CheckStock("Mint Sprite"),false);
-        Assertions.assertEquals(vm2.CheckStock("Coke"),false);
-        Assertions.assertEquals(vm2.CheckStock("Mint Coke"),false);
-        Assertions.assertEquals(vm2.CheckStock("Water"),false);
-        Assertions.assertEquals(vm2.CheckStock("Sparkling Water"),false);
-        Assertions.assertEquals(vm2.CheckStock("Coffee"),false);
-        Assertions.assertEquals(vm1.CheckStock("Mint Coffee"),false);
-        Assertions.assertEquals(vm1.CheckStock("Milk Coffee"),false);
-        Assertions.assertEquals(vm1.CheckStock("Demisoda"),false);
-        Assertions.assertEquals(vm1.CheckStock("SunnyTen"),false);
-        Assertions.assertEquals(vm1.CheckStock("Sikhye"),false);
-        Assertions.assertEquals(vm1.CheckStock("IDH"),false);
-        Assertions.assertEquals(vm1.CheckStock("Milkis"),false);
+        Assertions.assertEquals(vm2.checkStock("Sprite"),false);
+        Assertions.assertEquals(vm2.checkStock("Mint Sprite"),false);
+        Assertions.assertEquals(vm2.checkStock("Coke"),false);
+        Assertions.assertEquals(vm2.checkStock("Mint Coke"),false);
+        Assertions.assertEquals(vm2.checkStock("Water"),false);
+        Assertions.assertEquals(vm2.checkStock("Sparkling Water"),false);
+        Assertions.assertEquals(vm2.checkStock("Coffee"),false);
+        Assertions.assertEquals(vm1.checkStock("Mint Coffee"),false);
+        Assertions.assertEquals(vm1.checkStock("Milk Coffee"),false);
+        Assertions.assertEquals(vm1.checkStock("Demisoda"),false);
+        Assertions.assertEquals(vm1.checkStock("SunnyTen"),false);
+        Assertions.assertEquals(vm1.checkStock("Sikhye"),false);
+        Assertions.assertEquals(vm1.checkStock("IDH"),false);
+        Assertions.assertEquals(vm1.checkStock("Milkis"),false);
 
     }
     @Test
     void checkStock3() {
         //재고가 없는 경우(item 존재하지만 재고가 모두 소진된 경우)
         vm1.findItem("Sprite").editStock(0);
-        Assertions.assertEquals(vm1.CheckStock("Sprite"),false);
+        Assertions.assertEquals(vm1.checkStock("Sprite"),false);
         vm1.findItem("Sprite").editStock(10);
 
         vm2.findItem("Demisoda").editStock(0);
-        Assertions.assertEquals(vm2.CheckStock("Demisoda"),false);
+        Assertions.assertEquals(vm2.checkStock("Demisoda"),false);
         vm2.findItem("Demisoda").editStock(10);
     }
     @Test
