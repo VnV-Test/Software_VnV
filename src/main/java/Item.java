@@ -17,7 +17,7 @@ public class Item {
     }
 
     public boolean editName(String name){
-        if(name.length() >10){
+        if(name.length() > 100){
             return false;
         }else{
             this.Name = name;
@@ -33,7 +33,7 @@ public class Item {
         }
     }
     public boolean editStock(int stock){
-        if(stock <0 || stock>50){
+        if(stock < 0 || stock > 99){
             return false;
         }
         else{
@@ -41,15 +41,6 @@ public class Item {
             return true;
         }
     }
-  /*  public boolean editStock(){
-        if(this.Stock <=0){
-            return false;
-        }
-        else{
-            this.Stock--;
-            return true;
-        }
-    }*/
 
     public int getStock(){
         return Stock;
@@ -58,17 +49,8 @@ public class Item {
     public String getName(){
         return Name;
     }
-
- /*   public void setPrice(int price){
-        Price=price;
-    }*/
     public int getPrice(){
         return this.Price;
     }
-/*    public void setName(String name){
-        Name=name;
-    }
-    public void setStock(int stock){
-        Stock=stock;
-    }*/
+
 }

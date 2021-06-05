@@ -4,7 +4,7 @@ plugins {
     id "application"
     id "org.sonarqube" version "3.1.1"
     id "pmd"
-    //id "checkstyle"
+    id "checkstyle"
     id "com.github.spotbugs" version "4.7.0"
 }
 
@@ -62,6 +62,7 @@ jacocoTestCoverageVerification {
         rule {
             limit {
                 minimum = 0.1
+            excludes = ['*.test.*']
             }
         }
     }
@@ -92,17 +93,28 @@ jar {
     }
 }
 
-//checkstyle {
-//    ignoreFailures = true // 분석결과 예외가 발생하면 빌드실패 발생시키는 것을 제외
-//    //configFile = file("config/checkstyle.xml") // 1.1.2 에서 작성한 checkstyle 파일 지정
-//    reportsDir = file("${buildDir}/checkstyle-output") // 리포트 파일이 위치할 디렉토리 지정
-//}
+checkstyle {
+    toolVersion = "8.41"
+    ignoreFailures = true // 분석결과 예외가 발생하면 빌드실패 발생시키는 것을 제외
+    configFile = file("config/checkstyle.xml") // 1.1.2 에서 작성한 checkstyle 파일 지정
+    reportsDir = file("${buildDir}/checkstyle-output") // 리포트 파일이 위치할 디렉토리 지정
+}
 
-//checkstyleMain {
-//    reports {
-//        xml.destination = file("${checkstyle.reportsDir}/checkstyle-report.xml") // 리포트 파일의 위치 및 파일명 지정
-//    }
-//}
+checkstyleMain {
+    reports {
+        xml.enabled false
+        html.enabled true
+        //html.destination = file("${checkstyle.reportsDir}/checkstyle-report.xml") // 리포트 파일의 위치 및 파일명 지정
+    }
+}
+
+checkstyleTest {
+    reports {
+        xml.enabled false
+        html.enabled true
+        //html.destination = file("${checkstyle.reportsDir}/checkstyle-report.xml") // 리포트 파일의 위치 및 파일명 지정
+    }
+}
 
 pmd {
     ignoreFailures = true // 분석결과 예외가 발생하면 빌드실패 발생시키는 것을 제외

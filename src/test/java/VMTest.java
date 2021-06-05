@@ -74,21 +74,6 @@ public class VMTest {
     }
 
     @Test
-    void getsetTest() {
-        Assertions.assertEquals(vm.setAdmin(a), a);
-        Assertions.assertEquals(vm.setUI(m), m);
-        Assertions.assertEquals(vm.getLocation(), loc);
-        //mailbox사이즈는 다른곳에서 하긴했음.
-        vm.editVMAddress("이쪽으로 가세요");
-        Assertions.assertEquals(vm.getAddress(), "이쪽으로 가세요");
-        Assertions.assertEquals(vm.getMailBoxSize(), 0);
-        vm.editVMID(9998);
-        Assertions.assertEquals(vm.getID(), 9998);
-        vm.editVMID(9999);
-        Assertions.assertEquals(vm.getID(), 9999);
-        Assertions.assertEquals(vm.getIDtS(), "9999");
-    }
-    @Test
     void findTest(){
 
         for(int i=0;i<20;i++){
@@ -123,8 +108,6 @@ public class VMTest {
         }
         //카드리스트는 비교할 대상을 만들 수 없어서 구현할수없음.
     }
-
-
     @Test
     void checkgiveTest(){
         t3.start();
@@ -155,7 +138,7 @@ public class VMTest {
                 Assertions.assertEquals(vm3.CheckStock(da3[i].getName()), false);
         }
 
-        //리스너는 자동으로 테스트되고, 결과가 제대로 나온다면, 중간과정의 함수들도 문제가 없는것임.
+        //리스너는 자동으로 테스트되고, 결과가 제대로 나온다면, 중간과정의 함수들도 문제가 없는 것
         //MailReceive도 자동으로 검사됨.-저게 작동하지 않으면 나머지도 안하니까.
         for(int i=0;i<7;i++) {
             vm.requestPrepay(da[k2 + i].getName(), 9998);
@@ -181,14 +164,6 @@ public class VMTest {
             m.setpreDrinkname_test(da[k3 + i].getName());
             //vm.getOtherVM(da[k3+i].getName());
         }
-        /*
-        vm3.requestPrepay(da[k2 + i].getName(), 9998);
-        while (vm2.codeempty()) ;
-        while(true);
-        99970000을 자판기 9998번에 입력하면 됨!
-        */
-        //vm.getOtherVM(da[k2+i].getName());
 
-        //여기까지 왔으면 위 테스트는 다통과한것.결과창을 보여주기 위해서 그냥 둠.
     }
 }

@@ -108,41 +108,18 @@ public class VM {
         count = 0;
         idStack=0;
     }
-    public Vector<VM> getDvmList() {
-        return dvmList;
-    }
-//    public int getID(){return ID;}
     public Vector<Card> getCardList(){
         return this.cardList;
-    }
-    //for test
-    public void getOtherVM_test(String itemName){
-        // Use Case 4, 9, 15
-        System.out.println("1");
-        new Message(this.ID, this.ID, 1, itemName).Send(); // stockMsg:Message
     }
     public boolean codeempty(){
         return codeList.isEmpty();
     }
-
     public int getVmNum(){
         return this.dvmList.size();
     }
     synchronized public int getMailBoxSize(){
         Thread.yield();
         return mailBox.size();
-    }
-    public boolean editDVMActivated(VM v) {
-        if (dvmList.size() < 10 && dvmList.size() >= 0) {
-            dvmList.add(v);
-            return true;
-        }
-        return false;
-    }
-    public void ConfirmSell() {
-        //6번 보냄 내용은 선결재로 코드넘겨준게 지급됬는지 질문.-사용하지않으므로 주석만.
-        //보내는 메시지는 new Message(this.ID, 0, 6, itemName).Send();
-        return;
     }
     public boolean editDVMLocation() {
         double[] Location = new double[2];
@@ -155,7 +132,6 @@ public class VM {
 
         return true;
     }
-
     //getset
     public MainFrame setUI(MainFrame m){
         this.controller =  m;
@@ -183,13 +159,19 @@ public class VM {
     public void editVMAddress(String Address) {
         this.Address = Address;
     }
-    public void editVMID(int id) {
-        this.mark_ID = id;
+    public int editVMID(int id) {
+        if(id < 0 || id > 999)
+            return -1;
+        this.mark_ID = (id*10) + this.getMarkID() % 10;
+        return this.mark_ID;
     }
     public int getMarkID(){
         return  this.mark_ID;
     }
-
+    // Test Set
+    public void addCode(Code code){
+        this.codeList.add(code);
+    }
     //find
     public Drink findDrink(String name) {
         for (int i = 0; i < 20; i++) {
@@ -224,11 +206,10 @@ public class VM {
         return null;
     }
     //give
-    public void giveCode(String code) {
+    public String giveCode(String code) {
         controller.showMessage("Guidance","<html> authentication code :" + "<b> "+ code+ " </b></html>");
-
+        return  code;
     }
-
     //check
     public boolean CheckStock(String itemName) {
         for (int i = 0; i < 7; i++) {
@@ -249,9 +230,8 @@ public class VM {
         }
         return null;
     }
-
     //message
-    synchronized public void receiveRequest(){
+    synchronized int receiveRequest(){
         Thread.yield();
 
         int mt = mailBox.get(0).getMsgtype();
@@ -287,8 +267,8 @@ public class VM {
         if(mt==11){
             revceiveSyncCard();
         }
+        return mt;
     }
-
     public void RespondSell() {
         //6번오면 7번보냄 선결재로 코드넘겨준게 지급됬는지 확인 후 전송.
         new Message(this.ID, mailBox.get(0).getSrc_id(), 7, mailBox.get(0).getMsgField()).Send();
@@ -300,8 +280,6 @@ public class VM {
         //7번오면 처리. 선결재로 코드넘겨준게 지급됬는지 질문에 대한 응답을 확인.-사용하지않으므로주석만.
         return;
     }
-
-
     synchronized void MailRecieve(Message msg) {
         Thread.yield();
         System.out.println("DVM "+this.ID+" Message ricieved\n"+msg.toString());
@@ -311,7 +289,6 @@ public class VM {
         // Use Case 4, 9, 15
         new Message(this.ID, 0, 1, itemName).Send(); // stockMsg:Message
     }
-
     public void getOtherVM_2() {
         System.out.println("1");
         //196번에서 초기화됬을때, 혹은 아예 처음에 배열을 pop해줌 전부다.
@@ -434,7 +411,6 @@ public class VM {
         }
         mailBox.remove(0);
     }
-
     //신규 메시지들. n번째 항목인것(drink중에)의 이름/가격을 name/price로 바꾼다!
     public void requestChangeName(int n, String name){
         int flag=0;
@@ -469,7 +445,6 @@ public class VM {
             drinkArray[n].setName(str[1]);
         mailBox.remove(0);
     }
-
     public void requestChangePrice(int n, int price){
         int flag=0;
         for (int i = 0; i < 7; i++) {

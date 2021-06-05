@@ -110,10 +110,12 @@ jobs:
       #Jacoco
       - name: Test Code Coverage
         id: code_coverage
+        if: ${{ always() }}
         run: ./gradlew jacocoTestReport jacocoTestCoverageVerification
         
       - name: Deploy Code Coverage Report
         uses: peaceiris/actions-gh-pages@v3
+        if: ${{ always() }}
         with:
           external_repository: Jionee/software_hugo
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
@@ -136,13 +138,13 @@ jobs:
         with:
           java-version: 11
           
-      #checkstyle
-      - name: Run Checkstyle
-        uses: nikitasavinov/checkstyle-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          reporter: 'github-pr-check'
-          tool_name: 'Review Dog'
+#       #checkstyle
+#       - name: Run Checkstyle
+#         uses: nikitasavinov/checkstyle-action@master
+#         with:
+#           github_token: ${{ secrets.GITHUB_TOKEN }}
+#           reporter: 'github-pr-check'
+#           tool_name: 'Review Dog'
           
 #       - uses: reviewdog/action-setup@v1
 #         with:
@@ -155,6 +157,7 @@ jobs:
 #       - name: Deploy Checkstyle xml
 #         run: <linter> | <convert-to-checkstyle> | reviewdog -f=checkstyle -name="<linter>" -reporter=github-pr-check
 
+      
       - name: Grant execute permission for gradlew
         if: ${{ always() }}
         run: chmod +x gradlew
@@ -183,6 +186,19 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: ./gradlew sonarqube --info
       
+      #checkstyle
+      - name: Run Checkstyle
+        run: ./gradlew checkstyleMain checkstyleTest --stacktrace
+
+      - name: Deploy Checkstyle Report
+        if: ${{ always() }}
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          external_repository: Jionee/software_hugo
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          publish_dir: build/checkstyle-output
+          destination_dir: checkstyle
+
       #PMD
       - name: Run PMD
         if: ${{ always() }}
@@ -217,14 +233,14 @@ jobs:
         id: s_sha_static
         run: echo "::set-output name=sha8::$(echo ${GITHUB_SHA} | cut -c1-8)"
         
-#       #codeCov 활용
-#       - name: Test with Gradle
-#         run: ./gradlew test
-#       - name: Upload coverage to Codecov
-#         uses: codecov/codecov-action@v1
-#         with:
-#             token: ${{ secrets.CODECOV_TOKEN }}
-#             file: ./build/reports/jacoco/test/jacocoTestReport.xml
+      #codeCov 활용
+      - name: Test with Gradle
+        run: ./gradlew test
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        if: ${{ always() }}
+        with:
+            token: ${{ secrets.CODECOV_TOKEN }}
+            file: ./build/reports/jacoco/test/jacocoTestReport.xml
             
-        
-
+      

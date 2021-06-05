@@ -1,12 +1,14 @@
 
 E
 java:S1066S"/Merge this if statement with the enclosing one.(Ï¯Ş
-L
-java:S1066d"/Merge this if statement with the enclosing one.(Ï¯Ş8©¸±…›/
+E
+java:S1066d"/Merge this if statement with the enclosing one.(Ï¯Ş
 C
 java:S1604<"(Make this anonymous inner class a lambda(ö¥×ûÿÿÿÿ
 >
 java:S1604L"(Make this anonymous inner class a lambda(®”şî
+0
+java:S1220""Move this file to a named package.
 ?
 java:S1948")Make "othervm" transient or serializable.(¯àœ
 E
@@ -18,5 +20,5 @@ M
 java:S1135?"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ
 M
 java:S1135O"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ
-T
-java:S1135`"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8¼¸±…›/
+M
+java:S1135`"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ
