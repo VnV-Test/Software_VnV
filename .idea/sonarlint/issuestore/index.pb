@@ -3,8 +3,6 @@ R
 "src/main/java/META-INF/MANIFEST.MF,6\3\63ef5783cbf71fdf39c1fd6ae6873fd812259930
 N
 src/main/java/DrinkDialog.java,0\3\0368dd40f2cb03b5e2ed4c5604f367c58dec87de
-M
-src/main/java/DrinkPanel.java,5\7\57827579bdff328270ee7a946dfe0a14a56277f0
 T
 $.idea/artifacts/Software_VnV_jar.xml,e\c\ec94fb719af64e0840e7f881a409df00082c5873
 M
@@ -17,8 +15,6 @@ N
 src/main/java/AdminDialog.java,f\2\f221398e9f91382d4f71019430c94933304394b4
 J
 src/main/java/VMPanel.java,0\4\0433acca32b6737da64dffccf2cda83bd8fbacc9
-N
-src/main/java/ReceiveMail.java,4\6\466d9748be080c2269f26610e2edef7b17c8b40f
 N
 src/main/java/ImListening.java,f\6\f60f5b0aaf2e50fa2576dcf2bc4c2ce0d939fff9
 J
