@@ -114,24 +114,33 @@ public class VM {
     public boolean codeempty(){
         return codeList.isEmpty();
     }
-    public int getVmNum(){
-        return this.dvmList.size();
-    }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//    public int getVmNum(){
+//        return this.dvmList.size();
+//    }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     synchronized public int getMailBoxSize(){
         Thread.yield();
         return mailBox.size();
     }
-    public boolean editDVMLocation() {
-        double[] Location = new double[2];
-        Location[0] = 37.54164;  //scanLongitude
-        Location[1] = 127.07880; //scanAltitude
-        this.Location = Location;
 
-        if (this.Location != Location || this.Location == null)
-            return false;
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//    public boolean editDVMLocation() {
+//        double[] Location = new double[2];
+//        Location[0] = 37.54164;  //scanLongitude
+//        Location[1] = 127.07880; //scanAltitude
+//        this.Location = Location;
+//
+//        if (this.Location != Location || this.Location == null)
+//            return false;
+//
+//        return true;
+//    }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        return true;
-    }
+
     //getset
     public MainFrame setUI(MainFrame m){
         this.controller =  m;
@@ -153,9 +162,11 @@ public class VM {
     public Drink[] getDrinkArray() {
         return drinkArray;
     }
-    public String getAddress() {
-        return this.Address;
-    }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//    public String getAddress() {
+//        return this.Address;
+//    }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void editVMAddress(String Address) {
         this.Address = Address;
     }
@@ -318,7 +329,7 @@ public class VM {
             String[] tempS = mailBox.get(0).getMsgField().split("-");
             tempD[0] = Double.parseDouble(tempS[0]);
             tempD[1] = Double.parseDouble(tempS[1]);
-            int markID = Integer.valueOf(tempS[2]);
+            int markID = Integer.parseInt(tempS[2]);
             controller.showVMFrame(new VM(mailBox.get(0).getSrc_id(),markID, tempD));
         }
         mailBox.remove(0);

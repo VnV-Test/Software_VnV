@@ -1,0 +1,32 @@
+
+F
+java:S1066ƒ"/Merge this if statement with the enclosing one.(Ï¯Þ
+F
+java:S1066"/Merge this if statement with the enclosing one.(Ï¯Þ
+C
+java:S1604h"(Make this anonymous inner class a lambda(öŽ¥×ûÿÿÿÿ
+>
+java:S1604|"(Make this anonymous inner class a lambda(®”þî
+D
+java:S1948")Make "otherVM" transient or serializable.(”ìóçûÿÿÿÿ
+E
+java:S2387"/"parent" is the name of a field in "Component".(¾šêª
+h
+java:S3776="RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(€»—æ
+N	java:S106>"9Replace this use of System.out or System.err by a logger.(€ª±„
+R
+java:S1117S"7Rename "cvc" which hides the field declared at line 14.(¶…Ášþÿÿÿÿ
+L
+java:S1117U"6Rename "pw" which hides the field declared at line 15.(¤ÉÝö
+M
+java:S1135k"2Complete the task associated to this TODO comment.(» æžÿÿÿÿÿ
+M
+java:S1135"2Complete the task associated to this TODO comment.(» æžÿÿÿÿÿ
+N
+java:S1135Œ"2Complete the task associated to this TODO comment.(» æžÿÿÿÿÿ
+F
+java:S1874À"/Remove this use of "getText"; it is deprecated.(“ÂßÓ
+K
+java:S1874Ã"/Remove this use of "getText"; it is deprecated.(ÎæêÑþÿÿÿÿ
+V
+java:S1161Î":Add the "@Override" annotation above this method signature(ú›Šøøÿÿÿÿ

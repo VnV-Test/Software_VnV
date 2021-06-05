@@ -44,7 +44,7 @@ public class StartDialog extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 JComboBox comboBox = (JComboBox) e.getSource();
                 int index = comboBox.getSelectedIndex();
-                portNum = Integer.valueOf(portdata[index]);
+                portNum = Integer.parseInt(portdata[index]);
             }
         });
         pane.add(portCombo);
