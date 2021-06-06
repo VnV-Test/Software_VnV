@@ -163,11 +163,9 @@ public class VM {
     public Drink[] getDrinkArray() {
         return drinkArray;
     }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//    public String getAddress() {
-//        return this.Address;
-//    }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public String getAddress() {
+        return this.Address;
+    }
     public void editVMAddress(String Address){
         this.Address = Address;
     }

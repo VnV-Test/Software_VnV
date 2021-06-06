@@ -166,21 +166,28 @@ public class VMTest {
         }
     }
     @Test
-    void getOtherVM_3Test(){
-        for(int i=0;i<10;i++){
-            if(i==3 || i==5 || i==8){
+    void getOtherVM_3Test() {
+        for (int i = 0; i < 10; i++) {
+            if (i == 3 || i == 5 || i == 8) {
                 new Message(i, 9999, 5, "trash");
-                while(vm.getMailBoxSize() != 0);
+                while (vm.getMailBoxSize() != 0) ;
                 Assertions.assertEquals(vm.gov3_flag, false);
-            }
-            else{
-                new Message(i, 9999, 5, "0-0-"+String.valueOf(i));
-                while(vm.getMailBoxSize() != 0);
+            } else {
+                new Message(i, 9999, 5, "0-0-" + String.valueOf(i));
+                while (vm.getMailBoxSize() != 0) ;
                 Assertions.assertEquals(vm.gov3_flag, true);
             }
         }
 //        vm
     }
-
+    @Test
+    void getsetTest() {
+        Assertions.assertEquals(vm.setAdmin(a), a);
+        Assertions.assertEquals(vm.setUI(m), m);
+        Assertions.assertEquals(vm.getLocation(), loc);
+        //mailbox사이즈는 다른곳에서 하긴했음.
+        vm.editVMAddress("이쪽으로 가세요");
+        Assertions.assertEquals(vm.getAddress(), "이쪽으로 가세요");
+    }
 
 }
