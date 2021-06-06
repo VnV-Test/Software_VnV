@@ -45,14 +45,6 @@ class RecieveMail extends Thread{
             } catch(IOException e){
                 System.out.println(e.getMessage()+"Here??");
             }
-            finally {
-                try{
-                    socket.close();
-                    listener.close();
-                } catch (IOException e){
-                    System.out.println("Error occured while chatting with client.");
-                }
-            }
         }
     }
 }
