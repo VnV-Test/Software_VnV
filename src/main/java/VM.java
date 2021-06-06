@@ -326,7 +326,7 @@ public class VM {
     public void getOtherVM_3(){
         // Check Mail Box and filter which has our requirement (for Request Address)
 
-        if (mailBox.get(0).getMsgField() != null) {
+        if (!mailBox.get(0).getMsgField().equals("trash")) {
             double[] tempD = new double[2];
             String[] tempS = mailBox.get(0).getMsgField().split("-");
             tempD[0] = Double.parseDouble(tempS[0]);
@@ -366,8 +366,8 @@ public class VM {
                 break;
             case 4:
                 // msgType == 4
-                String loc=null;
-                if(mailBox.get(0).getMsgField() != null)
+                String loc="trash";
+                if(!mailBox.get(0).getMsgField().equals("trash"))
                      loc = this.Location[0] + "-" + this.Location[1] + "-" + this.mark_ID;
                 Message addressMsg = new Message(this.ID, mailBox.get(0).getSrc_id(), 5, loc);
                 mailBox.remove(0);
