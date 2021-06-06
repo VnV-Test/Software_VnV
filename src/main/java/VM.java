@@ -366,7 +366,7 @@ public class VM {
                 break;
             case 4:
                 // msgType == 4
-                String loc=null
+                String loc=null;
                 if(mailBox.get(0).getMsgField() != null)
                      loc = this.Location[0] + "-" + this.Location[1] + "-" + this.mark_ID;
                 Message addressMsg = new Message(this.ID, mailBox.get(0).getSrc_id(), 5, loc);
