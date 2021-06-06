@@ -22,6 +22,7 @@ public class VM {
     private Vector<Integer> ids = new Vector<Integer>();
     private int idStack;
 //    private Vector<VM> locVM = new Vector<VM>();
+    public boolean gov3_flag;
 
     public VM(int ID, double[] Locaiton){
         this.ID = ID;
@@ -325,8 +326,9 @@ public class VM {
     }
     public void getOtherVM_3(){
         // Check Mail Box and filter which has our requirement (for Request Address)
-
+        gov3_flag = false;
         if (!mailBox.get(0).getMsgField().equals("trash")) {
+            gov3_flag = true;
             double[] tempD = new double[2];
             String[] tempS = mailBox.get(0).getMsgField().split("-");
             tempD[0] = Double.parseDouble(tempS[0]);
