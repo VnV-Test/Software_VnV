@@ -6,12 +6,12 @@ public class VM {
     private int mark_ID;
     private double[] Location;
     private String Address;
-    private double[][] vmLocArray = new double[10000][2];
-    private String[] vmAddArray;
-    private Vector<VM> dvmList = new Vector<>();
+//    private double[][] vmLocArray = new double[10000][2];
+//    private String[] vmAddArray;
+//    private Vector<VM> dvmList = new Vector<>();
     private Vector<Integer> dvmIdList;
     private Vector<Code> codeList = new Vector<Code>();
-    private Vector<String> prepayList = new Vector<>();
+//    private Vector<String> prepayList = new Vector<>();
     private Item[] itemArray; //새로 추가함.- setProductinfo와 give Product연관/
     private Drink[] drinkArray = new Drink[20]; //새로 추가함. - setProduct연관.
     public Vector<Message> mailBox;
@@ -21,9 +21,9 @@ public class VM {
     private Admin admin = null;
     private Vector<Integer> ids = new Vector<Integer>();
     private int idStack;
-    private Vector<VM> locVM = new Vector<VM>();
+//    private Vector<VM> locVM = new Vector<VM>();
 
-    public VM(int ID, double[] Locaiton) {
+    public VM(int ID, double[] Locaiton){
         this.ID = ID;
         this.mark_ID = setMarkID(ID);
         this.Location = Locaiton;
@@ -31,7 +31,7 @@ public class VM {
         itemArray = new Item[7];
         basicSettinng(0);
     }
-    public VM(int ID,int mark_ID, double[] Locaiton) {
+    public VM(int ID, int mark_ID, double[] Locaiton){
         this.ID = ID;
         this.mark_ID = mark_ID;
         this.Location = Locaiton;
@@ -39,7 +39,7 @@ public class VM {
         itemArray = new Item[7];
         basicSettinng(0);
     }
-    public VM(int ID, double[] Locaiton,int division) {
+    public VM(int ID, double[] Locaiton,int division){
         this.ID = ID;
         this.mark_ID = setMarkID(ID);
         this.Location = Locaiton;
@@ -58,7 +58,7 @@ public class VM {
         int firstNum = rand.nextInt(1000);
         return (firstNum*10) + lastNum;
     }
-    public void basicSettinng(int division) {
+    public void basicSettinng(int division){
         // drink
         drinkArray[0] = new Drink("Sprite", 900);
         drinkArray[1] = new Drink("Mint Sprite", 1000);
@@ -83,22 +83,22 @@ public class VM {
         // item
         switch (division){
             case 0:
-                for (int i = 0; i < 7; i++) {
+                for (int i = 0; i < 7; i++){
                     itemArray[i] = new Item(drinkArray[i].getName(), drinkArray[i].getPrice(), 10);
                 }
                 break;
             case 1:
-                for (int i = 0; i < 7; i++) {
+                for (int i = 0; i < 7; i++){
                     itemArray[i] = new Item(drinkArray[i+7].getName(), drinkArray[i+7].getPrice(), 10);
                 }
                 break;
             case 2:
-                for (int i = 0; i < 7; i++) {
+                for (int i = 0; i < 7; i++){
                     itemArray[i] = new Item(drinkArray[i+13].getName(), drinkArray[i+13].getPrice(), 10);
                 }
                 break;
             default: // Default is equal to case 0
-                for (int i = 0; i < 7; i++) {
+                for (int i = 0; i < 7; i++){
                     itemArray[i] = new Item(drinkArray[i].getName(), drinkArray[i].getPrice(), 10);
                 }
                 break;
@@ -156,10 +156,10 @@ public class VM {
     public double[] getLocation(){
         return this.Location;
     }
-    public int getID() {
+    public int getID(){
         return this.ID;
     }
-    public String getIDtS() {
+    public String getIDtS(){
         return String.valueOf(this.ID);
     }
     public Drink[] getDrinkArray() {
@@ -170,10 +170,10 @@ public class VM {
 //        return this.Address;
 //    }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void editVMAddress(String Address) {
+    public void editVMAddress(String Address){
         this.Address = Address;
     }
-    public int editVMID(int id) {
+    public int editVMID(int id){
         if(id < 0 || id > 999)
             return -1;
         this.mark_ID = (id*10) + this.getMarkID() % 10;
@@ -187,7 +187,7 @@ public class VM {
         this.codeList.add(code);
     }
     //find
-    public Drink findDrink(String name) {
+    public Drink findDrink(String name){
         for (int i = 0; i < 20; i++) {
             if (name.equals(drinkArray[i].getName())) {
                 return drinkArray[i];
@@ -195,7 +195,7 @@ public class VM {
         }
         return null;
     }
-    public Item findItem(String name) {
+    public Item findItem(String name){
         for (int i = 0; i < 7; i++) {
             if (name.equals(itemArray[i].getName())) {
                 return itemArray[i];
@@ -203,7 +203,7 @@ public class VM {
         }
         return null;
     }
-    public Card findCard(String cardNum, int cvc, int pw, int validity) {
+    public Card findCard(String cardNum, int cvc, int pw, int validity){
         for (int i = 0; i < cardList.size(); i++) {
             if (cardList.elementAt(i).isThisCard(cardNum, cvc, pw, validity)) {
                 return cardList.elementAt(i);
@@ -211,7 +211,7 @@ public class VM {
         }
         return null;
     }
-    public Card findCard2(String cardNum) {
+    public Card findCard2(String cardNum){
         for (int i = 0; i < cardList.size(); i++) {
             if (cardList.get(i).getCardNum().equals(cardNum)) {
                 return cardList.elementAt(i);
@@ -220,12 +220,12 @@ public class VM {
         return null;
     }
     //give
-    public String giveCode(String code) {
+    public String giveCode(String code){
         controller.showMessage("Guidance","<html> authentication code :" + "<b> "+ code+ " </b></html>");
         return  code;
     }
     //check
-    public boolean checkStock(String itemName) {
+    public boolean checkStock(String itemName){
         for (int i = 0; i < 7; i++) {
             if (itemName.equals(itemArray[i].getName())) {
                 if (itemArray[i].getStock() > 0)
@@ -234,7 +234,7 @@ public class VM {
         }
         return false;
     } // boolean 값으로 수정, item에 stock이 존재하면 true 아니면 false
-    public String checkCode(int code) {
+    public String checkCode(int code){
         for (int i = 0; i < codeList.size(); i++) {
             if (codeList.elementAt(i).getCode() == code) {
                 String str = codeList.elementAt(i).getName();
@@ -283,18 +283,18 @@ public class VM {
         }
         return mt;
     }
-    public void respondSell() {
+    public void respondSell(){
         //6번오면 7번보냄 선결재로 코드넘겨준게 지급됬는지 확인 후 전송.
         new Message(this.ID, mailBox.get(0).getSrc_id(), 7, mailBox.get(0).getMsgField()).send();
         mailBox.remove(0);
 
         return;
     }
-    public void ConfirmSell_2() {
+    public void ConfirmSell_2(){
         //7번오면 처리. 선결재로 코드넘겨준게 지급됬는지 질문에 대한 응답을 확인.-사용하지않으므로주석만.
         return;
     }
-    synchronized void MailRecieve(Message msg) {
+    synchronized void MailRecieve(Message msg){
         Thread.yield();
         System.out.println("DVM "+this.ID+" Message ricieved\n"+msg.toString());
         this.mailBox.add(msg);
@@ -303,7 +303,7 @@ public class VM {
         // Use Case 4, 9, 15
         new Message(this.ID, 0, 1, itemName).send(); // stockMsg:Message
     }
-    public void getOtherVM_2() {
+    public void getOtherVM_2(){
         System.out.println("1");
         //196번에서 초기화됬을때, 혹은 아예 처음에 배열을 pop해줌 전부다.
         if(idStack==0)
@@ -316,15 +316,14 @@ public class VM {
             ids.add(mailBox.get(0).getSrc_id());
         mailBox.remove(0);
         idStack++;
-        if(idStack==dvmIdList.size()-1) {
+        if(idStack==dvmIdList.size()-1){
             for (int des : ids) {
                 new Message(this.ID, des, 4, "trash").send(); // addressMsg:Message
             }
             idStack=0;
         }
     }
-    public void getOtherVM_3() {
-
+    public void getOtherVM_3(){
         // Check Mail Box and filter which has our requirement (for Request Address)
 
         if (mailBox.get(0).getMsgField() != null) {
@@ -338,10 +337,10 @@ public class VM {
         mailBox.remove(0);
         //return vms; -> UI쪽으로 패스
     }
-    public void notifyVMsInfo() {
+    public void notifyVMsInfo(){
         // msgType == 1
         Message msg = mailBox.get(0);
-        switch (msg.getMsgtype()) {
+        switch (msg.getMsgtype()){
             case 1:
                 System.out.println("VM(" + this.getID() + "): Receive Message type: 1");
                 boolean isItem = false;
@@ -358,7 +357,7 @@ public class VM {
 
                     }
                 }
-                if (!isItem) {
+                if (!isItem){
                     System.out.println("**************************** VM(" + this.getID() + "): I don't have a stock");
                     Message stockMsg = new Message(this.ID, msg.getSrc_id(), 2, "trash");
                     mailBox.remove(0);
@@ -376,7 +375,7 @@ public class VM {
                 System.out.println("Notify가 실행되었는데 1,4가아님");
         }
     }
-    public void requestPrepay(String name, int dst_id) {
+    public void requestPrepay(String name, int dst_id){
         //코드 생성
         String code;
         String zeros;
@@ -404,7 +403,7 @@ public class VM {
             mailBox.remove(0);
         }
     }
-    public void confirmPrepay() {
+    public void confirmPrepay(){
         int stock;
         String str[] = mailBox.get(0).getMsgField().split("-");
         for (int j = 0; j < itemArray.length; j++) {

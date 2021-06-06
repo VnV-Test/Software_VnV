@@ -166,4 +166,14 @@ public class VMTest {
         }
 
     }
+
+    @Test
+    void getOtherVM_3Test(){
+        for(int i=0;i<10;i++) {
+            new Message(i, 9999, 5, "0-0-"+String.valueOf(i));
+            if(i==3 || i==5 || i==8)
+                new Message(i, 9999, 5, null);
+        }
+        vm
+    }
 }

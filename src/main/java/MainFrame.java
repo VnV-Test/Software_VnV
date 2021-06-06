@@ -280,7 +280,7 @@ public class MainFrame extends JFrame{
             return;
         }
         String pwStr = ((CardDialog)dlg).getPW();
-        if(pwStr == null ) {
+        if(pwStr == null ){
             JOptionPane.showMessageDialog(null, "PW cannot be blank", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -333,6 +333,8 @@ public class MainFrame extends JFrame{
         }else{
             vmframe.initVM(vm);
         }
+
+
     }
     public void setPredrinkname(String predrinkname){
         this.predrinkname = predrinkname;
