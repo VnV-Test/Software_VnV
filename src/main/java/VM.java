@@ -6,9 +6,6 @@ public class VM {
     private int mark_ID;
     private double[] Location;
     private String Address;
-//    private double[][] vmLocArray = new double[10000][2];
-//    private String[] vmAddArray;
-//    private Vector<VM> dvmList = new Vector<>();
     private Vector<Integer> dvmIdList;
     private Vector<Code> codeList = new Vector<Code>();
 //    private Vector<String> prepayList = new Vector<>();
@@ -427,21 +424,20 @@ public class VM {
         mailBox.remove(0);
     }
     //신규 메시지들. n번째 항목인것(drink중에)의 이름/가격을 name/price로 바꾼다!
-    public void requestChangeName(int n, String name){
+    public String requestChangeName(int n, String name){
         int flag=0;
         for (int i = 0; i < 7; i++) {
             if (drinkArray[n].getName().equals(itemArray[i].getName())) {
-                if(itemArray[i].editName(name))
+                if(itemArray[i].editName(name)){
                     drinkArray[n].setName(name);
-                else{
-                    //TODO 이름이 잘못되었다고 출력.
                 }flag=1;
             }
         }
         if(flag==0)
             drinkArray[n].setName(name);
-        new Message(this.ID, 0, 9, n +":"+name).send();
-
+        String msgfield = n +":"+name;
+        new Message(this.ID, 0, 9, msgfield).send();
+        return msgfield;
     }
     public void receiveChangeName(){
         String str[] = mailBox.get(0).getMsgField().split(":");
@@ -451,29 +447,27 @@ public class VM {
             if (drinkArray[n].getName().equals(itemArray[i].getName())) {
                 if(itemArray[i].editName(str[1]))
                     drinkArray[n].setName(str[1]);
-                else{
-                    //TODO 이름이 잘못되었다고 출력.-안해도됨.
-                }flag=1;
+                flag=1;
             }
         }
         if(flag==0)
             drinkArray[n].setName(str[1]);
         mailBox.remove(0);
     }
-    public void requestChangePrice(int n, int price){
+    public String requestChangePrice(int n, int price){
         int flag=0;
         for (int i = 0; i < 7; i++) {
             if (drinkArray[n].getName().equals(itemArray[i].getName())) {
                 if(itemArray[i].editPrice(price))
                     drinkArray[n].setPrice(price);
-                else{
-                    //TODO 가격이 잘못되었다고 출력.
-                }flag=1;
+                flag=1;
             }
         }
         if(flag==0)
             drinkArray[n].setPrice(price);
-        new Message(this.ID, 0, 10, n +":"+price).send();
+        String msgfield = n +":"+price;
+        new Message(this.ID, 0, 10, msgfield).send();
+        return msgfield;
     }
     public void receiveChangePrice(){
         String str[] = mailBox.get(0).getMsgField().split(":");
@@ -502,5 +496,8 @@ public class VM {
         if(card!=null)
             card.setBalance(balance);
         mailBox.remove(0);
+    }
+    public void setPredrinkname(String name){
+        controller.setPredrinkname(name);
     }
 }

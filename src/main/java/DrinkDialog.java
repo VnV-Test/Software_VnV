@@ -9,10 +9,10 @@ public class DrinkDialog extends JDialog {
     JPanel menuPanel = new JPanel();
     AdminFrame parent = null;
 
-    public DrinkDialog(String title, boolean modal,VM vm, AdminFrame parent){
-        super(parent,title,modal);
+    public DrinkDialog(String title, boolean modal,VM vm, AdminFrame frame){
+        super(frame,title,modal);
         this.vm = vm;
-        this.parent = parent;
+        this.parent = frame;
         this.setSize(500,450);
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.white);

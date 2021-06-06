@@ -1,24 +1,0 @@
-
-E
-java:S1066S"/Merge this if statement with the enclosing one.(Ï¯Ş
-E
-java:S1066d"/Merge this if statement with the enclosing one.(Ï¯Ş
-C
-java:S1604<"(Make this anonymous inner class a lambda(ö¥×ûÿÿÿÿ
->
-java:S1604L"(Make this anonymous inner class a lambda(®”şî
-0
-java:S1220""Move this file to a named package.
-?
-java:S1948")Make "othervm" transient or serializable.(¯àœ
-E
-java:S2387"/"parent" is the name of a field in "Component".(¾šêª
-M	java:S106+"9Replace this use of System.out or System.err by a logger.(ä•á
-\
-java:S32521"AUse static access with "javax.swing.SwingConstants" for "CENTER".(¶¸Ü¥şÿÿÿÿ
-M
-java:S1135?"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ
-M
-java:S1135O"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ
-M
-java:S1135`"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ

@@ -15,9 +15,9 @@ public class AdminDialog extends JDialog{
     Container pane = this.getContentPane();
     MainFrame parent = null;
 
-    public AdminDialog(MainFrame parent, String title, boolean modal) {
-        super(parent,title,modal);
-        this.parent = parent;
+    public AdminDialog(MainFrame frame, String title, boolean modal) {
+        super(frame,title,modal);
+        this.parent = frame;
         this.setSize(330,120);
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.white);

@@ -14,9 +14,9 @@ public class CodeDialog extends JDialog{
     Container pane = this.getContentPane();
     MainFrame parent = null;
 
-    public CodeDialog(MainFrame parent, String title, boolean modal) {
-        super(parent,title,modal);
-        this.parent = parent;
+    public CodeDialog(MainFrame frame, String title, boolean modal) {
+        super(frame,title,modal);
+        this.parent = frame;
         this.setSize(330,80);
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.white);

@@ -165,7 +165,6 @@ public class VMTest {
             //vm.getOtherVM(da[k3+i].getName());
         }
     }
-
     @Test
     void getOtherVM_3Test(){
         for(int i=0;i<10;i++) {
@@ -175,4 +174,6 @@ public class VMTest {
         }
 //        vm
     }
+
+
 }

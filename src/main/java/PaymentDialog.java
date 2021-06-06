@@ -14,9 +14,9 @@ public class PaymentDialog extends JDialog{
     String name;
     VM othervm = null;
 
-    public PaymentDialog(MainFrame parent, String title, boolean modal, int price, String name) {
-        super(parent,title,modal);
-        this.parent = parent;
+    public PaymentDialog(MainFrame frame, String title, boolean modal, int price, String name) {
+        super(frame,title,modal);
+        this.parent = frame;
         this.price = price;
         this.name = name;
         this.setSize(330,120);
@@ -26,9 +26,9 @@ public class PaymentDialog extends JDialog{
         init(false);
         this.setVisible(true);
     }
-    public PaymentDialog(MainFrame parent, String title, boolean modal, int price, String name, boolean isPre,VM othervm) {
-        super(parent,title,modal);
-        this.parent = parent;
+    public PaymentDialog(MainFrame frame, String title, boolean modal, int price, String name, boolean isPre,VM othervm) {
+        super(frame,title,modal);
+        this.parent = frame;
         this.price = price;
         this.name = name;
         this.setSize(330,120);
@@ -79,11 +79,9 @@ public class PaymentDialog extends JDialog{
                 // TODO Auto-generated method stub
                 parent.dlg = null;
                 dispose();
-                if(isPre){
-                    if(parent.vmframe != null){
-                        parent.vmframe.dispose();
-                        parent.vmframe = null;
-                    }
+                if(isPre && parent.vmframe != null){
+                    parent.vmframe.dispose();
+                    parent.vmframe = null;
                 }
             }
         });

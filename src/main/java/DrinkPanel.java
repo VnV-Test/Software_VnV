@@ -114,6 +114,8 @@ public class DrinkPanel extends JPanel {
             case "Mint Coffee":
                 icon = new ImageIcon(imgpath[19]);
                 break;
+            default:
+                break;
         }
         JLabel centerLabel = new JLabel(icon);
         centerLabel.setBackground(Color.white);
@@ -128,14 +130,14 @@ public class DrinkPanel extends JPanel {
         southPanel.setBackground(Color.white);
         southPanel.setPreferredSize(new Dimension(138,40));
 
-        JLabel nameLabel = new JLabel(this.drinkname);
+        nameLabel = new JLabel(this.drinkname);
         Font namefont = new Font("Arial",Font.BOLD,12);
         nameLabel.setFont(namefont);
         nameLabel.setForeground(new Color(80,188,223));
         nameLabel.setHorizontalAlignment(JLabel.CENTER);
         southPanel.add(nameLabel);
 
-        JLabel priceLabel = new JLabel("₩ "+this.price);
+        priceLabel = new JLabel("₩ "+this.price);
         Font pricefont = new Font("Arial",Font.PLAIN,10);
         priceLabel.setFont(pricefont);
         priceLabel.setHorizontalAlignment(JLabel.CENTER);
