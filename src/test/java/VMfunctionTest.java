@@ -170,8 +170,6 @@ class VMfunctionTest {
         vm1.mailBox.add(new Message(9998,9999,4,""));
         Assertions.assertEquals(vm1.receiveRequest(),4);
 
-        vm1.mailBox.add(new Message(9998,9999,6,""));
-        Assertions.assertEquals(vm1.receiveRequest(),6);
 
         vm1.mailBox.add(new Message(9998,9999,8,"Coke-99981111"));
         Assertions.assertEquals(vm1.receiveRequest(),8);
