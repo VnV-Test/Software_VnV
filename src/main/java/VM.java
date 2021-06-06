@@ -1,3 +1,5 @@
+import javax.swing.*;
+import java.lang.invoke.SwitchPoint;
 import java.util.Random;
 import java.util.Vector;
 
@@ -97,11 +99,6 @@ public class VM {
                     itemArray[i] = new Item(drinkArray[i+13].getName(), drinkArray[i+13].getPrice(), 10);
                 }
                 break;
-            default: // Default is equal to case 0
-                for (int i = 0; i < 7; i++) {
-                    itemArray[i] = new Item(drinkArray[i].getName(), drinkArray[i].getPrice(), 10);
-                }
-                break;
         }
         // card
         cardList.add(new Card("1234123412341234", 821, 578, 25, 2900));
@@ -117,33 +114,24 @@ public class VM {
     public boolean codeempty(){
         return codeList.isEmpty();
     }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//    public int getVmNum(){
-//        return this.dvmList.size();
-//    }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+    public int getVmNum(){
+        return this.dvmList.size();
+    }
     synchronized public int getMailBoxSize(){
         Thread.yield();
         return mailBox.size();
     }
+    public boolean editDVMLocation() {
+        double[] Location = new double[2];
+        Location[0] = 37.54164;  //scanLongitude
+        Location[1] = 127.07880; //scanAltitude
+        this.Location = Location;
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//    public boolean editDVMLocation() {
-//        double[] Location = new double[2];
-//        Location[0] = 37.54164;  //scanLongitude
-//        Location[1] = 127.07880; //scanAltitude
-//        this.Location = Location;
-//
-//        if (this.Location != Location || this.Location == null)
-//            return false;
-//
-//        return true;
-//    }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        if (this.Location != Location || this.Location == null)
+            return false;
 
-
+        return true;
+    }
     //getset
     public MainFrame setUI(MainFrame m){
         this.controller =  m;
@@ -165,11 +153,9 @@ public class VM {
     public Drink[] getDrinkArray() {
         return drinkArray;
     }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//    public String getAddress() {
-//        return this.Address;
-//    }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public String getAddress() {
+        return this.Address;
+    }
     public void editVMAddress(String Address) {
         this.Address = Address;
     }
@@ -224,16 +210,6 @@ public class VM {
         controller.showMessage("Guidance","<html> authentication code :" + "<b> "+ code+ " </b></html>");
         return  code;
     }
-    //check
-    public boolean checkStock(String itemName) {
-        for (int i = 0; i < 7; i++) {
-            if (itemName.equals(itemArray[i].getName())) {
-                if (itemArray[i].getStock() > 0)
-                    return true;
-            }
-        }
-        return false;
-    } // boolean 값으로 수정, item에 stock이 존재하면 true 아니면 false
     public String checkCode(int code) {
         for (int i = 0; i < codeList.size(); i++) {
             if (codeList.elementAt(i).getCode() == code) {
@@ -356,13 +332,22 @@ public class VM {
                             break;
                         }
 
+                        if ((itemArray[j].getName()).equals(msg.getMsgField()) && itemArray[j].getStock() > 0) {
+                            System.out.println("VM(" + this.getID() + "): I have a stock");
+                            Message stockMsg = new Message(this.ID, msg.getSrc_id(), 2, msg.getMsgField());
+                            stockMsg.send();
+                            isItem = true;
+                            mailBox.remove(0);
+                            break;
+                        }
                     }
-                }
-                if (!isItem) {
-                    System.out.println("**************************** VM(" + this.getID() + "): I don't have a stock");
-                    Message stockMsg = new Message(this.ID, msg.getSrc_id(), 2, "trash");
-                    mailBox.remove(0);
-                    stockMsg.send();
+                    if (!isItem) {
+                        System.out.println("**************************** VM(" + this.getID() + "): I don't have a stock");
+                        Message stockMsg = new Message(this.ID, msg.getSrc_id(), 2, "trash");
+                        mailBox.remove(0);
+                        stockMsg.send();
+                    }
+                    break;
                 }
                 break;
             case 4:

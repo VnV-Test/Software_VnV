@@ -164,6 +164,5 @@ public class VMTest {
             m.setpreDrinkname_test(da[k3 + i].getName());
             //vm.getOtherVM(da[k3+i].getName());
         }
-
     }
 }
