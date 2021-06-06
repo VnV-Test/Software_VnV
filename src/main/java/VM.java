@@ -369,8 +369,7 @@ public class VM {
             case 4:
                 // msgType == 4
                 String loc="trash";
-                if(!mailBox.get(0).getMsgField().equals("trash"))
-                     loc = this.Location[0] + "-" + this.Location[1] + "-" + this.mark_ID;
+                loc = this.Location[0] + "-" + this.Location[1] + "-" + this.mark_ID;
                 Message addressMsg = new Message(this.ID, mailBox.get(0).getSrc_id(), 5, loc);
                 mailBox.remove(0);
                 addressMsg.send();
