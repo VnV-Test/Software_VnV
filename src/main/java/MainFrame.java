@@ -159,7 +159,7 @@ public class MainFrame extends JFrame{
         // 아이디, 비밀번호가 일치하는지 체크
         boolean isAdmin = admin.checkIDPW(id,pw);
         if(isAdmin) {
-            AdminFrame admin = new AdminFrame(this);
+            AdminFrame adminframe = new AdminFrame(this);
             this.dlg.dispose();
             this.dlg = null;
         }else {
@@ -306,9 +306,6 @@ public class MainFrame extends JFrame{
     }
     public void giveProduct(String name){
         JOptionPane.showMessageDialog(null, "            Give you a " + "Product : " + name,"Message", JOptionPane.PLAIN_MESSAGE);
-    }
-    public void setDlg(JDialog dialog){
-        this.dlg = dialog;
     }
     public void showCardDialog(int price, String name){
         this.dlg = new CardDialog(this, "Payment",false,price, name);

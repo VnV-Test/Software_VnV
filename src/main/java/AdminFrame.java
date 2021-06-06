@@ -1,6 +1,5 @@
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -27,9 +26,9 @@ public class AdminFrame extends JFrame{
     private JTextField contacttf = new JTextField("",8);
     MainFrame parent = null;
 
-    public AdminFrame(MainFrame parent) {
+    public AdminFrame(MainFrame frame) {
         super("Admin Mode");
-        this.parent = parent;
+        this.parent = frame;
         this.setSize(500,650);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -187,7 +186,7 @@ public class AdminFrame extends JFrame{
                 if(!(locationtf.getText().equals("")))
                     parent.getVM().editVMAddress(idtf.getText());
                 int id;
-                if(!(idtf.getText() == "")){
+                if(!(idtf.getText().equals(""))){
                     try{
                         id  = Integer.parseInt(idtf.getText());
                     }catch(NumberFormatException e2){

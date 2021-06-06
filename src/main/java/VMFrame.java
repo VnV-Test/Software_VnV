@@ -15,9 +15,9 @@ public class VMFrame extends JFrame{
     int price;
     boolean ispaint = false;
 
-    public VMFrame(MainFrame parent,String drinkname,int price) {
+    public VMFrame(MainFrame frame,String drinkname,int price) {
         super("VM-List");
-        this.parent = parent;
+        this.parent = frame;
         this.setSize(500,500);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);

@@ -6,9 +6,6 @@ public class VM {
     private int mark_ID;
     private double[] Location;
     private String Address;
-//    private double[][] vmLocArray = new double[10000][2];
-//    private String[] vmAddArray;
-//    private Vector<VM> dvmList = new Vector<>();
     private Vector<Integer> dvmIdList;
     private Vector<Code> codeList = new Vector<Code>();
 //    private Vector<String> prepayList = new Vector<>();
@@ -326,16 +323,13 @@ public class VM {
     }
     public void getOtherVM_3(){
         // Check Mail Box and filter which has our requirement (for Request Address)
-        gov3_flag = false;
-        if (!mailBox.get(0).getMsgField().equals("trash")) {
-            gov3_flag = true;
-            double[] tempD = new double[2];
-            String[] tempS = mailBox.get(0).getMsgField().split("-");
-            tempD[0] = Double.parseDouble(tempS[0]);
-            tempD[1] = Double.parseDouble(tempS[1]);
-            int markID = Integer.parseInt(tempS[2]);
-            controller.showVMFrame(new VM(mailBox.get(0).getSrc_id(),markID, tempD));
-        }
+        gov3_flag = true;
+        double[] tempD = new double[2];
+        String[] tempS = mailBox.get(0).getMsgField().split("-");
+        tempD[0] = Double.parseDouble(tempS[0]);
+        tempD[1] = Double.parseDouble(tempS[1]);
+        int markID = Integer.parseInt(tempS[2]);
+        controller.showVMFrame(new VM(mailBox.get(0).getSrc_id(),markID, tempD));
         mailBox.remove(0);
         //return vms; -> UI쪽으로 패스
     }
@@ -368,8 +362,7 @@ public class VM {
                 break;
             case 4:
                 // msgType == 4
-                String loc="trash";
-                loc = this.Location[0] + "-" + this.Location[1] + "-" + this.mark_ID;
+                String loc = this.Location[0] + "-" + this.Location[1] + "-" + this.mark_ID;
                 Message addressMsg = new Message(this.ID, mailBox.get(0).getSrc_id(), 5, loc);
                 mailBox.remove(0);
                 addressMsg.send();
@@ -428,21 +421,20 @@ public class VM {
         mailBox.remove(0);
     }
     //신규 메시지들. n번째 항목인것(drink중에)의 이름/가격을 name/price로 바꾼다!
-    public void requestChangeName(int n, String name){
+    public String requestChangeName(int n, String name){
         int flag=0;
         for (int i = 0; i < 7; i++) {
             if (drinkArray[n].getName().equals(itemArray[i].getName())) {
-                if(itemArray[i].editName(name))
+                if(itemArray[i].editName(name)){
                     drinkArray[n].setName(name);
-                else{
-                    //TODO 이름이 잘못되었다고 출력.
                 }flag=1;
             }
         }
         if(flag==0)
             drinkArray[n].setName(name);
-        new Message(this.ID, 0, 9, n +":"+name).send();
-
+        String msgfield = n +":"+name;
+        new Message(this.ID, 0, 9, msgfield).send();
+        return msgfield;
     }
     public void receiveChangeName(){
         String str[] = mailBox.get(0).getMsgField().split(":");
@@ -452,29 +444,27 @@ public class VM {
             if (drinkArray[n].getName().equals(itemArray[i].getName())) {
                 if(itemArray[i].editName(str[1]))
                     drinkArray[n].setName(str[1]);
-                else{
-                    //TODO 이름이 잘못되었다고 출력.-안해도됨.
-                }flag=1;
+                flag=1;
             }
         }
         if(flag==0)
             drinkArray[n].setName(str[1]);
         mailBox.remove(0);
     }
-    public void requestChangePrice(int n, int price){
+    public String requestChangePrice(int n, int price){
         int flag=0;
         for (int i = 0; i < 7; i++) {
             if (drinkArray[n].getName().equals(itemArray[i].getName())) {
                 if(itemArray[i].editPrice(price))
                     drinkArray[n].setPrice(price);
-                else{
-                    //TODO 가격이 잘못되었다고 출력.
-                }flag=1;
+                flag=1;
             }
         }
         if(flag==0)
             drinkArray[n].setPrice(price);
-        new Message(this.ID, 0, 10, n +":"+price).send();
+        String msgfield = n +":"+price;
+        new Message(this.ID, 0, 10, msgfield).send();
+        return msgfield;
     }
     public void receiveChangePrice(){
         String str[] = mailBox.get(0).getMsgField().split(":");
@@ -503,5 +493,8 @@ public class VM {
         if(card!=null)
             card.setBalance(balance);
         mailBox.remove(0);
+    }
+    public void setPredrinkname(String name){
+        controller.setPredrinkname(name);
     }
 }

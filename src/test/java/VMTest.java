@@ -25,7 +25,7 @@ public class VMTest {
         msg = new Message(0, 9999, 0, "Hello World");
 
         loc = new double[]{0f, 0f};
-        vm = new VM(9999, loc, d1);
+        vm = new VM(9999, loc);
         vm2=new VM(9998, loc, d2);
         vm3=new VM(9997, loc, d3);
         t3 = new RecieveMail(vm);
@@ -165,7 +165,6 @@ public class VMTest {
             //vm.getOtherVM(da[k3+i].getName());
         }
     }
-
     @Test
     void getOtherVM_3Test(){
         for(int i=0;i<10;i++){
@@ -182,4 +181,6 @@ public class VMTest {
         }
 //        vm
     }
+
+
 }

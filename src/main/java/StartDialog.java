@@ -24,7 +24,6 @@ public class StartDialog extends JDialog {
 
     public StartDialog() {
         this.setTitle("START");
-        this.parent = parent;
         this.setSize(300,150);
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.white);

@@ -170,6 +170,7 @@ class VMfunctionTest {
         vm1.mailBox.add(new Message(9998,9999,4,""));
         Assertions.assertEquals(vm1.receiveRequest(),4);
 
+
         vm1.mailBox.add(new Message(9998,9999,8,"Coke-99981111"));
         Assertions.assertEquals(vm1.receiveRequest(),8);
 
@@ -206,5 +207,19 @@ class VMfunctionTest {
 
         vm2.mailBox.add(new Message(9999,9998,11,"1111111111111111:800"));
         Assertions.assertEquals(vm2.receiveRequest(),11);
+    }
+    @Test
+    void checkRequestChangeName(){
+        Assertions.assertEquals(vm1.requestChangeName(1,"sprite2"),"1:sprite2");
+        Assertions.assertEquals(vm1.requestChangePrice(1,800),"1:800");
+    }
+    @Test
+    void checkMessage2(){
+        vm1.mailBox.add(new Message(9998,9999,6,""));
+        Assertions.assertEquals(vm1.receiveRequest(),6);
+
+        vm1.setPredrinkname("Coke");
+        vm1.mailBox.add(new Message(9998,9999,5,"10-10-8708"));
+        Assertions.assertEquals(vm1.receiveRequest(),5);
     }
 }

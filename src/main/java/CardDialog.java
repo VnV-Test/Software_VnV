@@ -17,9 +17,9 @@ public class CardDialog extends JDialog{
     String name;
     VM otherVM = null;
 
-    public CardDialog(MainFrame parent, String title, boolean modal, int price, String name) {
-        super(parent,title,modal);
-        this.parent = parent;
+    public CardDialog(MainFrame frame, String title, boolean modal, int price, String name) {
+        super(frame,title,modal);
+        this.parent = frame;
         this.price = price;
         this.name = name;
         this.setSize(320,200);
@@ -80,13 +80,13 @@ public class CardDialog extends JDialog{
         JPanel textPanel = new JPanel(new FlowLayout(FlowLayout.LEFT,25,0));
         textPanel.setBackground(Color.white);
         JLabel confirm = new JLabel("Validity");
-        JLabel cvc = new JLabel("CVC");
-        cvc.setBorder(BorderFactory.createEmptyBorder(0,0,0,10));
-        JLabel pw = new JLabel("PW");
-        pw.setBorder(BorderFactory.createEmptyBorder(0,0,0,10));
+        JLabel cvcLabel = new JLabel("CVC");
+        cvcLabel.setBorder(BorderFactory.createEmptyBorder(0,0,0,10));
+        JLabel pwLabel = new JLabel("PW");
+        pwLabel.setBorder(BorderFactory.createEmptyBorder(0,0,0,10));
         textPanel.add(confirm);
-        textPanel.add(cvc);
-        textPanel.add(pw);
+        textPanel.add(cvcLabel);
+        textPanel.add(pwLabel);
         centerPanel.add(textPanel);
         //textfield 2
         JPanel cardtfPanel = new JPanel(new FlowLayout(FlowLayout.LEFT,25,0));
