@@ -172,7 +172,7 @@ public class VMTest {
             if(i==3 || i==5 || i==8){
                 new Message(i, 9999, 5, "trash");
                 while(vm.getMailBoxSize() != 0);
-                Assertions.assertEquals(vm.gov3_flag, true);
+                Assertions.assertEquals(vm.gov3_flag, false);
             }
             else{
                 new Message(i, 9999, 5, "0-0-"+String.valueOf(i));
