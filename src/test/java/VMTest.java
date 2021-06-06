@@ -173,6 +173,6 @@ public class VMTest {
             if(i==3 || i==5 || i==8)
                 new Message(i, 9999, 5, null);
         }
-        vm
+//        vm
     }
 }
