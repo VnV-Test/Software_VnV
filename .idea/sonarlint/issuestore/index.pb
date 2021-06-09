@@ -13,8 +13,6 @@ X
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 7
 gradlew,5\b\5bbfa66edb4db3c7c33c5181f43510990d3307f9
-I
-src/test/java/VMTest.java,8\7\87b51e02296703f05bb1a06d59734d65130c02b3
 G
 src/main/java/Card.java,5\a\5a8a112de67cebde74bcab0508a96a3b384637a6
 K

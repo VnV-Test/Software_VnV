@@ -9,7 +9,6 @@ public class VM {
     private String Address;
     private Vector<Integer> dvmIdList;
     private Vector<Code> codeList = new Vector<Code>();
-//    private Vector<String> prepayList = new Vector<>();
     private Item[] itemArray; //새로 추가함.- setProductinfo와 give Product연관/
     private Drink[] drinkArray = new Drink[20]; //새로 추가함. - setProduct연관.
     public Vector<Message> mailBox;
@@ -19,7 +18,6 @@ public class VM {
     private Admin admin = null;
     private Vector<Integer> ids = new Vector<Integer>();
     private int idStack;
-//    private Vector<VM> locVM = new Vector<VM>();
     public boolean gov3_flag;
 
     public VM(int ID, int mark_ID, double[] Locaiton){

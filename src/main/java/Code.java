@@ -1,5 +1,5 @@
 public class Code {
-    private int code;
+    private int code_num;
     private String name;
 
     public String getName() {
@@ -7,14 +7,14 @@ public class Code {
     }
 
     public int getCode() {
-        return code;
+        return code_num;
     }
     public boolean confirmCOde(int c){
-        return c==code;
+        return c==code_num;
     }
 
     public Code(int c, String n){
-        code = c;
+        code_num = c;
         name = n;
     }
 }
