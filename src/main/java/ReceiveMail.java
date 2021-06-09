@@ -15,7 +15,7 @@ class RecieveMail extends Thread{
     public void run(){
         BufferedReader in = null;
         ServerSocket listener = null;
-        Socket socket = null;
+        Socket socket_h = null;
         while(true){
 
             try{
@@ -25,12 +25,12 @@ class RecieveMail extends Thread{
             }
             try{
                 while(true) {
-                    socket = listener.accept();
+                    socket_h = listener.accept();
                     System.out.println("Connected.");
                     ////////////////////////
 //                Thread t3 = new RecieveMail(vm);
 //                t3.start();
-                    in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                    in = new BufferedReader(new InputStreamReader(socket_h.getInputStream()));
 
                     String inputMessage = in.readLine();
 

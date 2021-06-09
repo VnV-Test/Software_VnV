@@ -107,30 +107,11 @@ public class VM {
         return codeList.isEmpty();
     }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//    public int getVmNum(){
-//        return this.dvmList.size();
-//    }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     synchronized public int getMailBoxSize(){
         Thread.yield();
         return mailBox.size();
     }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//    public boolean editDVMLocation() {
-//        double[] Location = new double[2];
-//        Location[0] = 37.54164;  //scanLongitude
-//        Location[1] = 127.07880; //scanAltitude
-//        this.Location = Location;
-//
-//        if (this.Location != Location || this.Location == null)
-//            return false;
-//
-//        return true;
-//    }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
     //getset
@@ -215,9 +196,8 @@ public class VM {
     //check
     public boolean checkStock(String itemName){
         for (int i = 0; i < 7; i++) {
-            if (itemName.equals(itemArray[i].getName())) {
-                if (itemArray[i].getStock() > 0)
-                    return true;
+            if (itemName.equals(itemArray[i].getName()) && itemArray[i].getStock() > 0) {
+                return true;
             }
         }
         return false;
@@ -332,15 +312,14 @@ public class VM {
             System.out.println("VM(" + this.getID() + "): Receive Message type: 1");
             boolean isItem = false;
             for (int j = 0; j < itemArray.length; j++) {
-                if ((itemArray[j].getName()).equals(msg.getMsgField())) {
-                    if (itemArray[j].getStock() > 0) {
-                        System.out.println("VM(" + this.getID() + "): I have a stock");
-                        Message stockMsg = new Message(this.ID, msg.getSrc_id(), 2, msg.getMsgField());
-                        stockMsg.send();
-                        isItem = true;
-                        mailBox.remove(0);
-                        break;
-                    }
+                if ((itemArray[j].getName()).equals(msg.getMsgField()) && itemArray[j].getStock() > 0) {
+                    System.out.println("VM(" + this.getID() + "): I have a stock");
+                    Message stockMsg = new Message(this.ID, msg.getSrc_id(), 2, msg.getMsgField());
+                    stockMsg.send();
+                    isItem = true;
+                    mailBox.remove(0);
+                    break;
+
                 }
             }
             if (!isItem){
