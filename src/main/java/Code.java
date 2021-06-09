@@ -13,10 +13,6 @@ public class Code {
         return c==code;
     }
 
-    public Code(){
-        code=0;
-        name=null;
-    }
     public Code(int c, String n){
         code = c;
         name = n;

@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class VMfunctionTest {
 
-    private VM vm1, vm2;
-    MainFrame frame1,frame2;
+    private VM vm1, vm2,vm3,vm4;
+    MainFrame frame1,frame2,frame3,frame4;
 
 
     @BeforeEach
@@ -21,6 +21,12 @@ class VMfunctionTest {
         double[] location = {0,0};
         vm1 = new VM(9999,location,0);
         frame1 = new MainFrame(vm1);
+
+        vm3 = new VM(9997,location,2);
+        frame3 = new MainFrame(vm3);
+
+        vm4 = new VM(9996,location,10);
+        frame4 = new MainFrame(vm4);
     }
 
     @Test
@@ -158,10 +164,17 @@ class VMfunctionTest {
     }
     @Test
     void checkReceiveMail() {
+
         vm1.mailBox.add(new Message(9998,9999,1,"Coke"));
         Assertions.assertEquals(vm1.receiveRequest(),1);
 
+        vm1.mailBox.add(new Message(9998,9999,1,"Sikhye"));
+        Assertions.assertEquals(vm1.receiveRequest(),1);
+
         vm1.mailBox.add(new Message(9998,9999,2,"Coke"));
+        Assertions.assertEquals(vm1.receiveRequest(),2);
+
+        vm1.mailBox.add(new Message(9998,9999,2,"trash"));
         Assertions.assertEquals(vm1.receiveRequest(),2);
 
         vm1.mailBox.add(new Message(9998,9999,3,"Coke-99980000"));
@@ -170,6 +183,8 @@ class VMfunctionTest {
         vm1.mailBox.add(new Message(9998,9999,4,""));
         Assertions.assertEquals(vm1.receiveRequest(),4);
 
+        vm1.mailBox.add(new Message(9998,9999,7,""));
+        Assertions.assertEquals(vm1.receiveRequest(),7);
 
         vm1.mailBox.add(new Message(9998,9999,8,"Coke-99981111"));
         Assertions.assertEquals(vm1.receiveRequest(),8);
@@ -199,6 +214,9 @@ class VMfunctionTest {
         vm2.mailBox.add(new Message(9999,9998,8,"Milk Coffee-99991111"));
         Assertions.assertEquals(vm2.receiveRequest(),8);
 
+        vm2.mailBox.add(new Message(9999,9998,8,null));
+        Assertions.assertEquals(vm2.receiveRequest(),8);
+
         vm2.mailBox.add(new Message(9999,9998,9,"2:Mint Sprite2"));
         Assertions.assertEquals(vm2.receiveRequest(),9);
 
@@ -221,5 +239,43 @@ class VMfunctionTest {
         vm1.setPredrinkname("Coke");
         vm1.mailBox.add(new Message(9998,9999,5,"10-10-8708"));
         Assertions.assertEquals(vm1.receiveRequest(),5);
+    }
+    @Test
+    void checkCodeEmpty(){
+        Assertions.assertEquals(vm1.codeempty(),true);
+    }
+    @Test
+    void checkGetCardList(){
+        Assertions.assertEquals(vm1.getCardList().elementAt(0).getCardNum(),"1234123412341234");
+    }
+    @Test
+    void checkGetMailSize(){
+        Assertions.assertEquals(vm1.getMailBoxSize(),0);
+    }
+    @Test
+    void checkAddress(){
+        Assertions.assertEquals(vm1.editVMAddress("주소"),"주소");
+        Assertions.assertEquals(vm1.getAddress(),"주소");
+    }
+    @Test
+    void checkGetIDts(){
+        Assertions.assertEquals(vm1.getIDtS(),"9999");
+    }
+    @Test
+    void checkFindCard(){
+        Assertions.assertEquals(vm1.findCard2(""),null);
+    }
+    @Test
+    void checkMailReceive(){
+        Assertions.assertEquals(vm1.mailRecieve(new Message(9998,9999,5,"10-10-8708")),"mail receive");
+        vm1.getOtherVM("Coke");
+    }
+    @Test
+    void checkRequestPrepay(){
+        Assertions.assertEquals(vm3.requestPrepay("Hot Six",9999),"99970000");
+    }
+    @Test
+    void checkGetLocation(){
+        Assertions.assertEquals(vm3.getLocation()[0],0);
     }
 }

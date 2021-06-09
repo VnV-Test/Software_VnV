@@ -1,3 +1,4 @@
+
 import java.util.Random;
 import java.util.Vector;
 
@@ -21,14 +22,6 @@ public class VM {
 //    private Vector<VM> locVM = new Vector<VM>();
     public boolean gov3_flag;
 
-    public VM(int ID, double[] Locaiton){
-        this.ID = ID;
-        this.mark_ID = setMarkID(ID);
-        this.Location = Locaiton;
-        this.mailBox = new Vector<Message>();
-        itemArray = new Item[7];
-        basicSettinng(0);
-    }
     public VM(int ID, int mark_ID, double[] Locaiton){
         this.ID = ID;
         this.mark_ID = mark_ID;
@@ -166,8 +159,9 @@ public class VM {
     public String getAddress() {
         return this.Address;
     }
-    public void editVMAddress(String Address){
+    public String editVMAddress(String Address){
         this.Address = Address;
+        return Address;
     }
     public int editVMID(int id){
         if(id < 0 || id > 999)
@@ -288,12 +282,14 @@ public class VM {
     }
     public void ConfirmSell_2(){
         //7번오면 처리. 선결재로 코드넘겨준게 지급됬는지 질문에 대한 응답을 확인.-사용하지않으므로주석만.
+        mailBox.remove(0);
         return;
     }
-    synchronized void MailRecieve(Message msg){
+    synchronized String mailRecieve(Message msg){
         Thread.yield();
         System.out.println("DVM "+this.ID+" Message ricieved\n"+msg.toString());
         this.mailBox.add(msg);
+        return "mail receive";
     }
     public void getOtherVM(String itemName){
         // Use Case 4, 9, 15
@@ -305,7 +301,7 @@ public class VM {
         if(idStack==0)
             while(ids.size()>0)
                 ids.remove(0);
-        //이다음부분도 진행됨.
+        //이 다음부분도 진행됨.
         if (mailBox.get(0).getMsgField().equals("trash"))
             System.out.println("getOtherVM_2:" + mailBox.get(0).getMsgField()  + "== null ");
         else
@@ -334,58 +330,46 @@ public class VM {
     public void notifyVMsInfo(){
         // msgType == 1
         Message msg = mailBox.get(0);
-        switch (msg.getMsgtype()){
-            case 1:
-                System.out.println("VM(" + this.getID() + "): Receive Message type: 1");
-                boolean isItem = false;
-                for (int j = 0; j < itemArray.length; j++) {
-                    if ((itemArray[j].getName()).equals(msg.getMsgField())) {
-                        if (itemArray[j].getStock() > 0) {
-                            System.out.println("VM(" + this.getID() + "): I have a stock");
-                            Message stockMsg = new Message(this.ID, msg.getSrc_id(), 2, msg.getMsgField());
-                            stockMsg.send();
-                            isItem = true;
-                            mailBox.remove(0);
-                            break;
-                        }
-
+        if(msg.getMsgtype() == 1){
+            System.out.println("VM(" + this.getID() + "): Receive Message type: 1");
+            boolean isItem = false;
+            for (int j = 0; j < itemArray.length; j++) {
+                if ((itemArray[j].getName()).equals(msg.getMsgField())) {
+                    if (itemArray[j].getStock() > 0) {
+                        System.out.println("VM(" + this.getID() + "): I have a stock");
+                        Message stockMsg = new Message(this.ID, msg.getSrc_id(), 2, msg.getMsgField());
+                        stockMsg.send();
+                        isItem = true;
+                        mailBox.remove(0);
+                        break;
                     }
                 }
-                if (!isItem){
-                    System.out.println("**************************** VM(" + this.getID() + "): I don't have a stock");
-                    Message stockMsg = new Message(this.ID, msg.getSrc_id(), 2, "trash");
-                    mailBox.remove(0);
-                    stockMsg.send();
-                }
-                break;
-            case 4:
-                // msgType == 4
-                String loc = this.Location[0] + "-" + this.Location[1] + "-" + this.mark_ID;
-                Message addressMsg = new Message(this.ID, mailBox.get(0).getSrc_id(), 5, loc);
+            }
+            if (!isItem){
+                System.out.println("**************************** VM(" + this.getID() + "): I don't have a stock");
+                Message stockMsg = new Message(this.ID, msg.getSrc_id(), 2, "trash");
                 mailBox.remove(0);
-                addressMsg.send();
-                break;
-            default:
-                System.out.println("Notify가 실행되었는데 1,4가아님");
+                stockMsg.send();
+            }
+        }else if(msg.getMsgtype() == 4) {
+            // msgType == 4
+            String loc = this.Location[0] + "-" + this.Location[1] + "-" + this.mark_ID;
+            Message addressMsg = new Message(this.ID, mailBox.get(0).getSrc_id(), 5, loc);
+            mailBox.remove(0);
+            addressMsg.send();
         }
     }
-    public void requestPrepay(String name, int dst_id){
+    public String requestPrepay(String name, int dst_id){
         //코드 생성
         String code;
         String zeros;
         //자기의ID + n번째음료수 자기의 ID+음료수 식별id + n번째로 발급했다.
-        if (count < 10)
-            zeros = "000";
-        else if (count < 100)
-            zeros = "00";
-        else if (count < 1000)
-            zeros = "0";
-        else
-            zeros = "";
-        code = String.valueOf(this.ID) + zeros + count;
+        zeros = String.format("%04d",count);
+        code = String.valueOf(this.ID) + zeros;
         count++;
         System.out.println("ID(" + this.ID + ") : requestPrepay");
         new Message(this.ID, dst_id, 3, name + "-" + code).send();
+        return code;
     }
     public void requestPrepay_2(){
         if (mailBox.get(0).getMsgField() == null)
@@ -394,8 +378,8 @@ public class VM {
             String str[] = mailBox.get(0).getMsgField().split("-");
 
             giveCode(str[1]); // 카드창 띄우기
-            mailBox.remove(0);
         }
+        mailBox.remove(0);
     }
     public void confirmPrepay(){
         int stock;
@@ -425,7 +409,8 @@ public class VM {
             if (drinkArray[n].getName().equals(itemArray[i].getName())) {
                 if(itemArray[i].editName(name)){
                     drinkArray[n].setName(name);
-                }flag=1;
+                }
+                flag=1;
             }
         }
         if(flag==0)

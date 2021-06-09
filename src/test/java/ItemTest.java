@@ -10,6 +10,10 @@ public class ItemTest {
         item2 = new Item("mint coke",800,5);
     }
     @Test
+    public void getStockTest() {
+        Assertions.assertEquals(item.getStock(), 20);
+    }
+    @Test
     public void getNameTest() {
         Assertions.assertEquals(item.getName(), "coke");
         Assertions.assertEquals(item2.getName(), "mint coke");
