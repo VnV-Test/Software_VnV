@@ -35,6 +35,7 @@ public class AdminTest {
     @Test
     void editContactTest(){
         Assertions.assertEquals(ad.editContact("010-4017-4928"), "010-4017-4928");
+        Assertions.assertEquals(ad.getContact(), "010-4017-4928");
         Assertions.assertEquals(ad.editContact("010-4017-1234"), "010-4017-1234");
         Assertions.assertEquals(admin.editContact("010-4000-3000"), "010-4000-3000");
     }

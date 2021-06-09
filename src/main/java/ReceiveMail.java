@@ -40,18 +40,10 @@ class RecieveMail extends Thread{
                     System.out.println("temp0 :" + tempS[1]);
                     System.out.println("temp0 :" + tempS[2]);
                     Message mg = new Message(Integer.parseInt(tempS[0]), Integer.parseInt(tempS[1]), Integer.parseInt(tempS[2]), tempS[3]);
-                    this.vm.MailRecieve(mg);
+                    this.vm.mailRecieve(mg);
                 }
             } catch(IOException e){
                 System.out.println(e.getMessage()+"Here??");
-            }
-            finally {
-                try{
-                    socket.close();
-                    listener.close();
-                } catch (IOException e){
-                    System.out.println("Error occured while chatting with client.");
-                }
             }
         }
     }

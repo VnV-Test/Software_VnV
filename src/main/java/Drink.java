@@ -2,10 +2,6 @@ public class Drink {
     private int Price;
     private String Name;
 
-    public Drink(){
-        this.Price = 0;
-        this.Name = null;
-    }
     public Drink(String Name,int price){
 
         this.Price = price;

@@ -14,7 +14,13 @@ public class CardTest {
         cd = new Card("1234123412341234", 820, 578, 25, 5000);
         cd2 = new Card("1111111111111111", 222, 489, 12, 1500);
     }
-
+    @Test
+    public void checkGetBalance(){
+        //결제 잔액이 음수인 경우
+        Assertions.assertEquals(cd.getBalance(), 5000);
+        cd.setBalance(4900);
+        Assertions.assertEquals(cd.getBalance(), 4900);
+    }
     @Test
     public void isThisCardTest(){
         //모두 일치할 경우
@@ -73,4 +79,10 @@ public class CardTest {
         Assertions.assertEquals(cd.payment(-100), false);
         Assertions.assertEquals(cd2.payment(-100), false);
     }
+    @Test
+    public void checkGetNum(){
+        //결제 잔액이 음수인 경우
+        Assertions.assertEquals(cd.getCardNum(), "1234123412341234");
+    }
+
 }
