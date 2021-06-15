@@ -1,0 +1,101 @@
+
+Z
+java:S1192"FDefine a constant instead of duplicating this literal "trash" 3 times.(¯ãí÷
+B
+java:S1066"/Merge this if statement with the enclosing one.(‡œı1
+C
+java:S1066"/Merge this if statement with the enclosing one.(“¹ò
+W
+java:S1155">Use isEmpty() to check whether the collection is empty or not.(ï·’Œûÿÿÿÿ
+i	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¶È¬ıÿÿÿÿ
+i	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¶È¬ıÿÿÿÿ
+i	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Í‰ıºÿÿÿÿÿ
+i	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Í‰ıºÿÿÿÿÿ
+i	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Í‰ıºÿÿÿÿÿ
+d	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÁãÄ¶
+d	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÁãÄ¶
+i	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·±ÿ»ûÿÿÿÿ
+d	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õé°Ë
+l
+java:S1104"SMake mailBox a static final constant or non-public and provide accessors if needed.(¡úÉºıÿÿÿÿ
+i
+java:S1104"UMake gov3_flag a static final constant or non-public and provide accessors if needed.(öçö¶
+7
+java:S1220""Move this file to a named package.8ÏÏÃ¯/
+j
+java:S1450"VRemove the "Address" field and declare it as a local variable in the relevant methods.(÷Ü©
+h
+java:S1450"TRemove the "admin" field and declare it as a local variable in the relevant methods.(Ï€©º
+`	java:S116"MRename this field "ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆÌèš
+e	java:S116"RRename this field "mark_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ôõÄ³
+f	java:S116"SRename this field "Location" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†šç²
+e	java:S116"RRename this field "Address" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(÷Ü©
+g	java:S116"TRename this field "gov3_flag" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(öçö¶
+~
+java:S1149"eReplace the synchronized class "Vector" by an unsynchronized one such as "ArrayList" or "LinkedList".(Äöå¸úÿÿÿÿ
+~
+java:S1149"eReplace the synchronized class "Vector" by an unsynchronized one such as "ArrayList" or "LinkedList".(®­Á¶üÿÿÿÿ
+~
+java:S1149"eReplace the synchronized class "Vector" by an unsynchronized one such as "ArrayList" or "LinkedList".(¡úÉºıÿÿÿÿ
+~
+java:S1149"eReplace the synchronized class "Vector" by an unsynchronized one such as "ArrayList" or "LinkedList".(Ã¸™¥ùÿÿÿÿ
+y
+java:S1149"eReplace the synchronized class "Vector" by an unsynchronized one such as "ArrayList" or "LinkedList".(ı–ùµ
+x
+java:S1149"eReplace the synchronized class "Vector" by an unsynchronized one such as "ArrayList" or "LinkedList".(ıª…P
+r
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(®­Á¶üÿÿÿÿ
+O	java:S125"<This block of commented-out lines of code should be removed.(©ùÛ
+m
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ı–ùµ
+T	java:S125"<This block of commented-out lines of code should be removed.(á£ôÄÿÿÿÿÿ
+r
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(¿ùòúÿÿÿÿ
+r
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(¿ùòúÿÿÿÿ
+r
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(¿ùòúÿÿÿÿ
+r
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(·×¬½şÿÿÿÿ
+7
+java:S2119"Save and re-use this "Random".(šŸ«íøÿÿÿÿ
+Y
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(’ªô‹
+O	java:S125"<This block of commented-out lines of code should be removed.(¯ÍçÏ
+O	java:S125"<This block of commented-out lines of code should be removed.(ß¦€æ
+T	java:S125"<This block of commented-out lines of code should be removed.(‘ÏÀ®øÿÿÿÿ
+L	java:S106"9Replace this use of System.out or System.err by a logger.(±Àõ¬
+/
+java:S3626"Remove this redundant jump.(ûÁİ…
+/
+java:S3626"Remove this redundant jump.(ûÁİ…
+a	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ìƒ†
+a	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¶ÌÇâ
+L	java:S106"9Replace this use of System.out or System.err by a logger.(°¦˜ÿ
+a	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­£¡ÿ
+K	java:S106"9Replace this use of System.out or System.err by a logger.(¸ØïU
+L	java:S106"9Replace this use of System.out or System.err by a logger.(Ô‰£ø
+a	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨ÚÀñ
+Q	java:S106"9Replace this use of System.out or System.err by a logger.(œæ¢•ùÿÿÿÿ
+Q	java:S106"9Replace this use of System.out or System.err by a logger.(åê¦¾üÿÿÿÿ
+Q	java:S106"9Replace this use of System.out or System.err by a logger.(Ë”ëÿÿÿÿÿ
+L	java:S106"9Replace this use of System.out or System.err by a logger.(£çû‹
+L	java:S106"9Replace this use of System.out or System.err by a logger.(¬‹Ÿ
+f	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úÉı¯ùÿÿÿÿ
+L
+java:S1197"8Move the array designator from the variable to the type.(ôÌé¼
+Q
+java:S1854"8Remove this useless assignment to local variable "name".(¹ª½Àûÿÿÿÿ
+L
+java:S1197"8Move the array designator from the variable to the type.(ôÌé¼
+Q	java:S106"9Replace this use of System.out or System.err by a logger.(İè¬øÿÿÿÿ
+T
+java:S1197"8Move the array designator from the variable to the type.(ËïÜúÿÿÿÿ
+T
+java:S1197®"8Move the array designator from the variable to the type.(ËïÜúÿÿÿÿ
+I
+java:S1135·"2Complete the task associated to this TODO comment.(È¾ç„
+B
+java:S1481")Remove this unused "name" local variable.(¹ª½Àûÿÿÿÿ
+?
+java:S1068"+Remove this unused "Address" private field.(÷Ü©
